@@ -1,14 +1,14 @@
 import React from 'react';
-import { App as Appd } from '@repo-warehouse/shared/dist/App';
+import { App as SharedApp } from '@repo-warehouse/shared';
 import './App.css';
 
 const App = () => {
   return (
     <div className="App">
       I am core
-      <Appd/>
+      <SharedApp/>
     </div>
   );
-}
+};
 
 export default App;
