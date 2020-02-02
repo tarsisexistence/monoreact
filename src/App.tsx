@@ -1,12 +1,14 @@
 import React from 'react';
-import { App as SharedApp } from '@repo-warehouse/shared';
+import a from '@repo-warehouse/shared';
 import './App.css';
+
+console.log(a);
 
 const App = () => {
   return (
     <div className="App">
       I am core
-      <SharedApp/>
+      {/*<SharedApp/>*/}
     </div>
   );
 };

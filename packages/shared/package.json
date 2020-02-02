@@ -1,15 +1,22 @@
 {
   "name": "@repo-warehouse/shared",
-  "version": "0.0.9",
+  "version": "0.0.16",
   "private": false,
-  "main": "dist/index.js",
+  "main": "dist/static/js/main.chunk.js",
+  "watch": {
+    "build": "src/**/*.js"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "start:s": "react-app-rewired start",
+    "build:s": "react-app-rewired build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "mkdir": "if not exist dist mkdir dist",
-    "watch": "npx babel src/components --watch --presets=minify --out-dir dist --copy-files --no-copy-ignored --ignore \"src/**/*.spec.js\",\"src/**/*.test.js\""
+    "watch:s": "npm-watch build:s",
+    "watch": "node watch.js",
+    "watch1": "npx babel src/components --watch --presets=minify --out-dir dist --copy-files --no-copy-ignored --ignore \"src/**/*.spec.js\",\"src/**/*.test.js\""
   },
   "dependencies": {
     "@babel/cli": "~7.8.4",
@@ -21,7 +28,9 @@
   "devDependencies": {
     "@babel/cli": "7.8.4",
     "@babel/preset-react": "7.8.3",
-    "babel-preset-minify": "0.5.1"
+    "babel-preset-minify": "0.5.1",
+    "npm-watch": "~0.6.0",
+    "react-app-rewired": "~2.1.5"
   },
   "babel": {
     "presets": [
