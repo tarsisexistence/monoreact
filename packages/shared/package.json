@@ -1,36 +1,33 @@
 {
   "name": "@repo-warehouse/shared",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "private": false,
   "main": "dist/static/js/main.chunk.js",
-  "watch": {
-    "build": "src/**/*.js"
-  },
   "scripts": {
+    "// - CRA SCRIPTS - //": "cli scripts of create-react-app",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "start:s": "react-app-rewired start",
-    "build:s": "react-app-rewired build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "mkdir": "if not exist dist mkdir dist",
-    "watch:s": "npm-watch build:s",
-    "watch": "node watch.js",
-    "watch1": "npx babel src/components --watch --presets=minify --out-dir dist --copy-files --no-copy-ignored --ignore \"src/**/*.spec.js\",\"src/**/*.test.js\""
-  },
-  "dependencies": {
-    "@babel/cli": "~7.8.4",
-    "@babel/preset-react": "~7.8.3",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "^3.3.1"
+    "// - OPERATIONS - //": "scripts for filesystem operations",
+    "make:dist": "if not exist dist mkdir dist",
+    "remove:dist": "if exist dist rd /s /q dist",
+    "rename:dist": "ren build dist",
+    "// - LIB - //": "scripts for lib management",
+    "lib:watch": "npm-watch lib:start",
+    "lib:start": "react-app-rewired start",
+    "lib:build": "react-app-rewired build & npm run remove:dist & npm run rename:dist",
+    "lib:publish": "npm version patch & npm publish"
   },
   "devDependencies": {
-    "@babel/cli": "7.8.4",
-    "@babel/preset-react": "7.8.3",
+    "@babel/cli": "~7.8.4",
+    "@babel/preset-react": "~7.8.3",
     "babel-preset-minify": "0.5.1",
-    "npm-watch": "~0.6.0",
-    "react-app-rewired": "~2.1.5"
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "^3.3.1",
+    "react-app-rewired": "~2.1.5",
+    "npm-watch": "~0.6.0"
   },
   "babel": {
     "presets": [
