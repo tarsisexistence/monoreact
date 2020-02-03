@@ -1,8 +1,8 @@
 import React from 'react';
-import a from '@repo-warehouse/shared';
+import D from '@repo-warehouse/shared';
 import './App.css';
 
-console.log(a);
+console.log(D);
 
 const App = () => {
   return (

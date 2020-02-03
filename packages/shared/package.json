@@ -1,8 +1,8 @@
 {
   "name": "@repo-warehouse/shared",
-  "version": "0.0.17",
+  "version": "0.0.20",
   "private": false,
-  "main": "dist/static/js/main.chunk.js",
+  "module": "dist/src/index.js",
   "scripts": {
     "// - CRA SCRIPTS - //": "cli scripts of create-react-app",
     "start": "react-scripts start",
@@ -12,11 +12,13 @@
     "// - OPERATIONS - //": "scripts for filesystem operations",
     "make:dist": "if not exist dist mkdir dist",
     "remove:dist": "if exist dist rd /s /q dist",
-    "rename:dist": "ren build dist",
+    "rename:build": "ren build dist",
     "// - LIB - //": "scripts for lib management",
     "lib:watch": "npm-watch lib:start",
     "lib:start": "react-app-rewired start",
-    "lib:build": "react-app-rewired build & npm run remove:dist & npm run rename:dist",
+    "lib:transpile": "npx babel src --presets=minify --out-dir dist --copy-files --no-copy-ignored --ignore \"src/**/*.test.js\"",
+    "lib:transpile:watch": "npm run lib:transpile -- --watch",
+    "lib:build": "react-app-rewired build & npm run remove:dist & npm run rename:build & npm run lib:transpile",
     "lib:publish": "npm version patch & npm publish"
   },
   "devDependencies": {
