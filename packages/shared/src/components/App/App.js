@@ -1,10 +1,13 @@
 import React from 'react';
 import './App.css';
 
-export function App() {
+export function App({ num = 9 }) {
+  const result = 1 + num;
+
   return (
       <div className="App">
-        Hello from shared4
+        <p className="AppTarsis">....</p>
+        Hello from shared {result}
       </div>
   );
 }
