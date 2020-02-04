@@ -28,12 +28,7 @@ module.exports = function override(config, env) {
     }
     config.output.filename = 'static/js/[name].js';
     config.output.chunkFilename = 'static/js/[name].chunk.js';
-    // check does it work
-    config.externals = [
-      'react',
-      'react-dom',
-      '/^react\\/.+$/',
-    ];
+    config.externals = [reactExternals];
   } else {
     paths.publicUrl = `${paths.appBuild}/`;
     config.output.publicPath = paths.publicUrl;
@@ -49,9 +44,8 @@ module.exports = function override(config, env) {
     });
   }
 
-  config.output.library = 'sharedLib';
-  config.output.libraryTarget = 'umd';
-  config.output.umdNamedDefine = true;
+  config.output.library = '[name]';
+  config.output.libraryTarget = 'commonjs2';
 
   return config;
 };
