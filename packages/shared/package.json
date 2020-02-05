@@ -1,8 +1,8 @@
 {
   "name": "@repo-warehouse/shared",
-  "version": "0.0.27",
+  "version": "0.0.34",
   "private": false,
-  "main": "dist/static/js/main.chunk.js",
+  "main": "dist/index.js",
   "scripts": {
     "// - CRA SCRIPTS - //": "cli scripts of create-react-app",
     "start": "react-scripts start",
@@ -15,23 +15,33 @@
     "rename:build": "ren build dist",
     "// - LIB - //": "scripts for lib management",
     "lib:start": "react-app-rewired start",
-    "lib:transpile": "npx babel src --presets=minify --out-dir dist --copy-files --no-copy-ignored --ignore \"src/**/*.test.js\"",
+    "lib:transpile": "babel src --presets=minify --out-dir dist --copy-files --no-copy-ignored --ignore \"src/**/*.test.js\"",
     "lib:transpile:watch": "npm run lib:transpile -- --watch",
     "lib:build": "npm run remove:dist && react-app-rewired build && npm run rename:build && npm run lib:transpile",
     "lib:publish": "npm version patch & npm publish"
   },
   "devDependencies": {
     "@babel/cli": "~7.8.4",
+    "@babel/core": "^7.8.4",
     "@babel/preset-react": "~7.8.3",
+    "babel-plugin-react-css-modules": "~5.2.6",
     "babel-preset-minify": "0.5.1",
     "react": "^16.12.0",
+    "react-app-rewired": "~2.1.5",
     "react-dom": "^16.12.0",
-    "react-scripts": "^3.3.1",
-    "react-app-rewired": "~2.1.5"
+    "react-scripts": "^3.3.1"
   },
   "babel": {
     "presets": [
       "@babel/preset-react"
+    ],
+    "plugins": [
+      [
+        "react-css-modules",
+        {
+          "generateScopedName": "[path]_[name]_[local]"
+        }
+      ]
     ]
   },
   "eslintConfig": {

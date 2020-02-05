@@ -1,12 +1,12 @@
 import React from 'react';
-import './App.css';
+import styles from './App.css';
 
 export function App({ num = 9 }) {
-  const result = 1 + num;
+  const result = 2 + num;
 
   return (
-      <div className="App">
-        <p className="AppTarsis">....</p>
+      <div className={styles.App}>
+        <p className={styles.AppTarsis}>....</p>
         Hello from shared {result}
       </div>
   );
