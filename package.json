@@ -11,7 +11,7 @@
     "react-scripts": "3.3.1",
     "typescript": "3.7.5",
     "@repo-warehouse/shared": "0.0.34",
-    "@repo-warehouse/webpack": "0.0.3",
+    "@repo-warehouse/webpack": "0.0.2",
     "@repo-warehouse/bundle": "0.0.4"
   },
   "devDependencies": {
