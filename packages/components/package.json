@@ -1,5 +1,5 @@
 {
-  "name": "@repo-warehouse/webpack",
+  "name": "@repo-warehouse/components",
   "version": "0.0.3",
   "private": false,
   "main": "dist/bundle.min.js",

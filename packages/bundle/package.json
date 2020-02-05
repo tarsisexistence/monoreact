@@ -7,46 +7,29 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Max Tarsis",
+  "license": "MIT",
   "description": "",
-  "dependencies": {
-    "classnames": "~2.2.6",
+  "peerDependencies": {
     "react": "~16.12.0",
-    "react-dom": "~16.12.0",
-    "react-proptypes": "~1.0.0"
+    "react-dom": "~16.12.0"
   },
   "devDependencies": {
     "@babel/cli": "~7.8.4",
     "@babel/core": "~7.8.4",
-    "@babel/plugin-external-helpers": "~7.8.3",
     "@babel/preset-env": "~7.8.4",
     "@babel/preset-react": "~7.8.3",
-    "@modular-css/rollup": "~25.3.1",
-    "@rollup/plugin-commonjs": "~11.0.2",
-    "@rollup/plugin-json": "~4.0.2",
     "@rollup/plugin-node-resolve": "~7.1.1",
-    "acorn-jsx": "~5.1.0",
-    "autoprefixer": "~9.7.4",
+    "classnames": "~2.2.6",
     "cssnano": "~4.1.10",
     "postcss-cssnext": "~3.1.0",
-    "postcss-global-import": "~1.0.6",
-    "postcss-import": "~12.0.1",
-    "postcss-modules": "~1.5.0",
     "postcss-nested": "~4.2.1",
     "postcss-simple-vars": "~5.0.2",
-    "postcss-url": "~8.0.0",
+    "prop-types": "15.7.2",
     "rollup": "~1.31.0",
     "rollup-plugin-babel": "~4.3.3",
-    "rollup-plugin-commonjs": "~10.1.0",
-    "rollup-plugin-eslint": "~7.0.0",
-    "rollup-plugin-filesize": "~6.2.1",
-    "rollup-plugin-local-resolve": "~1.0.7",
-    "rollup-plugin-node-resolve": "~5.2.0",
     "rollup-plugin-postcss": "~2.0.6",
-    "rollup-plugin-terser": "~5.2.0",
-    "rollup-plugin-uglify": "~6.0.4",
-    "rollup-plugin-url": "~3.0.1"
+    "rollup-plugin-terser": "~5.2.0"
   },
   "publishConfig": {
     "access": "public"

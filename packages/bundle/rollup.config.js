@@ -1,6 +1,5 @@
-import resolve from 'rollup-plugin-node-resolve';
+import resolve from '@rollup/plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
-import json from '@rollup/plugin-json';
 import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 import simplevars from 'postcss-simple-vars';
@@ -25,7 +24,7 @@ export default {
   external: [
     'react',
     'react-dom',
-    'react-proptypes',
+    'prop-types',
   ],
   plugins: [
     postcss({
@@ -38,7 +37,6 @@ export default {
       ],
       extensions: ['.css'],
     }),
-    json(),
     resolve(),
     babel({
       exclude: 'node_modules/**',
