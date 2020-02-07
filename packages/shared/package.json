@@ -21,15 +21,15 @@
     "lib:publish": "npm version patch & npm publish"
   },
   "devDependencies": {
-    "@babel/cli": "~7.8.4",
-    "@babel/core": "^7.8.4",
-    "@babel/preset-react": "~7.8.3",
-    "babel-plugin-react-css-modules": "~5.2.6",
+    "@babel/cli": "7.8.4",
+    "@babel/core": "7.8.4",
+    "@babel/preset-react": "7.8.3",
+    "babel-plugin-react-css-modules": "5.2.6",
     "babel-preset-minify": "0.5.1",
-    "react": "^16.12.0",
-    "react-app-rewired": "~2.1.5",
-    "react-dom": "^16.12.0",
-    "react-scripts": "^3.3.1"
+    "react": "16.12.0",
+    "react-app-rewired": "2.1.5",
+    "react-dom": "16.12.0",
+    "react-scripts": "3.3.1"
   },
   "babel": {
     "presets": [
