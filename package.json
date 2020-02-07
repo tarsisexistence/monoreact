@@ -1,5 +1,5 @@
 {
-  "name": "@repo-warehouse/core",
+  "name": "@tarsis/core",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
@@ -9,10 +9,7 @@
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "react-scripts": "3.3.1",
-    "typescript": "3.7.5",
-    "@repo-warehouse/shared": "0.0.34",
-    "@repo-warehouse/webpack": "0.0.3",
-    "@repo-warehouse/bundle": "0.0.4"
+    "typescript": "3.7.5"
   },
   "devDependencies": {
     "@types/jest": "24.9.1",
