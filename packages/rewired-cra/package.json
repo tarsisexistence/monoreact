@@ -1,6 +1,6 @@
 {
-  "name": "@repo-warehouse/shared",
-  "version": "0.0.34",
+  "name": "@tarsis/shared",
+  "version": "0.0.1",
   "private": false,
   "main": "dist/index.js",
   "scripts": {
