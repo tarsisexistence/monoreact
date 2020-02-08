@@ -14,7 +14,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "link": "npm link ./packages/starter",
-    "refresh": "npm install && npm run link"
+    "refresh": "npm install && npm run link",
+    "lint": "eslint src/**/*.{js,jsx,ts,tsx}"
   },
   "dependencies": {
     "@testing-library/jest-dom": "4.2.4",
@@ -29,7 +30,18 @@
     "@types/jest": "24.9.1",
     "@types/node": "12.12.26",
     "@types/react": "16.9.19",
-    "@types/react-dom": "16.9.5"
+    "@types/react-dom": "16.9.5",
+    "eslint-config-airbnb-typescript": "~6.3.1",
+    "eslint-config-prettier": "~6.10.0",
+    "eslint-import-resolver-typescript": "~2.0.0",
+    "eslint-plugin-compat": "~3.5.1",
+    "eslint-plugin-import": "~2.20.1",
+    "eslint-plugin-prettier": "~3.1.2",
+    "eslint-plugin-promise": "~4.2.1",
+    "eslint-plugin-sonarjs": "~0.5.0",
+    "husky": "~4.2.1",
+    "lint-staged": "~10.0.7",
+    "prettier": "~1.19.1"
   },
   "eslintConfig": {
     "extends": "react-app"
