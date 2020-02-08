@@ -5,6 +5,12 @@
   "module": "dist/bundle.es.js",
   "jsnext:main": "dist/bundle.es.js",
   "typings": "dist/publicApi.d.ts",
+  "license": "MIT",
+  "author": {
+    "email": "tarsis.maksym@gmail.com",
+    "name": "Maksym Tarsis",
+    "url": "https://github.com/maktarsis"
+  },
   "scripts": {
     "build": "npx rollup -c",
     "start": "npx rollup -cw",

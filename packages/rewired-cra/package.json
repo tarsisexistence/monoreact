@@ -1,5 +1,5 @@
 {
-  "name": "@tarsis/shared",
+  "name": "@tarsis/rewired-cra",
   "version": "0.0.1",
   "private": false,
   "main": "dist/index.js",
