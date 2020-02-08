@@ -2,6 +2,20 @@
   "name": "@tarsis/core",
   "version": "0.0.1",
   "private": true,
+  "author": {
+    "email": "tarsis.maksym@gmail.com",
+    "name": "Maksym Tarsis",
+    "url": "https://github.com/maktarsis"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "link": "npm link ./packages/starter",
+    "refresh": "npm install && npm run link"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "4.2.4",
     "@testing-library/react": "9.4.0",
@@ -16,14 +30,6 @@
     "@types/node": "12.12.26",
     "@types/react": "16.9.19",
     "@types/react-dom": "16.9.5"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "link": "npm link ./packages/grommet",
-    "refresh": "npm install && npm run link"
   },
   "eslintConfig": {
     "extends": "react-app"
