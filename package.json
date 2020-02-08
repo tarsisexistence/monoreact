@@ -22,7 +22,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "link": "npm link ./packages/shared && npm link ./packages/bundle"
+    "link": "npm link ./packages/grommet",
+    "refresh": "npm install && npm run link"
   },
   "eslintConfig": {
     "extends": "react-app"
