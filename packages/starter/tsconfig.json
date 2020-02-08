@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
     "declaration": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
@@ -12,6 +13,10 @@
       "dom",
       "dom.iterable",
       "esnext"
+    ],
+    "typeRoots": [
+      "node_modules/@types",
+      "typings/*"
     ]
   },
   "exclude": [
