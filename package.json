@@ -1,11 +1,11 @@
 {
   "name": "@tarsis/core",
   "version": "0.0.1",
-  "license": "MIT",
   "private": true,
+  "license": "MIT",
   "author": {
-    "email": "tarsis.maksym@gmail.com",
     "name": "Maksym Tarsis",
+    "email": "tarsis.maksym@gmail.com",
     "url": "https://github.com/maktarsis"
   },
   "workspaces": [
@@ -13,11 +13,27 @@
   ],
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
+    "build": "react-scripts build",
     "eject": "react-scripts eject",
+    "lint:css": "stylelint src/**/*.css",
     "lint:es": "eslint src/**/*.{js,jsx,ts,tsx}",
-    "lint:css": "stylelint src/**/*.css"
+    "sort:deps": "npx sort-package-json"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   },
   "dependencies": {
     "classnames": "2.2.6",
@@ -28,16 +44,11 @@
     "typescript": "3.7.5"
   },
   "devDependencies": {
-    "@types/enzyme": "3.10.5",
-    "enzyme": "3.11.0",
-    "enzyme-adapter-react-16": "1.15.2",
-    "identity-obj-proxy": "3.0.0",
-    "ts-jest": "24.3.0",
-    "react-is": "16.12.0",
     "@testing-library/dom": "6.12.2",
     "@testing-library/jest-dom": "4.2.4",
     "@testing-library/react": "9.4.0",
     "@testing-library/user-event": "7.2.1",
+    "@types/enzyme": "3.10.5",
     "@types/jest": "24.9.1",
     "@types/node": "12.12.26",
     "@types/react": "16.9.19",
@@ -45,6 +56,8 @@
     "@types/react-router-dom": "5.1.3",
     "@typescript-eslint/eslint-plugin": "2.19.0",
     "@typescript-eslint/parser": "2.19.0",
+    "enzyme": "3.11.0",
+    "enzyme-adapter-react-16": "1.15.2",
     "eslint": "6.8.0",
     "eslint-config-airbnb-typescript": "6.3.2",
     "eslint-config-prettier": "6.10.0",
@@ -58,24 +71,13 @@
     "eslint-plugin-react-hooks": "2.3.0",
     "eslint-plugin-sonarjs": "0.5.0",
     "husky": "4.2.1",
+    "identity-obj-proxy": "3.0.0",
+    "jest": "24.9.0",
     "lint-staged": "10.0.7",
     "prettier": "1.19.1",
+    "react-is": "16.12.0",
     "stylelint": "13.1.0",
-    "stylelint-config-recommended": "3.0.0"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "stylelint-config-recommended": "3.0.0",
+    "ts-jest": "24.3.0"
   }
 }
