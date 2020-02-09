@@ -1,14 +1,14 @@
 {
   "name": "@tarsis/rewired-cra",
   "version": "0.0.1",
-  "private": false,
+  "license": "MIT",
+  "private": true,
   "main": "dist/index.js",
   "author": {
     "email": "tarsis.maksym@gmail.com",
     "name": "Maksym Tarsis",
     "url": "https://github.com/maktarsis"
   },
-  "license": "MIT",
   "scripts": {
     "// - CRA SCRIPTS - //": "cli scripts of create-react-app",
     "start": "react-scripts start",
