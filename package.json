@@ -16,8 +16,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "link": "npm link ./packages/starter",
-    "refresh": "npm install && npm run link",
     "lint:es": "eslint src/**/*.{js,jsx,ts,tsx}",
     "lint:css": "stylelint src/**/*.css"
   },
