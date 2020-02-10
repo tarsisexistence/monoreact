@@ -15,7 +15,6 @@
     "start": "react-scripts start",
     "test": "react-scripts test",
     "build": "react-scripts build",
-    "eject": "react-scripts eject",
     "lint:css": "stylelint src/**/*.css",
     "lint:es": "eslint src/**/*.{js,jsx,ts,tsx}",
     "sort:deps": "npx sort-package-json"
