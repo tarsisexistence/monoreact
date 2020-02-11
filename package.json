@@ -15,8 +15,8 @@
     "start": "react-scripts start",
     "test": "react-scripts test",
     "build": "react-scripts build",
-    "lint:css": "stylelint src/**/*.css",
     "lint:es": "eslint src/**/*.{js,jsx,ts,tsx}",
+    "lint:css": "stylelint src/**/*.css",
     "sort:deps": "npx sort-package-json"
   },
   "browserslist": {
@@ -35,13 +35,13 @@
     "extends": "react-app"
   },
   "dependencies": {
+    "@tarsis/starter": "0.0.5",
     "classnames": "2.2.6",
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "react-router-dom": "5.1.2",
     "react-scripts": "3.3.1",
-    "typescript": "3.7.5",
-    "@tarsis/starter": "0.0.5"
+    "typescript": "3.7.5"
   },
   "devDependencies": {
     "@testing-library/dom": "6.12.2",
@@ -55,21 +55,22 @@
     "@types/react": "16.9.19",
     "@types/react-dom": "16.9.5",
     "@types/react-router-dom": "5.1.3",
-    "@typescript-eslint/eslint-plugin": "2.19.2",
-    "@typescript-eslint/parser": "2.19.2",
+    "@typescript-eslint/eslint-plugin": "2.19.0",
+    "@typescript-eslint/parser": "2.19.0",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.2",
     "eslint": "6.8.0",
-    "eslint-config-airbnb-typescript": "7.0.0",
+    "eslint-config-airbnb-typescript": "6.3.2",
     "eslint-config-prettier": "6.10.0",
+    "eslint-config-react-app": "5.2.0",
     "eslint-import-resolver-typescript": "2.0.0",
     "eslint-plugin-compat": "3.5.1",
-    "eslint-plugin-import": "2.20.1",
+    "eslint-plugin-import": "2.20.0",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-prettier": "3.1.2",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-react": "7.18.3",
-    "eslint-plugin-react-hooks": "2.3.0",
+    "eslint-plugin-react-hooks": "1.7.0",
     "eslint-plugin-sonarjs": "0.5.0",
     "husky": "4.2.1",
     "identity-obj-proxy": "3.0.0",

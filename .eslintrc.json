@@ -27,10 +27,7 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
-    "semi": [
-      2,
-      "always"
-    ],
+    "semi": [2, "always"],
     "quotes": 0,
     "jsx-quotes": 0,
     "react/prop-types": 0,
@@ -44,22 +41,13 @@
     "react/prefer-stateless-function": 2,
     "react/no-unsafe": 2,
     "react/self-closing-comp": 2,
-    "react/jsx-fragments": [
-      2,
-      "element"
-    ],
+    "react/jsx-fragments": [2, "element"],
     "react/jsx-no-bind": 2,
     "react/jsx-no-comment-textnodes": 2,
     "react/jsx-no-duplicate-props": 2,
     "react/jsx-no-target-blank": 2,
-    "react/jsx-curly-brace-presence": [
-      2,
-      "never"
-    ],
-    "react/jsx-boolean-value": [
-      2,
-      "always"
-    ],
+    "react/jsx-curly-brace-presence": [2, "never"],
+    "react/jsx-boolean-value": [2, "always"],
     "react/jsx-sort-props": [
       2,
       {
@@ -91,34 +79,27 @@
     "import/default": 2,
     "import/export": 2,
     "import/no-cycle": 2,
-    "import/imports-first": [
-      2,
-      "absolute-first"
-    ],
+    "import/imports-first": [2, "absolute-first"],
     "import/newline-after-import": 2,
     "import/prefer-default-export": 0,
     "import/no-useless-path-segments": 2,
     "import/no-default-export": 2,
     "import/no-mutable-exports": 2,
     "import/no-namespace": 2,
-    "import/no-extraneous-dependencies": 2,
+    "import/no-extraneous-dependencies": [
+      2,
+      {
+        "devDependencies": ["src/setupTests.ts", "src/*.test.{ts,tsx}"]
+      }
+    ],
     "import/no-duplicates": 2,
     "import/order": [
-      "error",
+      2,
       {
         "newlines-between": "always",
         "groups": [
-          [
-            "builtin",
-            "external"
-          ],
-          [
-            "parent",
-            "internal",
-            "sibling",
-            "index",
-            "unknown"
-          ]
+          ["builtin", "external"],
+          ["parent", "internal", "sibling", "index", "unknown"]
         ]
       }
     ],
@@ -141,20 +122,12 @@
       "version": "detect"
     },
     "import/parsers": {
-      "@typescript-eslint/parser": [
-        ".ts",
-        ".tsx"
-      ]
+      "@typescript-eslint/parser": [".ts", ".tsx"]
     },
     "import/resolver": {
       "node": {
-        "paths": [
-          "src/"
-        ],
-        "extensions": [
-          ".ts",
-          ".tsx"
-        ]
+        "paths": ["src/"],
+        "extensions": [".ts", ".tsx"]
       }
     }
   },
