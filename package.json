@@ -40,7 +40,8 @@
     "react-dom": "16.12.0",
     "react-router-dom": "5.1.2",
     "react-scripts": "3.3.1",
-    "typescript": "3.7.5"
+    "typescript": "3.7.5",
+    "@tarsis/starter": "0.0.5"
   },
   "devDependencies": {
     "@testing-library/dom": "6.12.2",
@@ -48,6 +49,7 @@
     "@testing-library/react": "9.4.0",
     "@testing-library/user-event": "7.2.1",
     "@types/enzyme": "3.10.5",
+    "@types/enzyme-adapter-react-16": "1.0.6",
     "@types/jest": "24.9.1",
     "@types/node": "12.12.26",
     "@types/react": "16.9.19",

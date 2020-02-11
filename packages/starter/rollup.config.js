@@ -1,4 +1,3 @@
-// import { terser } from 'rollup-plugin-terser';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript2 from 'rollup-plugin-typescript2';
 import external from 'rollup-plugin-peer-deps-external';
@@ -18,43 +17,36 @@ const config = {
       file: pkg.module,
       format: 'es',
       exports: 'named',
-      sourcemap: true,
+      sourcemap: true
     },
     {
       file: pkg.main,
       format: 'cjs',
       exports: 'named',
-      sourcemap: true,
-    },
+      sourcemap: true
+    }
   ],
   external: ['react', 'react-dom', 'grommet', 'styled-components'],
   plugins: [
-    // terser(),
     external({ includeDependencies: true }),
     postcss({
       modules: true,
-      plugins: [
-        simplevars(),
-        nested(),
-        cssnano(),
-        autoprefixer(),
-      ],
+      plugins: [simplevars(), nested(), cssnano(), autoprefixer()],
       extensions: ['.css', '.scss', '.sass'],
-      use: ['sass'],
+      use: ['sass']
     }),
     typescript2({
       typescript: require('typescript'),
-      tsconfig: 'tsconfig.json',
+      tsconfig: 'tsconfig.json'
     }),
-    resolve(
-        {
-          extensions: ['.js', 'jsx', '.ts', '.tsx'],
-          preferBuiltins: false,
-          browser: true
-        }),
+    resolve({
+      extensions: ['.js', 'jsx', '.ts', '.tsx'],
+      preferBuiltins: false,
+      browser: true
+    }),
     commonjs({
       include: /\/node_modules\//,
-      exclude: ['**/*.stories.js'],
+      exclude: ['**/*.stories.js']
     }),
     babel({
       babelrc: false,
@@ -63,14 +55,15 @@ const config = {
         [
           '@babel/preset-env',
           {
-            'modules': false,
-          },
+            modules: false
+          }
         ],
-        '@babel/preset-react',
+        '@babel/preset-react'
       ],
-      exclude: /\/node_modules\//,
-    }),
-  ],
+      exclude: /\/node_modules\//
+    })
+  ]
 };
 
+// eslint-disable-next-line import/no-default-export
 export default config;

@@ -1,6 +1,6 @@
 {
   "name": "@tarsis/starter",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "main": "dist/bundle.cjs.js",
   "module": "dist/bundle.es.js",
   "jsnext:main": "dist/bundle.es.js",
@@ -17,7 +17,7 @@
     "test": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "publish": "npm version patch && npm publish"
+    "lib:publish:": "npm version patch && npm publish"
   },
   "dependencies": {
     "grommet": "~2.10.0",
@@ -57,5 +57,8 @@
     "rollup-plugin-typescript2": "0.25.3",
     "tslib": "1.10.0",
     "typescript": "3.7.5"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
