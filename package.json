@@ -16,7 +16,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "lint:es": "eslint src/**/*.{js,jsx,ts,tsx}",
-    "lint:css": "stylelint src/**/*.css",
+    "lint:css": "stylelint src/**/*.{css,sass,scss}",
+    "lint:es:all": "eslint src/**/*.{js,jsx,ts,tsx} packages/*/src/**/*.{js,jsx,ts,tsx}",
+    "lint:css:all": "stylelint src/**/*.{css,sass,scss} packages/*/src/**/*.{css,sass,scss}",
     "sort:deps": "npx sort-package-json"
   },
   "dependencies": {

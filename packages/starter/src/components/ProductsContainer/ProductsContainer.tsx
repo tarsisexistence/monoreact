@@ -6,10 +6,10 @@ import { ProductsRoutes } from '../ProductsRoutes/ProductsRoutes';
 import styles from './ProductsContainer.scss';
 
 export const ProductsContainer = () => (
-	<div className={styles.container}>
-		<BrowserRouter>
-			<Sidebar/>
-			<ProductsRoutes/>
-		</BrowserRouter>
-	</div>
+  <div className={styles.container}>
+    <BrowserRouter>
+      <Sidebar />
+      <ProductsRoutes />
+    </BrowserRouter>
+  </div>
 );
