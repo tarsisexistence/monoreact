@@ -1,6 +1,6 @@
 {
-  "name": "@tarsis/starter",
-  "version": "0.0.5",
+  "name": "@re-space/example",
+  "version": "0.0.4",
   "main": "dist/bundle.cjs.js",
   "module": "dist/bundle.es.js",
   "jsnext:main": "dist/bundle.es.js",
@@ -12,18 +12,16 @@
     "url": "https://github.com/maktarsis"
   },
   "scripts": {
-    "build": "npx rollup -c",
     "start": "npx rollup -cw",
+    "build": "npx rollup -c",
     "test": "jest",
     "docz": "docz dev -p 6010",
     "publication:publish": "npm run build && npm version patch && npm publish"
   },
-  "dependencies": {
-    "grommet": "~2.10.0",
-    "grommet-icons": "~4.4.0",
-    "styled-components": "~5.0.1"
-  },
   "peerDependencies": {
+    "grommet": "2.10.0",
+    "grommet-icons": "4.4.0",
+    "styled-components": "5.0.1",
     "react": "~16.12.0",
     "react-dom": "~16.12.0",
     "react-router-dom": "~5.1.2"

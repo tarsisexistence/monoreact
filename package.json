@@ -1,6 +1,6 @@
 {
-  "name": "@tarsis/respace",
-  "version": "0.0.1",
+  "name": "@re-space/core",
+  "version": "0.0.0",
   "private": true,
   "license": "MIT",
   "author": {
@@ -22,12 +22,16 @@
     "sort:deps": "npx sort-package-json"
   },
   "dependencies": {
-    "@tarsis/starter": "0.0.5",
+    "@re-space/example": "0.0.4",
     "classnames": "2.2.6",
+    "grommet": "2.10.0",
+    "grommet-icons": "4.4.0",
     "react": "16.12.0",
+
     "react-dom": "16.12.0",
     "react-router-dom": "5.1.2",
     "react-scripts": "3.4.0",
+    "styled-components": "~5.0.1",
     "typescript": "3.7.5"
   },
   "devDependencies": {
@@ -60,8 +64,8 @@
     "eslint": "6.8.0",
     "eslint-config-airbnb-typescript": "6.3.2",
     "eslint-config-prettier": "6.10.0",
-    "eslint-import-resolver-lerna": "1.1.0",
     "eslint-config-react-app": "5.2.0",
+    "eslint-import-resolver-lerna": "1.1.0",
     "eslint-import-resolver-typescript": "2.0.0",
     "eslint-plugin-compat": "3.5.1",
     "eslint-plugin-import": "2.20.0",
@@ -81,7 +85,6 @@
     "prettier": "1.19.1",
     "prop-types": "15.7.2",
     "react-is": "16.12.0",
-    "redux-devtools": "3.5.0",
     "regenerator-runtime": "0.13.3",
     "rollup": "1.31.0",
     "rollup-plugin-babel": "4.3.3",

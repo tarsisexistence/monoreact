@@ -9,40 +9,41 @@ import nested from 'postcss-nested';
 import cssnano from 'cssnano';
 import autoprefixer from 'autoprefixer';
 
-export const rollupPackageConfig = {
+export const createRollupConfig = (pkg) => ({
   input: 'src/publicApi.ts',
   output: [
     {
-      file: 'dist/bundle.es.js',
+      file: pkg.module,
       format: 'es',
-      exports: 'named'
+      exports: 'named',
     },
     {
-      file: 'dist/bundle.cjs.js',
+      file: pkg.main,
       format: 'cjs',
-      exports: 'named'
-    }
+      exports: 'named',
+    },
   ],
+  external: Object.keys(pkg.peerDependencies || {}),
   plugins: [
+    // remove?
     external({ includeDependencies: true }),
     postcss({
       modules: true,
       plugins: [simplevars(), nested(), cssnano(), autoprefixer()],
       extensions: ['.css', '.scss', '.sass'],
-      use: ['sass']
+      use: ['sass'],
     }),
     typescript2({
       typescript: require('typescript'),
-      tsconfig: 'tsconfig.json'
+      tsconfig: 'tsconfig.json',
     }),
     resolve({
       extensions: ['.js', 'jsx', '.ts', '.tsx'],
       preferBuiltins: false,
-      browser: true
+      browser: true,
     }),
     commonjs({
       include: /\/node_modules\//,
-      exclude: ['**/*.stories.js']
     }),
     babel({
       babelrc: false,
@@ -51,12 +52,12 @@ export const rollupPackageConfig = {
         [
           '@babel/preset-env',
           {
-            modules: false
-          }
+            modules: false,
+          },
         ],
-        '@babel/preset-react'
+        '@babel/preset-react',
       ],
-      exclude: /\/node_modules\//
-    })
-  ]
-};
+      exclude: /\/node_modules\//,
+    }),
+  ],
+});
