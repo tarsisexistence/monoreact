@@ -8078,7 +8078,7 @@ gray-percentage@^2.0.0:
   resolved "https://registry.yarnpkg.com/gray-percentage/-/gray-percentage-2.0.0.tgz#b72a274d1b1379104a0050b63b207dc53fe56f99"
   integrity sha1-tyonTRsTeRBKAFC2OyB9xT/lb5k=
 
-grommet-icons@4.4.0, grommet-icons@^4.2.0, grommet-icons@~4.4.0:
+grommet-icons@4.4.0, grommet-icons@^4.2.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/grommet-icons/-/grommet-icons-4.4.0.tgz#6503a33ca29e3c9d89ba56ef1b2bc786222e62a7"
   integrity sha512-uOc3rsgIBVOm/iuN8dj2lKuBq0uhIPYxH84zDoY0jrJZLjcVH1bHUQLlv0R/e9oB/pCFYEBse1mnvps+f3ylmw==
@@ -8090,7 +8090,7 @@ grommet-styles@^0.2.0:
   resolved "https://registry.yarnpkg.com/grommet-styles/-/grommet-styles-0.2.0.tgz#b2eac2b7e2747cb523434d21728ce5234f8ce4f4"
   integrity sha512-0OMSYuGeyifYKpg4Gv2HzL8rUdd0ddnJ5LbCBKgDuloC71XIwr9g/Fxa6rs737MbPV7OZ4pEm4wvrjH4epzf1A==
 
-grommet@2.10.0, grommet@~2.10.0:
+grommet@2.10.0:
   version "2.10.0"
   resolved "https://registry.yarnpkg.com/grommet/-/grommet-2.10.0.tgz#98905888adb9a673f4b518876c52d8a411c4b5f5"
   integrity sha512-FnbLbq5sYRE4C/MrDG0a4Hj1zZcwsOoT2JrwZvnarPp/sr5CoJXZhV4SJtFlVbgTQpeJsDStotggZFrc00V5kg==
@@ -16480,7 +16480,7 @@ style-to-object@^0.2.1:
   dependencies:
     inline-style-parser "0.1.1"
 
-styled-components@~5.0.1:
+styled-components@5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-5.0.1.tgz#57782a6471031abefb2db5820a1876ae853bc619"
   integrity sha512-E0xKTRIjTs4DyvC1MHu/EcCXIj6+ENCP8hP01koyoADF++WdBUOrSGwU1scJRw7/YaYOhDvvoad6VlMG+0j53A==
