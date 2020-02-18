@@ -23,7 +23,6 @@ export const rollupPackageConfig = {
       exports: 'named'
     }
   ],
-  external: ['react', 'react-dom', 'grommet', 'styled-components'],
   plugins: [
     external({ includeDependencies: true }),
     postcss({

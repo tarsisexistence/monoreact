@@ -15,8 +15,6 @@
     "build": "npx rollup -c",
     "start": "npx rollup -cw",
     "test": "jest",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
     "docz": "docz dev -p 6010",
     "publication:publish": "npm run build && npm version patch && npm publish"
   },
