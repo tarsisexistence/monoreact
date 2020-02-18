@@ -17,7 +17,8 @@
     "test": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "lib:publish:": "npm version patch && npm publish"
+    "docz": "docz dev -p 6010",
+    "publication:publish": "npm run build && npm version patch && npm publish"
   },
   "dependencies": {
     "grommet": "~2.10.0",
