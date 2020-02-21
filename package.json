@@ -24,7 +24,7 @@
   "dependencies": {
     "@re-space/example": "0.0.4",
     "classnames": "2.2.6",
-    "grommet": "2.10.0",
+    "grommet": "2.11.0",
     "grommet-icons": "4.4.0",
     "react": "16.12.0",
 
