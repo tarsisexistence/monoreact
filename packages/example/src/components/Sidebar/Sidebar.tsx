@@ -1,5 +1,6 @@
 import React from 'react';
-import { Anchor, Nav } from 'grommet';
+import { Link } from 'react-router-dom';
+import { Nav } from 'grommet';
 
 import styles from './Sidebar.scss';
 
@@ -21,12 +22,9 @@ const navData: { path: string; label: string }[] = [
 export const Sidebar = () => (
   <Nav background='brand' direction='row' pad='medium'>
     {navData.map(({ path, label }) => (
-      <Anchor
-        key={path}
-        className={styles.link}
-        href={`/products/${path}`}
-        label={label}
-      />
+      <Link key={path} className={styles.link} to={`/products/${path}`}>
+        {label}
+      </Link>
     ))}
   </Nav>
 );

@@ -3,7 +3,13 @@
 }
 
 .link {
-  color: black;
   padding: 10px;
   font-size: 18px;
+  font-weight: 600;
+  color: #e9ddff;
+  text-decoration: none;
+}
+
+.link:hover {
+	color: #fff;
 }

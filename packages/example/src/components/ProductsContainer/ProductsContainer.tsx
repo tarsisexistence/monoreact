@@ -5,7 +5,7 @@ import { Sidebar } from '../Sidebar/Sidebar';
 import { ProductsRoutes } from '../ProductsRoutes/ProductsRoutes';
 import styles from './ProductsContainer.scss';
 
-export const ProductsContainer = () => (
+export const ProductsContainer: React.FC = () => (
   <div className={styles.container}>
     <BrowserRouter>
       <Sidebar />
