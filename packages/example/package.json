@@ -14,7 +14,7 @@
   "scripts": {
     "start": "npx rollup -cw",
     "build": "npx rollup -c",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "docz": "docz dev -p 6010",
     "publication:publish": "npm run build && npm version patch && npm publish"
   },
