@@ -1,6 +1,6 @@
 {
   "name": "@re-space/example",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "main": "dist/bundle.cjs.js",
   "module": "dist/bundle.es.js",
   "jsnext:main": "dist/bundle.es.js",
@@ -11,9 +11,6 @@
     "name": "Maksym Tarsis",
     "url": "https://github.com/maktarsis"
   },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "start": "npx rollup -cw",
     "build": "npx rollup -c",
@@ -28,8 +25,5 @@
     "react": "~16.12.0",
     "react-dom": "~16.12.0",
     "react-router-dom": "~5.1.2"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }
