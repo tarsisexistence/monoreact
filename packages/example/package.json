@@ -11,12 +11,15 @@
     "name": "Maksym Tarsis",
     "url": "https://github.com/maktarsis"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "start": "npx rollup -cw",
     "build": "npx rollup -c",
     "test": "jest --passWithNoTests",
     "docz": "docz dev -p 6010",
-    "publication:publish": "npm run build && npm version patch && npm publish"
+    "publication:publish": "yarn build && npm version patch && npm publish"
   },
   "peerDependencies": {
     "grommet": "2.10.0",
