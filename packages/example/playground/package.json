@@ -1,6 +1,6 @@
 {
   "name": "example",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -10,15 +10,13 @@
   "dependencies": {
     "react-app-polyfill": "1.0.6"
   },
+  "devDependencies": {
+    "parcel": "1.12.4"
+  },
   "alias": {
     "react": "../../../node_modules/react",
     "react-dom": "../../../node_modules/react-dom/profiling",
+    "typescript": "../../../node_modules/typescript",
     "scheduler/tracing": "../../../node_modules/scheduler/tracing-profiling"
-  },
-  "devDependencies": {
-    "@types/react": "16.9.22",
-    "@types/react-dom": "16.9.5",
-    "parcel": "1.12.3",
-    "typescript": "3.7.5"
   }
 }
