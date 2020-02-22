@@ -18,7 +18,7 @@ export const Settings = () => {
         textSize='small'
       />
     ),
-    [progress]
+    []
   );
 
   React.useEffect(() => {

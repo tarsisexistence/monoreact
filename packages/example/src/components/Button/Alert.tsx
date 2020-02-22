@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 
 export type Kind = 'info' | 'positive' | 'negative' | 'warning';
@@ -19,7 +18,7 @@ export interface AlertProps {
   kind: 'info' | 'positive' | 'negative' | 'warning';
 }
 
-export const Alert = ({ children, kind, ...rest }) => (
+export const Alert: React.FC<AlertProps> = ({ children, kind, ...rest }) => (
   <div
     style={{
       padding: 20,
@@ -27,6 +26,7 @@ export const Alert = ({ children, kind, ...rest }) => (
       borderRadius: 3,
       color: 'white'
     }}
+    // eslint-disable-next-line react/jsx-props-no-spreading
     {...rest}
   >
     {children}
