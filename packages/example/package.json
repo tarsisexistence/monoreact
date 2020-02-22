@@ -16,6 +16,7 @@
     "build": "npx rollup -c",
     "test": "jest --passWithNoTests",
     "docz": "docz dev -p 6010",
+    "lint:es": "eslint src/**/*.{js,jsx,ts,tsx}",
     "publication:publish": "yarn build && npm version patch && npm publish"
   },
   "peerDependencies": {

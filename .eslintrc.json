@@ -1,4 +1,11 @@
 {
+  "parserOptions": {
+    "project": [
+      "./tsconfig.json",
+      "./packages/*/tsconfig.json"
+    ]
+  },
+  "ignorePatterns": ["playground/"],
   "parser": "@typescript-eslint/parser",
   "plugins": [
     "@typescript-eslint",
@@ -34,7 +41,7 @@
       "node": {
         "paths": [
           "src",
-          "packages/starter/src"
+          "packages/example/src"
         ],
         "extensions": [
           ".js",
