@@ -15,17 +15,13 @@ export const createRollupConfig = (pkg) => ({
     {
       file: pkg.module,
       format: 'es',
-      exports: 'named',
     },
     {
       file: pkg.main,
       format: 'cjs',
-      exports: 'named',
     },
   ],
-  external: Object.keys(pkg.peerDependencies || {}),
   plugins: [
-    // remove?
     external({ includeDependencies: true }),
     postcss({
       modules: true,
@@ -34,8 +30,7 @@ export const createRollupConfig = (pkg) => ({
       use: ['sass'],
     }),
     typescript2({
-      typescript: require('typescript'),
-      tsconfig: 'tsconfig.json',
+      clean: true,
     }),
     resolve({
       extensions: ['.js', 'jsx', '.ts', '.tsx'],

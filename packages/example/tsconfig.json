@@ -9,14 +9,9 @@
     "target": "es5",
     "module": "esnext",
     "moduleResolution": "node",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "typeRoots": [
-      "../../settings/typings/*",
-      "../../node_modules/@types",
-      "node_modules/@types"
-    ]
+    "lib": ["dom", "dom.iterable", "esnext"]
   },
-  "include": ["../../settings/typings.d.ts", "../../src/typings", "src"],
+  "include": ["../../settings", "../../src/typings", "src"],
   "exclude": [
     "node_modules",
     "dist",
