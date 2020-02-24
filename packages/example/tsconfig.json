@@ -11,11 +11,6 @@
     "moduleResolution": "node",
     "lib": ["dom", "dom.iterable", "esnext"]
   },
-  "include": ["../../settings", "../../src/typings", "src"],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "src/**/*.test.ts",
-    "src/**/*.test.tsx"
-  ]
+  "include": ["../../settings/typings.d.ts", "../../src/typings", "src"],
+  "exclude": ["node_modules", "dist", "src/**/*.test.ts", "src/**/*.test.tsx"]
 }

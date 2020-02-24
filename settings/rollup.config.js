@@ -9,50 +9,38 @@ import nested from 'postcss-nested';
 import cssnano from 'cssnano';
 import autoprefixer from 'autoprefixer';
 
-export const createRollupConfig = (pkg) => ({
+export const createRollupConfig = pkg => ({
   input: 'src/publicApi.ts',
   output: [
     {
       file: pkg.module,
-      format: 'es',
+      format: 'es'
     },
     {
       file: pkg.main,
-      format: 'cjs',
-    },
+      format: 'cjs'
+    }
   ],
   plugins: [
     external({ includeDependencies: true }),
+    typescript2({ clean: true }),
+    commonjs({ include: /\/node_modules\// }),
+    resolve({
+      extensions: ['.js', 'jsx', '.ts', '.tsx'],
+      preferBuiltins: false,
+      browser: true
+    }),
     postcss({
       modules: true,
       plugins: [simplevars(), nested(), cssnano(), autoprefixer()],
       extensions: ['.css', '.scss', '.sass'],
-      use: ['sass'],
-    }),
-    typescript2({
-      clean: true,
-    }),
-    resolve({
-      extensions: ['.js', 'jsx', '.ts', '.tsx'],
-      preferBuiltins: false,
-      browser: true,
-    }),
-    commonjs({
-      include: /\/node_modules\//,
+      use: ['sass']
     }),
     babel({
       babelrc: false,
       extensions: ['.js', 'jsx', '.ts', '.tsx'],
-      presets: [
-        [
-          '@babel/preset-env',
-          {
-            modules: false,
-          },
-        ],
-        '@babel/preset-react',
-      ],
-      exclude: /\/node_modules\//,
-    }),
-  ],
+      presets: ['@babel/preset-env', '@babel/preset-react'],
+      exclude: /\/node_modules\//
+    })
+  ]
 });
