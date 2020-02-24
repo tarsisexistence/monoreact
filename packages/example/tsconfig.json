@@ -1,21 +1,7 @@
 {
+  "extends": "../../settings/tsconfig.package.json",
   "compilerOptions": {
-    "baseUrl": "src",
-    "declaration": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react",
-    "target": "es5",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "lib": ["dom", "dom.iterable", "esnext"]
+    "baseUrl": "src"
   },
   "include": ["../../settings/typings.d.ts", "../../src/typings", "src"],
   "exclude": ["node_modules", "dist", "src/**/*.test.ts", "src/**/*.test.tsx"]
