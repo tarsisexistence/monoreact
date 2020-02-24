@@ -1382,11 +1382,6 @@
     string-width "^2.0.0"
     strip-ansi "^3"
 
-"@re-space/example@0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@re-space/example/-/example-0.0.7.tgz#59b9d8df09ed9287bd63435a6d8dddf3630d872e"
-  integrity sha512-jItoshrxzTHCNSpUmIgiz0qqEkl1I7ZnQd57X6w51WiSOeFFgAB+5pjh4Dpp5Yfb6PlVqhPLfrkfjlQABwEHPw==
-
 "@reach/router@^1.3.1":
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@reach/router/-/router-1.3.1.tgz#0a49f75fa9621323d6e21c803447bcfcde1713b2"
