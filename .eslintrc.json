@@ -2,7 +2,9 @@
   "parserOptions": {
     "project": [
       "./tsconfig.json",
-      "./packages/*/tsconfig.json"
+      "./packages/*/tsconfig.json",
+      "./settings/tsconfig.package.json",
+      "./settings/tsconfig.test.json"
     ]
   },
   "ignorePatterns": ["playground/"],
