@@ -28,7 +28,7 @@ export const Settings = () => {
     return () => clearInterval(timer);
   }, [setDraw]);
 
-  const connections = [];
+  const connections: any[] = [];
 
   if (draw) {
     connections.push(connection('6', '1', { anchor: 'vertical' }));

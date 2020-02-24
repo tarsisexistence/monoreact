@@ -3,7 +3,13 @@ import { Box, grommet, Text } from 'grommet';
 import { Diamond } from 'grommet-icons';
 import { deepMerge } from 'grommet/utils';
 
-export const DiamondContainer = ({ id, name, location, percent, textSize }) => (
+export const DiamondContainer = ({
+  id,
+  name,
+  location,
+  percent,
+  textSize
+}: any) => (
   <Box key={id} align='center' alignSelf='center' direction='row' gap='medium'>
     <Diamond color='neutral-3' id={id} size='xlarge' />
     <Box align='center'>
@@ -32,7 +38,7 @@ export const customTheme = deepMerge(grommet, {
   }
 });
 
-export const connection = (fromTarget, toTarget, { ...rest } = {}) => ({
+export const connection = (fromTarget: any, toTarget: any, { ...rest }) => ({
   fromTarget,
   toTarget,
   anchor: 'vertical',

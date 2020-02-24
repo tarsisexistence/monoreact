@@ -6,9 +6,9 @@ import { renderColumnCheck, renderColumnPercent } from './Dashboard.helpers';
 import styles from './Dashboard.scss';
 
 export const Dashboard = () => {
-  const [checked, setChecked] = React.useState([]);
+  const [checked, setChecked] = React.useState<string[]>([]);
 
-  const onCheck = (event, value) => {
+  const onCheck = (event: any, value: string) => {
     if (event.target.checked) {
       setChecked([...checked, value]);
     } else {
@@ -36,7 +36,7 @@ export const Dashboard = () => {
 
   const controlledColumns = columnDashboard.map(col => ({ ...col }));
 
-  const onCheckAll = event =>
+  const onCheckAll = (event: any) =>
     setChecked(event.target.checked ? progress.map(datum => datum.name) : []);
 
   return (
