@@ -10,6 +10,5 @@ export const composePackageJson = (template: Template) => ({
 }: ProjectArgs) => ({
   ...template.packageJson,
   name,
-  author,
-  module: `dist/${name}.esm.js`
+  author
 });

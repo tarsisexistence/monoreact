@@ -9,8 +9,8 @@ const basicTemplate: Template = {
     license: 'MIT',
     // author: author,
     main: 'dist/bundle.cjs.js',
-    module: 'dist/bundle.es.js',
-    'jsnext:main': 'dist/bundle.es.js',
+    module: 'dist/bundle.esm.js',
+    'jsnext:main': 'dist/bundle.esm.js',
     types: 'dist/publicApi.d.ts',
     scripts: {
       start: 'npx rollup -cw',
