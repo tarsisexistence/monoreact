@@ -46,7 +46,3 @@ export function getReactVersion({
     (devDependencies && devDependencies.react)
   );
 }
-
-export function getNodeEngineRequirement({ engines }: PackageJson) {
-  return engines && engines.node;
-}

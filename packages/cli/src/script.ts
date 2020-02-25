@@ -1,16 +1,15 @@
 #!/usr/bin/env node
 
+import shell from 'shelljs';
 import sade from 'sade';
 import chalk from 'chalk';
-import * as fs from 'fs-extra';
-import logError from './logError';
-import path from 'path';
 import execa from 'execa';
-import shell from 'shelljs';
+import path from 'path';
 import ora from 'ora';
-import semver from 'semver';
+import * as fs from 'fs-extra';
 import * as Messages from './messages';
-import { getNodeEngineRequirement, safePackageName } from './utils';
+import logError from './logError';
+import { safePackageName } from './utils';
 import getInstallCmd from './getInstallCmd';
 import getInstallArgs from './getInstallArgs';
 import { Input, Select } from 'enquirer';
@@ -29,7 +28,9 @@ prog
   .example('create mypackage')
   .option(
     '--template',
-    `Specify a template. Allowed choices: [${templateOptions.join(', ')}]`
+    `Specify a template. Allowed choices:
+     
+     [${templateOptions.join(', ')}]`
   )
   .example(`create --template ${templateOptions[0]} mypackage`)
   .action(async (pkg: string, opts: any) => {
@@ -93,14 +94,6 @@ prog
         }
       );
 
-      // update license year and author
-      let license: string = await fs.readFile(
-        path.resolve(projectPath, 'LICENSE'),
-        { encoding: 'utf-8' }
-      );
-
-      license = license.replace(/<year>/, `${new Date().getFullYear()}`);
-
       // attempt to automatically derive author name
       let author = getAuthorName();
 
@@ -115,12 +108,6 @@ prog
         bootSpinner.start();
       }
 
-      license = license.replace(/<author>/, author.trim());
-
-      await fs.writeFile(path.resolve(projectPath, 'LICENSE'), license, {
-        encoding: 'utf-8'
-      });
-
       const templateConfig = templates[template as keyof typeof templates];
       const generatePackageJson = composePackageJson(templateConfig);
 
@@ -128,16 +115,6 @@ prog
       process.chdir(projectPath);
       const safeName = safePackageName(pkg);
       const pkgJson = generatePackageJson({ name: safeName, author });
-
-      const nodeVersionReq = getNodeEngineRequirement(pkgJson);
-      if (
-        nodeVersionReq &&
-        !semver.satisfies(process.version, nodeVersionReq)
-      ) {
-        bootSpinner.fail(Messages.incorrectNodeVersion(nodeVersionReq));
-        process.exit(1);
-      }
-
       await fs.outputJSON(path.resolve(projectPath, 'package.json'), pkgJson);
       bootSpinner.succeed(`Created ${chalk.bold.green(pkg)}`);
       await Messages.start(pkg);
