@@ -1,9 +1,9 @@
 {
   "name": "@re-space/cli",
   "version": "0.0.4",
-  "main": "./bin/script.js",
+  "main": "./bin/src/script.js",
   "bin": {
-    "re-space": "./bin/script.js"
+    "re-space": "./bin/src/script.js"
   },
   "license": "MIT",
   "author": {

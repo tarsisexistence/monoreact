@@ -1,15 +1,13 @@
 {
-  "include": ["src/**/*"],
-  "exclude": ["src/template/**/*"],
   "compilerOptions": {
     "allowJs": true,
     "jsx": "react",
     "importHelpers": true,
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "outDir": "bin",
     "declaration": false,
     "module": "commonjs",
-    "rootDir": "src",
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -17,5 +15,12 @@
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
     "target": "es2017"
-  }
+  },
+  "include": [
+    "src/**/*",
+    "package.json"
+  ],
+  "exclude": [
+    "src/template/**/*"
+  ]
 }

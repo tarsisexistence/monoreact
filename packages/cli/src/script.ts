@@ -6,20 +6,19 @@ import chalk from 'chalk';
 import execa from 'execa';
 import path from 'path';
 import ora from 'ora';
-import * as fs from 'fs-extra';
-import * as Messages from './messages';
 import logError from './logError';
+import { realpath, pathExists, copy, outputJSON } from 'fs-extra';
+import { start, installing } from './messages';
 import { safePackageName } from './utils';
 import getInstallCmd from './getInstallCmd';
 import getInstallArgs from './getInstallArgs';
 import { Input, Select } from 'enquirer';
 import { templates } from './templates';
 import { composePackageJson } from './templates/utils';
-
-const pkg = require('../package.json');
-const templateOptions = Object.keys(templates);
+import pkg from '../package.json';
 
 const prog = sade('re-space');
+const templateOptions = Object.keys(templates);
 
 prog
   .version(pkg.version)
@@ -41,10 +40,10 @@ prog
     );
     const bootSpinner = ora(`Creating ${chalk.bold.green(pkg)}...`);
     let template;
-    // Helper fn to prompt the user for a different
-    // folder name if one already exists
+
     async function getProjectPath(projectPath: string): Promise<string> {
-      const exists = await fs.pathExists(projectPath);
+      const exists = await pathExists(projectPath);
+
       if (!exists) {
         return projectPath;
       }
@@ -54,19 +53,19 @@ prog
         message: `A folder named ${chalk.bold.red(
           pkg
         )} already exists! ${chalk.bold('Choose a different name')}`,
-        initial: pkg + '-1',
+        initial: pkg + '-copy',
         result: (v: string) => v.trim()
       });
 
       pkg = await prompt.run();
-      projectPath = (await fs.realpath(process.cwd())) + '/' + pkg;
+      projectPath = (await realpath(process.cwd())) + '/' + pkg;
       bootSpinner.start(`Creating ${chalk.bold.green(pkg)}...`);
       return await getProjectPath(projectPath); // recursion!
     }
 
     try {
       // get the project path
-      const realPath = await fs.realpath(process.cwd());
+      const realPath = await realpath(process.cwd());
       let projectPath = await getProjectPath(realPath + '/' + pkg);
 
       const prompt = new Select({
@@ -86,7 +85,7 @@ prog
 
       bootSpinner.start();
       // copy the template
-      await fs.copy(
+      await copy(
         path.resolve(__dirname, `../templates/${template}`),
         projectPath,
         {
@@ -115,9 +114,9 @@ prog
       process.chdir(projectPath);
       const safeName = safePackageName(pkg);
       const pkgJson = generatePackageJson({ name: safeName, author });
-      await fs.outputJSON(path.resolve(projectPath, 'package.json'), pkgJson);
+      await outputJSON(path.resolve(projectPath, 'package.json'), pkgJson);
       bootSpinner.succeed(`Created ${chalk.bold.green(pkg)}`);
-      await Messages.start(pkg);
+      await start(pkg);
     } catch (error) {
       bootSpinner.fail(`Failed to create ${chalk.bold.red(pkg)}`);
       logError(error);
@@ -127,12 +126,12 @@ prog
     const templateConfig = templates[template as keyof typeof templates];
     const { dependencies: deps } = templateConfig;
 
-    const installSpinner = ora(Messages.installing(deps.sort())).start();
+    const installSpinner = ora(installing(deps.sort())).start();
     try {
       const cmd = await getInstallCmd();
       await execa(cmd, getInstallArgs(cmd, deps));
       installSpinner.succeed('Installed dependencies');
-      console.log(await Messages.start(pkg));
+      console.log(await start(pkg));
     } catch (error) {
       installSpinner.fail('Failed to install dependencies');
       logError(error);
