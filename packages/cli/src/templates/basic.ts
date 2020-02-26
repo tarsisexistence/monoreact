@@ -2,7 +2,7 @@ import { Template } from './template';
 
 const basicTemplate: Template = {
   name: 'basic',
-  dependencies: ['@types/jest', 'typescript'],
+  dependencies: ['typescript'],
   packageJson: {
     // name: safeName,
     version: '0.1.0',

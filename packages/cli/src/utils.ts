@@ -1,7 +1,6 @@
 import fs from 'fs-extra';
 import path from 'path';
 import camelCase from 'camelcase';
-import { PackageJson } from './types';
 
 // Remove the package name scope if it exists
 export const removeScope = (name: string) => name.replace(/^@.*\//, '');
@@ -29,20 +28,25 @@ export const resolveApp = function(relativePath: string) {
   return path.resolve(appDirectory, relativePath);
 };
 
-// Taken from Create React App, react-dev-utils/clearConsole
-// @see https://github.com/facebook/create-react-app/blob/master/packages/react-dev-utils/clearConsole.js
-export function clearConsole() {
-  process.stdout.write(
-    process.platform === 'win32' ? '\x1B[2J\x1B[0f' : '\x1B[2J\x1B[3J\x1B[H'
-  );
-}
+export function findByPattern(
+  startPath: string,
+  filter: string
+): string | undefined {
+  console.log(startPath);
+  if (fs.existsSync(startPath)) {
+    const files = fs.readdirSync(startPath);
+    for (let i = 0; i < files.length; i++) {
+      const filename = path.join(startPath, files[i]);
+      const stat = fs.lstatSync(filename);
+      const isNodeModule = filename.includes('node_modules');
 
-export function getReactVersion({
-  dependencies,
-  devDependencies
-}: PackageJson) {
-  return (
-    (dependencies && dependencies.react) ||
-    (devDependencies && devDependencies.react)
-  );
+      if (!isNodeModule && stat.isDirectory()) {
+        findByPattern(filename, filter);
+      } else if (!isNodeModule && filename.indexOf(filter) >= 0) {
+        return filename;
+      }
+    }
+  }
+
+  return;
 }

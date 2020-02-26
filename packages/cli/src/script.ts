@@ -6,15 +6,16 @@ import chalk from 'chalk';
 import execa from 'execa';
 import path from 'path';
 import ora from 'ora';
+import { copy, outputJSON, pathExists, realpath } from 'fs-extra';
 import logError from './logError';
-import { realpath, pathExists, copy, outputJSON } from 'fs-extra';
-import { start, installing } from './messages';
+import { installing, start } from './messages';
 import { safePackageName } from './utils';
 import getInstallCmd from './getInstallCmd';
 import getInstallArgs from './getInstallArgs';
 import { Input, Select } from 'enquirer';
 import { templates } from './templates';
 import { composePackageJson } from './templates/utils';
+import { CliOptions, getRespaceJson } from './config';
 import pkg from '../package.json';
 
 const prog = sade('re-space');
@@ -32,7 +33,9 @@ prog
      [${templateOptions.join(', ')}]`
   )
   .example(`create --template ${templateOptions[0]} mypackage`)
-  .action(async (pkg: string, opts: any) => {
+  .action(async (pkg: string, opts: CliOptions) => {
+    const respaceConfig = await getRespaceJson(opts);
+    console.log(respaceConfig);
     console.log(
       chalk.magenta(`
     @re-space/cli
@@ -60,13 +63,15 @@ prog
       pkg = await prompt.run();
       projectPath = (await realpath(process.cwd())) + '/' + pkg;
       bootSpinner.start(`Creating ${chalk.bold.green(pkg)}...`);
-      return await getProjectPath(projectPath); // recursion!
+      return await getProjectPath(projectPath);
     }
 
     try {
-      // get the project path
       const realPath = await realpath(process.cwd());
-      let projectPath = await getProjectPath(realPath + '/' + pkg);
+      const projectPath = await getProjectPath(
+        `${realPath}/${respaceConfig.packages}/${pkg}`
+      );
+      console.log(projectPath);
 
       const prompt = new Select({
         message: 'Choose a template',
@@ -84,9 +89,8 @@ prog
       }
 
       bootSpinner.start();
-      // copy the template
       await copy(
-        path.resolve(__dirname, `../templates/${template}`),
+        path.resolve(__dirname, `../../templates/${template}`),
         projectPath,
         {
           overwrite: true
