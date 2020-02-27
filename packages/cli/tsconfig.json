@@ -19,8 +19,5 @@
   "include": [
     "src/**/*",
     "package.json"
-  ],
-  "exclude": [
-    "src/template/**/*"
   ]
 }

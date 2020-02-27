@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import getInstallCmd from './getInstallCmd';
+import { getInstallCmd } from './installation';
 import * as Output from './output';
 
 export const installing = function(packages: string[]) {

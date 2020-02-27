@@ -22,7 +22,7 @@
     "sort:deps": "npx sort-package-json"
   },
   "dependencies": {
-    "@re-space/cli": "0.0.4",
+    "@re-space/cli": "0.0.5",
     "classnames": "2.2.6",
     "grommet": "2.11.0",
     "grommet-icons": "4.4.0",

@@ -20,7 +20,9 @@ export const getRespaceJson = async ({
   const respaceJsonPath = findByPattern('./', respaceConfigFileName);
   const config: RespaceConfig = respaceJsonPath
     ? await readJSON(respaceJsonPath)
-    : {};
+    : {
+        packages: '.'
+      };
 
   if (scope) {
     config.scope = scope;

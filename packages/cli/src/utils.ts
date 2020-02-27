@@ -18,31 +18,20 @@ export const safePackageName = (name: string) =>
     .toLowerCase()
     .replace(/(^@.*\/)|((^[^a-zA-Z]+)|[^\w.-])|([^a-zA-Z0-9]+$)/g, '');
 
-export const external = (id: string) =>
-  !id.startsWith('.') && !path.isAbsolute(id);
-
-// Make sure any symlinks in the project folder are resolved:
-// https://github.com/facebookincubator/create-react-app/issues/637
-export const appDirectory = fs.realpathSync(process.cwd());
-export const resolveApp = function(relativePath: string) {
-  return path.resolve(appDirectory, relativePath);
-};
+export const resolveApp = (relativePath: string) =>
+  path.resolve(fs.realpathSync(process.cwd()), relativePath);
 
 export function findByPattern(
   startPath: string,
   filter: string
 ): string | undefined {
-  console.log(startPath);
   if (fs.existsSync(startPath)) {
     const files = fs.readdirSync(startPath);
     for (let i = 0; i < files.length; i++) {
       const filename = path.join(startPath, files[i]);
-      const stat = fs.lstatSync(filename);
       const isNodeModule = filename.includes('node_modules');
 
-      if (!isNodeModule && stat.isDirectory()) {
-        findByPattern(filename, filter);
-      } else if (!isNodeModule && filename.indexOf(filter) >= 0) {
+      if (!isNodeModule && filename.indexOf(filter) >= 0) {
         return filename;
       }
     }

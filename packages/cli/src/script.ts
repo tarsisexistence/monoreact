@@ -10,8 +10,7 @@ import { copy, outputJSON, pathExists, realpath } from 'fs-extra';
 import logError from './logError';
 import { installing, start } from './messages';
 import { safePackageName } from './utils';
-import getInstallCmd from './getInstallCmd';
-import getInstallArgs from './getInstallArgs';
+import { getInstallArgs, getInstallCmd } from './installation';
 import { Input, Select } from 'enquirer';
 import { templates } from './templates';
 import { composePackageJson } from './templates/utils';
@@ -35,7 +34,7 @@ prog
   .example(`create --template ${templateOptions[0]} mypackage`)
   .action(async (pkg: string, opts: CliOptions) => {
     const respaceConfig = await getRespaceJson(opts);
-    console.log(respaceConfig);
+    console.log({ respaceConfig });
     console.log(
       chalk.magenta(`
     @re-space/cli
@@ -71,7 +70,6 @@ prog
       const projectPath = await getProjectPath(
         `${realPath}/${respaceConfig.packages}/${pkg}`
       );
-      console.log(projectPath);
 
       const prompt = new Select({
         message: 'Choose a template',
@@ -117,7 +115,10 @@ prog
       // Install deps
       process.chdir(projectPath);
       const safeName = safePackageName(pkg);
-      const pkgJson = generatePackageJson({ name: safeName, author });
+      const packageJsonName = respaceConfig.scope
+        ? `@${respaceConfig.scope}/${safeName}`
+        : safeName;
+      const pkgJson = generatePackageJson({ name: packageJsonName, author });
       await outputJSON(path.resolve(projectPath, 'package.json'), pkgJson);
       bootSpinner.succeed(`Created ${chalk.bold.green(pkg)}`);
       await start(pkg);
@@ -133,9 +134,9 @@ prog
     const installSpinner = ora(installing(deps.sort())).start();
     try {
       const cmd = await getInstallCmd();
+      await execa('npx sort-package-json');
       await execa(cmd, getInstallArgs(cmd, deps));
       installSpinner.succeed('Installed dependencies');
-      console.log(await start(pkg));
     } catch (error) {
       installSpinner.fail('Failed to install dependencies');
       logError(error);
