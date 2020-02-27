@@ -1,4 +1,4 @@
 {
   "scope": "re-space",
-  "packages": "./packages"
+  "workspaces": "./packages"
 }

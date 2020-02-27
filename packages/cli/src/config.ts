@@ -6,7 +6,7 @@ const respaceConfigFileName = 're-space.json';
 
 interface RespaceConfig {
   scope: string;
-  packages: string;
+  workspaces: string;
 }
 
 export interface CliOptions extends RespaceConfig {
@@ -15,7 +15,7 @@ export interface CliOptions extends RespaceConfig {
 
 export const getRespaceJson = async ({
   scope,
-  packages
+  workspaces
 }: Partial<CliOptions> = {}): Promise<RespaceConfig> => {
   const respaceJsonPath = findByPattern('./', respaceConfigFileName);
   const config: RespaceConfig = respaceJsonPath
@@ -28,8 +28,8 @@ export const getRespaceJson = async ({
     config.scope = scope;
   }
 
-  if (packages) {
-    config.packages = packages;
+  if (workspaces) {
+    config.workspaces = workspaces;
   }
 
   return config;

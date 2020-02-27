@@ -68,7 +68,7 @@ prog
     try {
       const realPath = await realpath(process.cwd());
       const projectPath = await getProjectPath(
-        `${realPath}/${respaceConfig.packages}/${pkg}`
+        `${realPath}/${respaceConfig.workspaces}/${pkg}`
       );
 
       const prompt = new Select({
