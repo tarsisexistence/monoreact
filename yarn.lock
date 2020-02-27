@@ -1845,10 +1845,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-13.7.1.tgz#238eb34a66431b71d2aaddeaa7db166f25971a0d"
   integrity sha512-Zq8gcQGmn4txQEJeiXo/KiLpon8TzAl0kmKH4zdWctPj05nWwp1ClMdAVEloqrQKfaC48PNLdgN/aVaLqUrluA==
 
-"@types/node@12.12.26":
-  version "12.12.26"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.26.tgz#213e153babac0ed169d44a6d919501e68f59dea9"
-  integrity sha512-UmUm94/QZvU5xLcUlNR8hA7Ac+fGpO1EG/a8bcWVz0P0LqtxFmun9Y2bbtuckwGboWJIT70DoWq1r3hb56n3DA==
+"@types/node@^13.7.6":
+  version "13.7.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-13.7.6.tgz#cb734a7c191472ae6a2b3a502b4dfffcea974113"
+  integrity sha512-eyK7MWD0R1HqVTp+PtwRgFeIsemzuj4gBFSQxfPHY5iMjS7474e5wq+VFgTcdpyHeNxyKSaetYAjdMLJlKoWqA==
 
 "@types/node@^7.0.11":
   version "7.10.9"
@@ -1922,10 +1922,10 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
-"@types/react@16.9.22":
-  version "16.9.22"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.22.tgz#f0288c92d94e93c4b43e3f5633edf788b2c040ae"
-  integrity sha512-7OSt4EGiLvy0h5R7X+r0c7S739TCU/LvWbkNOrm10lUwNHe7XPz5OLhLOSZeCkqO9JSCly1NkYJ7ODTUqVnHJQ==
+"@types/react@16.9.23":
+  version "16.9.23"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.23.tgz#1a66c6d468ba11a8943ad958a8cb3e737568271c"
+  integrity sha512-SsGVT4E7L2wLN3tPYLiF20hmZTPGuzaayVunfgXzUn1x4uHVsKH6QDJQ/TdpHqwsTLd4CwrmQ2vOgxN7gE24gw==
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"

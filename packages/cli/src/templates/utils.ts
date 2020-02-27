@@ -1,13 +1,10 @@
 import { Template } from './template';
+import { MainPackageJson } from '../types';
 
-interface ProjectArgs {
-  name: string;
-  author: string;
-}
 export const composePackageJson = (template: Template) => ({
   name,
   author
-}: ProjectArgs) => ({
+}: Pick<MainPackageJson, 'name' | 'author'>) => ({
   ...template.packageJson,
   name,
   author
