@@ -21,16 +21,19 @@ const templateOptions = Object.keys(templates);
 
 prog
   .version(pkg.version)
-  .command('create <pkg>')
-  .describe('Create a new package')
-  .example('create packageName')
+  .command('generate <pkg>', 'Generate a new package', {
+    // @ts-ignore
+    alias: ['g']
+  })
+  .example('generate packageName')
+  .example('g packageName')
   .option(
     '--template',
     `Specify a template. Allowed choices:
      
      [${templateOptions.join(', ')}]`
   )
-  .example(`create --template ${templateOptions[0]} packageName`)
+  .example(`generate --template ${templateOptions[0]} packageName`)
   .action(async (pkgName: string, opts: CliOptions) => {
     const cliConfig: Record<string, any> = {
       scope: null,
@@ -90,7 +93,7 @@ prog
         return projectPath;
       }
 
-      bootSpinner.fail(`Failed to create ${chalk.bold.red(pkgName)}`);
+      bootSpinner.fail(`Failed to generate ${chalk.bold.red(pkgName)}`);
       const prompt = new Input({
         message: `A folder named ${chalk.bold.red(
           pkgName
@@ -169,10 +172,10 @@ prog
         : safeName;
       const pkgJson = generatePackageJson({ name: packageJsonName, author });
       await fs.outputJSON(path.resolve(projectPath, 'package.json'), pkgJson);
-      bootSpinner.succeed(`Created ${chalk.bold.green(pkgName)} package`);
+      bootSpinner.succeed(`Generated ${chalk.bold.green(pkgName)} package`);
       await start(pkgName);
     } catch (error) {
-      bootSpinner.fail(`Failed to create ${chalk.bold.red(pkgName)} package`);
+      bootSpinner.fail(`Failed to generate ${chalk.bold.red(pkgName)} package`);
       logError(error);
       process.exit(1);
     }

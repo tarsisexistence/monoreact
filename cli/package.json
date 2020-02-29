@@ -3,7 +3,8 @@
   "version": "0.0.5",
   "main": "./bin/src/index.js",
   "bin": {
-    "re-space": "./bin/src/index.js"
+    "re-space": "./bin/src/index.js",
+    "rs": "./bin/src/index.js"
   },
   "license": "MIT",
   "author": {
