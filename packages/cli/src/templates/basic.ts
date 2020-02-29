@@ -1,18 +1,18 @@
 import { PackageTemplate } from './template';
 
-const basicTemplate: PackageTemplate = {
+export const basicTemplate: PackageTemplate = {
   name: 'basic',
   dependencies: [],
   packageJson: {
     // name: safeName,
+    // author: author,
     version: '0.1.0',
     license: 'MIT',
-    // author: author,
     main: 'dist/bundle.cjs.js',
     module: 'dist/bundle.esm.js',
     'jsnext:main': 'dist/bundle.esm.js',
     types: 'dist/publicApi.d.ts',
-    input: "src/publicApi.js",
+    input: 'src/publicApi.js',
     scripts: {
       start: 'npx rollup -cw',
       build: 'npx rollup -c',
@@ -26,5 +26,3 @@ const basicTemplate: PackageTemplate = {
     }
   }
 };
-
-export default basicTemplate;

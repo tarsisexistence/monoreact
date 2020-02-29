@@ -1,11 +1,15 @@
-import { PackageTemplate } from './template';
-
-import { basicTemplate } from './basic';
 import { PackageJson } from 'type-fest';
+import { PackageTemplate } from './template';
+import { basicTemplate } from './basic';
 
-export const reactTemplate: PackageTemplate = {
+export const reactTypescriptTemplate: PackageTemplate = {
   name: 'react',
-  dependencies: [...basicTemplate.dependencies, 'react', 'react-dom'],
+  dependencies: [
+    ...basicTemplate.dependencies,
+    'react',
+    'react-dom',
+    'typescript'
+  ],
   packageJson: {
     ...basicTemplate.packageJson,
     peerDependencies: {
@@ -13,8 +17,6 @@ export const reactTemplate: PackageTemplate = {
       'react-dom': '>=16'
     },
     scripts: basicTemplate.packageJson.scripts as PackageJson['scripts'],
-    input: 'src/publicApi.js'
+    input: 'src/publicApi.ts'
   }
 };
-
-export default reactTemplate;

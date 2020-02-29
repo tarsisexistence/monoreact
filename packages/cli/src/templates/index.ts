@@ -1,9 +1,11 @@
-import reactTemplate from './react';
-import basicTemplate from './basic';
+import { basicTemplate } from './basic';
+import { reactTemplate } from './react';
+import { reactTypescriptTemplate } from './react-typescript';
 
 export const templates = {
   basic: basicTemplate,
-  react: reactTemplate
+  react: reactTemplate,
+  'react-typescript': reactTypescriptTemplate
 };
 
-export type template = keyof typeof templates
+export type template = keyof typeof templates;
