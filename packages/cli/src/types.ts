@@ -6,7 +6,7 @@ export type Author =
       url: string;
     };
 
-export interface MainPackageJson {
+export interface RootPackageJson {
   name: string;
   version: string;
   private: boolean;

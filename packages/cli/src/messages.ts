@@ -2,12 +2,12 @@ import chalk from 'chalk';
 import { getInstallCmd } from './installation';
 import * as Output from './output';
 
-export const installing = function(packages: string[]) {
+export const installingPackage = function(packages: string[]) {
   const pkgText = packages
-    .map(pkg => `    ${chalk.cyan(chalk.bold(pkg))}`)
+    .map(pkg => `     ${chalk.cyan(chalk.bold(pkg))}`)
     .join('\n');
 
-  return `Installing npm modules:
+  return `Installing a package with the following peer dependencies:
 ${pkgText}
 `;
 };
