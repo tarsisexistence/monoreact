@@ -7,7 +7,7 @@ import path from 'path';
 import ora from 'ora';
 import fs from 'fs-extra';
 import logError from './logError';
-import { installingPackage, start } from './messages';
+import { preparingPackage, success } from './messages';
 import { getAuthorName, safePackageName, setAuthorName } from './utils';
 import { Input, Select } from 'enquirer';
 import { template, templates } from './templates';
@@ -80,11 +80,11 @@ prog
     }
 
     console.log(
-      chalk.magenta(`
+      chalk.bold.yellow(`
     @re-space/cli
     `)
     );
-    const bootSpinner = ora(`Creating ${chalk.green(pkgName)} package...`);
+    const bootSpinner = ora(`Generating ${chalk.cyan(pkgName)} package...`);
 
     async function getProjectPath(projectPath: string): Promise<string> {
       const exists = await fs.pathExists(projectPath);
@@ -120,7 +120,10 @@ prog
 
       const prompt = new Select({
         message: 'Choose a template',
-        choices: templateOptions
+        choices: templateOptions.map(option => ({
+          name: option,
+          message: chalk.cyan(option)
+        }))
       });
 
       if (opts.template) {
@@ -173,7 +176,6 @@ prog
       const pkgJson = generatePackageJson({ name: packageJsonName, author });
       await fs.outputJSON(path.resolve(projectPath, 'package.json'), pkgJson);
       bootSpinner.succeed(`Generated ${chalk.bold.green(pkgName)} package`);
-      await start(pkgName);
     } catch (error) {
       bootSpinner.fail(`Failed to generate ${chalk.bold.red(pkgName)} package`);
       logError(error);
@@ -181,11 +183,12 @@ prog
     }
 
     const { dependencies } = templates[cliConfig.template as template];
-    const installSpinner = ora(installingPackage(dependencies.sort())).start();
+    const installSpinner = ora(preparingPackage(dependencies.sort())).start();
 
     try {
       await execa('npx sort-package-json');
       installSpinner.succeed('The package successfully configured');
+      console.log(await success(pkgName));
     } catch (error) {
       installSpinner.fail('Failed to fully configure the package');
       logError(error);

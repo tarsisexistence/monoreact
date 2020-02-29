@@ -1,31 +1,43 @@
 import chalk from 'chalk';
-import { getInstallCmd } from './installation';
-import * as Output from './output';
+import { command } from './output';
 
-export const installingPackage = function(packages: string[]) {
+export const preparingPackage = (packages: string[]) => {
   const pkgText = packages
     .map(pkg => `     ${chalk.cyan(chalk.bold(pkg))}`)
     .join('\n');
 
-  return `Installing a package with the following peer dependencies:
+  return `Preparing a package with the following peer dependencies:
 ${pkgText}
 `;
 };
 
-export const start = async function(projectName: string) {
-  const cmd = await getInstallCmd();
-
+export const success = async (projectName: string) => {
   const commands = {
-    install: cmd === 'npm' ? 'npm install' : 'yarn install',
-    build: cmd === 'npm' ? 'npm run build' : 'yarn build',
-    start: cmd === 'npm' ? 'npm run start' : 'yarn start',
-    test: cmd === 'npm' ? 'npm test' : 'yarn test'
+    install: 'yarn install',
+    start: 'yarn start',
+    build: 'yarn build',
+    test: 'yarn test'
   };
 
   return `
-  ${chalk.green('Awesome!')} You're now ready to start coding.
+  ${chalk.bold.green('Awesome!')} You're now ready to start coding.
   
-  I already ran ${Output.cmd(commands.install)} for you, so your next steps are:
-    ${Output.cmd(`cd ${projectName}`)}  
-`;
+  There is no need to run ${command(
+    commands.install
+  )} for you, since all peer dependencies are in the workspace root
+  
+  So your next steps are:
+    ${command(`cd ${projectName}`)}
+  
+  To start developing (rebuilds the bundle on changes):
+    ${command(commands.start)}
+  
+  To build the bundle:
+    ${command(commands.build)}
+    
+  To test your package with Jest:
+    ${command(commands.test)}
+    
+  Questions? Feedback? Please let me know!
+  ${chalk.bold.green('https://github.com/maktarsis/re-space/issues')}`;
 };
