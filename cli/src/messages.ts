@@ -6,9 +6,11 @@ export const preparingPackage = (packages: string[]) => {
     .map(pkg => `     ${chalk.cyan(chalk.bold(pkg))}`)
     .join('\n');
 
-  return `Preparing a package with the following peer dependencies:
+  return packages.length > 0
+    ? `Preparing a package with the following peer dependencies: 
 ${pkgText}
-`;
+`
+    : 'Preparing the package...';
 };
 
 export const success = async (projectName: string) => {
