@@ -7,7 +7,7 @@ import path from 'path';
 import ora from 'ora';
 import fs from 'fs-extra';
 import logError from './logError';
-import { preparingPackage, success } from './messages';
+import { preparingPackage, preparedPackage } from './messages';
 import { getAuthorName, safePackageName, setAuthorName } from './utils';
 import { Input, Select } from 'enquirer';
 import { template, templates } from './templates';
@@ -81,7 +81,7 @@ prog
 
     console.log(
       chalk.bold.yellow(`
-    @re-space/cli
+  RE SPACE // CLI
     `)
     );
     const bootSpinner = ora(`Generating ${chalk.cyan(pkgName)} package...`);
@@ -186,9 +186,10 @@ prog
     const installSpinner = ora(preparingPackage(dependencies.sort())).start();
 
     try {
-      await execa('npx sort-package-json');
+      await execa('sort-package-json');
+      await execa('prettier --write package.json');
       installSpinner.succeed('The package successfully configured');
-      console.log(await success(pkgName));
+      console.log(await preparedPackage(pkgName));
     } catch (error) {
       installSpinner.fail('Failed to fully configure the package');
       logError(error);

@@ -13,7 +13,7 @@ ${pkgText}
     : 'Preparing the package...';
 };
 
-export const success = async (projectName: string) => {
+export const preparedPackage = async (projectName: string) => {
   const commands = {
     install: 'yarn install',
     start: 'yarn start',
