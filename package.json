@@ -9,7 +9,8 @@
     "url": "https://github.com/maktarsis"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "cli"
   ],
   "scripts": {
     "start": "react-scripts start",
