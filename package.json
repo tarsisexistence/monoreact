@@ -34,7 +34,6 @@
     "styled-components": "5.0.1"
   },
   "devDependencies": {
-    "parcel": "1.12.4",
     "@babel/cli": "7.8.4",
     "@babel/core": "7.8.6",
     "@babel/preset-env": "7.8.6",
@@ -57,6 +56,7 @@
     "@typescript-eslint/parser": "2.21.0",
     "autoprefixer": "9.7.4",
     "babel-loader": "8.0.6",
+    "concurrently": "5.1.0",
     "cssnano": "4.1.10",
     "docz": "2.2.0",
     "enzyme": "3.11.0",
@@ -80,6 +80,7 @@
     "jest": "24.9.0",
     "lint-staged": "10.0.7",
     "node-sass": "4.13.1",
+    "parcel": "1.12.4",
     "postcss-nested": "4.2.1",
     "postcss-simple-vars": "5.0.2",
     "prettier": "1.19.1",

@@ -140,6 +140,10 @@ prog
           overwrite: true
         }
       );
+      await fs.copy(
+        path.resolve(__dirname, `../../templates/playground`),
+        path.resolve(projectPath, 'playground')
+      );
 
       // attempt to automatically derive author name
       let author = getAuthorName();

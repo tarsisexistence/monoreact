@@ -1,28 +1,11 @@
 import { PackageTemplate } from './template';
+import { BASE_PACKAGE_SCRIPTS, BASE_PACKAGE_JSON } from './shared';
 
 export const basicTemplate: PackageTemplate = {
-  name: 'basic',
   dependencies: [],
   packageJson: {
-    // name: safeName,
-    // author: author,
-    version: '0.1.0',
-    license: 'MIT',
-    main: 'dist/bundle.cjs.js',
-    module: 'dist/bundle.esm.js',
-    'jsnext:main': 'dist/bundle.esm.js',
-    types: 'dist/publicApi.d.ts',
-    input: 'src/publicApi.js',
-    scripts: {
-      start: 'npx rollup -cw',
-      build: 'npx rollup -c',
-      test: 'jest --passWithNoTests',
-      docz: 'docz dev -p 6010',
-      'lint:es': 'eslint src/**/*.{js,jsx,ts,tsx}',
-      'lint:css': 'stylelint src/**/*.{css,sass,scss}'
-    },
-    publishConfig: {
-      access: 'public'
-    }
+    ...BASE_PACKAGE_JSON,
+    scripts: BASE_PACKAGE_SCRIPTS,
+    input: 'src/publicApi.js'
   }
 };

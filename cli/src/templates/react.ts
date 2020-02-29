@@ -1,18 +1,17 @@
 import { PackageTemplate } from './template';
 
-import { basicTemplate } from './basic';
-import { PackageJson } from 'type-fest';
+import {
+  COMPONENT_PACKAGE_SCRIPTS,
+  BASE_PACKAGE_JSON,
+  REACT_TEMPLATE_DEPENDENCIES
+} from './shared';
 
 export const reactTemplate: PackageTemplate = {
-  name: 'react',
-  dependencies: [...basicTemplate.dependencies, 'react', 'react-dom'],
+  dependencies: Object.keys(REACT_TEMPLATE_DEPENDENCIES.peerDependencies),
   packageJson: {
-    ...basicTemplate.packageJson,
-    peerDependencies: {
-      react: '>=16',
-      'react-dom': '>=16'
-    },
-    scripts: basicTemplate.packageJson.scripts as PackageJson['scripts'],
+    ...BASE_PACKAGE_JSON,
+    ...REACT_TEMPLATE_DEPENDENCIES,
+    scripts: COMPONENT_PACKAGE_SCRIPTS,
     input: 'src/publicApi.js'
   }
 };
