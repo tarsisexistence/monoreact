@@ -1,6 +1,6 @@
 import { PackageJson } from 'type-fest';
 
-interface Template {
+interface PackageTemplate {
   dependencies: string[];
   name: string;
   packageJson: PackageJson;

@@ -1,10 +1,10 @@
-import { Template } from './template';
-import { MainPackageJson } from '../types';
+import { PackageTemplate } from './template';
+import { RootPackageJson } from '../types';
 
-export const composePackageJson = (template: Template) => ({
+export const composePackageJson = (template: PackageTemplate) => ({
   name,
   author
-}: Pick<MainPackageJson, 'name' | 'author'>) => ({
+}: Pick<RootPackageJson, 'name' | 'author'>) => ({
   ...template.packageJson,
   name,
   author

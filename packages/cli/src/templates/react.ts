@@ -1,18 +1,19 @@
-import { Template } from './template';
+import { PackageTemplate } from './template';
 
 import basicTemplate from './basic';
 import { PackageJson } from 'type-fest';
 
-const reactTemplate: Template = {
+const reactTemplate: PackageTemplate = {
   name: 'react',
-  dependencies: [...basicTemplate.dependencies, 'react', 'react-dom'],
+  dependencies: [...basicTemplate.dependencies, 'react', 'react-dom', 'typescript'],
   packageJson: {
     ...basicTemplate.packageJson,
     peerDependencies: {
       react: '>=16',
       'react-dom': '>=16'
     },
-    scripts: basicTemplate.packageJson.scripts as PackageJson['scripts']
+    scripts: basicTemplate.packageJson.scripts as PackageJson['scripts'],
+    input: "src/publicApi.ts"
   }
 };
 

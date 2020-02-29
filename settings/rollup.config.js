@@ -10,7 +10,7 @@ import cssnano from 'cssnano';
 import autoprefixer from 'autoprefixer';
 
 export const createRollupConfig = pkg => ({
-  input: 'src/publicApi.ts',
+  input: pkg.input,
   output: [
     {
       file: pkg.module,
@@ -26,7 +26,7 @@ export const createRollupConfig = pkg => ({
     typescript2({ clean: true }),
     commonjs({ include: /\/node_modules\// }),
     resolve({
-      extensions: ['.js', 'jsx', '.ts', '.tsx'],
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
       preferBuiltins: false,
       browser: true
     }),

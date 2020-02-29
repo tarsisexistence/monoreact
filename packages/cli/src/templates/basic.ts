@@ -1,8 +1,8 @@
-import { Template } from './template';
+import { PackageTemplate } from './template';
 
-const basicTemplate: Template = {
+const basicTemplate: PackageTemplate = {
   name: 'basic',
-  dependencies: ['typescript'],
+  dependencies: [],
   packageJson: {
     // name: safeName,
     version: '0.1.0',
@@ -12,6 +12,7 @@ const basicTemplate: Template = {
     module: 'dist/bundle.esm.js',
     'jsnext:main': 'dist/bundle.esm.js',
     types: 'dist/publicApi.d.ts',
+    input: "src/publicApi.js",
     scripts: {
       start: 'npx rollup -cw',
       build: 'npx rollup -c',
