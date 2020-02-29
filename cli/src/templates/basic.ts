@@ -5,7 +5,6 @@ export const basicTemplate: PackageTemplate = {
   dependencies: [],
   packageJson: {
     ...BASE_PACKAGE_JSON,
-    scripts: BASE_PACKAGE_SCRIPTS,
-    input: 'src/publicApi.js'
+    scripts: BASE_PACKAGE_SCRIPTS
   }
 };

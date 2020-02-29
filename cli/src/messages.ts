@@ -26,7 +26,7 @@ export const preparedPackage = async (projectName: string) => {
   
   There is no need to run ${command(
     commands.install
-  )} for you, since all peer dependencies are in the workspace root
+  )}, since all peer dependencies are already in the workspace root
   
   So your next steps are:
     ${command(`cd ${projectName}`)}
@@ -37,9 +37,8 @@ export const preparedPackage = async (projectName: string) => {
   To build the bundle:
     ${command(commands.build)}
     
-  To test your package with Jest:
+  To test the package:
     ${command(commands.test)}
     
-  Questions? Feedback? Please let me know!
-  ${chalk.bold.green('https://github.com/maktarsis/re-space/issues')}`;
+  ${chalk.bold.yellow('Happy coding :)')}`;
 };

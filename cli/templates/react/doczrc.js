@@ -1,3 +1,3 @@
 export default {
-  typescript: false
+  typescript: true
 };
