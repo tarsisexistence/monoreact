@@ -57,7 +57,7 @@ prog
 
       cliConfig.scope =
         slashNameIndex === -1 ? `@${name}` : name.slice(0, slashNameIndex);
-      cliConfig.workspaces = workspaces[0];
+      cliConfig.workspaces = workspaces[0].replace('*', '');
     } catch (error) {
       console.log(
         chalk.red(`
