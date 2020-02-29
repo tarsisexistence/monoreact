@@ -1,0 +1,8 @@
+{
+  "extends": "../../settings/tsconfig.package.json",
+  "compilerOptions": {
+    "baseUrl": "src"
+  },
+  "include": ["../../settings/typings.d.ts", "../../src/typings", "src"],
+  "exclude": ["node_modules", "dist", "src/**/*.test.js", "src/**/*.test.jsx"]
+}
