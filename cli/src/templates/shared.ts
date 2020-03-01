@@ -21,7 +21,6 @@ export const WORKSPACE_PACKAGE_JSON = {
   // name: safeName,
   // author: author,
   version: '0.1.0',
-  license: 'MIT',
   main: 'dist/bundle.cjs.js',
   module: 'dist/bundle.esm.js',
   'jsnext:main': 'dist/bundle.esm.js',

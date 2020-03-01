@@ -148,9 +148,10 @@ prog
   .example(`g packageName --feature ${featureOptions[0]}`)
   .action(async (packageName: string, opts: CliOptions) => {
     const cliConfig: Record<string, any> = {
-      scope: null,
+      template: null,
       workspaces: null,
-      template: null
+      rootWorkspaceName: null,
+      license: null
     };
 
     try {
@@ -159,6 +160,7 @@ prog
       const {
         name,
         workspaces,
+        license,
         private: isPackagePrivate
       } = (await fs.readJSON(packageJsonPath)) as RootPackageJson;
       const hasWorkspace = Array.isArray(workspaces) && workspaces.length > 0;
@@ -167,10 +169,8 @@ prog
         throw customErrorId;
       }
 
-      const slashNameIndex = name.indexOf('/');
-
-      cliConfig.scope =
-        slashNameIndex === -1 ? `@${name}` : name.slice(0, slashNameIndex);
+      cliConfig.license = license;
+      cliConfig.rootWorkspaceName = name;
       cliConfig.workspaces = workspaces[0].replace('*', '');
     } catch (error) {
       if (error === customErrorId) {
@@ -275,7 +275,6 @@ prog
         }
       );
 
-      // attempt to automatically derive author name
       let author = getAuthorName();
 
       if (!author) {
@@ -289,16 +288,16 @@ prog
         bootSpinner.start();
       }
 
+      process.chdir(projectPath);
       const templateConfig =
         packageTemplates[cliConfig.template as packageTemplate];
       const generatePackageJson = composePackageJson(templateConfig);
-
-      process.chdir(projectPath);
-      const safeName = safePackageName(packageName);
-      const packageJsonName = cliConfig.scope
-        ? `${cliConfig.scope}/${safeName}`
-        : safeName;
-      const pkgJson = generatePackageJson({ name: packageJsonName, author });
+      const pkgJson = generatePackageJson({
+        author,
+        name: packageName,
+        rootName: cliConfig.rootWorkspaceName,
+        license: cliConfig.license
+      });
       await fs.outputJSON(path.resolve(projectPath, PACKAGE_JSON), pkgJson);
       bootSpinner.succeed(`Generated ${chalk.bold.green(packageName)} package`);
     } catch (error) {
