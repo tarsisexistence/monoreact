@@ -29,7 +29,6 @@ prog
   Currently available choices: [${featureOptions.join(', ')}]`
   )
   .example('add playground')
-  .example('a playground')
   .action(async (featureName: string) => {
     const bootSpinner = ora(`Generating ${chalk.cyan(featureName)} feature...`);
     const currentPath = await fs.realpath(process.cwd());
@@ -72,7 +71,7 @@ prog
 
     if (!featureOptions.includes(featureName)) {
       bootSpinner.fail(
-        `Failed to generate ${chalk.bold.red(featureName)} feature template.`
+        `Failed to generate ${chalk.bold.red(featureName)} feature template`
       );
       console.log(
         chalk.red(`
@@ -89,7 +88,7 @@ prog
       await fs.copy(
         path.resolve(__dirname, `../../templates/feature/${featureName}`),
         path.resolve(currentPath, featureTemplates[featureName].path),
-        { overwrite: true }
+        { overwrite: false, errorOnExist: true }
       );
 
       const updatedScripts = {
@@ -102,10 +101,21 @@ prog
       });
       await execa(`prettier --write ${PACKAGE_JSON}`);
       bootSpinner.succeed(
-        `Added ${chalk.bold.green(featureName)} feature template.`
+        `Added ${chalk.bold.green(featureName)} feature template`
       );
     } catch (error) {
-      `Failed to generate ${chalk.bold.red(featureName)} feature template.`;
+      bootSpinner.fail(
+        `Failed to generate ${chalk.bold.red(featureName)} feature template`
+      );
+
+      if (error.toString().includes('already exists')) {
+        console.log(
+          chalk.red(`
+    It seems like you already have this feature.
+        `)
+        );
+      }
+
       logError(error);
       process.exit(1);
     }
