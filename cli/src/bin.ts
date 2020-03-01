@@ -15,6 +15,7 @@ import { packageTemplate, packageTemplates } from './templates/package';
 import { composePackageJson } from './templates/package/utils';
 import { CliOptions } from './config';
 import { RootPackageJson, WorkspacePackageJson } from './types';
+import { PACKAGE_JSON } from './constants';
 import pkg from '../package.json';
 
 const prog = sade('re-space');
@@ -32,7 +33,7 @@ prog
   .action(async (featureName: string) => {
     const bootSpinner = ora(`Generating ${chalk.cyan(featureName)} feature...`);
     const currentPath = await fs.realpath(process.cwd());
-    const packageJsonPath = path.resolve(currentPath, 'package.json');
+    const packageJsonPath = path.resolve(currentPath, PACKAGE_JSON);
     let packageJson = {} as WorkspacePackageJson;
 
     try {
@@ -51,14 +52,14 @@ prog
           chalk.red(`
     Make sure you run the script 'add ${featureName}' from the package workspace.
     
-    The workspace package.json should have:
+    The workspace ${PACKAGE_JSON} should have:
         workspace: true;
           `)
         );
       } else {
         console.log(
           chalk.red(`
-    Can't find package.json.
+    Can't find ${PACKAGE_JSON}.
     Make sure you run the script 'add ${featureName}' from the package workspace.
         `)
         );
@@ -99,7 +100,7 @@ prog
         ...packageJson,
         scripts: updatedScripts
       });
-      await execa('prettier --write package.json');
+      await execa(`prettier --write ${PACKAGE_JSON}`);
       bootSpinner.succeed(
         `Added ${chalk.bold.green(featureName)} feature template.`
       );
@@ -142,7 +143,7 @@ prog
 
     try {
       const currentPath = await fs.realpath(process.cwd());
-      const packageJsonPath = path.resolve(currentPath, 'package.json');
+      const packageJsonPath = path.resolve(currentPath, PACKAGE_JSON);
       const {
         name,
         workspaces,
@@ -165,7 +166,7 @@ prog
           chalk.red(`
     Make sure you run the script 'generate ${packageName}' from the workspace root
     
-    The workspace root package.json should have:
+    The workspace root ${PACKAGE_JSON} should have:
         private: false;
         workspaces: ['packages/*'] 
           `)
@@ -173,7 +174,7 @@ prog
       } else {
         console.log(
           chalk.red(`
-    Can't find package.json.
+    Can't find ${PACKAGE_JSON}.
     Make sure you run the script 'generate ${packageName}' from the workspace root.
       `)
         );
@@ -286,7 +287,7 @@ prog
         ? `${cliConfig.scope}/${safeName}`
         : safeName;
       const pkgJson = generatePackageJson({ name: packageJsonName, author });
-      await fs.outputJSON(path.resolve(projectPath, 'package.json'), pkgJson);
+      await fs.outputJSON(path.resolve(projectPath, PACKAGE_JSON), pkgJson);
       bootSpinner.succeed(`Generated ${chalk.bold.green(packageName)} package`);
     } catch (error) {
       bootSpinner.fail(
@@ -303,7 +304,7 @@ prog
 
     try {
       await execa('sort-package-json');
-      await execa('prettier --write package.json');
+      await execa(`prettier --write ${PACKAGE_JSON}`);
       installSpinner.succeed('The package successfully configured');
       console.log(await preparedPackage(packageName));
     } catch (error) {
