@@ -77,6 +77,8 @@ prog
         chalk.red(`
     Invalid feature template.
     Unfortunately, re-space doesn't provide '${featureName}' feature template.
+    
+    Available feature templates: [${featureOptions.join(', ')}]
         `)
       );
       process.exit(1);
@@ -131,7 +133,7 @@ prog
   .option(
     '--template',
     `Specify a template.
-     Allowed choices: [${templateOptions.join(', ')}]
+     Available templates: [${templateOptions.join(', ')}]
      
      `
   )
@@ -139,7 +141,7 @@ prog
   .option(
     '--feature',
     `Specify a feature.
-     Allowed choices: [${featureOptions.join(', ')}]
+     Available features: [${featureOptions.join(', ')}]
      
      `
   )
