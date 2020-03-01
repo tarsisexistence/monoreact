@@ -1,5 +1,5 @@
 import { PackageTemplate } from '../template';
-import { BASE_PACKAGE_SCRIPTS, WORKSPACE_PACKAGE_JSON } from './shared';
+import { BASE_PACKAGE_SCRIPTS, WORKSPACE_PACKAGE_JSON } from '../shared';
 
 export const basicTemplate: PackageTemplate = {
   dependencies: [],

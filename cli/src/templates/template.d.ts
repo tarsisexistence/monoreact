@@ -6,5 +6,6 @@ interface PackageTemplate {
 }
 
 interface FeatureTemplate {
+  path: string;
   scripts: { [scriptName: string]: string };
 }

@@ -7,8 +7,7 @@ export const BASE_PACKAGE_SCRIPTS = {
 
 export const COMPONENT_PACKAGE_SCRIPTS = {
   ...BASE_PACKAGE_SCRIPTS,
-  'lint:css': 'stylelint src/**/*.{css,sass,scss}',
-  'start:docz': 'docz dev -p 6010'
+  'lint:css': 'stylelint src/**/*.{css,sass,scss}'
 };
 
 export const REACT_TEMPLATE_DEPENDENCIES = {

@@ -22,7 +22,11 @@ const templateOptions = Object.keys(packageTemplates);
 const featureOptions = Object.keys(featureTemplates);
 
 prog
-  .command('add <feature>', 'Add available feature')
+  .command('add <feature>')
+  .describe(
+    `Add available feature.
+  Currently available choices: [${featureOptions.join(', ')}]`
+  )
   .example('add playground')
   .example('a playground')
   .action(async (featureName: string) => {
@@ -83,7 +87,7 @@ prog
     try {
       await fs.copy(
         path.resolve(__dirname, `../../templates/feature/${featureName}`),
-        path.resolve(currentPath, 'playground'),
+        path.resolve(currentPath, featureTemplates[featureName].path),
         { overwrite: true }
       );
 
