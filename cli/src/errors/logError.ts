@@ -2,7 +2,7 @@ import chalk from 'chalk';
 
 const stderr = console.error.bind(console);
 
-export default function logError(err: any) {
+export function logError(err: any) {
   const error = err.error || err;
   const description = `${error.name ? error.name + ': ' : ''}${error.message ||
     error}`;
@@ -12,7 +12,7 @@ export default function logError(err: any) {
       : `(${error.plugin} plugin) ${description}`
     : description;
 
-  stderr(chalk.bold.red(message));
+  stderr(chalk.bold.red(`    ${message}`));
 
   if (error.loc) {
     stderr();
@@ -26,6 +26,4 @@ export default function logError(err: any) {
     const headlessStack = error.stack.replace(message, '');
     stderr(chalk.dim(headlessStack));
   }
-
-  stderr();
 }

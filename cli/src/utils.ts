@@ -23,25 +23,6 @@ export const safePackageName = (name: string) =>
 export const resolveApp = (relativePath: string) =>
   path.resolve(fs.realpathSync(process.cwd()), relativePath);
 
-export function findByPattern(
-  startPath: string,
-  filter: string
-): string | undefined {
-  if (fs.existsSync(startPath)) {
-    const files = fs.readdirSync(startPath);
-    for (let i = 0; i < files.length; i++) {
-      const filename = path.join(startPath, files[i]);
-      const isNodeModule = filename.includes('node_modules');
-
-      if (!isNodeModule && filename.indexOf(filter) >= 0) {
-        return filename;
-      }
-    }
-  }
-
-  return;
-}
-
 export function getAuthorName(): Author {
   let author = '';
 

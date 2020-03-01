@@ -1,10 +1,10 @@
 import { PackageTemplate } from './template';
-import { BASE_PACKAGE_SCRIPTS, BASE_PACKAGE_JSON } from './shared';
+import { BASE_PACKAGE_SCRIPTS, WORKSPACE_PACKAGE_JSON } from './shared';
 
 export const basicTemplate: PackageTemplate = {
   dependencies: [],
   packageJson: {
-    ...BASE_PACKAGE_JSON,
+    ...WORKSPACE_PACKAGE_JSON,
     scripts: BASE_PACKAGE_SCRIPTS
   }
 };

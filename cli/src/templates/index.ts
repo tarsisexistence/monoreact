@@ -7,3 +7,9 @@ export const templates = {
 };
 
 export type template = keyof typeof templates;
+
+export const features = {
+  playground: 'playground'
+};
+
+export type feature = keyof typeof features;
