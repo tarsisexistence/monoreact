@@ -8,9 +8,7 @@ export const BASE_PACKAGE_SCRIPTS = {
 export const COMPONENT_PACKAGE_SCRIPTS = {
   ...BASE_PACKAGE_SCRIPTS,
   'lint:css': 'stylelint src/**/*.{css,sass,scss}',
-  'start:docz': 'docz dev -p 6010',
-  'start:playground':
-    'yarn build & concurrently --kill-others "yarn start" "cd playground & yarn start"'
+  'start:docz': 'docz dev -p 6010'
 };
 
 export const REACT_TEMPLATE_DEPENDENCIES = {

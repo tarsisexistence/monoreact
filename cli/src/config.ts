@@ -1,11 +1,8 @@
-import { template, feature } from './templates';
+import { packageTemplate } from './templates/package';
+import { feature } from './templates/feature';
 
-interface RespaceConfig {
-  scope: string;
+export interface CliOptions {
   workspaces: string;
-}
-
-export interface CliOptions extends RespaceConfig {
-  template: template;
+  template: packageTemplate;
   feature: feature;
 }

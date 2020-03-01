@@ -6,19 +6,20 @@ import execa from 'execa';
 import path from 'path';
 import ora from 'ora';
 import fs from 'fs-extra';
+import { Input, Select } from 'enquirer';
 import { customErrorId, logError } from './errors';
 import { preparedPackage, preparingPackage } from './messages';
 import { getAuthorName, safePackageName, setAuthorName } from './utils';
-import { Input, Select } from 'enquirer';
-import { features, template, templates } from './templates';
-import { composePackageJson } from './templates/utils';
+import { featureTemplates } from './templates/feature';
+import { packageTemplate, packageTemplates } from './templates/package';
+import { composePackageJson } from './templates/package/utils';
 import { CliOptions } from './config';
 import { RootPackageJson, WorkspacePackageJson } from './types';
 import pkg from '../package.json';
 
 const prog = sade('re-space');
-const templateOptions = Object.keys(templates);
-const featureOptions = Object.keys(features);
+const templateOptions = Object.keys(packageTemplates);
+const featureOptions = Object.keys(featureTemplates);
 
 prog
   .command('add <feature>', 'Add available feature')
@@ -85,10 +86,10 @@ prog
         path.resolve(currentPath, 'playground'),
         { overwrite: true }
       );
+
       const updatedScripts = {
         ...packageJson.scripts,
-        'start:playground':
-          'yarn build & concurrently --kill-others "yarn start" "cd playground & yarn start"'
+        ...featureTemplates[featureName].scripts
       };
       await fs.outputJSON(packageJsonPath, {
         ...packageJson,
@@ -230,7 +231,12 @@ prog
 
       if (opts.template) {
         cliConfig.template = opts.template.trim();
-        if (!prompt.choices.includes(cliConfig.template)) {
+
+        if (
+          !prompt.choices.find(
+            (choice: any) => choice.name === cliConfig.template
+          )
+        ) {
           bootSpinner.fail(
             `Invalid template ${chalk.bold.red(cliConfig.template)}`
           );
@@ -248,10 +254,6 @@ prog
           overwrite: true
         }
       );
-      await fs.copy(
-        path.resolve(__dirname, `../../templates/playground`),
-        path.resolve(projectPath, 'playground')
-      );
 
       // attempt to automatically derive author name
       let author = getAuthorName();
@@ -267,7 +269,8 @@ prog
         bootSpinner.start();
       }
 
-      const templateConfig = templates[cliConfig.template as template];
+      const templateConfig =
+        packageTemplates[cliConfig.template as packageTemplate];
       const generatePackageJson = composePackageJson(templateConfig);
 
       process.chdir(projectPath);
@@ -286,7 +289,9 @@ prog
       process.exit(1);
     }
 
-    const { dependencies } = templates[cliConfig.template as template];
+    const { dependencies } = packageTemplates[
+      cliConfig.template as packageTemplate
+    ];
     const installSpinner = ora(preparingPackage(dependencies.sort())).start();
 
     try {

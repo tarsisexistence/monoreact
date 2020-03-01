@@ -1,5 +1,5 @@
-import { PackageTemplate } from './template';
-import { RootPackageJson } from '../types';
+import { PackageTemplate } from '../template';
+import { RootPackageJson } from '../../types';
 
 export const composePackageJson = (template: PackageTemplate) => ({
   name,

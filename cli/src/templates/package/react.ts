@@ -1,4 +1,4 @@
-import { PackageTemplate } from './template';
+import { PackageTemplate } from '../template';
 import {
   WORKSPACE_PACKAGE_JSON,
   COMPONENT_PACKAGE_SCRIPTS,
