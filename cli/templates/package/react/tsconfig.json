@@ -3,6 +3,8 @@
   "compilerOptions": {
     "baseUrl": "src"
   },
-  "include": ["../../settings/typings.d.ts", "../../src/typings", "src"],
+  "include": ["../../settings/typings.d.ts", "../../src/typings",
+    "src"
+  ],
   "exclude": ["node_modules", "dist", "src/**/*.test.ts", "src/**/*.test.tsx"]
 }

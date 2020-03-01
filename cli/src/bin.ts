@@ -82,7 +82,7 @@ prog
 
     try {
       await fs.copy(
-        path.resolve(__dirname, `../../templates/${featureName}`),
+        path.resolve(__dirname, `../../templates/feature/${featureName}`),
         path.resolve(currentPath, 'playground'),
         { overwrite: true }
       );
@@ -248,7 +248,10 @@ prog
 
       bootSpinner.start();
       await fs.copy(
-        path.resolve(__dirname, `../../templates/${cliConfig.template}`),
+        path.resolve(
+          __dirname,
+          `../../templates/package/${cliConfig.template}`
+        ),
         projectPath,
         {
           overwrite: true
