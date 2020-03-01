@@ -30,7 +30,7 @@
     "@types/ora": "3.2.0",
     "@types/sade": "1.6.0",
     "@types/shelljs": "0.8.6",
-    "ansi-escapes": "4.3.0",
+    "ansi-escapes": "4.3.1",
     "chalk": "3.0.0",
     "enquirer": "2.3.4",
     "execa": "4.0.0",
