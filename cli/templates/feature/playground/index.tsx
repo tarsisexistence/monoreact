@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Component } from '../..';
+import { Component } from '..';
 
 const App = () => {
   return (

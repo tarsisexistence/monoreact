@@ -5,6 +5,7 @@
   "module": "dist/bundle.esm.js",
   "jsnext:main": "dist/bundle.esm.js",
   "types": "dist/publicApi.d.ts",
+  "input": "src/publicApi.ts",
   "license": "MIT",
   "author": {
     "email": "tarsis.maksym@gmail.com",
