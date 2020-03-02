@@ -1,5 +1,6 @@
 import chalk from 'chalk';
-import { command } from './output';
+
+const command = (command: string): string => chalk.bold.cyan(command);
 
 export const preparingPackage = (packages: string[]) => {
   const pkgText = packages

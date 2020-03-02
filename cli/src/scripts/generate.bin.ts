@@ -10,10 +10,8 @@ import { customErrorId, logError } from '../errors';
 import { preparedPackage, preparingPackage } from '../messages';
 import { getAuthorName, setAuthorName } from '../utils';
 import { featureTemplates } from '../templates/feature';
-import { packageTemplate, packageTemplates } from '../templates/package';
+import { packageTemplates } from '../templates/package';
 import { composePackageJson } from '../templates/package/utils';
-import { CliOptions } from '../config';
-import { RootPackageJson } from '../types';
 import { PACKAGE_JSON } from '../constants';
 
 const templateOptions = Object.keys(packageTemplates);
@@ -43,7 +41,7 @@ export const generateBinCommand = (prog: any) => {
      `
     )
     .example(`g packageName --feature ${featureOptions[0]}`)
-    .action(async (packageName: string, opts: CliOptions) => {
+    .action(async (packageName: string, opts: CLI.Options) => {
       const cliConfig: Record<string, any> = {
         template: null,
         workspaces: null,
@@ -60,7 +58,7 @@ export const generateBinCommand = (prog: any) => {
           workspaces,
           license,
           private: isPackagePrivate
-        } = (await fs.readJSON(packageJsonPath)) as RootPackageJson;
+        } = (await fs.readJSON(packageJsonPath)) as CLI.Package.RootPackageJSON;
         const hasWorkspace = Array.isArray(workspaces) && workspaces.length > 0;
 
         if (!hasWorkspace || !isPackagePrivate) {
@@ -191,7 +189,7 @@ export const generateBinCommand = (prog: any) => {
 
         process.chdir(projectPath);
         const templateConfig =
-          packageTemplates[cliConfig.template as packageTemplate];
+          packageTemplates[cliConfig.template as CLI.Template.package];
         const generatePackageJson = composePackageJson(templateConfig);
         const pkgJson = generatePackageJson({
           author,
@@ -210,7 +208,7 @@ export const generateBinCommand = (prog: any) => {
       }
 
       const { dependencies } = packageTemplates[
-        cliConfig.template as packageTemplate
+        cliConfig.template as CLI.Template.package
       ];
       const installSpinner = ora(preparingPackage(dependencies.sort())).start();
 

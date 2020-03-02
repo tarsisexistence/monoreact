@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 import sade from 'sade';
-import pkg from '../../package.json';
 import { generateBinCommand } from './generate.bin';
 import { addBinCommand } from './add.bin';
+import pkg from '../../package.json';
 
 const prog = sade('re-space');
 

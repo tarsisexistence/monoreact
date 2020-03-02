@@ -5,7 +5,6 @@ import ora from 'ora';
 import fs from 'fs-extra';
 import { customErrorId, logError } from '../errors';
 import { featureTemplates } from '../templates/feature';
-import { WorkspacePackageJson } from '../types';
 import { PACKAGE_JSON } from '../constants';
 
 const featureOptions = Object.keys(featureTemplates);
@@ -24,7 +23,7 @@ export const addBinCommand = (prog: any) => {
       );
       const currentPath = await fs.realpath(process.cwd());
       const packageJsonPath = path.resolve(currentPath, PACKAGE_JSON);
-      let packageJson = {} as WorkspacePackageJson;
+      let packageJson = {} as CLI.Package.WorkspacePackageJSON;
 
       try {
         packageJson = await fs.readJSON(packageJsonPath);
@@ -80,13 +79,16 @@ export const addBinCommand = (prog: any) => {
       try {
         await fs.copy(
           path.resolve(__dirname, `../../../templates/feature/${featureName}`),
-          path.resolve(currentPath, featureTemplates[featureName].path),
+          path.resolve(
+            currentPath,
+            featureTemplates[featureName as CLI.Template.feature].path
+          ),
           { overwrite: false, errorOnExist: true }
         );
 
         const updatedScripts = {
           ...packageJson.scripts,
-          ...featureTemplates[featureName].scripts
+          ...featureTemplates[featureName as CLI.Template.feature].scripts
         };
         await fs.outputJSON(packageJsonPath, {
           ...packageJson,

@@ -1,4 +1,4 @@
-export const playgroundTemplate = {
+export const playgroundTemplate: CLI.Template.FeatureOptions = {
   path: './playground',
   scripts: {
     'start:playground':

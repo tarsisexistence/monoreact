@@ -1,12 +1,11 @@
 import shell from 'shelljs';
-import { Author } from './types';
 
 export const safePackageName = (name: string) =>
   name
     .toLowerCase()
     .replace(/(^@.*\/)|((^[^a-zA-Z]+)|[^\w.-])|([^a-zA-Z0-9]+$)/g, '');
 
-export function getAuthorName(): Author {
+export function getAuthorName(): CLI.Package.Author {
   let author = '';
 
   author = shell
@@ -38,6 +37,6 @@ export function getAuthorName(): Author {
   return author;
 }
 
-export function setAuthorName(author: Author): void {
+export function setAuthorName(author: CLI.Package.Author): void {
   shell.exec(`npm config set init-author-name "${author}"`, { silent: true });
 }
