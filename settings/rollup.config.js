@@ -14,11 +14,13 @@ export const createRollupConfig = pkg => ({
   output: [
     {
       file: pkg.module,
-      format: 'es'
+      format: 'es',
+      sourcemap: true
     },
     {
       file: pkg.main,
-      format: 'cjs'
+      format: 'cjs',
+      sourcemap: true
     }
   ],
   plugins: [
@@ -37,6 +39,8 @@ export const createRollupConfig = pkg => ({
       use: ['sass']
     }),
     babel({
+      sourceMaps: true,
+      inputSourceMap: true,
       babelrc: false,
       extensions: ['.js', 'jsx', '.ts', '.tsx'],
       presets: ['@babel/preset-env', '@babel/preset-react'],
