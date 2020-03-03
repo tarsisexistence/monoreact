@@ -5,7 +5,7 @@ import ora from 'ora';
 import fs from 'fs-extra';
 import { customErrorId, logError } from '../errors';
 import { featureTemplates } from '../templates/feature';
-import { PACKAGE_JSON } from '../constants';
+import { PACKAGE_JSON } from '../helpers/constants';
 
 const featureOptions = Object.keys(featureTemplates);
 

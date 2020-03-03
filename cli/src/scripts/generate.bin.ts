@@ -7,12 +7,11 @@ import ora from 'ora';
 import fs from 'fs-extra';
 import { Input, Select } from 'enquirer';
 import { customErrorId, logError } from '../errors';
-import { preparedPackage, preparingPackage } from '../messages';
-import { getAuthorName, setAuthorName } from '../utils';
-import { featureTemplates } from '../templates/feature';
-import { packageTemplates } from '../templates/package';
+import { preparedPackage, preparingPackage } from '../helpers/messages';
+import { getAuthorName, setAuthorName } from '../helpers/utils';
+import { featureTemplates, packageTemplates } from '../templates';
 import { composePackageJson } from '../templates/package/utils';
-import { PACKAGE_JSON } from '../constants';
+import { PACKAGE_JSON } from '../helpers/constants';
 
 const templateOptions = Object.keys(packageTemplates);
 const featureOptions = Object.keys(featureTemplates);

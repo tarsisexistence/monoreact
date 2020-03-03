@@ -1,3 +1,5 @@
+export const PACKAGE_JSON = 'package.json';
+
 export const BASE_PACKAGE_SCRIPTS = {
   start: 'npx rollup -cw',
   build: 'npx rollup -c',
