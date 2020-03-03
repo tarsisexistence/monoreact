@@ -91,7 +91,7 @@
     "rollup-plugin-babel": "4.3.3",
     "rollup-plugin-peer-deps-external": "2.2.2",
     "rollup-plugin-postcss": "2.1.1",
-    "rollup-plugin-typescript2": "0.25.3",
+    "rollup-plugin-typescript2": "0.26.0",
     "sort-package-json": "1.40.0",
     "stylelint": "13.2.0",
     "stylelint-config-recommended": "3.0.0",
