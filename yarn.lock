@@ -1715,13 +1715,6 @@
     modularscale "^2.0.1"
     object-assign "^4.1.1"
 
-"@types/ansi-escapes@4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@types/ansi-escapes/-/ansi-escapes-4.0.0.tgz#cf52d455628bc3fab95db971ab0f23c84778cc05"
-  integrity sha512-50x8OpY2c2UMDuiN7Uq1ITWngAiL3B8L9v6GU0J+IrndEypNfGJaZSgpuOBwhIu+7xwkhDj9OniK6z6MaeN7zQ==
-  dependencies:
-    ansi-escapes "*"
-
 "@types/babel__core@^7.1.0":
   version "7.1.6"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.6.tgz#16ff42a5ae203c9af1c6e190ed1f30f83207b610"
@@ -2428,17 +2421,17 @@ ansi-colors@^3.0.0, ansi-colors@^3.2.1:
   resolved "https://registry.yarnpkg.com/ansi-colors/-/ansi-colors-3.2.4.tgz#e3a3da4bfbae6c86a9c285625de124a234026fbf"
   integrity sha512-hHUXGagefjN2iRrID63xckIvotOXOojhQKWIPUZ4mNUZ9nLZW+7FMNoE1lOkEhNWYsx/7ysGIuJYCiMAA9FnrA==
 
-ansi-escapes@*, ansi-escapes@4.3.0, ansi-escapes@^4.2.1:
+ansi-escapes@^3.0.0, ansi-escapes@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-3.2.0.tgz#8780b98ff9dbf5638152d1f1fe5c1d7b4442976b"
+  integrity sha512-cBhpre4ma+U0T1oM5fXg7Dy1Jw7zzwv7lt/GoCpr+hDQJoYnKVPLL4dCvSEFMmQurOQvSrwT7SL/DAlhBI97RQ==
+
+ansi-escapes@^4.2.1:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-4.3.0.tgz#a4ce2b33d6b214b7950d8595c212f12ac9cc569d"
   integrity sha512-EiYhwo0v255HUL6eDyuLrXEkTi7WwVCLAw+SeOQ7M7qdun1z1pum4DEm/nuqIVbPvi9RPPc9k9LbyBv6H0DwVg==
   dependencies:
     type-fest "^0.8.1"
-
-ansi-escapes@^3.0.0, ansi-escapes@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-3.2.0.tgz#8780b98ff9dbf5638152d1f1fe5c1d7b4442976b"
-  integrity sha512-cBhpre4ma+U0T1oM5fXg7Dy1Jw7zzwv7lt/GoCpr+hDQJoYnKVPLL4dCvSEFMmQurOQvSrwT7SL/DAlhBI97RQ==
 
 ansi-html@0.0.7:
   version "0.0.7"
@@ -15724,10 +15717,10 @@ rollup-plugin-peer-deps-external@2.2.2:
   resolved "https://registry.yarnpkg.com/rollup-plugin-peer-deps-external/-/rollup-plugin-peer-deps-external-2.2.2.tgz#506cef67fb68f41cca3ec08ca6ff7936b190f568"
   integrity sha512-XcHH4UW9exRTAf73d8rk2dw2UgF//cWbilhRI4Ni/n+t0zA1eBtohKyJROn0fxa4/+WZ5R3onAyIDiwRQL+59A==
 
-rollup-plugin-postcss@2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-postcss/-/rollup-plugin-postcss-2.1.1.tgz#39b9b7c5da91741631b3a07ad1622a3477b307f4"
-  integrity sha512-A9G3VGnWwfjlb5REp992+9NEosY0KdrysXYytNFCy107+QlZaRzIgHQYwBQ67BYlV8K4t0Yk2ukySFQceneUKA==
+rollup-plugin-postcss@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-postcss/-/rollup-plugin-postcss-2.2.0.tgz#cfb510582e287c8bbc3452d42e0331221b305a9c"
+  integrity sha512-hArtkL86T4gfgmY2hkY3HQ/Zy0MFSBEIyF8orQi+V8e8wvvcAXhoZqdkRX+Io/XKUhTk8OHtGvBTWXvieSbL0A==
   dependencies:
     chalk "^2.4.2"
     concat-with-sourcemaps "^1.0.5"
