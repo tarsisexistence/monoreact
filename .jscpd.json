@@ -1,0 +1,8 @@
+{
+  "threshold": 0.1,
+  "blame": true,
+  "absolute": true,
+  "reporters": ["html", "console", "badge", "time"],
+  "mode": "strict",
+  "ignore": ["**/node_modules", "**/dist"]
+}
