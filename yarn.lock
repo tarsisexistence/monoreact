@@ -10767,10 +10767,10 @@ jscpd-badge-reporter@1.1.3:
     badgen "^2.5.0"
     fs-extra "^7.0.1"
 
-jscpd@3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/jscpd/-/jscpd-3.0.1.tgz#43d39b1267616d8e30519e5f8b7c4970248df9b1"
-  integrity sha512-cUsuovbiuhihG9t9QA4ftAVhVFuDwQ9Pom0dJgUMN2YwlU22ZnYumEewbCho4l0XoNYXE6YgCQHH6FyvtozMSg==
+jscpd@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/jscpd/-/jscpd-3.1.0.tgz#aa725b31fc59cb93d7c6381b47e2bb0d4de0464e"
+  integrity sha512-Hor2ovHHS2MZ0fOSW8MggEFVThyDy7dupZ7JQ998d+h8irpideLgpYuW3x0rvcXrYdTkrU90GpguxZS3ZR2Piw==
   dependencies:
     blamer "^1.0.1"
     bytes "^3.0.0"
