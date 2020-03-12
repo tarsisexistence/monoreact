@@ -13,16 +13,11 @@
     "url": "https://github.com/maktarsis"
   },
   "scripts": {
-    "build": "npx rollup -c",
-    "test": "jest --passWithNoTests",
-    "docz": "docz dev -p 6010",
     "lint:es": "eslint src/**/*.{js,jsx,ts,tsx}",
-    "lint:css": "stylelint src/**/*.{css,sass,scss}",
-    "start": "tsc -p tsconfig.json --watch"
+    "start": "tsc -p tsconfig.json --watch",
+    "test": "jest --passWithNoTests"
   },
   "devDependencies": {
-    "@rollup/plugin-json": "4.0.2",
-    "@rollup/plugin-replace": "2.3.1",
     "@types/eslint": "6.1.8",
     "@types/execa": "2.0.0",
     "@types/fs-extra": "8.1.0",
@@ -34,7 +29,6 @@
     "execa": "4.0.0",
     "fs-extra": "8.1.0",
     "ora": "4.0.3",
-    "rollup-plugin-sourcemaps": "0.5.0",
     "sade": "1.7.3",
     "shelljs": "0.8.3"
   },

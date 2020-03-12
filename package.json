@@ -20,7 +20,7 @@
     "lint:css": "stylelint src/**/*.{css,sass,scss}",
     "lint:es:all": "eslint src/**/*.{js,jsx,ts,tsx} packages/*/src/**/*.{js,jsx,ts,tsx}",
     "lint:css:all": "stylelint src/**/*.{css,sass,scss} packages/*/src/**/*.{css,sass,scss}",
-    "sort:deps": "npx sort-package-json",
+    "sort:deps": "sort-package-json",
     "cpd": "jscpd **/src"
   },
   "dependencies": {
