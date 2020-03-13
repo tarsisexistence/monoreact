@@ -1,4 +1,6 @@
 import shell from 'shelljs';
+import execa from 'execa';
+import { PACKAGE_JSON } from './constants';
 
 export const safePackageName = (name: string) =>
   name
@@ -40,3 +42,14 @@ export function getAuthorName(): CLI.Package.Author {
 export function setAuthorName(author: CLI.Package.Author): void {
   shell.exec(`npm config set init-author-name "${author}"`, { silent: true });
 }
+
+export const sortPackageJson = async () => execa('sort-package-json');
+
+export const prettifyPackageJson = async () =>
+  execa(`prettier --write ${PACKAGE_JSON}`);
+
+// export const findWorkspacesWildcard = (workspaces: string[]): string | null => {
+//   const wildcardWorkspaces =
+//     workspaces.find(workspace => workspace[workspace.length - 1] === '*') ||
+//     null;
+// };

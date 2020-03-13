@@ -1,4 +1,5 @@
 import chalk from 'chalk';
+import { error as errMsg } from '../helpers/messages/colors';
 
 const stderr = console.error.bind(console);
 
@@ -12,7 +13,7 @@ export function logError(err: any) {
       : `(${error.plugin} plugin) ${description}`
     : description;
 
-  stderr(chalk.bold.red(`    ${message}`));
+  stderr(errMsg(`    ${message}`));
 
   if (error.loc) {
     stderr();

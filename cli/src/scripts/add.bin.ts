@@ -1,15 +1,17 @@
-import chalk from 'chalk';
-import execa from 'execa';
+import { Sade } from 'sade';
 import path from 'path';
 import ora from 'ora';
 import fs from 'fs-extra';
-import { customErrorId, logError } from '../errors';
+import { logError, NoPackageJsonError, WrongWorkspaceError } from '../errors';
 import { featureTemplates } from '../templates/feature';
 import { PACKAGE_JSON } from '../helpers/constants';
+import { FeatureMessages } from '../helpers/messages/feature';
+import { prettifyPackageJson } from '../helpers/utils';
+import { error } from '../helpers/messages/colors';
 
 const featureOptions = Object.keys(featureTemplates);
 
-export const addBinCommand = (prog: any) => {
+export const addBinCommand = (prog: Sade) => {
   prog
     .command('add <feature>')
     .describe(
@@ -18,9 +20,16 @@ export const addBinCommand = (prog: any) => {
     )
     .example('add playground')
     .action(async (featureName: string) => {
-      const bootSpinner = ora(
-        `Generating ${chalk.cyan(featureName)} feature...`
-      );
+      const {
+        generating,
+        wrongWorkspace,
+        failed,
+        success,
+        invalidTemplate,
+        exists,
+        script
+      } = new FeatureMessages(featureName);
+      const bootSpinner = ora(generating());
       const currentPath = await fs.realpath(process.cwd());
       const packageJsonPath = path.resolve(currentPath, PACKAGE_JSON);
       let packageJson = {} as CLI.Package.WorkspacePackageJSON;
@@ -29,48 +38,26 @@ export const addBinCommand = (prog: any) => {
         packageJson = await fs.readJSON(packageJsonPath);
 
         if (!packageJson.workspace) {
-          throw customErrorId;
+          throw new WrongWorkspaceError(wrongWorkspace());
         }
-      } catch (error) {
-        bootSpinner.fail(
-          `Failed to generate ${chalk.bold.red(featureName)} feature template`
-        );
+      } catch (err) {
+        bootSpinner.fail(failed());
 
-        if (error === customErrorId) {
-          console.log(
-            chalk.red(`
-    Make sure you run the script 'add ${featureName}' from the package workspace.
-    
-    The workspace ${PACKAGE_JSON} should have:
-        workspace: true;
-          `)
-          );
+        if (err.isWrongWorkspace) {
+          console.log(error(err));
         } else {
           console.log(
-            chalk.red(`
-    Can't find ${PACKAGE_JSON}.
-    Make sure you run the script 'add ${featureName}' from the package workspace.
-        `)
+            error((new NoPackageJsonError(script()) as unknown) as string)
           );
-
-          logError(error);
+          logError(err);
         }
 
         process.exit(1);
       }
 
       if (!featureOptions.includes(featureName)) {
-        bootSpinner.fail(
-          `Failed to generate ${chalk.bold.red(featureName)} feature template`
-        );
-        console.log(
-          chalk.red(`
-    Invalid feature template.
-    Unfortunately, re-space doesn't provide '${featureName}' feature template.
-    
-    Available feature templates: [${featureOptions.join(', ')}]
-        `)
-        );
+        bootSpinner.fail(failed());
+        console.log(error(invalidTemplate()));
         process.exit(1);
       }
 
@@ -81,37 +68,29 @@ export const addBinCommand = (prog: any) => {
           path.resolve(__dirname, `../../../templates/feature/${featureName}`),
           path.resolve(
             currentPath,
-            featureTemplates[featureName as CLI.Template.feature].path
+            featureTemplates[featureName as CLI.Template.Feature].path
           ),
           { overwrite: false, errorOnExist: true }
         );
 
         const updatedScripts = {
           ...packageJson.scripts,
-          ...featureTemplates[featureName as CLI.Template.feature].scripts
+          ...featureTemplates[featureName as CLI.Template.Feature].scripts
         };
         await fs.outputJSON(packageJsonPath, {
           ...packageJson,
           scripts: updatedScripts
         });
-        await execa(`prettier --write ${PACKAGE_JSON}`);
-        bootSpinner.succeed(
-          `Added ${chalk.bold.green(featureName)} feature template`
-        );
-      } catch (error) {
-        bootSpinner.fail(
-          `Failed to generate ${chalk.bold.red(featureName)} feature template`
-        );
+        await prettifyPackageJson();
+        bootSpinner.succeed(success());
+      } catch (err) {
+        bootSpinner.fail(failed());
 
-        if (error.toString().includes('already exists')) {
-          console.log(
-            chalk.red(`
-    It seems like you already have this feature.
-        `)
-          );
+        if (err.toString().includes('already exists')) {
+          console.log(exists());
         }
 
-        logError(error);
+        logError(err);
         process.exit(1);
       }
     });

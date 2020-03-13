@@ -1,6 +1,6 @@
 declare namespace CLI.Template {
-  type package = 'basic' | 'react';
-  type feature = 'docz' | 'playground';
+  type Package = 'basic' | 'react';
+  type Feature = 'docz' | 'playground';
 
   interface PackageOptions {
     dependencies: string[];

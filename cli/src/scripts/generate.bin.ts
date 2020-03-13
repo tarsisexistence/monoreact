@@ -1,22 +1,26 @@
-#!/usr/bin/env node
-
-import chalk from 'chalk';
-import execa from 'execa';
+import { Sade } from 'sade';
 import path from 'path';
 import ora from 'ora';
 import fs from 'fs-extra';
 import { Input, Select } from 'enquirer';
-import { customErrorId, logError } from '../errors';
-import { preparedPackage, preparingPackage } from '../helpers/messages';
-import { getAuthorName, setAuthorName } from '../helpers/utils';
+import { logError, WrongWorkspaceError, NoPackageJsonError } from '../errors';
+import {
+  getAuthorName,
+  prettifyPackageJson,
+  setAuthorName,
+  sortPackageJson
+} from '../helpers/utils';
 import { featureTemplates, packageTemplates } from '../templates';
 import { composePackageJson } from '../templates/package/utils';
 import { PACKAGE_JSON } from '../helpers/constants';
+import { PackageMessages } from '../helpers/messages/package';
+import { error, info } from '../helpers/messages/colors';
+import { TITLE_CLI } from '../helpers/messages/common';
 
 const templateOptions = Object.keys(packageTemplates);
 const featureOptions = Object.keys(featureTemplates);
 
-export const generateBinCommand = (prog: any) => {
+export const generateBinCommand = (prog: Sade) => {
   prog
     .command('generate <pkg>', 'Generate a new package', {
       // @ts-ignore
@@ -41,6 +45,20 @@ export const generateBinCommand = (prog: any) => {
     )
     .example(`g packageName --feature ${featureOptions[0]}`)
     .action(async (packageName: string, opts: CLI.Options) => {
+      const {
+        wrongWorkspace,
+        successfulConfigure,
+        failedConfigure,
+        success,
+        copy,
+        failed,
+        script,
+        generating,
+        exists,
+        invalidTemplate,
+        preparedPackage,
+        preparingPackage
+      } = new PackageMessages(packageName);
       const cliConfig: Record<string, any> = {
         template: null,
         workspaces: null,
@@ -61,62 +79,46 @@ export const generateBinCommand = (prog: any) => {
         const hasWorkspace = Array.isArray(workspaces) && workspaces.length > 0;
 
         if (!hasWorkspace || !isPackagePrivate) {
-          throw customErrorId;
+          throw new WrongWorkspaceError(`
+    Make sure you run the script 'generate ${packageName}' from the workspace root
+
+    The workspace root ${PACKAGE_JSON} should have:
+        private: false;
+        workspaces: ['packages/*']
+          `);
         }
 
         cliConfig.license = license;
         cliConfig.rootWorkspaceName = name;
         cliConfig.workspaces = workspaces[0].replace('*', '');
-      } catch (error) {
-        if (error === customErrorId) {
-          console.log(
-            chalk.red(`
-    Make sure you run the script 'generate ${packageName}' from the workspace root
-    
-    The workspace root ${PACKAGE_JSON} should have:
-        private: false;
-        workspaces: ['packages/*'] 
-          `)
-          );
+      } catch (err) {
+        if (err.isWrongWorkspace) {
+          console.log(error(err));
         } else {
           console.log(
-            chalk.red(`
-    Can't find ${PACKAGE_JSON}.
-    Make sure you run the script 'generate ${packageName}' from the workspace root.
-      `)
+            error((new NoPackageJsonError(script()) as unknown) as any)
           );
-
-          logError(error);
+          logError(err);
         }
 
         process.exit(1);
       }
 
-      console.log(
-        chalk.bold.yellow(`
-  RE SPACE // CLI
-    `)
-      );
-      const bootSpinner = ora(
-        `Generating ${chalk.cyan(packageName)} package...`
-      );
+      console.log(TITLE_CLI);
+      const bootSpinner = ora(generating());
 
       async function getProjectPath(projectPath: string): Promise<string> {
-        const exists = await fs.pathExists(projectPath);
+        const isExist = await fs.pathExists(projectPath);
 
-        if (!exists) {
+        if (!isExist) {
           return projectPath;
         }
 
         console.log(projectPath);
-        bootSpinner.fail(
-          `Failed to generate ${chalk.bold.red(packageName)} package`
-        );
+        bootSpinner.fail(failed());
         const prompt = new Input({
-          message: `A folder named ${chalk.bold.red(
-            packageName
-          )} already exists! ${chalk.bold('Choose a different name')}`,
-          initial: packageName + '-copy',
+          message: exists(),
+          initial: copy(),
           result: (v: string) => v.trim()
         });
 
@@ -140,7 +142,7 @@ export const generateBinCommand = (prog: any) => {
           message: 'Choose a template',
           choices: templateOptions.map(option => ({
             name: option,
-            message: chalk.cyan(option)
+            message: info(option)
           }))
         });
 
@@ -152,9 +154,7 @@ export const generateBinCommand = (prog: any) => {
               (choice: any) => choice.name === cliConfig.template
             )
           ) {
-            bootSpinner.fail(
-              `Invalid template ${chalk.bold.red(cliConfig.template)}`
-            );
+            bootSpinner.fail(invalidTemplate(cliConfig.template));
             cliConfig.template = await prompt.run();
           }
         } else {
@@ -188,7 +188,7 @@ export const generateBinCommand = (prog: any) => {
 
         process.chdir(projectPath);
         const templateConfig =
-          packageTemplates[cliConfig.template as CLI.Template.package];
+          packageTemplates[cliConfig.template as CLI.Template.Package];
         const generatePackageJson = composePackageJson(templateConfig);
         const pkgJson = generatePackageJson({
           author,
@@ -197,27 +197,25 @@ export const generateBinCommand = (prog: any) => {
           license: cliConfig.license
         });
         await fs.outputJSON(path.resolve(projectPath, PACKAGE_JSON), pkgJson);
-        bootSpinner.succeed(
-          `Generated ${chalk.bold.green(packageName)} package`
-        );
+        bootSpinner.succeed(success());
       } catch (error) {
-        bootSpinner.fail(`Failed to generate ${chalk.bold.red(packageName)} package`);
+        bootSpinner.fail(failed());
         logError(error);
         process.exit(1);
       }
 
       const { dependencies } = packageTemplates[
-        cliConfig.template as CLI.Template.package
+        cliConfig.template as CLI.Template.Package
       ];
       const installSpinner = ora(preparingPackage(dependencies.sort())).start();
 
       try {
-        await execa('sort-package-json');
-        await execa(`prettier --write ${PACKAGE_JSON}`);
-        installSpinner.succeed('The package successfully configured');
+        await sortPackageJson();
+        await prettifyPackageJson();
+        installSpinner.succeed(successfulConfigure());
         console.log(await preparedPackage(packageName));
       } catch (error) {
-        installSpinner.fail('Failed to fully configure the package');
+        installSpinner.fail(failedConfigure());
         logError(error);
         process.exit(1);
       }

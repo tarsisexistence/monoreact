@@ -2,7 +2,7 @@ import { doczTemplate } from './docz';
 import { playgroundTemplate } from './playground';
 
 export const featureTemplates: Record<
-  CLI.Template.feature,
+  CLI.Template.Feature,
   CLI.Template.FeatureOptions
 > = {
   docz: doczTemplate,
