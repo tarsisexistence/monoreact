@@ -1,0 +1,23 @@
+{
+  "extends": ["./.eslintrc.json", "./cli/.eslintrc.json"],
+  "parserOptions": {
+    "project": [
+      "./tsconfig.json",
+      "./cli/tsconfig.json",
+      "./packages/*/tsconfig.json",
+      "./settings/tsconfig.test.json"
+    ]
+  },
+  "ignorePatterns": ["playground/", "*.d.ts"],
+  "settings": {
+    "import/resolver": {
+      "eslint-import-resolver-lerna": {
+        "packages": "packages/"
+      },
+      "node": {
+        "paths": ["src", "packages/example/src", "cli/src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  }
+}

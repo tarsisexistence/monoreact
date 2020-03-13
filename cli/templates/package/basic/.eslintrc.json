@@ -1,5 +1,8 @@
 {
   "extends": "../../.eslintrc.json",
+  "parserOptions": {
+    "project": ["../../settings/tsconfig.test.json", "./tsconfig.json"]
+  },
   "settings": {
     "import/resolver": {
       "node": {

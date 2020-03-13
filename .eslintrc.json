@@ -1,14 +1,9 @@
 {
   "parserOptions": {
     "project": [
-      "./tsconfig.json",
-      "./packages/*/tsconfig.json",
-      "./settings/tsconfig.package.json",
-      "./settings/tsconfig.test.json",
-      "./cli/tsconfig.json"
+      "tsconfig.json"
     ]
   },
-  "ignorePatterns": ["playground/", "**/*.d.ts"],
   "parser": "@typescript-eslint/parser",
   "plugins": [
     "@typescript-eslint",
@@ -42,7 +37,7 @@
         "packages": "packages/"
       },
       "node": {
-        "paths": ["src", "packages/example/src", "cli/src"],
+        "paths": ["src"],
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     },
