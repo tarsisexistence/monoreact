@@ -1,4 +1,7 @@
-import { BASE_PACKAGE_SCRIPTS, WORKSPACE_PACKAGE_JSON } from '../../helpers/constants';
+import {
+  BASE_PACKAGE_SCRIPTS,
+  WORKSPACE_PACKAGE_JSON
+} from '../../helpers/constants';
 
 export const basicTemplate: CLI.Template.PackageOptions = {
   dependencies: [],

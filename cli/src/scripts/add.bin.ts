@@ -2,8 +2,9 @@ import { Sade } from 'sade';
 import path from 'path';
 import ora from 'ora';
 import fs from 'fs-extra';
+
 import { logError, NoPackageJsonError, WrongWorkspaceError } from '../errors';
-import { featureTemplates } from '../templates/feature';
+import { featureTemplates } from '../setup/feature';
 import { PACKAGE_JSON } from '../helpers/constants';
 import { FeatureMessages } from '../helpers/messages/feature';
 import { prettifyPackageJson } from '../helpers/utils';

@@ -3,6 +3,7 @@ import path from 'path';
 import ora from 'ora';
 import fs from 'fs-extra';
 import { Input, Select } from 'enquirer';
+
 import { logError, WrongWorkspaceError, NoPackageJsonError } from '../errors';
 import {
   getAuthorName,
@@ -10,8 +11,8 @@ import {
   setAuthorName,
   sortPackageJson
 } from '../helpers/utils';
-import { featureTemplates, packageTemplates } from '../templates';
-import { composePackageJson } from '../templates/package/utils';
+import { featureTemplates, packageTemplates } from '../setup';
+import { composePackageJson } from '../setup/package/utils';
 import { PACKAGE_JSON } from '../helpers/constants';
 import { PackageMessages } from '../helpers/messages/package';
 import { error, info } from '../helpers/messages/colors';
@@ -23,6 +24,9 @@ const featureOptions = Object.keys(featureTemplates);
 export const generateBinCommand = (prog: Sade) => {
   prog
     .command('generate <pkg>', 'Generate a new package', {
+      // eslint-disable no-param-reassign
+
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       alias: ['g']
     })
@@ -79,13 +83,7 @@ export const generateBinCommand = (prog: Sade) => {
         const hasWorkspace = Array.isArray(workspaces) && workspaces.length > 0;
 
         if (!hasWorkspace || !isPackagePrivate) {
-          throw new WrongWorkspaceError(`
-    Make sure you run the script 'generate ${packageName}' from the workspace root
-
-    The workspace root ${PACKAGE_JSON} should have:
-        private: false;
-        workspaces: ['packages/*']
-          `);
+          throw new WrongWorkspaceError(wrongWorkspace());
         }
 
         cliConfig.license = license;
@@ -122,14 +120,11 @@ export const generateBinCommand = (prog: Sade) => {
           result: (v: string) => v.trim()
         });
 
-        packageName = await prompt.run();
-        // refactor
-        projectPath =
-          (await fs.realpath(process.cwd())) +
-          '/' +
-          cliConfig.workspaces +
-          packageName;
-        return await getProjectPath(projectPath);
+        const nextPackageName = await prompt.run();
+        const nextProjectPath = `${await fs.realpath(process.cwd())}/${
+          cliConfig.workspaces
+        }${nextPackageName}`;
+        return getProjectPath(nextProjectPath);
       }
 
       try {
@@ -198,9 +193,9 @@ export const generateBinCommand = (prog: Sade) => {
         });
         await fs.outputJSON(path.resolve(projectPath, PACKAGE_JSON), pkgJson);
         bootSpinner.succeed(success());
-      } catch (error) {
+      } catch (err) {
         bootSpinner.fail(failed());
-        logError(error);
+        logError(err);
         process.exit(1);
       }
 
@@ -214,9 +209,9 @@ export const generateBinCommand = (prog: Sade) => {
         await prettifyPackageJson();
         installSpinner.succeed(successfulConfigure());
         console.log(await preparedPackage(packageName));
-      } catch (error) {
+      } catch (err) {
         installSpinner.fail(failedConfigure());
-        logError(error);
+        logError(err);
         process.exit(1);
       }
     });

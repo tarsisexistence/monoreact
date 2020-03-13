@@ -18,8 +18,8 @@
     "test": "react-scripts test",
     "lint:es": "eslint src/**/*.{js,jsx,ts,tsx}",
     "lint:css": "stylelint src/**/*.{css,sass,scss}",
-    "lint:es:all": "eslint src/**/*.{js,jsx,ts,tsx} packages/*/src/**/*.{js,jsx,ts,tsx}",
-    "lint:css:all": "stylelint src/**/*.{css,sass,scss} packages/*/src/**/*.{css,sass,scss}",
+    "lint:es:all": "yarn lint:es packages/*/src/**/*.{js,jsx,ts,tsx} cli/src/**/*.{js,jsx,ts,tsx}",
+    "lint:css:all": "yarn lint:css packages/*/src/**/*.{css,sass,scss}",
     "sort:deps": "sort-package-json",
     "cpd": "jscpd **/src"
   },

@@ -1,5 +1,5 @@
 {
-  "extends": "../../.eslintrc.json",
+  "extends": "../../settings/.eslintrc.package.json",
   "settings": {
     "import/resolver": {
       "node": {

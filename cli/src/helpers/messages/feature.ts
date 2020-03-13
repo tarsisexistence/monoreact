@@ -1,8 +1,9 @@
 import { error, info, inverse, success } from './colors';
-import { featureTemplates } from '../../templates/feature';
+import { featureTemplates } from '../../setup/feature';
 import { PACKAGE_JSON } from '../constants';
 
 export class FeatureMessages {
+  // eslint-disable-next-line no-empty-function
   constructor(public featureName: string) {}
 
   script = () => inverse(` add ${this.featureName} `);

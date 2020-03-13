@@ -3,6 +3,8 @@
   "compilerOptions": {
     "baseUrl": "src"
   },
-  "include": ["../../**/*.d.ts", "src"],
+  "include": ["../../**/*.d.ts",
+    "src"
+  ],
   "exclude": ["node_modules", "dist", "src/**/*.test.ts", "src/**/*.test.tsx"]
 }

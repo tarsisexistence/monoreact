@@ -2,6 +2,7 @@ import { bold, error, highlight, info, inverse, success } from './colors';
 import { PACKAGE_JSON } from '../constants';
 
 export class PackageMessages {
+  // eslint-disable-next-line no-empty-function
   constructor(public packageName: string) {}
 
   script = () => inverse(` generate ${this.packageName} `);

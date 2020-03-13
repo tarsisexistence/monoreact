@@ -1,5 +1,6 @@
 import shell from 'shelljs';
 import execa from 'execa';
+
 import { PACKAGE_JSON } from './constants';
 
 export const safePackageName = (name: string) =>
