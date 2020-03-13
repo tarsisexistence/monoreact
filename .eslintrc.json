@@ -4,10 +4,11 @@
       "./tsconfig.json",
       "./packages/*/tsconfig.json",
       "./settings/tsconfig.package.json",
-      "./settings/tsconfig.test.json"
+      "./settings/tsconfig.test.json",
+      "./cli/tsconfig.json"
     ]
   },
-  "ignorePatterns": ["playground/"],
+  "ignorePatterns": ["playground/", "**/*.d.ts"],
   "parser": "@typescript-eslint/parser",
   "plugins": [
     "@typescript-eslint",
