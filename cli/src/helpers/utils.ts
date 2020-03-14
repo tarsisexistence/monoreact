@@ -49,6 +49,8 @@ export const sortPackageJson = async () => execa('sort-package-json');
 export const prettifyPackageJson = async () =>
   execa(`prettier --write ${PACKAGE_JSON}`);
 
+export const buildPackage = async () => execa('yarn build');
+
 // export const findWorkspacesWildcard = (workspaces: string[]): string | null => {
 //   const wildcardWorkspaces =
 //     workspaces.find(workspace => workspace[workspace.length - 1] === '*') ||

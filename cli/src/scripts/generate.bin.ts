@@ -6,6 +6,7 @@ import { Input, Select } from 'enquirer';
 
 import { logError, WrongWorkspaceError, NoPackageJsonError } from '../errors';
 import {
+  buildPackage,
   getAuthorName,
   prettifyPackageJson,
   setAuthorName,
@@ -207,6 +208,7 @@ export const generateBinCommand = (prog: Sade) => {
       try {
         await sortPackageJson();
         await prettifyPackageJson();
+        await buildPackage();
         installSpinner.succeed(successfulConfigure());
         console.log(await preparedPackage(packageName));
       } catch (err) {
