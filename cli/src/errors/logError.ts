@@ -8,13 +8,17 @@ export function logError(err: any) {
   const error = err.error || err;
   const description = `${error.name ? `${error.name}: ` : ''}${error.message ||
     error}`;
-  // TODO: refactor
-  // eslint-disable-next-line no-nested-ternary
-  const message = error.plugin
-    ? error.plugin === 'rpt2'
-      ? `(typescript) ${description}`
-      : `(${error.plugin} plugin) ${description}`
-    : description;
+
+  let message;
+
+  if (error.plugin) {
+    message =
+      error.plugin === 'rpt2'
+        ? `(typescript) ${description}`
+        : `(${error.plugin} plugin) ${description}`;
+  } else {
+    message = description;
+  }
 
   stderr(errMsg(`    ${message}`));
 

@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  extends: '../.eslintrc.js',
+  extends: path.resolve(__dirname, '../.eslintrc.js'),
   parserOptions: {
     tsconfigRootDir: __dirname,
     project: path.resolve(__dirname, './tsconfig.json')

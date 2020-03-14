@@ -1,14 +1,18 @@
 const path = require('path');
 
 module.exports = {
-  extends: ['./.eslintrc.js', './cli/.eslintrc.js'],
+  // TODO: set dynamically
+  extends: [
+    path.resolve(__dirname, './.eslintrc.js')
+    // path.resolve(__dirname, './cli/.eslintrc.js'),
+  ],
   parserOptions: {
     tsconfigRootDir: __dirname,
     project: [
       path.resolve(__dirname, './tsconfig.json'),
       path.resolve(__dirname, './cli/tsconfig.json'),
-      path.resolve(__dirname, './settings/tsconfig.test.json'),
-      './packages/*/tsconfig.json'
+      path.resolve(__dirname, './settings/tsconfig.workspace.json'),
+      path.resolve(__dirname, './settings/tsconfig.test.json')
     ]
   },
   ignorePatterns: ['playground/', '*.d.ts'],
@@ -19,6 +23,7 @@ module.exports = {
       },
       node: {
         paths: [
+          // TODO: set dynamically
           path.resolve(__dirname, './src'),
           path.resolve(__dirname, './cli/src'),
           path.resolve(__dirname, './packages/example/src')
