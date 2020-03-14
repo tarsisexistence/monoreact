@@ -2,8 +2,6 @@
   "extends": "./tsconfig.workspace.json",
   "include": [
     "../packages/*/src/**/*.test.ts",
-    "../packages/*/src/**/*.test.tsx",
-    "../packages/*/src/jest.config.js",
-    "../packages/*/src/rollup.config.js"
+    "../packages/*/src/**/*.test.tsx"
   ]
 }
