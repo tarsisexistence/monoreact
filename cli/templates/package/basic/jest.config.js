@@ -1,10 +1,12 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require('path');
 const jestPackageConfig = require('../../settings/jest.config');
 
-// eslint-disable-next-line compat/compat
 module.exports = {
   ...jestPackageConfig,
-  roots: ['./src'],
-  setupFiles: ['../../settings/setupTests.ts'],
-  testPathIgnorePatterns: ['../../node_modules/', 'node_modules/']
+  roots: [path.resolve(__dirname, 'src')],
+  setupFiles: [path.resolve(__dirname, '../../settings/setupTests.ts')],
+  testPathIgnorePatterns: [
+    path.resolve(__dirname, 'node_modules/'),
+    path.resolve(__dirname, '../../node_modules/')
+  ]
 };

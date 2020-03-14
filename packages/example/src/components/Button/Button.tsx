@@ -1,8 +1,10 @@
 import React from 'react';
 import t from 'prop-types';
 
-// eslint-disable-next-line react/button-has-type
-const Button = ({ children, type }) => <button type={type}>{children}</button>;
+const Button = ({ children, type }: any) => (
+  // eslint-disable-next-line react/button-has-type
+  <button type={type}>{children}</button>
+);
 
 Button.propTypes = {
   type: t.oneOf(['button', 'submit', 'reset'])

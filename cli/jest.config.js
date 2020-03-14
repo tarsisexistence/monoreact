@@ -1,12 +1,12 @@
 const path = require('path');
-const jestPackageConfig = require('../../settings/jest.config');
+const jestPackageConfig = require('../settings/jest.config');
 
 module.exports = {
   ...jestPackageConfig,
   roots: [path.resolve(__dirname, 'src')],
-  setupFiles: [path.resolve(__dirname, '../../settings/setupTests.ts')],
+  setupFiles: [path.resolve(__dirname, '../settings/setupTests.ts')],
   testPathIgnorePatterns: [
     path.resolve(__dirname, 'node_modules/'),
-    path.resolve(__dirname, '../../node_modules/')
+    path.resolve(__dirname, '../node_modules/')
   ]
 };

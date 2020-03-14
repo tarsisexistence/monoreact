@@ -1,8 +1,20 @@
 {
-  "extends": "./tsconfig.json",
-  "include": ["../**/*.d.ts", "../packages/*/src"],
-  "exclude": [
-    "../packages/*/src/**/*.test.ts",
-    "../packages/*/src/**/*.test.tsx"
-  ]
+  "compilerOptions": {
+    "sourceMap": true,
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react",
+    "target": "es5",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "lib": ["dom", "dom.iterable", "esnext"]
+  }
 }

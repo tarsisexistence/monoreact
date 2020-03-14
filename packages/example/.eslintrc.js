@@ -5,7 +5,7 @@ module.exports = {
   parserOptions: {
     tsconfigRootDir: __dirname,
     project: [
-      path.resolve(__dirname, '../../settings/tsconfig.test.json'),
+      path.resolve(__dirname, '../../settings/tsconfig.lint.json'),
       path.resolve(__dirname, './tsconfig.json')
     ]
   },

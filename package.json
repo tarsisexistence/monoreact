@@ -24,7 +24,6 @@
     "cpd": "jscpd **/src"
   },
   "dependencies": {
-    "@re-space/cli": "0.0.5",
     "classnames": "2.2.6",
     "grommet": "2.11.0",
     "grommet-icons": "4.4.0",
@@ -35,6 +34,7 @@
     "styled-components": "5.0.1"
   },
   "devDependencies": {
+    "@re-space/cli": "0.0.5",
     "@babel/cli": "7.8.4",
     "@babel/core": "7.8.7",
     "@babel/preset-env": "7.8.7",

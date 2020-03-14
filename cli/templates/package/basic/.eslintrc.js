@@ -1,10 +1,13 @@
 const path = require('path');
 
 module.exports = {
-  extends: '../.eslintrc.js',
+  extends: path.resolve(__dirname, '../../.eslintrc.js'),
   parserOptions: {
     tsconfigRootDir: __dirname,
-    project: path.resolve(__dirname, './tsconfig.json')
+    project: [
+      path.resolve(__dirname, '../../settings/tsconfig.lint.json'),
+      path.resolve(__dirname, './tsconfig.json')
+    ]
   },
   settings: {
     'import/resolver': {
@@ -13,9 +16,5 @@ module.exports = {
         extensions: ['.js', '.jsx', '.ts', '.tsx']
       }
     }
-  },
-  rules: {
-    'no-console': 0,
-    'max-classes-per-file': 0
   }
 };

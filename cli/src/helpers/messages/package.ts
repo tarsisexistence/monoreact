@@ -60,7 +60,7 @@ ${pkgText}
   )}, since all peer dependencies are already in the workspace root
   
   So your next steps are:
-    ${info(`cd ${projectName}`)}
+    ${info(`cd packages/${projectName}`)}
   
   To start developing (rebuilds the bundle on changes):
     ${info(commands.start)}
