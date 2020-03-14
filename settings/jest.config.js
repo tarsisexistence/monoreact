@@ -1,7 +1,7 @@
 module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   transform: {
-    '^.+\\.tsx?$': 'ts-jest'
+    '^.+\\.(t|j)sx?$': 'ts-jest'
   },
   moduleNameMapper: {
     // Mocks out all these file formats when tests are run

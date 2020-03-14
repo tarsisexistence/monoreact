@@ -1,7 +1,4 @@
 {
   "extends": "./tsconfig.workspace.json",
-  "include": [
-    "../packages/*/src/**/*.test.ts",
-    "../packages/*/src/**/*.test.tsx"
-  ]
+  "include": ["../packages/*/src/**/*.test.*", "../packages/*/src/**/*.spec.*"]
 }

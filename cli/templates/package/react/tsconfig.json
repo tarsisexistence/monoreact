@@ -4,5 +4,5 @@
     "baseUrl": "src"
   },
   "include": ["src", "../../**/*.d.ts"],
-  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]
+  "exclude": ["src/**/*.test.*", "src/**/*.spec.*"]
 }

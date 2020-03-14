@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   parserOptions: {
     tsconfigRootDir: __dirname,
-    project: path.resolve(__dirname, './tsconfig.json')
+    project: path.resolve(__dirname, 'tsconfig.json')
   },
   parser: '@typescript-eslint/parser',
   plugins: [
@@ -38,7 +38,7 @@ module.exports = {
         packages: 'packages/'
       },
       node: {
-        paths: [path.resolve(__dirname, './src')],
+        paths: [path.resolve(__dirname, 'src')],
         extensions: ['.js', '.jsx', '.ts', '.tsx']
       }
     },
