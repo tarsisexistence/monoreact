@@ -11,22 +11,30 @@ import simplevars from 'postcss-simple-vars';
 import nested from 'postcss-nested';
 import cssnano from 'cssnano';
 import autoprefixer from 'autoprefixer';
+import closure from '@ampproject/rollup-plugin-closure-compiler';
+import stripCode from 'rollup-plugin-strip-code';
+import filesize from 'rollup-plugin-filesize';
+import progress from 'rollup-plugin-progress';
+import { eslint } from 'rollup-plugin-eslint';
+// import analyze from 'rollup-plugin-analyzer' for production build
+// import visualizer from 'rollup-plugin-visualizer'; for production build
+// import { sizeSnapshot } from 'rollup-plugin-size-snapshot'; for production build
 
 export const createRollupConfig = pkg => ({
   input: pkg.input,
-  output: [
-    {
-      file: pkg.module,
-      format: 'es',
-      sourcemap: true
-    },
-    {
-      file: pkg.main,
-      format: 'umd',
-      sourcemap: true
-    }
-  ],
+  output: {
+    file: pkg.module,
+    format: 'es',
+    sourcemap: true
+  },
   plugins: [
+    // sizeSnapshot(), for production build
+    // analyze(), for production build
+    // visualizer(), for production build
+    progress({ clearLine: true }),
+    filesize(),
+    eslint(),
+    closure(),
     json(),
     url(),
     image(),
@@ -51,6 +59,10 @@ export const createRollupConfig = pkg => ({
       extensions: ['.js', 'jsx', '.ts', '.tsx'],
       presets: ['@babel/preset-env', '@babel/preset-react'],
       exclude: /\/node_modules\//
+    }),
+    stripCode({
+      start_comment: 'placeholder:start',
+      end_comment: 'placeholder:end'
     })
   ]
 });

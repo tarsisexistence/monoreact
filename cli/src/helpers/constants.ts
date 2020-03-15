@@ -1,8 +1,8 @@
 export const PACKAGE_JSON = 'package.json';
 
 export const BASE_PACKAGE_SCRIPTS = {
-  start: 'npx rollup -cw',
-  build: 'npx rollup -c',
+  start: 'rollup -cw',
+  build: 'rollup -c',
   test: 'jest --passWithNoTests',
   'lint:es': 'eslint src/**/*.{js,jsx,ts,tsx}'
 };
