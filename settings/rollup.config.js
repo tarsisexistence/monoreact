@@ -1,5 +1,8 @@
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
+import url from '@rollup/plugin-url';
+import image from '@rollup/plugin-image';
+import json from '@rollup/plugin-json';
 import typescript2 from 'rollup-plugin-typescript2';
 import external from 'rollup-plugin-peer-deps-external';
 import babel from 'rollup-plugin-babel';
@@ -19,11 +22,14 @@ export const createRollupConfig = pkg => ({
     },
     {
       file: pkg.main,
-      format: 'cjs',
+      format: 'umd',
       sourcemap: true
     }
   ],
   plugins: [
+    json(),
+    url(),
+    image(),
     external({ includeDependencies: true }),
     typescript2({ clean: true }),
     commonjs({ include: /\/node_modules\// }),

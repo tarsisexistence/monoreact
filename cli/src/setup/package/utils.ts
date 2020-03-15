@@ -9,10 +9,10 @@ export const composePackageJson = (template: CLI.Template.PackageOptions) => ({
   rootName: string;
 }) => {
   const slashNameIndex = rootName.indexOf('/');
-  const scope =
+  const namespace =
     slashNameIndex === -1 ? `@${rootName}` : rootName.slice(0, slashNameIndex);
   const safeName = safePackageName(name);
-  const packageName = scope ? `${scope}/${safeName}` : safeName;
+  const packageName = namespace ? `${namespace}/${safeName}` : safeName;
   const packageJson = {
     ...template.packageJson,
     name: packageName,

@@ -24,7 +24,7 @@ declare namespace CLI.Package {
 
   interface WorkspacePackageJSON extends BasePackageJSON {
     workspace: boolean;
-    main: 'dist/bundle.cjs.js';
+    main: 'dist/bundle.umd.js';
     module: 'dist/bundle.esm.js';
     'jsnext:main': 'dist/bundle.esm.js';
     types: 'dist/publicApi.d.ts';
