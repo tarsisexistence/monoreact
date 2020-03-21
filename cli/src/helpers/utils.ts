@@ -51,8 +51,20 @@ export const prettifyPackageJson = async () =>
 
 export const buildPackage = async () => execa('yarn build');
 
-// export const findWorkspacesWildcard = (workspaces: string[]): string | null => {
-//   const wildcardWorkspaces =
-//     workspaces.find(workspace => workspace[workspace.length - 1] === '*') ||
-//     null;
+export const findWorkspacePackages = (
+  workspaces: YarnWorkspaces.Packages | YarnWorkspaces.Config | undefined
+): YarnWorkspaces.Packages => {
+  if (workspaces === undefined) {
+    return [];
+  }
+
+  return 'packages' in workspaces ? workspaces.packages : workspaces;
+};
+
+// export const findPackageSetupPath = (
+//   packages: YarnWorkspaces.Packages
+// ): string | null => {
+//   const wildcard = packages.find(pkg => pkg[pkg.length - 1] === '*') || null;
+//   console.log(wildcard);
+//   return null;
 // };

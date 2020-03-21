@@ -7,6 +7,7 @@ import { Input, Select } from 'enquirer';
 import { logError, WrongWorkspaceError, NoPackageJsonError } from '../errors';
 import {
   buildPackage,
+  findWorkspacePackages,
   getAuthorName,
   prettifyPackageJson,
   setAuthorName,
@@ -81,7 +82,8 @@ export const generateBinCommand = (prog: Sade) => {
           license,
           private: isPackagePrivate
         } = (await fs.readJSON(packageJsonPath)) as CLI.Package.RootPackageJSON;
-        const hasWorkspace = Array.isArray(workspaces) && workspaces.length > 0;
+        const workspacePackages = findWorkspacePackages(workspaces);
+        const hasWorkspace = workspacePackages.length > 0;
 
         if (!hasWorkspace || !isPackagePrivate) {
           throw new WrongWorkspaceError(wrongWorkspace());
@@ -89,7 +91,7 @@ export const generateBinCommand = (prog: Sade) => {
 
         cliConfig.license = license;
         cliConfig.rootWorkspaceName = name;
-        cliConfig.workspaces = workspaces[0].replace('*', '');
+        cliConfig.workspaces = workspacePackages[0].replace('*', '');
       } catch (err) {
         if (err.isWrongWorkspace) {
           console.log(error(err));
