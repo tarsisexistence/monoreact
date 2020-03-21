@@ -58,13 +58,18 @@ export const findWorkspacePackages = (
     return [];
   }
 
-  return 'packages' in workspaces ? workspaces.packages : workspaces;
+  if ('packages' in workspaces) {
+    return workspaces.packages || [];
+  }
+
+  return workspaces;
 };
 
-// export const findPackageSetupPath = (
-//   packages: YarnWorkspaces.Packages
-// ): string | null => {
-//   const wildcard = packages.find(pkg => pkg[pkg.length - 1] === '*') || null;
-//   console.log(wildcard);
-//   return null;
-// };
+export const findPackageSetupPath = (
+  packages: YarnWorkspaces.Packages
+): string =>
+  packages.reduce(
+    (res, pkg) =>
+      pkg[pkg.length - 1] === '*' ? pkg.slice(0, pkg.length - 1) : res,
+    '/'
+  );

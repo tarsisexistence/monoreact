@@ -7,6 +7,7 @@ import { Input, Select } from 'enquirer';
 import { logError, WrongWorkspaceError, NoPackageJsonError } from '../errors';
 import {
   buildPackage,
+  findPackageSetupPath,
   findWorkspacePackages,
   getAuthorName,
   prettifyPackageJson,
@@ -91,7 +92,7 @@ export const generateBinCommand = (prog: Sade) => {
 
         cliConfig.license = license;
         cliConfig.rootWorkspaceName = name;
-        cliConfig.workspaces = workspacePackages[0].replace('*', '');
+        cliConfig.workspaces = findPackageSetupPath(workspacePackages);
       } catch (err) {
         if (err.isWrongWorkspace) {
           console.log(error(err));
