@@ -4,7 +4,7 @@ export const BASE_PACKAGE_SCRIPTS = {
   start: 'rollup -cw',
   build: 'rollup -c',
   test: 'jest --passWithNoTests',
-  'lint:es': 'eslint src/**/*.{js,jsx,ts,tsx}'
+  'lint:esm': 'eslint src/**/*.{js,jsx,ts,tsx}'
 };
 
 export const COMPONENT_PACKAGE_SCRIPTS = {
