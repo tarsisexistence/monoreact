@@ -1,44 +1,90 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Full documentation will be available soon
 
-## Available Scripts
+<br/>
 
-In the project directory, you can run:
+### This is an advanced workspace implementation for react applications
 
-### `npm start`
+**Re-space** includes the following features:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- write normal react apps;
+- implement monorepo;
+- implement submodules;
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+<br/>
 
-### `npm test`
+### Why is this an advanced implementation
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+It uses CLI, which does exactly what you need to write react applications.
+Currently, the solution is fully customizable.
+Future design implementation will be revised.
 
-### `npm run build`
+<br/>
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Motivation
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+The main motivation was not to be tied to existing solutions of vendors, so as not to get into vendor lock.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Nevertheless, I recommend considering alternative solutions:
 
-### `npm run eject`
+- [nx/react](https://nx.dev/react) - super powerful tool that can do everything, but turned out to be redundant for me.
+- [lerna](https://github.com/lerna/lerna) - completely threw this idea away with existing yarn workspaces, yarn and git submodules scripts.
+- [tsdx](https://github.com/jaredpalmer/tsdx) - an interesting idea, where I had to learn a lot, however, it also does and does not do exactly what my project needed.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+I will explain in more detail later why these solutions did not fit perfectly into the business problems I encountered
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<br/>
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### The solution is currently raw
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+In fact, the base implementation is ready for use.
 
-## Learn More
+Nevertheless, I would also like to finish some important changes in the **re-space/cli** that will help show off the full power of this implementation.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Namely, it is necessary to complete the CLI, which will generate a completely basic boilerplate of the main application (repository / module),
+which will be the workspace root of the whole project.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<br/>
+
+### What can it do now
+
+Everything is done here for you. Just take and use.
+
+Even in its raw form, it is already ready for use, and here is what exactly you can do with **re-space**:
+
+- run your application through **create-react-app**
+- bundle your packages through **rollup**
+- use advanced **re-space/cli**
+- save your time with **typescript** (with the option not to use it)
+- receive all the power of using **yarn**
+- enjoy configured testing(**jest**), formatting(**prettier**), linting (**eslint**, **stylelint**), git hooks(**husky, lint-staged**) and other useful tools like copy-paste-detector(**jscpd**), dependency-bot(**renovate**)
+
+<br/>
+
+### Powerful CLI
+
+The following options are now available:
+
+- generate a new package (submodule): basic, react. Creates a distribution of responsibility. Not all packages must deal with components. Sometimes packages only need to export functions.
+- add a new feature (feature): docz, playground(run packages locally). Allows you to not generate components with all the things that may not necessarily be needed in each package.
+- install dependencies. This option provides workspace dependency management. If you run install inside some package, it'll add this dependency as peer, and also will add dependencies to the root to the appropriate dependency section
+
+It is planned to add the following options in the near future:
+
+- generate a new main application.
+- increase the number of plug-ins features
+
+<br/>
+
+### License
+
+This project is [MIT](https://choosealicense.com/licenses/mit/) licensed.
+
+<br/>
+
+### Contributing
+
+Contributions are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+If you made a PR, make sure to update tests as appropriate and keep the examples consistent.
+
+<br/>
