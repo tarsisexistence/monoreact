@@ -1,6 +1,8 @@
 {
   "name": "@re-space/example",
   "version": "0.0.9",
+  "private": false,
+  "workspace": true,
   "main": "dist/bundle.umd.js",
   "module": "dist/bundle.esm.js",
   "jsnext:main": "dist/bundle.esm.js",
@@ -23,10 +25,9 @@
   "peerDependencies": {
     "grommet": "^2.11.0",
     "grommet-icons": "^4.4.0",
-    "styled-components": "^5.0.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-router-dom": "^5.1.2"
-  },
-  "workspace": true
+    "react-router-dom": "^5.1.2",
+    "styled-components": "^5.0.1"
+  }
 }

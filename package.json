@@ -108,7 +108,8 @@
     "stylelint-config-recommended": "3.0.0",
     "ts-jest": "24.3.0",
     "tslib": "1.11.0",
-    "typescript": "3.8.3"
+    "typescript": "3.8.3",
+    "yarn": "1.18.0"
   },
   "browserslist": {
     "production": [
