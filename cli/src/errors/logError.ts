@@ -6,8 +6,9 @@ const stderr = console.error.bind(console);
 
 export function logError(err: any) {
   const error = err.error || err;
-  const description = `${error.name ? `${error.name}: ` : ''}${error.message ||
-    error}`;
+  const description = `${error.name ? `${error.name}: ` : ''}${
+    error.message || error
+  }`;
 
   let message;
 

@@ -5,7 +5,7 @@ import { progress } from 'shared/data';
 import { renderColumnCheck, renderColumnPercent } from './Dashboard.helpers';
 import styles from './Dashboard.scss';
 
-export const Dashboard = () => {
+export const Dashboard: React.FC = () => {
   const [checked, setChecked] = React.useState<string[]>([]);
 
   const onCheck = (event: any, value: string) => {

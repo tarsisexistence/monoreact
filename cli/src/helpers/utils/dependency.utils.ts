@@ -1,9 +1,9 @@
 export const defineDependencyFlag = (
-  saveDev?: boolean | string,
+  dev?: boolean | string,
   D?: boolean | string
 ): CLI.Dependency.Flag => {
   switch (true) {
-    case Boolean(saveDev):
+    case Boolean(dev):
       return '--dev';
 
     case Boolean(D):
