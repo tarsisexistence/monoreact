@@ -1,6 +1,6 @@
-import { error, info, inverse, success } from './colors';
+import { error, info, inverse, success } from '../utils/color.utils';
 import { featureTemplates } from '../../setup/feature';
-import { PACKAGE_JSON } from '../constants';
+import { PACKAGE_JSON } from '../constants/package.const';
 
 export class FeatureMessages {
   // eslint-disable-next-line no-empty-function

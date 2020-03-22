@@ -23,7 +23,6 @@ export const WORKSPACE_PACKAGE_JSON = {
   // name: safeName,
   // author: author,
   version: '0.1.0',
-  main: 'dist/bundle.umd.js',
   module: 'dist/bundle.esm.js',
   'jsnext:main': 'dist/bundle.esm.js',
   types: 'dist/publicApi.d.ts',

@@ -1,11 +1,11 @@
-import { safePackageName } from '../../helpers/utils';
+import { safePackageName } from '../../helpers/utils/package.utils';
 
 export const composePackageJson = (template: CLI.Template.PackageOptions) => ({
   author,
   name,
   rootName,
   license
-}: Pick<CLI.Package.RootPackageJSON, 'name' | 'author' | 'license'> & {
+}: Pick<CLI.Package.WorkspaceRootPackageJSON, 'name' | 'author' | 'license'> & {
   rootName: string;
 }) => {
   const slashNameIndex = rootName.indexOf('/');

@@ -1,7 +1,7 @@
 /* eslint-disable sonarjs/no-duplicate-string */
-import { findPackageSetupPath, findWorkspacePackages } from './utils';
+import { findPackageSetupPath, findWorkspacePackages } from './package.utils';
 
-describe('utils', () => {
+describe('[CLI] Package Utils', () => {
   describe('findWorkspacePackages', () => {
     test('should return empty array when there is no workspaces property', () => {
       expect(findWorkspacePackages(undefined)).toEqual([]);

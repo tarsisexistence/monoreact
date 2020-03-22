@@ -1,5 +1,12 @@
-import { bold, error, highlight, info, inverse, success } from './colors';
-import { PACKAGE_JSON } from '../constants';
+import {
+  bold,
+  error,
+  highlight,
+  info,
+  inverse,
+  success
+} from '../utils/color.utils';
+import { PACKAGE_JSON } from '../constants/package.const';
 
 export class PackageMessages {
   // eslint-disable-next-line no-empty-function

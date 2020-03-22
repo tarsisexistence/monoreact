@@ -2,7 +2,7 @@ import {
   WORKSPACE_PACKAGE_JSON,
   COMPONENT_PACKAGE_SCRIPTS,
   REACT_TEMPLATE_DEPENDENCIES
-} from '../../helpers/constants';
+} from '../../helpers/constants/package.const';
 
 export const reactTemplate: CLI.Template.PackageOptions = {
   dependencies: [

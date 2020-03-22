@@ -16,7 +16,7 @@ declare namespace CLI.Package {
     scripts: { [scriptName: string]: string };
   }
 
-  interface RootPackageJSON extends BasePackageJSON {
+  interface WorkspaceRootPackageJSON extends BasePackageJSON {
     workspaces: string[];
     dependencies?: { [packageName: string]: string };
     devDependencies?: { [packageName: string]: string };
@@ -24,7 +24,6 @@ declare namespace CLI.Package {
 
   interface WorkspacePackageJSON extends BasePackageJSON {
     workspace: boolean;
-    main: 'dist/bundle.umd.js';
     module: 'dist/bundle.esm.js';
     'jsnext:main': 'dist/bundle.esm.js';
     types: 'dist/publicApi.d.ts';

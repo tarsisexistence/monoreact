@@ -4,7 +4,7 @@ import ora from 'ora';
 import fs from 'fs-extra';
 import { Input, Select } from 'enquirer';
 
-import { logError, WrongWorkspaceError, NoPackageJsonError } from '../errors';
+import { logError, NoPackageJsonError, WrongWorkspaceError } from '../errors';
 import {
   buildPackage,
   findPackageSetupPath,
@@ -13,20 +13,19 @@ import {
   prettifyPackageJson,
   setAuthorName,
   sortPackageJson
-} from '../helpers/utils';
+} from '../helpers/utils/package.utils';
+import { error, info } from '../helpers/utils/color.utils';
 import { featureTemplates, packageTemplates } from '../setup';
 import { composePackageJson } from '../setup/package/utils';
-import { PACKAGE_JSON } from '../helpers/constants';
-import { PackageMessages } from '../helpers/messages/package';
-import { error, info } from '../helpers/messages/colors';
-import { TITLE_CLI } from '../helpers/messages/common';
+import { PACKAGE_JSON } from '../helpers/constants/package.const';
+import { PackageMessages } from '../helpers/messages/package.messages';
 
 const templateOptions = Object.keys(packageTemplates);
 const featureOptions = Object.keys(featureTemplates);
 
 export const generateBinCommand = (prog: Sade) => {
   prog
-    .command('generate <pkg>', 'Generate a new package', {
+    .command('generate <pkg>', 'Generate a new package.', {
       // eslint-disable no-param-reassign
 
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -34,7 +33,6 @@ export const generateBinCommand = (prog: Sade) => {
       alias: ['g']
     })
     .example('generate packageName')
-    .example('g packageName')
     .option(
       '--template',
       `Specify a template.
@@ -42,7 +40,7 @@ export const generateBinCommand = (prog: Sade) => {
      
      `
     )
-    .example(`g packageName --template ${templateOptions[0]}`)
+    .example(`generate packageName --template ${templateOptions[0]}`)
     .option(
       '--feature',
       `Specify a feature.
@@ -50,8 +48,8 @@ export const generateBinCommand = (prog: Sade) => {
      
      `
     )
-    .example(`g packageName --feature ${featureOptions[0]}`)
-    .action(async (packageName: string, opts: CLI.Options) => {
+    .example(`generate packageName --feature ${featureOptions[0]}`)
+    .action(async (packageName: string, opts: CLI.GenerateOptions) => {
       const {
         wrongWorkspace,
         successfulConfigure,
@@ -82,7 +80,9 @@ export const generateBinCommand = (prog: Sade) => {
           workspaces,
           license,
           private: isPackagePrivate
-        } = (await fs.readJSON(packageJsonPath)) as CLI.Package.RootPackageJSON;
+        } = (await fs.readJSON(
+          packageJsonPath
+        )) as CLI.Package.WorkspaceRootPackageJSON;
         const workspacePackages = findWorkspacePackages(workspaces);
         const hasWorkspace = workspacePackages.length > 0;
 
@@ -106,7 +106,6 @@ export const generateBinCommand = (prog: Sade) => {
         process.exit(1);
       }
 
-      console.log(TITLE_CLI);
       const bootSpinner = ora(generating());
 
       async function getProjectPath(projectPath: string): Promise<string> {

@@ -5,10 +5,10 @@ import fs from 'fs-extra';
 
 import { logError, NoPackageJsonError, WrongWorkspaceError } from '../errors';
 import { featureTemplates } from '../setup/feature';
-import { PACKAGE_JSON } from '../helpers/constants';
-import { FeatureMessages } from '../helpers/messages/feature';
-import { prettifyPackageJson } from '../helpers/utils';
-import { error } from '../helpers/messages/colors';
+import { PACKAGE_JSON } from '../helpers/constants/package.const';
+import { FeatureMessages } from '../helpers/messages/feature.messages';
+import { prettifyPackageJson } from '../helpers/utils/package.utils';
+import { error } from '../helpers/utils/color.utils';
 
 const featureOptions = Object.keys(featureTemplates);
 

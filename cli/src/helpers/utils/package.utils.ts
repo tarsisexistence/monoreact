@@ -1,7 +1,10 @@
+import path from 'path';
+import fs from 'fs-extra';
 import shell from 'shelljs';
 import execa from 'execa';
 
-import { PACKAGE_JSON } from './constants';
+import { PACKAGE_JSON } from '../constants/package.const';
+import { logError } from '../../errors';
 
 export const safePackageName = (name: string) =>
   name
@@ -72,4 +75,38 @@ export const findPackageSetupPath = (
     (res, pkg) =>
       pkg[pkg.length - 1] === '*' ? pkg.slice(0, pkg.length - 1) : res,
     '/'
+  );
+
+async function findWorkspacePath<TPackageJson>(
+  possiblePath: string,
+  conditionCallback: (pkg: TPackageJson) => boolean
+): Promise<string | null> {
+  try {
+    // TODO: check is this condition ok
+    if (possiblePath.length < 10) {
+      throw new Error();
+    }
+
+    const packageJsonPath = path.resolve(possiblePath, 'package.json');
+
+    return fs.existsSync(packageJsonPath) &&
+      conditionCallback((await fs.readJSON(packageJsonPath)) as TPackageJson)
+      ? possiblePath
+      : findWorkspacePath(path.resolve(possiblePath, '..'), conditionCallback);
+  } catch (err) {
+    logError(err);
+    return null;
+  }
+}
+
+export const findWorkspaceRoot = async (): Promise<string | null> =>
+  findWorkspacePath<CLI.Package.WorkspaceRootPackageJSON>(
+    await fs.realpath(process.cwd()),
+    pkg => pkg.workspaces !== undefined && pkg.private
+  );
+
+export const findWorkspacePackage = async (): Promise<string | null> =>
+  findWorkspacePath<CLI.Package.WorkspacePackageJSON>(
+    await fs.realpath(process.cwd()),
+    pkg => pkg.workspace && !pkg.private
   );

@@ -1,4 +1,4 @@
-import { PACKAGE_JSON } from '../helpers/constants';
+import { PACKAGE_JSON } from '../helpers/constants/package.const';
 
 export class WrongWorkspaceError extends Error {
   public isWrongWorkspace = true;
