@@ -2,7 +2,8 @@ import React from 'react';
 import { Box, Diagram, Grommet, Stack } from 'grommet';
 
 import { progress } from 'shared/data';
-import { connection, customTheme, DiamondContainer } from './Settings.helpers';
+import { DiamondContainer } from './DiamondContainer';
+import { connection, customTheme } from './Settings.helpers';
 
 export const Settings = () => {
   const [draw, setDraw] = React.useState(true);
