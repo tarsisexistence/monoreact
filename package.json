@@ -38,7 +38,7 @@
     "@babel/cli": "7.8.4",
     "@babel/core": "7.9.0",
     "@babel/preset-env": "7.9.0",
-    "@babel/preset-react": "7.9.1",
+    "@babel/preset-react": "7.9.4",
     "@re-space/cli": "0.0.5",
     "@rollup/plugin-commonjs": "11.0.2",
     "@rollup/plugin-image": "2.0.4",
