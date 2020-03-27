@@ -14,8 +14,8 @@ export const COMPONENT_PACKAGE_SCRIPTS = {
 
 export const REACT_TEMPLATE_DEPENDENCIES = {
   peerDependencies: {
-    react: '>=16',
-    'react-dom': '>=16'
+    react: '*',
+    'react-dom': '*'
   }
 };
 

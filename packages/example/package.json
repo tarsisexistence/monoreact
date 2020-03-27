@@ -23,11 +23,11 @@
     "lint:css": "stylelint src/**/*.{css,sass,scss}"
   },
   "peerDependencies": {
-    "grommet": "^2.11.0",
-    "grommet-icons": "^4.4.0",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-router-dom": "^5.1.2",
-    "styled-components": "^5.0.1"
+    "grommet": "*",
+    "grommet-icons": "*",
+    "react": "*",
+    "react-dom": "*",
+    "react-router-dom": "*",
+    "styled-components": "*"
   }
 }
