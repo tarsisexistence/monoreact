@@ -101,7 +101,7 @@
     "rollup-plugin-progress": "1.1.1",
     "rollup-plugin-size-snapshot": "0.11.0",
     "rollup-plugin-strip-code": "0.2.7",
-    "rollup-plugin-typescript2": "0.26.0",
+    "rollup-plugin-typescript2": "0.27.0",
     "rollup-plugin-visualizer": "3.3.2",
     "sort-package-json": "1.40.0",
     "stylelint": "13.2.0",
