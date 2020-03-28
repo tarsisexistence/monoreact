@@ -27,7 +27,7 @@ declare namespace CLI.Package {
     module: 'dist/bundle.esm.js';
     'jsnext:main': 'dist/bundle.esm.js';
     types: 'dist/publicApi.d.ts';
-    input: string;
+    source: string;
     publishConfig: { access: 'public' };
     peerDependencies?: { [packageName: string]: string };
   }

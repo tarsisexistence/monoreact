@@ -26,7 +26,7 @@ export const WORKSPACE_PACKAGE_JSON = {
   module: 'dist/bundle.esm.js',
   'jsnext:main': 'dist/bundle.esm.js',
   types: 'dist/publicApi.d.ts',
-  input: 'src/publicApi.ts',
+  source: 'src/publicApi.ts',
   workspace: true,
   publishConfig: {
     access: 'public'

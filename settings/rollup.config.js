@@ -21,7 +21,7 @@ import { eslint } from 'rollup-plugin-eslint';
 // import { sizeSnapshot } from 'rollup-plugin-size-snapshot'; for production build
 
 export const createRollupConfig = pkg => ({
-  input: pkg.input,
+  input: pkg.source,
   output: {
     file: pkg.module,
     format: 'es',
