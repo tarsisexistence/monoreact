@@ -3,7 +3,6 @@
 **/.docz
 **/dist
 **/.cache
-**/bin
 
 # reporters
 /report
