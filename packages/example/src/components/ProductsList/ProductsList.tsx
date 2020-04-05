@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Grommet, grommet, List } from 'grommet';
 
-import { progress } from 'shared/data';
+import { progress } from '../../shared/data';
 import styles from './ProductsList.scss';
 
 export const ProductsList = () => (

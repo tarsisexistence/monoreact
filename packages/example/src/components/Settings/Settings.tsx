@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Diagram, Grommet, Stack } from 'grommet';
 
-import { progress } from 'shared/data';
+import { progress } from '../../shared/data';
 import { DiamondContainer } from './DiamondContainer';
 import { connection, customTheme } from './Settings.helpers';
 

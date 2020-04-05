@@ -122,5 +122,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "@re-space/example": "<rootDir>/packages/example/src/publicApi.ts"
+    }
   }
 }
