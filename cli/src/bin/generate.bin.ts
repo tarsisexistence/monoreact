@@ -54,7 +54,7 @@ export const generateBinCommand = (prog: Sade) => {
         wrongWorkspace,
         successfulConfigure,
         failedConfigure,
-        success,
+        successful,
         copy,
         failed,
         script,
@@ -195,7 +195,7 @@ export const generateBinCommand = (prog: Sade) => {
           license: cliConfig.license
         });
         await fs.outputJSON(path.resolve(projectPath, PACKAGE_JSON), pkgJson);
-        bootSpinner.succeed(success());
+        bootSpinner.succeed(successful());
       } catch (err) {
         bootSpinner.fail(failed());
         logError(err);

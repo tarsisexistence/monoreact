@@ -25,7 +25,7 @@ export const addBinCommand = (prog: Sade) => {
         generating,
         wrongWorkspace,
         failed,
-        success,
+        successful,
         invalidTemplate,
         exists,
         script
@@ -83,7 +83,7 @@ export const addBinCommand = (prog: Sade) => {
           scripts: updatedScripts
         });
         await prettifyPackageJson();
-        bootSpinner.succeed(success());
+        bootSpinner.succeed(successful());
       } catch (err) {
         bootSpinner.fail(failed());
 

@@ -8,7 +8,7 @@ export class InstallMessages {
     this.dependencies = deps.join(' ');
   }
 
-  success = () =>
+  successful = () =>
     `Successfully installed [${info(this.dependencies)}] dependencies`;
 
   installing = () => `Installing [${info(this.dependencies)}] dependencies...`;

@@ -24,7 +24,7 @@ export class PackageMessages {
 
   copy = () => `${this.packageName}-copy`;
 
-  success = () => `Generated ${success(this.packageName)} package`;
+  successful = () => `Generated ${success(this.packageName)} package`;
 
   generating = () => `Generating ${info(this.packageName)} package...`;
 

@@ -31,7 +31,7 @@ export const installBinCommand = (prog: Sade) => {
     .action(async (opts: CLI.InstallOptions) => {
       const { _: dependencies, dev, d } = opts;
       const dependencyFlag = defineDependencyFlag(dev, d);
-      const { installing, failed, success } = new InstallMessages(dependencies);
+      const { installing, failed, successful } = new InstallMessages(dependencies);
       const bootSpinner = ora(installing());
 
       if (typeof d === 'string') {
@@ -61,7 +61,7 @@ export const installBinCommand = (prog: Sade) => {
           );
         }
 
-        bootSpinner.succeed(success());
+        bootSpinner.succeed(successful());
       } catch (e) {
         bootSpinner.fail(failed());
         logError(e);

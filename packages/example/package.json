@@ -4,7 +4,6 @@
   "private": false,
   "workspace": true,
   "source": "src/publicApi.ts",
-  "main": "dist/bundle.umd.js",
   "module": "dist/bundle.esm.js",
   "jsnext:main": "dist/bundle.esm.js",
   "types": "dist/publicApi.d.ts",

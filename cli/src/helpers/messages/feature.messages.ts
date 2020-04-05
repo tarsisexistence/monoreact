@@ -32,7 +32,7 @@ export class FeatureMessages {
 
   generating = () => `Generating ${info(this.featureName)} feature...`;
 
-  success = () => `Added ${success(this.featureName)} feature template`;
+  successful = () => `Added ${success(this.featureName)} feature template`;
 
   failed = () =>
     `Failed to generate ${error(this.featureName)} feature template`;
