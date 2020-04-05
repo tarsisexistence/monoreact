@@ -18,9 +18,12 @@ import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 import nested from 'postcss-nested';
 
-export const createBuildConfig = (
-  opts: any
-): InputOptions & { output: OutputOptions } => ({
+export const createBuildConfig = (opts: {
+  source: string;
+  module: string;
+  displayFilesize: boolean;
+  useClosure: boolean;
+}): InputOptions & { output: OutputOptions } => ({
   input: opts.source,
   output: {
     file: opts.module,
@@ -29,9 +32,9 @@ export const createBuildConfig = (
   },
   plugins: [
     progress({ clearLine: true }),
-    filesize(),
     eslint(),
-    closure(),
+    opts.displayFilesize && filesize(),
+    opts.useClosure && closure(),
     json(),
     url(),
     image(),

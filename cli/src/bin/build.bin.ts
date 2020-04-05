@@ -4,8 +4,8 @@ import fs from 'fs-extra';
 import { rollup } from 'rollup';
 
 import { createBuildConfig } from '../configs/build.config';
-import { cleanDistFolder } from '../helpers/utils/fs.utils';
-import { highlight, success } from '../helpers/utils/color.utils';
+import { cleanDistFolder } from '../helpers/utils/common.utils';
+import { BuildMessages } from '../helpers/messages/build.messages';
 
 export const buildBinCommand = (prog: Sade) => {
   prog
@@ -17,25 +17,23 @@ export const buildBinCommand = (prog: Sade) => {
       alias: ['b']
     })
     .example('build')
-    .option('--watch', 'Run watch mode')
-    .example(`build --watch`)
-    .option('-w', 'Run watch mode')
-    .example(`build -w`)
-    .action(async (opts: CLI.BuildOptions) => {
+    .action(async () => {
       const time = process.hrtime();
+      const { bundling, successful } = new BuildMessages();
       const packagePath = process.cwd();
       const packageJsonPath = path.resolve(packagePath, 'package.json');
       const { source, module } = await fs.readJSON(packageJsonPath);
       const buildConfig = createBuildConfig({
         source,
-        module
+        module,
+        displayFilesize: true,
+        useClosure: true
       });
       await cleanDistFolder();
+      console.log(bundling({ source, module }));
       const bundle = await rollup(buildConfig);
       await bundle.write(buildConfig.output);
-      const [s, ms] = process.hrtime(time);
-      console.log(
-        success('Done in ') + highlight(`${s}.${ms.toString().slice(0, 3)}s.`)
-      );
+      const duration = process.hrtime(time);
+      console.log(successful(duration));
     });
 };

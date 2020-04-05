@@ -10,10 +10,4 @@ declare namespace CLI {
     dev?: boolean | string;
     d?: boolean | string;
   }
-
-  interface BuildOptions {
-    _: string[];
-    watch?: boolean | string;
-    w?: boolean | string;
-  }
 }
