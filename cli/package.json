@@ -1,10 +1,10 @@
 {
   "name": "@re-space/cli",
   "version": "0.0.5",
-  "main": "./dist/src/scripts/bin.js",
+  "main": "./dist/src/bin/index.js",
   "bin": {
-    "re-space": "./dist/src/scripts/bin.js",
-    "rs": "./dist/src/scripts/bin.js"
+    "re-space": "./dist/src/bin/index.js",
+    "rs": "./dist/src/bin/index.js"
   },
   "license": "MIT",
   "author": {

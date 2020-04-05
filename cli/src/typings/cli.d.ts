@@ -8,6 +8,12 @@ declare namespace CLI {
   interface InstallOptions {
     _: string[];
     dev?: boolean | string;
-    D?: boolean | string;
+    d?: boolean | string;
+  }
+
+  interface BuildOptions {
+    _: string[];
+    watch?: boolean | string;
+    w?: boolean | string;
   }
 }
