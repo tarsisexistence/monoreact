@@ -26,7 +26,7 @@
     "@types/sade": "1.6.0",
     "@types/shelljs": "0.8.6",
     "chalk": "4.0.0",
-    "enquirer": "2.3.4",
+    "enquirer": "2.3.5",
     "execa": "4.0.0",
     "fs-extra": "9.0.0",
     "ora": "4.0.3",
