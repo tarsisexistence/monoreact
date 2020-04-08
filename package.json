@@ -102,7 +102,7 @@
     "rollup-plugin-size-snapshot": "0.11.0",
     "rollup-plugin-strip-code": "0.2.7",
     "rollup-plugin-typescript2": "0.27.0",
-    "rollup-plugin-visualizer": "4.0.2",
+    "rollup-plugin-visualizer": "4.0.4",
     "sort-package-json": "1.41.0",
     "stylelint": "13.3.0",
     "stylelint-config-recommended": "3.0.0",
