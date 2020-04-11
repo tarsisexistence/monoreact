@@ -3,7 +3,7 @@ import { inverse, error, success } from '../utils/color.utils';
 
 export class SubmodulesMessages {
   // eslint-disable-next-line no-empty-function
-  constructor(private cmd: CLI.SubmodulesCommand) {}
+  constructor(private cmd: CLI.Submodules.Command) {}
 
   script = () => inverse(` submodule ${this.cmd} `);
 
@@ -27,7 +27,7 @@ export class SubmodulesMessages {
     code,
     type
   }: {
-    cmd: CLI.SubmodulesCommand;
+    cmd: CLI.Submodules.Command;
     type: 'core' | 'submodules';
     code: number;
   }) => success(`Finished ${cmd} ${type} with code ${code}`);

@@ -12,7 +12,7 @@ import {
 } from '../../errors';
 
 export const submodulesBinCommand = (prog: Sade) => {
-  prog.action(async (cmd: CLI.SubmodulesCommand) => {
+  prog.action(async (cmd: CLI.Submodules.Command) => {
     const { wrongWorkspace, script } = new SubmodulesMessages(cmd);
 
     try {

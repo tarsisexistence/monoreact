@@ -53,7 +53,7 @@ export const generateBinCommand = (prog: Sade) => {
      `
     )
     .example(`generate packageName --feature ${featureOptions[0]}`)
-    .action(async (packageName: string, opts: CLI.GenerateOptions) => {
+    .action(async (packageName: string, opts: CLI.Options.Generate) => {
       const {
         wrongWorkspace,
         successfulConfigure,
