@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Grommet, grommet, DataTable, Text, CheckBox } from 'grommet';
 
-import { progress } from 'shared/data';
+import { progress } from '../../shared/data';
 import { renderColumnCheck, renderColumnPercent } from './Dashboard.helpers';
 import styles from './Dashboard.scss';
 

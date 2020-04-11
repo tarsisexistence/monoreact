@@ -2,12 +2,13 @@
 
 import sade from 'sade';
 
-import { addBinCommand } from './add.bin';
-import { generateBinCommand } from './generate.bin';
-import { installBinCommand } from './install.bin';
-import { buildBinCommand } from './build.bin';
+import { addBinCommand } from './code-generation/add.bin';
+import { generateBinCommand } from './code-generation/generate.bin';
+import { installBinCommand } from './dependency/install.bin';
+import { buildBinCommand } from './execution/build.bin';
+import { serveBinCommand } from './execution/serve.bin';
+import { submodulesBinCommand } from './submodules/submodules.bin';
 import { TITLE_CLI } from '../helpers/messages/common.messages';
-import { serveBinCommand } from './serve.bin';
 import pkg from '../../package.json';
 
 const prog = sade('re-space');
@@ -19,5 +20,6 @@ buildBinCommand(prog);
 generateBinCommand(prog);
 installBinCommand(prog);
 serveBinCommand(prog);
+submodulesBinCommand(prog);
 
 prog.version(pkg.version).parse(process.argv);

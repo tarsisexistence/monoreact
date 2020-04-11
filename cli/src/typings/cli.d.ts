@@ -10,4 +10,11 @@ declare namespace CLI {
     dev?: boolean | string;
     d?: boolean | string;
   }
+
+  interface SubmodulesOptions {
+    _: string[];
+    self: boolean;
+  }
+
+  type SubmodulesCommand = 'init' | 'fetch' | 'pull' | 'build' | 'checkout';
 }
