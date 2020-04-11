@@ -6,10 +6,14 @@ import { SubmodulesMessages } from '../../helpers/messages/submodules.messages';
 import { PACKAGE_JSON } from '../../helpers/constants/package.const';
 import { error } from '../../helpers/utils/color.utils';
 import {
+  logError,
   NoPackageJsonError,
-  WrongWorkspaceError,
-  logError
+  WrongWorkspaceError
 } from '../../errors';
+import {
+  findWorkspacePackage,
+  findWorkspaceRoot
+} from '../../helpers/utils/package.utils';
 
 export const submodulesBinCommand = (prog: Sade) => {
   prog.action(async (cmd: CLI.Submodules.Command) => {
@@ -38,6 +42,21 @@ export const submodulesBinCommand = (prog: Sade) => {
       }
 
       process.exit(1);
+    }
+
+    try {
+      const workspacePackage = await findWorkspacePackage();
+      const workspaceRoot = await findWorkspaceRoot();
+
+      if (workspacePackage !== null) {
+        //
+      }
+
+      if (workspaceRoot !== null) {
+        //
+      }
+    } catch (e) {
+      logError(e);
     }
   });
 };
