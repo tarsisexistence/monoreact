@@ -19,3 +19,16 @@ export class NoPackageJsonError extends Error {
       `);
   }
 }
+
+export class NotFoundWorkspaceError extends Error {
+  public isNotFoundWorkspaceError = true;
+
+  constructor() {
+    super(`
+    
+    Can't find a project
+    Make sure you run the script inside the project
+      `);
+    this.name = 'Not Found Workspace Error';
+  }
+}

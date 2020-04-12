@@ -1,7 +1,7 @@
 import { Sade } from 'sade';
 import execa from 'execa';
 
-import { getWorkspaceRootPath } from './submodules.helpers';
+import { findWorkspaceRootPath } from '../../helpers/utils/package.utils';
 
 export function submodulesCheckoutBinCommand(prog: Sade): void {
   prog
@@ -14,7 +14,7 @@ export function submodulesCheckoutBinCommand(prog: Sade): void {
     .option('s, self', 'Apply git checkout for the workspace root repository')
     .example('submodules checkout branch-name --self')
     .action(async (branch: string, { self }: CLI.Options.Submodules) => {
-      const workspaceRootPath = await getWorkspaceRootPath();
+      const workspaceRootPath = await findWorkspaceRootPath();
       const cmd = 'checkout';
       await execa(
         'git',

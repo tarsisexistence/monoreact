@@ -53,6 +53,7 @@ module.exports = {
   rules: {
     semi: [2, 'always'],
     quotes: 0,
+    'consistent-return': 0,
     'jsx-quotes': 0,
     'react/prop-types': 0,
     'react/display-name': 0,

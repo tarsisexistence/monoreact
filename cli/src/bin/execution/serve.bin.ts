@@ -10,16 +10,15 @@ import {
   cleanDistFolder,
   clearConsole
 } from '../../helpers/utils/common.utils';
+import { findWorkspacePackagePath } from '../../helpers/utils/package.utils';
 
 export const serveBinCommand = (prog: Sade) => {
   prog
-    .command('serve', 'Rebuild package on change.', {
-      // eslint-disable no-param-reassign
-
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      alias: ['s', 'start', 'w', 'watch']
-    })
+    .command('serve')
+    .describe('Rebuild a package on change.')
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
+    .alias('s', 'start', 'w', 'watch')
     .example('serve')
     .action(async () => {
       const {
@@ -31,7 +30,7 @@ export const serveBinCommand = (prog: Sade) => {
         introduce,
         watching
       } = new ServeMessages();
-      const packagePath = process.cwd();
+      const packagePath = await findWorkspacePackagePath();
       const packageJsonPath = path.resolve(packagePath, 'package.json');
       const { source, module } = await fs.readJSON(packageJsonPath);
       const buildConfig = createBuildConfig({

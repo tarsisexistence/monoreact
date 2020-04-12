@@ -8,7 +8,7 @@ import {
 } from '../utils/color.utils';
 import { PACKAGE_JSON } from '../constants/package.const';
 
-export class PackageMessages {
+export class GenerateMessages {
   // eslint-disable-next-line no-empty-function
   constructor(public packageName: string) {}
 
@@ -53,10 +53,10 @@ ${pkgText}
 
   preparedPackage = async (projectName: string) => {
     const commands = {
-      install: 'yarn install',
-      start: 'yarn start',
-      build: 'yarn build',
-      test: 'yarn test'
+      install: 're-space install',
+      start: 're-space serve',
+      build: 're-space build',
+      test: 're-space test'
     };
 
     return `

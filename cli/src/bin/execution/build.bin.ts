@@ -6,21 +6,20 @@ import { rollup } from 'rollup';
 import { BuildMessages } from '../../helpers/messages/build.messages';
 import { createBuildConfig } from '../../configs/build.config';
 import { cleanDistFolder } from '../../helpers/utils/common.utils';
+import { findWorkspacePackagePath } from '../../helpers/utils/package.utils';
 
 export const buildBinCommand = (prog: Sade) => {
   prog
-    .command('build', 'Build a package.', {
-      // eslint-disable no-param-reassign
-
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      alias: ['b']
-    })
+    .command('build')
+    .describe('Build a package.')
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
+    .alias('b')
     .example('build')
     .action(async () => {
       const time = process.hrtime();
       const { bundling, successful } = new BuildMessages();
-      const packagePath = process.cwd();
+      const packagePath = await findWorkspacePackagePath();
       const packageJsonPath = path.resolve(packagePath, 'package.json');
       const { source, module } = await fs.readJSON(packageJsonPath);
       const buildConfig = createBuildConfig({

@@ -1,7 +1,7 @@
 import { Sade } from 'sade';
 import execa from 'execa';
 
-import { getWorkspaceRootPath } from './submodules.helpers';
+import { findWorkspaceRootPath } from '../../helpers/utils/package.utils';
 
 export function submodulesPullBinCommand(prog: Sade): void {
   prog
@@ -17,7 +17,7 @@ export function submodulesPullBinCommand(prog: Sade): void {
     .option('s, self', 'Apply git pull for the workspace root repository')
     .example('submodules pull --self')
     .action(async (branch = 'develop', opts: CLI.Options.SubmodulesPull) => {
-      const workspaceRootPath = await getWorkspaceRootPath();
+      const workspaceRootPath = await findWorkspaceRootPath();
       const cmd = 'pull';
       await execa(
         'git',

@@ -22,20 +22,18 @@ import { error, info } from '../../helpers/utils/color.utils';
 import { featureTemplates, packageTemplates } from '../../setup';
 import { composePackageJson } from '../../setup/package/utils';
 import { PACKAGE_JSON } from '../../helpers/constants/package.const';
-import { PackageMessages } from '../../helpers/messages/package.messages';
+import { GenerateMessages } from '../../helpers/messages/generate.messages';
 
 const templateOptions = Object.keys(packageTemplates);
 const featureOptions = Object.keys(featureTemplates);
 
 export const generateBinCommand = (prog: Sade) => {
   prog
-    .command('generate <pkg>', 'Generate a new package.', {
-      // eslint-disable no-param-reassign
-
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      alias: ['g']
-    })
+    .command('generate <pkg>')
+    .describe('Generate a new package.')
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
+    .alias('g')
     .example('generate packageName')
     .option(
       't, template',
@@ -67,7 +65,7 @@ export const generateBinCommand = (prog: Sade) => {
         invalidTemplate,
         preparedPackage,
         preparingPackage
-      } = new PackageMessages(packageName);
+      } = new GenerateMessages(packageName);
       const cliConfig: Record<string, any> = {
         template: null,
         workspaces: null,
@@ -75,6 +73,7 @@ export const generateBinCommand = (prog: Sade) => {
         license: null
       };
 
+      // TODO: refactor with findWorkspaceRootPath
       try {
         const currentPath = await fs.realpath(process.cwd());
         const packageJsonPath = path.resolve(currentPath, PACKAGE_JSON);
