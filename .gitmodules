@@ -1,4 +1,3 @@
 [submodule "packages/example"]
 	path = packages/example
 	url = https://github.com/maktarsis/re-space-example.git
-	branch = master
