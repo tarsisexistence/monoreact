@@ -1,7 +1,7 @@
+import execa from 'execa';
 import { Sade } from 'sade';
-import { spawn } from 'child_process';
 
-import { finished } from './submodules.helpers';
+import { getWorkspaceRootPath } from './submodules.helpers';
 
 export function submodulesInitBinCommand(prog: Sade): void {
   prog
@@ -12,24 +12,13 @@ export function submodulesInitBinCommand(prog: Sade): void {
     // @ts-ignore
     .alias('si')
     .action(async () => {
-      const child = spawn('git', ['submodule', 'update', '--remote', '--init']);
-
-      child.stdout.on('data', data => {
-        process.stdout.write(data.toString());
+      const workspaceRootPath = await getWorkspaceRootPath();
+      const cmd = 'init';
+      await execa('git', ['submodule', 'update', '--remote', '--init'], {
+        stdio: [process.stdin, process.stdout, process.stderr],
+        cwd: workspaceRootPath
       });
 
-      child.stderr.on('data', data => {
-        process.stdout.write(data.toString());
-      });
-
-      child.on('close', async code => {
-        console.log(
-          finished({
-            cmd: 'init',
-            code,
-            type: 'submodules'
-          })
-        );
-      });
+      console.log(`Finished 'submodules' ${cmd}`);
     });
 }

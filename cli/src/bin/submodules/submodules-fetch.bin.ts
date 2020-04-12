@@ -17,7 +17,7 @@ export function submodulesFetchBinCommand(prog: Sade): void {
       const workspaceRootPath = await getWorkspaceRootPath();
       const cmd = 'fetch';
 
-      await execa('git', ['submodule', 'foreach', 'git', 'fetch', '--all'], {
+      await execa('git', ['submodule', 'foreach', 'git', cmd, '--all'], {
         cwd: workspaceRootPath,
         stdio: [process.stdin, process.stdout, process.stderr]
       });
