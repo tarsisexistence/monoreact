@@ -70,7 +70,10 @@ export const addBinCommand = (prog: Sade) => {
 
       try {
         await fs.copy(
-          path.resolve(__dirname, `../../../templates/feature/${featureName}`),
+          path.resolve(
+            __dirname,
+            `../../../../templates/feature/${featureName}`
+          ),
           path.resolve(
             currentPath,
             featureTemplates[featureName as CLI.Template.Feature].path

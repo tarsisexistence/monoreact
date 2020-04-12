@@ -167,7 +167,7 @@ export const generateBinCommand = (prog: Sade) => {
         await fs.copy(
           path.resolve(
             __dirname,
-            `../../../templates/package/${cliConfig.template}`
+            `../../../../templates/package/${cliConfig.template}`
           ),
           projectPath,
           {
