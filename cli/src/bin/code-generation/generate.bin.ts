@@ -51,7 +51,7 @@ export const generateBinCommand = (prog: Sade) => {
      `
     )
     .example(`generate packageName --feature ${featureOptions[0]}`)
-    .action(async (packageName: string, opts: CLI.Options.Generate) => {
+    .action(async (packageName: string, { template }: CLI.Options.Generate) => {
       const {
         wrongWorkspace,
         successfulConfigure,
@@ -147,8 +147,8 @@ export const generateBinCommand = (prog: Sade) => {
           }))
         });
 
-        if (opts.template) {
-          cliConfig.template = opts.template.trim();
+        if (template) {
+          cliConfig.template = template.trim();
 
           if (
             !prompt.choices.find(

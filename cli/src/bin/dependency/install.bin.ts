@@ -22,8 +22,7 @@ export const installBinCommand = (prog: Sade) => {
     .example('install libraryName')
     .option('d, dev', 'Install development dependencies')
     .example(`install libraryName --dev`)
-    .action(async (opts: CLI.Options.Install) => {
-      const { _: dependencies, dev, d } = opts;
+    .action(async ({ _: dependencies, dev, d }: CLI.Options.Install) => {
       const dependencyFlag = defineDependencyFlag(dev, d);
       const { installing, failed, successful } = new InstallMessages(
         dependencies
