@@ -9,7 +9,7 @@ export const finished = ({
   cmd: CLI.Submodules.Command;
   type: 'core' | 'submodules';
   code: number;
-}) => success(`Finished ${cmd} ${type} with code ${code}`);
+}) => success(`Finished ${cmd} '${type}' with code ${code}`);
 
 const cantFindWorkspaceRoot = () => error("Cant't find workspace root");
 

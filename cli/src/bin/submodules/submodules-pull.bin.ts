@@ -1,8 +1,7 @@
 import { Sade } from 'sade';
-import { spawn } from 'child_process';
 import execa from 'execa';
 
-import { finished, getWorkspaceRootPath } from './submodules.helpers';
+import { getWorkspaceRootPath } from './submodules.helpers';
 
 export function submodulesPullBinCommand(prog: Sade): void {
   prog
@@ -22,48 +21,26 @@ export function submodulesPullBinCommand(prog: Sade): void {
         { self }: CLI.Options.Submodules
       ) => {
         const workspaceRootPath = await getWorkspaceRootPath();
-
-        const child = spawn(
+        const cmd = 'pull';
+        await execa(
           'git',
-          ['submodule', 'foreach', 'git pull', remote, branch],
-          { cwd: workspaceRootPath }
-        );
-
-        child.stdout.on('data', data => {
-          process.stdout.write(data.toString());
-        });
-
-        child.stderr.on('data', data => {
-          process.stdout.write(data.toString());
-        });
-
-        child.on('close', async code => {
-          console.log(
-            finished({
-              cmd: 'pull',
-              code,
-              type: 'submodules'
-            })
-          );
-
-          if (self) {
-            console.log(`
-Entering 'core'`);
-            const { stderr, stdout, exitCode } = await execa(
-              'git',
-              ['pull', remote, branch],
-              { cwd: workspaceRootPath }
-            );
-            console.log(stdout, stderr);
-            console.log(
-              finished({
-                cmd: 'pull',
-                code: exitCode,
-                type: 'core'
-              })
-            );
+          ['submodule', 'foreach', 'git', cmd, remote, branch],
+          {
+            stdio: [process.stdin, process.stdout, process.stderr],
+            cwd: workspaceRootPath
           }
-        });
+        );
+        console.log(`Finished 'submodules' ${cmd}`);
+
+        if (self) {
+          console.log(`
+Entering 'core'`);
+          await execa('git', [cmd, remote, branch], {
+            stdio: [process.stdin, process.stdout, process.stderr],
+            cwd: workspaceRootPath
+          });
+          console.log(`Finished 'core' ${cmd}`);
+        }
       }
     );
 }
