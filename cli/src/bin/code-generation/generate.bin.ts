@@ -4,7 +4,11 @@ import ora from 'ora';
 import fs from 'fs-extra';
 import { Input, Select } from 'enquirer';
 
-import { logError, NoPackageJsonError, WrongWorkspaceError } from '../errors';
+import {
+  logError,
+  NoPackageJsonError,
+  WrongWorkspaceError
+} from '../../errors';
 import {
   buildPackage,
   findPackageSetupPath,
@@ -13,12 +17,12 @@ import {
   prettifyPackageJson,
   setAuthorName,
   sortPackageJson
-} from '../helpers/utils/package.utils';
-import { error, info } from '../helpers/utils/color.utils';
-import { featureTemplates, packageTemplates } from '../setup';
-import { composePackageJson } from '../setup/package/utils';
-import { PACKAGE_JSON } from '../helpers/constants/package.const';
-import { PackageMessages } from '../helpers/messages/package.messages';
+} from '../../helpers/utils/package.utils';
+import { error, info } from '../../helpers/utils/color.utils';
+import { featureTemplates, packageTemplates } from '../../setup';
+import { composePackageJson } from '../../setup/package/utils';
+import { PACKAGE_JSON } from '../../helpers/constants/package.const';
+import { PackageMessages } from '../../helpers/messages/package.messages';
 
 const templateOptions = Object.keys(packageTemplates);
 const featureOptions = Object.keys(featureTemplates);
@@ -49,7 +53,7 @@ export const generateBinCommand = (prog: Sade) => {
      `
     )
     .example(`generate packageName --feature ${featureOptions[0]}`)
-    .action(async (packageName: string, opts: CLI.GenerateOptions) => {
+    .action(async (packageName: string, opts: CLI.Options.Generate) => {
       const {
         wrongWorkspace,
         successfulConfigure,

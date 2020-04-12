@@ -3,10 +3,13 @@ import path from 'path';
 import fs from 'fs-extra';
 import { watch } from 'rollup';
 
-import { createBuildConfig } from '../configs/build.config';
-import { cleanDistFolder, clearConsole } from '../helpers/utils/common.utils';
-import { logError } from '../errors';
-import { ServeMessages } from '../helpers/messages/serve.messages';
+import { logError } from '../../errors';
+import { ServeMessages } from '../../helpers/messages/serve.messages';
+import { createBuildConfig } from '../../configs/build.config';
+import {
+  cleanDistFolder,
+  clearConsole
+} from '../../helpers/utils/common.utils';
 
 export const serveBinCommand = (prog: Sade) => {
   prog

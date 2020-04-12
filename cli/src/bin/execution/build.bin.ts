@@ -3,9 +3,9 @@ import path from 'path';
 import fs from 'fs-extra';
 import { rollup } from 'rollup';
 
-import { createBuildConfig } from '../configs/build.config';
-import { cleanDistFolder } from '../helpers/utils/common.utils';
-import { BuildMessages } from '../helpers/messages/build.messages';
+import { BuildMessages } from '../../helpers/messages/build.messages';
+import { createBuildConfig } from '../../configs/build.config';
+import { cleanDistFolder } from '../../helpers/utils/common.utils';
 
 export const buildBinCommand = (prog: Sade) => {
   prog

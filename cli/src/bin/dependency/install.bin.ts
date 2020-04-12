@@ -2,13 +2,13 @@ import execa from 'execa';
 import { Sade } from 'sade';
 import ora from 'ora';
 
-import { logError } from '../errors';
+import { logError } from '../../errors';
+import { defineDependencyFlag } from '../../helpers/utils/dependency.utils';
+import { InstallMessages } from '../../helpers/messages/install.messages';
 import {
   findWorkspacePackage,
   findWorkspaceRoot
-} from '../helpers/utils/package.utils';
-import { defineDependencyFlag } from '../helpers/utils/dependency.utils';
-import { InstallMessages } from '../helpers/messages/install.messages';
+} from '../../helpers/utils/package.utils';
 
 export const installBinCommand = (prog: Sade) => {
   prog
@@ -28,10 +28,12 @@ export const installBinCommand = (prog: Sade) => {
     .example(`install libraryName --dev`)
     .option('-d', 'Install development dependencies')
     .example(`install libraryName -D`)
-    .action(async (opts: CLI.InstallOptions) => {
+    .action(async (opts: CLI.Options.Install) => {
       const { _: dependencies, dev, d } = opts;
       const dependencyFlag = defineDependencyFlag(dev, d);
-      const { installing, failed, successful } = new InstallMessages(dependencies);
+      const { installing, failed, successful } = new InstallMessages(
+        dependencies
+      );
       const bootSpinner = ora(installing());
 
       if (typeof d === 'string') {
