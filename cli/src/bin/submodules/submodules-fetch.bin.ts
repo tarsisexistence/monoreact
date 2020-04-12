@@ -1,8 +1,7 @@
 import { Sade } from 'sade';
-import { spawn } from 'child_process';
 import execa from 'execa';
 
-import { finished, getWorkspaceRootPath } from './submodules.helpers';
+import { getWorkspaceRootPath } from './submodules.helpers';
 
 export function submodulesFetchBinCommand(prog: Sade): void {
   prog
@@ -16,44 +15,23 @@ export function submodulesFetchBinCommand(prog: Sade): void {
     .example('submodules fetch --self')
     .action(async ({ self }: CLI.Options.Submodules) => {
       const workspaceRootPath = await getWorkspaceRootPath();
-      const child = spawn('git', ['submodule', 'foreach', 'git fetch --all'], {
-        cwd: workspaceRootPath
+      const cmd = 'fetch';
+
+      await execa('git', ['submodule', 'foreach', 'git', 'fetch', '--all'], {
+        cwd: workspaceRootPath,
+        stdio: [process.stdin, process.stdout, process.stderr]
       });
 
-      child.stdout.on('data', data => {
-        process.stdout.write(data.toString());
-      });
+      console.log(`Finished 'submodules' ${cmd}`);
 
-      child.stderr.on('data', data => {
-        process.stdout.write(data.toString());
-      });
-
-      child.on('close', async code => {
-        console.log(
-          finished({
-            cmd: 'fetch',
-            code,
-            type: 'submodules'
-          })
-        );
-
-        if (self) {
-          console.log(`
+      if (self) {
+        console.log(`
 Entering 'core'`);
-          const { stderr, stdout, exitCode } = await execa(
-            'git',
-            ['fetch', '--all'],
-            { cwd: workspaceRootPath }
-          );
-          console.log(stdout, stderr);
-          console.log(
-            finished({
-              cmd: 'fetch',
-              code: exitCode,
-              type: 'core'
-            })
-          );
-        }
-      });
+        await execa('git', [cmd, '--all'], {
+          stdio: [process.stdin, process.stdout, process.stderr],
+          cwd: workspaceRootPath
+        });
+        console.log(`Finished 'core' ${cmd}`);
+      }
     });
 }
