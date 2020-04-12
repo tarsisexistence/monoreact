@@ -6,14 +6,13 @@ import { getWorkspaceRootPath } from './submodules.helpers';
 export function submodulesPullBinCommand(prog: Sade): void {
   prog
     .command('submodules pull <remote> <branch>')
-    .describe('Pull each submodule (origin/develop by default)')
-    .example('submodules pull')
-    .example('submodules pull origin master')
+    .describe('Pull each submodule')
+    .example('submodules pull origin develop')
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     .alias('sp')
-    .option('--self', 'Apply git pull for the workspace root repository.')
-    .example('submodules pull --self')
+    .option('-s, --self', 'Apply git pull for the workspace root repository.')
+    .example('submodules pull origin develop --self')
     .action(
       async (
         remote: string,
@@ -22,14 +21,10 @@ export function submodulesPullBinCommand(prog: Sade): void {
       ) => {
         const workspaceRootPath = await getWorkspaceRootPath();
         const cmd = 'pull';
-        await execa(
-          'git',
-          ['submodule', 'foreach', 'git', cmd, remote, branch],
-          {
-            stdio: [process.stdin, process.stdout, process.stderr],
-            cwd: workspaceRootPath
-          }
-        );
+        await execa('git', ['submodule', 'foreach', 'yarn', 'build'], {
+          stdio: [process.stdin, process.stdout, process.stderr],
+          cwd: workspaceRootPath
+        });
         console.log(`Finished 'submodules' ${cmd}`);
 
         if (self) {
