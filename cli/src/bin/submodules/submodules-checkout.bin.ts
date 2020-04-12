@@ -11,7 +11,7 @@ export function submodulesCheckoutBinCommand(prog: Sade): void {
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     .alias('sc')
-    .option('--self', 'Apply git checkout for the workspace root repository.')
+    .option('s, self', 'Apply git checkout for the workspace root repository.')
     .example('submodules checkout branch-name --self')
     .action(async (branch: string, { self }: CLI.Options.Submodules) => {
       const workspaceRootPath = await getWorkspaceRootPath();

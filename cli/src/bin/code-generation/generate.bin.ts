@@ -38,7 +38,7 @@ export const generateBinCommand = (prog: Sade) => {
     })
     .example('generate packageName')
     .option(
-      '--template',
+      't, template',
       `Specify a template.
      Available templates: [${templateOptions.join(', ')}]
      
@@ -46,7 +46,7 @@ export const generateBinCommand = (prog: Sade) => {
     )
     .example(`generate packageName --template ${templateOptions[0]}`)
     .option(
-      '--feature',
+      'f, feature',
       `Specify a feature.
      Available features: [${featureOptions.join(', ')}]
      

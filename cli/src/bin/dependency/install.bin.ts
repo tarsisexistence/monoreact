@@ -24,10 +24,8 @@ export const installBinCommand = (prog: Sade) => {
       }
     )
     .example('install libraryName')
-    .option('--dev', 'Install development dependencies')
+    .option('d, dev', 'Install development dependencies')
     .example(`install libraryName --dev`)
-    .option('-d', 'Install development dependencies')
-    .example(`install libraryName -D`)
     .action(async (opts: CLI.Options.Install) => {
       const { _: dependencies, dev, d } = opts;
       const dependencyFlag = defineDependencyFlag(dev, d);
@@ -36,12 +34,8 @@ export const installBinCommand = (prog: Sade) => {
       );
       const bootSpinner = ora(installing());
 
-      if (typeof d === 'string') {
-        dependencies.push(d);
-      }
-
-      if (typeof dev === 'string') {
-        dependencies.push(dev);
+      if (typeof dev === 'string' || typeof d === 'string') {
+        dependencies.push(dev as string);
       }
 
       try {

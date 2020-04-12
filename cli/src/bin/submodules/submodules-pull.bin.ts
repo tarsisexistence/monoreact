@@ -11,23 +11,23 @@ export function submodulesPullBinCommand(prog: Sade): void {
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     .alias('sp')
-    .option('-s, --self', 'Apply git pull for the workspace root repository.')
+    .option('s, self', 'Apply git pull for the workspace root repository.')
     .example('submodules pull origin develop --self')
     .action(
-      async (
-        remote: string,
-        branch: string,
-        { self }: CLI.Options.Submodules
-      ) => {
+      async (remote: string, branch: string, opts: CLI.Options.Submodules) => {
         const workspaceRootPath = await getWorkspaceRootPath();
         const cmd = 'pull';
-        await execa('git', ['submodule', 'foreach', 'yarn', 'build'], {
-          stdio: [process.stdin, process.stdout, process.stderr],
-          cwd: workspaceRootPath
-        });
+        await execa(
+          'git',
+          ['submodule', 'foreach', 'git', cmd, remote, branch],
+          {
+            stdio: [process.stdin, process.stdout, process.stderr],
+            cwd: workspaceRootPath
+          }
+        );
         console.log(`Finished 'submodules' ${cmd}`);
 
-        if (self) {
+        if (opts.self) {
           console.log(`
 Entering 'core'`);
           await execa('git', [cmd, remote, branch], {

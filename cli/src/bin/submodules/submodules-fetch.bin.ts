@@ -11,7 +11,7 @@ export function submodulesFetchBinCommand(prog: Sade): void {
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     .alias('sf')
-    .option('--self', 'Apply git fetch for the workspace root repository.')
+    .option('s, self', 'Apply git fetch for the workspace root repository.')
     .example('submodules fetch --self')
     .action(async ({ self }: CLI.Options.Submodules) => {
       const workspaceRootPath = await getWorkspaceRootPath();
