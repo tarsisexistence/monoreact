@@ -7,6 +7,7 @@ import { generateBinCommand } from './code-generation/generate.bin';
 import { installBinCommand } from './dependency/install.bin';
 import { buildBinCommand } from './execution/build.bin';
 import { serveBinCommand } from './execution/serve.bin';
+import { testBinCommand } from './execution/test.bin';
 import { submodulesBinCommand } from './submodules/submodules.bin';
 import { TITLE_CLI } from '../helpers/messages/common.messages';
 import pkg from '../../package.json';
@@ -20,6 +21,7 @@ buildBinCommand(prog);
 generateBinCommand(prog);
 installBinCommand(prog);
 serveBinCommand(prog);
+testBinCommand(prog);
 submodulesBinCommand(prog);
 
 prog.version(pkg.version).parse(process.argv);

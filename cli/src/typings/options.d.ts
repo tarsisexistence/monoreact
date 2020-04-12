@@ -16,6 +16,10 @@ declare namespace CLI.Options {
     d: boolean | string;
   }
 
+  interface Test extends BaseOptions {
+    config: string;
+  }
+
   interface Submodules extends BaseOptions {
     self: boolean;
     s: boolean;
