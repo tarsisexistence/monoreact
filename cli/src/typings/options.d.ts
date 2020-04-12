@@ -20,4 +20,9 @@ declare namespace CLI.Options {
     self: boolean;
     s: boolean;
   }
+
+  interface SubmodulesPull extends Submodules {
+    remote: string;
+    r: string;
+  }
 }
