@@ -97,7 +97,7 @@
     "rollup-plugin-eslint": "7.0.0",
     "rollup-plugin-filesize": "7.0.0",
     "rollup-plugin-peer-deps-external": "2.2.2",
-    "rollup-plugin-postcss": "2.6.1",
+    "rollup-plugin-postcss": "2.6.2",
     "rollup-plugin-progress": "1.1.1",
     "rollup-plugin-size-snapshot": "0.11.0",
     "rollup-plugin-strip-code": "0.2.7",
