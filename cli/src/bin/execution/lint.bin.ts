@@ -27,11 +27,28 @@ export const lintBinCommand = (prog: Sade) => {
       const { eslintConfig } = await fs.readJSON(packageJsonPath);
       const lintConfig = createLintConfig();
       const cli = new CLIEngine({
+        baseConfig: {
+          ...lintConfig,
+          ...(eslintConfig || {}),
+          settings: {
+            'import/resolver': {
+              node: {
+                paths: [path.resolve(packagePath, 'src')],
+                extensions: ['.js', '.jsx', '.ts', '.tsx']
+              }
+            }
+          }
+        },
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
         fix: opts.fix,
         ignorePattern: opts['ignore-pattern'],
-        ...lintConfig,
-        ...(eslintConfig || {})
+        parser: '@typescript-eslint/parser',
+        parserOptions: {
+          project: [
+            path.resolve(packagePath, '../../settings/tsconfig.lint.json'),
+            path.resolve(packagePath, 'tsconfig.json')
+          ]
+        }
       });
 
       console.log(linting(files));
