@@ -20,6 +20,11 @@ declare namespace CLI.Options {
     config: string;
   }
 
+  interface Lint extends BaseOptions {
+    fix: boolean;
+    'ignore-pattern': string;
+  }
+
   interface Submodules extends BaseOptions {
     self: boolean;
     s: boolean;

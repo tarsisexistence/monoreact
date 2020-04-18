@@ -14,6 +14,7 @@ declare namespace CLI.Package {
     license: string;
     author: Author;
     scripts: { [scriptName: string]: string };
+    eslint?: Record<string, any>;
   }
 
   interface WorkspaceRootPackageJSON extends BasePackageJSON {
