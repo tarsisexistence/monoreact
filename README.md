@@ -6,9 +6,9 @@
 
 **Re-space** includes the following features:
 
-- write normal react apps;
-- implement monorepo;
-- implement submodules;
+- write normal react apps
+- create js/ts/react libraries
+- implement monorepo / submodules
 
 <br/>
 
@@ -47,15 +47,13 @@ which will be the workspace root of the whole project.
 
 ### What can it do now
 
-Everything is done here for you. Just take and use.
-
 Even in its raw form, it is already ready for use, and here is what exactly you can do with **re-space**:
 
 - run your application through **create-react-app**
 - bundle your packages through **rollup**
-- use advanced **re-space/cli**
+- use advanced CLI **re-space/cli**
 - save your time with **typescript** (with the option not to use it)
-- receive all the power of using **yarn**
+- receive all the power of using **yarn** workspaces
 - enjoy configured testing(**jest**), formatting(**prettier**), linting (**eslint**, **stylelint**), git hooks(**husky, lint-staged**) and other useful tools like copy-paste-detector(**jscpd**), dependency-bot(**renovate**)
 
 <br/>
@@ -64,9 +62,12 @@ Even in its raw form, it is already ready for use, and here is what exactly you 
 
 The following options are now available:
 
-- generate a new package (submodule): basic, react. Creates a distribution of responsibility. Not all packages must deal with components. Sometimes packages only need to export functions.
+- build and serve your package with rollup. Rollup is the best choice for building independent libraries due to efficient tree-shaking and fast compilation.
+- test and lint your package with Jest and eslint. These built-in commands will help to increase and maintain the quality of built libraries.
+- generate a new package (submodule): basic, react. This creates a distribution of responsibility. Not all packages must deal with react components. Sometimes you wanna build plain JavaScript/TypeScript libraries.
 - add a new feature (feature): docz, playground(run packages locally). Allows you to not generate components with all the things that may not necessarily be needed in each package.
-- install dependencies. This option provides workspace dependency management. If you run install inside some package, it'll add this dependency as peer, and also will add dependencies to the root to the appropriate dependency section
+- install dependencies. This option provides workspace dependency management. If you run install inside some package, it'll add this dependency as peer and will add dependencies to the root to the appropriate dependency section.
+- manage submodules. It is quite difficult to manage git submodules. You have to perform many actions just to make a simple task happen and this is what scares people off from using submodules. In turn, re-space offers user-friendly control through commands, which will increase understanding and speed of interaction with submodules.
 
 It is planned to add the following options in the near future:
 
