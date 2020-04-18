@@ -25,15 +25,13 @@ export const lintBinCommand = (prog: Sade) => {
       const packagePath = await findWorkspacePackagePath();
       const packageJsonPath = path.resolve(packagePath, 'package.json');
       const { eslintConfig } = await fs.readJSON(packageJsonPath);
-      const lintConfig = createLintConfig({ rootDir: packagePath });
+      const lintConfig = createLintConfig();
       const cli = new CLIEngine({
-        baseConfig: {
-          ...lintConfig,
-          ...eslintConfig
-        },
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
         fix: opts.fix,
-        ignorePattern: opts['ignore-pattern']
+        ignorePattern: opts['ignore-pattern'],
+        ...lintConfig,
+        ...(eslintConfig || {})
       });
 
       console.log(linting(files));
