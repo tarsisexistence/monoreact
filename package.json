@@ -9,8 +9,8 @@
     "url": "https://github.com/maktarsis"
   },
   "workspaces": [
-    "packages/*",
-    "cli"
+    "cli",
+    "packages/*"
   ],
   "scripts": {
     "start": "react-scripts start",
@@ -39,7 +39,7 @@
     "@babel/core": "7.9.0",
     "@babel/preset-env": "7.9.5",
     "@babel/preset-react": "7.9.4",
-    "@re-space/cli": "0.1.0",
+    "@re-space/cli": "*",
     "@rollup/plugin-commonjs": "11.1.0",
     "@rollup/plugin-image": "2.0.4",
     "@rollup/plugin-json": "4.0.2",
