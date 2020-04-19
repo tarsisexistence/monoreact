@@ -7,10 +7,7 @@ import {
   findWorkspacePackageDir,
   findWorkspaceRootDir
 } from '../../helpers/utils/package.utils';
-import {
-  createLintConfig,
-  createLintSettings
-} from '../../configs/lint.config';
+import { createLintConfig } from '../../configs/lint.config';
 import { LintMessages } from '../../helpers/messages/lint.messages';
 
 export const lintBinCommand = (prog: Sade) => {
@@ -40,16 +37,14 @@ export const lintBinCommand = (prog: Sade) => {
 
       const packageJsonPath = path.resolve(packageDir, 'package.json');
       const { eslintConfig } = await fs.readJSON(packageJsonPath);
-      const lintConfig = createLintConfig();
-      const settings = createLintSettings({
+      const lintConfig = createLintConfig({
         dir: rootDir,
         isRoot: rootDir === packageDir
       });
       const cli = new CLIEngine({
         baseConfig: {
           ...lintConfig,
-          ...(eslintConfig || {}),
-          settings
+          ...(eslintConfig || {})
         },
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
         fix: opts.fix,

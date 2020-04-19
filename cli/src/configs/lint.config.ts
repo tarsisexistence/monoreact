@@ -2,9 +2,40 @@
 import path from 'path';
 import { CLIEngine } from 'eslint';
 
-export const createLintConfig = (): CLIEngine.Options['baseConfig'] => ({
-  ignorePatterns: ['*.*ss'],
-  plugins: [
+export const createLintConfig = ({
+  dir,
+  isRoot
+}: {
+  dir: string;
+  isRoot: boolean;
+}): CLIEngine.Options['baseConfig'] => {
+  const settings: Record<string, any> = {
+    'import/resolver': {
+      node: {
+        paths: [path.resolve(dir, 'src')],
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
+      }
+    },
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx']
+    },
+    react: {
+      version: 'detect'
+    }
+  };
+
+  if (isRoot) {
+    settings['import/resolver'] = {
+      'eslint-import-resolver-lerna': {
+        packages: 'packages/'
+      },
+      ...settings['import/resolver']
+    };
+  }
+
+  const ignorePatterns = ['*.*ss'];
+
+  const plugins = [
     '@typescript-eslint',
     'prettier',
     'react',
@@ -12,8 +43,9 @@ export const createLintConfig = (): CLIEngine.Options['baseConfig'] => ({
     'react-hooks',
     'promise',
     'sonarjs'
-  ],
-  extends: [
+  ];
+
+  const extendsConfig = [
     'airbnb-typescript',
     'eslint:recommended',
     'react-app',
@@ -29,8 +61,9 @@ export const createLintConfig = (): CLIEngine.Options['baseConfig'] => ({
     'plugin:import/warnings',
     'plugin:import/typescript',
     'plugin:@typescript-eslint/recommended'
-  ],
-  rules: {
+  ];
+
+  const rules = {
     semi: [2, 'always'],
     quotes: 0,
     'consistent-return': 0,
@@ -116,43 +149,20 @@ export const createLintConfig = (): CLIEngine.Options['baseConfig'] => ({
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/no-namespace': 0,
     '@typescript-eslint/no-unused-expressions': 0
-  },
-  env: {
+  };
+
+  const env = {
     browser: true,
     node: true,
     jest: true
-  }
-});
-
-export const createLintSettings = ({
-  dir,
-  isRoot
-}: {
-  dir: string;
-  isRoot: boolean;
-}) => {
-  const settings: Record<string, any> = {
-    'import/resolver': {
-      node: {
-        paths: [path.resolve(dir, 'src')],
-        extensions: ['.js', '.jsx', '.ts', '.tsx']
-      }
-    },
-    'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx']
-    },
-    react: {
-      version: 'detect'
-    }
   };
 
-  if (isRoot) {
-    settings['import/resolver'] = {
-      'eslint-import-resolver-lerna': {
-        packages: 'packages/'
-      },
-      ...settings['import/resolver']
-    };
-  }
-  return settings;
+  return {
+    settings,
+    ignorePatterns,
+    plugins,
+    extends: extendsConfig,
+    rules,
+    env
+  };
 };
