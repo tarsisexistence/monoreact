@@ -1,10 +1,10 @@
 export const PACKAGE_JSON = 'package.json';
 
 export const BASE_PACKAGE_SCRIPTS = {
-  start: 'rollup -cw',
-  build: 'rollup -c',
-  test: 'jest --passWithNoTests',
-  'lint:esm': 'eslint src/**/*.{js,jsx,ts,tsx}'
+  start: 're-space serve',
+  build: 're-space build',
+  test: 're-space test --passWithNoTests',
+  'lint:esm': 're-space lint src/**/*.{js,jsx,ts,tsx}'
 };
 
 export const COMPONENT_PACKAGE_SCRIPTS = {

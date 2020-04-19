@@ -9,8 +9,13 @@ import {
 import { PACKAGE_JSON } from '../constants/package.const';
 
 export class GenerateMessages {
+  // shorthand
   // eslint-disable-next-line no-empty-function
-  constructor(public packageName: string) {}
+  constructor(private packageName: string) {}
+
+  public changePackageName = (newPackageName: string): void => {
+    this.packageName = newPackageName;
+  };
 
   script = () => inverse(` generate ${this.packageName} `);
 
@@ -24,7 +29,7 @@ export class GenerateMessages {
 
   copy = () => `${this.packageName}-copy`;
 
-  successful = () => `Generated ${success(this.packageName)} package`;
+  successful = () => `Generated ${info(this.packageName)} package`;
 
   generating = () => `Generating ${info(this.packageName)} package...`;
 
@@ -43,12 +48,12 @@ export class GenerateMessages {
 
   preparingPackage = (packages: string[]) => {
     const pkgText = packages.map(pkg => `     ${info(pkg)}`).join('\n');
-
+    const requiredText = `Preparing ${info(this.packageName)} package`;
     return packages.length > 0
-      ? `Preparing a package with the following peer dependencies: 
+      ? `${requiredText} with the following peer dependencies: 
 ${pkgText}
 `
-      : 'Preparing the package...';
+      : requiredText;
   };
 
   preparedPackage = async (projectName: string) => {

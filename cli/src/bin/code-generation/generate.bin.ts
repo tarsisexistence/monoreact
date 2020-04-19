@@ -51,8 +51,10 @@ export const generateBinCommand = (prog: Sade) => {
      `
     )
     .example(`generate packageName --feature ${featureOptions[0]}`)
-    .action(async (packageName: string, { template }: CLI.Options.Generate) => {
+    .action(async (pkgName: string, { template }: CLI.Options.Generate) => {
+      let packageName = pkgName;
       const {
+        changePackageName,
         wrongWorkspace,
         successfulConfigure,
         failedConfigure,
@@ -120,16 +122,17 @@ export const generateBinCommand = (prog: Sade) => {
 
         console.log(projectPath);
         bootSpinner.fail(failed());
-        const prompt = new Input({
+        const packageNamePrompt = new Input({
           message: exists(),
           initial: copy(),
           result: (v: string) => v.trim()
         });
 
-        const nextPackageName = await prompt.run();
+        packageName = await packageNamePrompt.run();
+        changePackageName(packageName);
         const nextProjectPath = `${await fs.realpath(process.cwd())}/${
           cliConfig.workspaces
-        }${nextPackageName}`;
+        }${packageName}`;
         return getProjectPath(nextProjectPath);
       }
 
