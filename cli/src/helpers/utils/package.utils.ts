@@ -77,36 +77,54 @@ export const findPackageSetupPath = (
     '/'
   );
 
-async function findWorkspacePath<TPackageJson>(
+async function findWorkspaceDir<TPackageJson>(
   possiblePath: string,
   conditionCallback: (pkg: TPackageJson) => boolean
 ): Promise<string> {
-  try {
-    // the path is too small
-    if (possiblePath.length < 10) {
-      throw new NotFoundWorkspaceError();
-    }
-
-    const packageJsonPath = path.resolve(possiblePath, 'package.json');
-
-    return fs.existsSync(packageJsonPath) &&
-      conditionCallback((await fs.readJSON(packageJsonPath)) as TPackageJson)
-      ? possiblePath
-      : findWorkspacePath(path.resolve(possiblePath, '..'), conditionCallback);
-  } catch (err) {
-    logError(err);
-    process.exit(1);
+  // the path is too small
+  if (possiblePath.length < 10) {
+    throw new NotFoundWorkspaceError();
   }
+
+  const packageJsonPath = path.resolve(possiblePath, 'package.json');
+  return fs.existsSync(packageJsonPath) &&
+    conditionCallback((await fs.readJSON(packageJsonPath)) as TPackageJson)
+    ? possiblePath
+    : findWorkspaceDir(path.resolve(possiblePath, '..'), conditionCallback);
 }
 
-export const findWorkspaceRootPath = async (): Promise<string> =>
-  findWorkspacePath<CLI.Package.WorkspaceRootPackageJSON>(
-    await fs.realpath(process.cwd()),
-    pkg => pkg.workspaces !== undefined && pkg.private
-  );
+export const findWorkspaceRootDir = async (
+  intercept = true
+): Promise<string> => {
+  try {
+    return await findWorkspaceDir<CLI.Package.WorkspaceRootPackageJSON>(
+      await fs.realpath(process.cwd()),
+      pkg => pkg.workspaces !== undefined && pkg.private
+    );
+  } catch (error) {
+    if (intercept) {
+      logError(error);
+      process.exit(1);
+    } else {
+      throw error;
+    }
+  }
+};
 
-export const findWorkspacePackagePath = async (): Promise<string> =>
-  findWorkspacePath<CLI.Package.WorkspacePackageJSON>(
-    await fs.realpath(process.cwd()),
-    pkg => pkg.workspace && !pkg.private
-  );
+export const findWorkspacePackageDir = async (
+  intercept = true
+): Promise<string> => {
+  try {
+    return await findWorkspaceDir<CLI.Package.WorkspacePackageJSON>(
+      await fs.realpath(process.cwd()),
+      pkg => pkg.workspace && !pkg.private
+    );
+  } catch (error) {
+    if (intercept) {
+      logError(error);
+      process.exit(1);
+    } else {
+      throw error;
+    }
+  }
+};

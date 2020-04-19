@@ -3,7 +3,10 @@ import path from 'path';
 import { Sade } from 'sade';
 import { CLIEngine } from 'eslint';
 
-import { findWorkspacePackagePath } from '../../helpers/utils/package.utils';
+import {
+  findWorkspacePackageDir,
+  findWorkspaceRootDir
+} from '../../helpers/utils/package.utils';
 import { createLintConfig } from '../../configs/lint.config';
 import { LintMessages } from '../../helpers/messages/lint.messages';
 
@@ -22,7 +25,15 @@ export const lintBinCommand = (prog: Sade) => {
       const time = process.hrtime();
       const { linting, linted } = new LintMessages();
       const files = opts._.length > 0 ? opts._ : ['src/**/*.{js,jsx,ts,tsx}'];
-      const packagePath = await findWorkspacePackagePath();
+
+      let packagePath;
+      try {
+        packagePath = await findWorkspacePackageDir();
+      } catch (e) {
+        console.log('asd');
+        packagePath = await findWorkspaceRootDir();
+      }
+
       const packageJsonPath = path.resolve(packagePath, 'package.json');
       const { eslintConfig } = await fs.readJSON(packageJsonPath);
       const lintConfig = createLintConfig();

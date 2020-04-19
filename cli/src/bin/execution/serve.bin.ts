@@ -10,7 +10,7 @@ import {
   cleanDistFolder,
   clearConsole
 } from '../../helpers/utils/common.utils';
-import { findWorkspacePackagePath } from '../../helpers/utils/package.utils';
+import { findWorkspacePackageDir } from '../../helpers/utils/package.utils';
 
 export const serveBinCommand = (prog: Sade) => {
   prog
@@ -30,7 +30,7 @@ export const serveBinCommand = (prog: Sade) => {
         introduce,
         watching
       } = new ServeMessages();
-      const packagePath = await findWorkspacePackagePath();
+      const packagePath = await findWorkspacePackageDir();
       const packageJsonPath = path.resolve(packagePath, 'package.json');
       const { source, module } = await fs.readJSON(packageJsonPath);
       const buildConfig = createBuildConfig({

@@ -1,7 +1,7 @@
 import { Sade } from 'sade';
 import execa from 'execa';
 
-import { findWorkspaceRootPath } from '../../helpers/utils/package.utils';
+import { findWorkspaceRootDir } from '../../helpers/utils/package.utils';
 
 export function submodulesFetchBinCommand(prog: Sade): void {
   prog
@@ -14,7 +14,7 @@ export function submodulesFetchBinCommand(prog: Sade): void {
     .option('s, self', 'Apply git fetch for the workspace root repository')
     .example('submodules fetch --self')
     .action(async ({ self }: CLI.Options.Submodules) => {
-      const workspaceRootPath = await findWorkspaceRootPath();
+      const workspaceRootPath = await findWorkspaceRootDir();
       const cmd = 'fetch';
 
       await execa('git', ['submodule', 'foreach', 'git', cmd, '--all'], {

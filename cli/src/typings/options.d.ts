@@ -13,7 +13,7 @@ declare namespace CLI.Options {
 
   interface Install extends BaseOptions {
     dev: boolean | string;
-    d: boolean | string;
+    D: boolean | string;
   }
 
   interface Test extends BaseOptions {

@@ -3,7 +3,7 @@ import path from 'path';
 import jest from 'jest';
 import { Sade } from 'sade';
 
-import { findWorkspacePackagePath } from '../../helpers/utils/package.utils';
+import { findWorkspacePackageDir } from '../../helpers/utils/package.utils';
 import { createTestConfig } from '../../configs/test.config';
 
 export const testBinCommand = (prog: Sade) => {
@@ -20,7 +20,7 @@ export const testBinCommand = (prog: Sade) => {
       process.env.NODE_ENV = 'test';
       process.env.BABEL_ENV = 'test';
 
-      const packagePath = await findWorkspacePackagePath();
+      const packagePath = await findWorkspacePackageDir();
       const packageJsonPath = path.resolve(packagePath, 'package.json');
 
       let jestConfigOptions;

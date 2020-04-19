@@ -1,7 +1,7 @@
 import { Sade } from 'sade';
 import execa from 'execa';
 
-import { findWorkspaceRootPath } from '../../helpers/utils/package.utils';
+import { findWorkspaceRootDir } from '../../helpers/utils/package.utils';
 
 export function submodulesPullBinCommand(prog: Sade): void {
   prog
@@ -21,7 +21,7 @@ export function submodulesPullBinCommand(prog: Sade): void {
         branch = 'develop',
         { self, remote }: CLI.Options.SubmodulesPull
       ) => {
-        const workspaceRootPath = await findWorkspaceRootPath();
+        const workspaceRootPath = await findWorkspaceRootDir();
         const cmd = 'pull';
         await execa(
           'git',

@@ -6,7 +6,7 @@ import { rollup } from 'rollup';
 import { BuildMessages } from '../../helpers/messages/build.messages';
 import { createBuildConfig } from '../../configs/build.config';
 import { cleanDistFolder } from '../../helpers/utils/common.utils';
-import { findWorkspacePackagePath } from '../../helpers/utils/package.utils';
+import { findWorkspacePackageDir } from '../../helpers/utils/package.utils';
 
 export const buildBinCommand = (prog: Sade) => {
   prog
@@ -19,7 +19,7 @@ export const buildBinCommand = (prog: Sade) => {
     .action(async () => {
       const time = process.hrtime();
       const { bundling, successful } = new BuildMessages();
-      const packagePath = await findWorkspacePackagePath();
+      const packagePath = await findWorkspacePackageDir();
       const packageJsonPath = path.resolve(packagePath, 'package.json');
       const { source, module } = await fs.readJSON(packageJsonPath);
       const buildConfig = createBuildConfig({

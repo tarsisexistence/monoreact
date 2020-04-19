@@ -1,7 +1,7 @@
 import { Sade } from 'sade';
 import execa from 'execa';
 
-import { findWorkspaceRootPath } from '../../helpers/utils/package.utils';
+import { findWorkspaceRootDir } from '../../helpers/utils/package.utils';
 import { finished } from './submodules.helpers';
 
 export function submodulesBuildBinCommand(prog: Sade): void {
@@ -15,7 +15,7 @@ export function submodulesBuildBinCommand(prog: Sade): void {
     .option('s, self', 'Apply yarn build for the workspace root repository')
     .example('submodules build --self')
     .action(async ({ self }: CLI.Options.Submodules) => {
-      const workspaceRootPath = await findWorkspaceRootPath();
+      const workspaceRootPath = await findWorkspaceRootDir();
       const cmd = 'build';
       const { exitCode: submodulesExitCode } = await execa(
         'git',

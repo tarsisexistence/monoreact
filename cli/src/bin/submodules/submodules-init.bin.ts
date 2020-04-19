@@ -1,7 +1,7 @@
 import execa from 'execa';
 import { Sade } from 'sade';
 
-import { findWorkspaceRootPath } from '../../helpers/utils/package.utils';
+import { findWorkspaceRootDir } from '../../helpers/utils/package.utils';
 
 export function submodulesInitBinCommand(prog: Sade): void {
   prog
@@ -12,7 +12,7 @@ export function submodulesInitBinCommand(prog: Sade): void {
     // @ts-ignore
     .alias('si')
     .action(async () => {
-      const workspaceRootPath = await findWorkspaceRootPath();
+      const workspaceRootPath = await findWorkspaceRootDir();
       const cmd = 'init';
       await execa('git', ['submodule', 'update', '--remote', '--init'], {
         stdio: [process.stdin, process.stdout, process.stderr],

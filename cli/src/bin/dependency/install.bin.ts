@@ -3,11 +3,10 @@ import { Sade } from 'sade';
 import ora from 'ora';
 
 import { logError } from '../../errors';
-import { defineDependencyFlag } from '../../helpers/utils/dependency.utils';
 import { InstallMessages } from '../../helpers/messages/install.messages';
 import {
-  findWorkspacePackagePath,
-  findWorkspaceRootPath
+  findWorkspacePackageDir,
+  findWorkspaceRootDir
 } from '../../helpers/utils/package.utils';
 
 export const installBinCommand = (prog: Sade) => {
@@ -20,42 +19,46 @@ export const installBinCommand = (prog: Sade) => {
     // @ts-ignore
     .alias('i')
     .example('install libraryName')
-    .option('d, dev', 'Install development dependencies')
+    .option('D, dev', 'Install development dependencies')
     .example(`install libraryName --dev`)
-    .action(async ({ _: dependencies, dev, d }: CLI.Options.Install) => {
-      const dependencyFlag = defineDependencyFlag(dev, d);
+    .action(async ({ _: dependencies, dev }: CLI.Options.Install) => {
+      const dependencyFlag = dev ? '--dev' : '';
       const { installing, failed, successful } = new InstallMessages(
         dependencies
       );
       const installSpinner = ora(installing());
 
-      if (typeof dev === 'string' || typeof d === 'string') {
+      if (typeof dev === 'string') {
         dependencies.push(dev as string);
       }
 
+      installSpinner.start();
       try {
-        installSpinner.start();
-        const workspacePackage = await findWorkspacePackagePath();
-        const workspaceRoot = await findWorkspaceRootPath();
+        const workspacePackage = await findWorkspacePackageDir(false);
+        await execa(`yarn add ${dependencies.join(' ')}`, ['--peer'], {
+          cwd: workspacePackage
+        });
 
-        if (workspacePackage !== null) {
-          await execa(`yarn add ${dependencies.join(' ')}`, ['--peer'], {
-            cwd: workspacePackage
-          });
-        }
+        /** it is ok if findWorkspacePackageDir will throw an error
+         * it just means that we are not in the package dir
+         **/
+        // eslint-disable-next-line no-empty
+      } catch {}
 
-        if (workspaceRoot !== null) {
-          await execa(
-            `yarn add ${dependencies.join(' ')} ${dependencyFlag}`,
-            ['--exact', '-W'],
-            { cwd: workspaceRoot }
-          );
-        }
-
+      try {
+        const workspaceRoot = await findWorkspaceRootDir();
+        await execa(
+          `yarn add ${dependencies.join(' ')} ${dependencyFlag}`,
+          ['--exact', '-W'],
+          {
+            cwd: workspaceRoot
+          }
+        );
         installSpinner.succeed(successful());
-      } catch (e) {
+      } catch (err) {
         installSpinner.fail(failed());
-        logError(e);
+        logError(err);
+        process.exit(1);
       }
     });
 };

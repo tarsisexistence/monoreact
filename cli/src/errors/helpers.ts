@@ -28,6 +28,10 @@ export class NotFoundWorkspaceError extends Error {
     
     Can't find a project
     Make sure you run the script inside the project
+    
+    The project ${PACKAGE_JSON} should have:
+        workspace: true;
+        private: false;
       `);
     this.name = 'Not Found Workspace Error';
   }
