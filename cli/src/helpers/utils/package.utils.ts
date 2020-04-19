@@ -4,7 +4,11 @@ import shell from 'shelljs';
 import execa from 'execa';
 
 import { PACKAGE_JSON } from '../constants/package.const';
-import { logError, NotFoundWorkspaceError } from '../../errors';
+import {
+  logError,
+  NotFoundPackageWorkspaceError,
+  NotFoundWorkspaceRootError
+} from '../../errors';
 
 export const safePackageName = (name: string) =>
   name
@@ -80,10 +84,10 @@ export const findPackageSetupPath = (
 async function findWorkspaceDir<TPackageJson>(
   possiblePath: string,
   conditionCallback: (pkg: TPackageJson) => boolean
-): Promise<string> {
+): Promise<string | null> {
   // the path is too small
   if (possiblePath.length < 10) {
-    throw new NotFoundWorkspaceError();
+    return null;
   }
 
   const packageJsonPath = path.resolve(possiblePath, 'package.json');
@@ -96,35 +100,43 @@ async function findWorkspaceDir<TPackageJson>(
 export const findWorkspaceRootDir = async (
   intercept = true
 ): Promise<string> => {
-  try {
-    return await findWorkspaceDir<CLI.Package.WorkspaceRootPackageJSON>(
-      await fs.realpath(process.cwd()),
-      pkg => pkg.workspaces !== undefined && pkg.private
-    );
-  } catch (error) {
+  const dir = await findWorkspaceDir<CLI.Package.WorkspaceRootPackageJSON>(
+    await fs.realpath(process.cwd()),
+    pkg => pkg.workspaces !== undefined && pkg.private
+  );
+
+  if (dir === null) {
+    const workspaceError = new NotFoundWorkspaceRootError();
+
     if (intercept) {
-      logError(error);
+      logError(workspaceError);
       process.exit(1);
     } else {
-      throw error;
+      throw workspaceError;
     }
   }
+
+  return dir;
 };
 
 export const findWorkspacePackageDir = async (
   intercept = true
 ): Promise<string> => {
-  try {
-    return await findWorkspaceDir<CLI.Package.WorkspacePackageJSON>(
-      await fs.realpath(process.cwd()),
-      pkg => pkg.workspace && !pkg.private
-    );
-  } catch (error) {
+  const dir = await findWorkspaceDir<CLI.Package.WorkspacePackageJSON>(
+    await fs.realpath(process.cwd()),
+    pkg => pkg.workspace && !pkg.private
+  );
+
+  if (dir === null) {
+    const workspaceError = new NotFoundPackageWorkspaceError();
+
     if (intercept) {
-      logError(error);
+      logError(workspaceError);
       process.exit(1);
     } else {
-      throw error;
+      throw workspaceError;
     }
   }
+
+  return dir;
 };

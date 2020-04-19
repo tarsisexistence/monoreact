@@ -46,7 +46,7 @@ export const installBinCommand = (prog: Sade) => {
       } catch {}
 
       try {
-        const workspaceRoot = await findWorkspaceRootDir();
+        const workspaceRoot = await findWorkspaceRootDir(false);
         await execa(
           `yarn add ${dependencies.join(' ')} ${dependencyFlag}`,
           ['--exact', '-W'],
