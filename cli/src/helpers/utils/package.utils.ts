@@ -98,7 +98,7 @@ async function findWorkspaceDir<TPackageJson>(
 }
 
 export const findWorkspaceRootDir = async (
-  intercept = true
+  intercept = false
 ): Promise<string> => {
   const dir = await findWorkspaceDir<CLI.Package.WorkspaceRootPackageJSON>(
     await fs.realpath(process.cwd()),
@@ -109,10 +109,10 @@ export const findWorkspaceRootDir = async (
     const workspaceError = new NotFoundWorkspaceRootError();
 
     if (intercept) {
+      throw workspaceError;
+    } else {
       logError(workspaceError);
       process.exit(1);
-    } else {
-      throw workspaceError;
     }
   }
 
@@ -120,7 +120,7 @@ export const findWorkspaceRootDir = async (
 };
 
 export const findWorkspacePackageDir = async (
-  intercept = true
+  intercept = false
 ): Promise<string> => {
   const dir = await findWorkspaceDir<CLI.Package.WorkspacePackageJSON>(
     await fs.realpath(process.cwd()),
@@ -131,10 +131,10 @@ export const findWorkspacePackageDir = async (
     const workspaceError = new NotFoundPackageWorkspaceError();
 
     if (intercept) {
+      throw workspaceError;
+    } else {
       logError(workspaceError);
       process.exit(1);
-    } else {
-      throw workspaceError;
     }
   }
 

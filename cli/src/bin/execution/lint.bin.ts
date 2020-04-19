@@ -30,7 +30,7 @@ export const lintBinCommand = (prog: Sade) => {
       let packageDir;
 
       try {
-        packageDir = await findWorkspacePackageDir(false);
+        packageDir = await findWorkspacePackageDir(true);
       } catch (e) {
         packageDir = rootDir;
       }
