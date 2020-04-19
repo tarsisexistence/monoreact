@@ -18,7 +18,7 @@ export function submodulesPullBinCommand(prog: Sade): void {
     .example('submodules pull --self')
     .action(
       async (
-        branch = 'develop',
+        branch = 'master',
         { self, remote }: CLI.Options.SubmodulesPull
       ) => {
         const workspaceRootPath = await findWorkspaceRootDir();
