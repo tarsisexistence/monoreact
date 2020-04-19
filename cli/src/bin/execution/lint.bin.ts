@@ -7,7 +7,10 @@ import {
   findWorkspacePackageDir,
   findWorkspaceRootDir
 } from '../../helpers/utils/package.utils';
-import { createLintConfig } from '../../configs/lint.config';
+import {
+  createLintConfig,
+  createLintSettings
+} from '../../configs/lint.config';
 import { LintMessages } from '../../helpers/messages/lint.messages';
 
 export const lintBinCommand = (prog: Sade) => {
@@ -26,38 +29,37 @@ export const lintBinCommand = (prog: Sade) => {
       const { linting, linted } = new LintMessages();
       const files = opts._.length > 0 ? opts._ : ['src/**/*.{js,jsx,ts,tsx}'];
 
-      let packagePath;
+      const rootDir = await findWorkspaceRootDir();
+      let packageDir;
+
       try {
-        packagePath = await findWorkspacePackageDir();
+        packageDir = await findWorkspacePackageDir(false);
       } catch (e) {
-        console.log('asd');
-        packagePath = await findWorkspaceRootDir();
+        packageDir = rootDir;
       }
 
-      const packageJsonPath = path.resolve(packagePath, 'package.json');
+      const packageJsonPath = path.resolve(packageDir, 'package.json');
       const { eslintConfig } = await fs.readJSON(packageJsonPath);
       const lintConfig = createLintConfig();
+      const settings = createLintSettings({
+        dir: rootDir,
+        isRoot: rootDir === packageDir
+      });
       const cli = new CLIEngine({
         baseConfig: {
           ...lintConfig,
           ...(eslintConfig || {}),
-          settings: {
-            'import/resolver': {
-              node: {
-                paths: [path.resolve(packagePath, 'src')],
-                extensions: ['.js', '.jsx', '.ts', '.tsx']
-              }
-            }
-          }
+          settings
         },
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
         fix: opts.fix,
         ignorePattern: opts['ignore-pattern'],
         parser: '@typescript-eslint/parser',
         parserOptions: {
+          tsconfigRootDir: packageDir,
           project: [
-            path.resolve(packagePath, '../../settings/tsconfig.lint.json'),
-            path.resolve(packagePath, 'tsconfig.json')
+            path.resolve(rootDir, 'tsconfig.json'),
+            path.resolve(packageDir, 'tsconfig.json')
           ]
         }
       });

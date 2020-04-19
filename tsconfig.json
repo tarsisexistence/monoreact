@@ -18,5 +18,10 @@
     "jsx": "react",
     "typeRoots": ["node_modules/@types"]
   },
-  "include": ["**/*.d.ts", "src", "settings"]
+  "include": [
+    "src",
+    "**/*.d.ts",
+    "**/src/**/*.test.*",
+    "**/src/**/*.spec.*"
+  ]
 }

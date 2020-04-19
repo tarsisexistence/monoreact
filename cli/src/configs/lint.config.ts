@@ -1,4 +1,5 @@
 /* eslint-disable sonarjs/no-duplicate-string */
+import path from 'path';
 import { CLIEngine } from 'eslint';
 
 export const createLintConfig = (): CLIEngine.Options['baseConfig'] => ({
@@ -122,3 +123,36 @@ export const createLintConfig = (): CLIEngine.Options['baseConfig'] => ({
     jest: true
   }
 });
+
+export const createLintSettings = ({
+  dir,
+  isRoot
+}: {
+  dir: string;
+  isRoot: boolean;
+}) => {
+  const settings: Record<string, any> = {
+    'import/resolver': {
+      node: {
+        paths: [path.resolve(dir, 'src')],
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
+      }
+    },
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx']
+    },
+    react: {
+      version: 'detect'
+    }
+  };
+
+  if (isRoot) {
+    settings['import/resolver'] = {
+      'eslint-import-resolver-lerna': {
+        packages: 'packages/'
+      },
+      ...settings['import/resolver']
+    };
+  }
+  return settings;
+};

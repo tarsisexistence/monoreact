@@ -1,7 +1,9 @@
 {
-  "extends": "../../settings/tsconfig.workspace.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "sourceMap": true,
+    "declaration": true
   },
   "include": ["src", "../../**/*.d.ts"],
   "exclude": ["src/**/*.test.*", "src/**/*.spec.*"]
