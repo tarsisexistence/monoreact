@@ -2,11 +2,6 @@ const path = require('path');
 
 module.exports = {
   ignorePatterns: ['*.*ss'],
-  parserOptions: {
-    tsconfigRootDir: __dirname,
-    project: path.resolve(__dirname, 'tsconfig.json')
-  },
-  parser: '@typescript-eslint/parser',
   plugins: [
     '@typescript-eslint',
     'prettier',
@@ -17,7 +12,6 @@ module.exports = {
     'sonarjs'
   ],
   extends: [
-    'airbnb-typescript',
     'eslint:recommended',
     'react-app',
     'prettier',
@@ -36,7 +30,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       'eslint-import-resolver-lerna': {
-        packages: 'packages/'
+        packages: path.resolve(__dirname, 'packages')
       },
       node: {
         paths: [path.resolve(__dirname, 'src')],
@@ -129,11 +123,11 @@ module.exports = {
     'sonarjs/cognitive-complexity': 0,
     'sonarjs/no-duplicated-branches': 0,
     'spaced-comment': 0,
-    '@typescript-eslint/explicit-function-return-type': 0,
-    '@typescript-eslint/no-explicit-any': 0,
     'no-empty-function': 2,
     'no-useless-constructor': 0,
     'lines-between-class-members': 2,
+    '@typescript-eslint/explicit-function-return-type': 0,
+    '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/no-namespace': 0,
     '@typescript-eslint/no-unused-expressions': 0
   },

@@ -25,11 +25,8 @@ export const createLintConfig = ({
   };
 
   if (isRoot) {
-    settings['import/resolver'] = {
-      'eslint-import-resolver-lerna': {
-        packages: 'packages/'
-      },
-      ...settings['import/resolver']
+    settings['import/resolver']['eslint-import-resolver-lerna'] = {
+      packages: path.resolve(dir, 'packages')
     };
   }
 
@@ -46,7 +43,6 @@ export const createLintConfig = ({
   ];
 
   const extendsConfig = [
-    'airbnb-typescript',
     'eslint:recommended',
     'react-app',
     'prettier',

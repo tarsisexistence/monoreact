@@ -38,7 +38,7 @@ export const lintBinCommand = (prog: Sade) => {
       const packageJsonPath = path.resolve(packageDir, 'package.json');
       const { eslintConfig } = await fs.readJSON(packageJsonPath);
       const lintConfig = createLintConfig({
-        dir: rootDir,
+        dir: packageDir,
         isRoot: rootDir === packageDir
       });
       const cli = new CLIEngine({
