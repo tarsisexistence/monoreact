@@ -66,7 +66,9 @@ export const createBuildConfig = (opts: {
       exclude: /\/node_modules\//
     }),
     stripCode({
+      // eslint-disable-next-line @typescript-eslint/camelcase
       start_comment: 'placeholder:start',
+      // eslint-disable-next-line @typescript-eslint/camelcase
       end_comment: 'placeholder:end'
     })
   ]
