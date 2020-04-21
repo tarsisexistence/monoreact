@@ -1,4 +1,9 @@
 declare namespace CLI.Package {
+  interface Package {
+    name: string;
+    path: string;
+  }
+
   interface BasePackageJSON {
     name: string;
     version: string;

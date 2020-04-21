@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs-extra';
-import shell from 'shelljs';
 import execa from 'execa';
+import { exec } from 'shelljs';
 
 import { PACKAGE_JSON } from '../constants/package.const';
 import {
@@ -18,28 +18,28 @@ export const safePackageName = (name: string) =>
 export function getAuthorName(): CLI.Package.Author {
   let author = '';
 
-  author = shell
-    .exec('npm config get init-author-name', { silent: true })
-    .stdout.trim();
+  author = exec('npm config get init-author-name', {
+    silent: true
+  }).stdout.trim();
 
   if (author) {
     return author;
   }
 
-  author = shell.exec('git config user.name', { silent: true }).stdout.trim();
+  author = exec('git config user.name', { silent: true }).stdout.trim();
   if (author) {
     setAuthorName(author);
     return author;
   }
 
-  author = shell
-    .exec('npm config get init-author-email', { silent: true })
-    .stdout.trim();
+  author = exec('npm config get init-author-email', {
+    silent: true
+  }).stdout.trim();
   if (author) {
     return author;
   }
 
-  author = shell.exec('git config user.email', { silent: true }).stdout.trim();
+  author = exec('git config user.email', { silent: true }).stdout.trim();
   if (author) {
     return author;
   }
@@ -48,7 +48,7 @@ export function getAuthorName(): CLI.Package.Author {
 }
 
 export function setAuthorName(author: CLI.Package.Author): void {
-  shell.exec(`npm config set init-author-name "${author}"`, { silent: true });
+  exec(`npm config set init-author-name "${author}"`, { silent: true });
 }
 
 export const sortPackageJson = async () => execa('sort-package-json');
@@ -66,7 +66,7 @@ export const findWorkspacePackages = (
   }
 
   if ('packages' in workspaces) {
-    return workspaces.packages || [];
+    return workspaces.packages;
   }
 
   return workspaces;
@@ -74,12 +74,15 @@ export const findWorkspacePackages = (
 
 export const findPackageSetupPath = (
   packages: YarnWorkspaces.Packages
-): string =>
-  packages.reduce(
-    (res, pkg) =>
-      pkg[pkg.length - 1] === '*' ? pkg.slice(0, pkg.length - 1) : res,
-    '/'
+): string => {
+  const rootPath = '/';
+  const packageSetupPath = packages.reduce(
+    (path, pkg) =>
+      pkg[pkg.length - 1] === '*' ? pkg.slice(0, pkg.length - 2) : path,
+    rootPath
   );
+  return packageSetupPath === rootPath ? 'packages' : packageSetupPath;
+};
 
 async function findWorkspaceDir<TPackageJson>(
   possiblePath: string,
@@ -140,3 +143,20 @@ export const findWorkspacePackageDir = async (
 
   return dir;
 };
+
+export async function getAllPackages(): Promise<CLI.Package.Package[]> {
+  const a = exec('yarn workspaces info --json', { silent: true }).stdout.trim();
+  const yarnWorkspaces = JSON.parse(JSON.parse(a).data);
+  const rootDir = await findWorkspaceRootDir();
+
+  return Object.keys(yarnWorkspaces).reduce(
+    (packages: CLI.Package.Package[], pkg: string) => [
+      ...packages,
+      {
+        name: pkg,
+        path: path.resolve(rootDir, yarnWorkspaces[pkg].location)
+      }
+    ],
+    []
+  );
+}

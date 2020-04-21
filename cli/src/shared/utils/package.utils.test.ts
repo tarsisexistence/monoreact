@@ -32,26 +32,28 @@ describe('[CLI.Utils] Package', () => {
   });
 
   describe('findPackageSetupPath', () => {
-    test('should return empty path with empty input', () => {
-      expect(findPackageSetupPath([])).toBe('/');
+    test('should return default path with input of empty packages', () => {
+      expect(findPackageSetupPath([])).toBe('packages');
     });
 
-    test('should return empty path with input of separate packages', () => {
-      expect(findPackageSetupPath(['/a', 'b', 'c/', '/d/'])).toBe('/');
+    test('should return default path with input of separate packages', () => {
+      expect(findPackageSetupPath(['/a', 'b', 'c/', '/d/'])).toBe('packages');
     });
 
     test('should return path when there is one wildcard', () => {
-      expect(findPackageSetupPath(['packages/*'])).toBe('packages/');
+      expect(findPackageSetupPath(['workspaces/*'])).toBe('workspaces');
     });
 
     test('should return path when there is only one wildcard', () => {
-      expect(findPackageSetupPath(['a', 'packages/*', 'b'])).toBe('packages/');
+      expect(findPackageSetupPath(['a', 'workspaces/*', 'b'])).toBe(
+        'workspaces'
+      );
     });
 
     test('should return path of the last wildcard', () => {
       expect(
-        findPackageSetupPath(['a', 'otherPackages/*', 'c', 'packages/*', 'b'])
-      ).toBe('packages/');
+        findPackageSetupPath(['a', 'otherPackages/*', 'c', 'workspaces/*', 'b'])
+      ).toBe('workspaces');
     });
   });
 });
