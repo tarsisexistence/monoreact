@@ -10,7 +10,7 @@ import { serveBinCommand } from './execution/serve.bin';
 import { testBinCommand } from './execution/test.bin';
 import { lintBinCommand } from './execution/lint.bin';
 import { submodulesBinCommand } from './submodules/submodules.bin';
-import { TITLE_CLI } from '../helpers/messages/common.messages';
+import { TITLE_CLI } from '../shared/messages/common.messages';
 import pkg from '../../package.json';
 
 const prog = sade('re-space');

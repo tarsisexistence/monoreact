@@ -1,6 +1,6 @@
-import { safePackageName } from '../../helpers/utils/package.utils';
+import { safePackageName } from '../../shared/utils';
 
-export const composePackageJson = (template: CLI.Template.PackageOptions) => ({
+export const composePackageJson = (template: CLI.Template.GenerateOptions) => ({
   author,
   name,
   rootName,

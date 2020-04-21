@@ -1,2 +1,3 @@
-export { featureTemplates } from './feature';
-export { packageTemplates } from './package';
+export { featureTemplates } from './add';
+export { packageTemplates } from './generate';
+export { composePackageJson } from './generate/utils.generate';

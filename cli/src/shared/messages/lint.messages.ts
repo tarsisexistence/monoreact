@@ -1,4 +1,4 @@
-import { highlight, info } from '../utils/color.utils';
+import { highlight, info } from '../utils';
 
 export class LintMessages {
   linting = (files: string[]) => info(`Linting ${files} ...`);

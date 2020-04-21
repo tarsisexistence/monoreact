@@ -2,12 +2,12 @@ import execa from 'execa';
 import { Sade } from 'sade';
 import ora from 'ora';
 
-import { logError } from '../../errors';
-import { InstallMessages } from '../../helpers/messages/install.messages';
+import { InstallMessages } from '../../shared/messages/install.messages';
 import {
   findWorkspacePackageDir,
-  findWorkspaceRootDir
-} from '../../helpers/utils/package.utils';
+  findWorkspaceRootDir,
+  logError
+} from '../../shared/utils';
 
 export const installBinCommand = (prog: Sade) => {
   prog

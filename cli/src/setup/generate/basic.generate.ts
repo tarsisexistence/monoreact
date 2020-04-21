@@ -1,9 +1,9 @@
 import {
   BASE_PACKAGE_SCRIPTS,
   WORKSPACE_PACKAGE_JSON
-} from '../../helpers/constants/package.const';
+} from '../../shared/constants/package.const';
 
-export const basicTemplate: CLI.Template.PackageOptions = {
+export const basicTemplate: CLI.Template.GenerateOptions = {
   dependencies: [],
   packageJson: {
     ...WORKSPACE_PACKAGE_JSON,

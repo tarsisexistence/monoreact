@@ -3,16 +3,11 @@ import path from 'path';
 import ora from 'ora';
 import fs from 'fs-extra';
 
-import {
-  logError,
-  NoPackageJsonError,
-  WrongWorkspaceError
-} from '../../errors';
-import { featureTemplates } from '../../setup/feature';
-import { PACKAGE_JSON } from '../../helpers/constants/package.const';
-import { FeatureMessages } from '../../helpers/messages/feature.messages';
-import { prettifyPackageJson } from '../../helpers/utils/package.utils';
-import { error } from '../../helpers/utils/color.utils';
+import { NoPackageJsonError, WrongWorkspaceError } from '../../shared/models';
+import { featureTemplates } from '../../setup/add';
+import { PACKAGE_JSON } from '../../shared/constants/package.const';
+import { error, logError, prettifyPackageJson } from '../../shared/utils';
+import { FeatureMessages } from '../../shared/messages';
 
 const featureOptions = Object.keys(featureTemplates);
 
@@ -70,10 +65,7 @@ export const addBinCommand = (prog: Sade) => {
 
       try {
         await fs.copy(
-          path.resolve(
-            __dirname,
-            `../../../../templates/feature/${featureName}`
-          ),
+          path.resolve(__dirname, `../../../../templates/add/${featureName}`),
           path.resolve(
             currentPath,
             featureTemplates[featureName as CLI.Template.Feature].path

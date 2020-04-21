@@ -2,12 +2,12 @@ declare namespace CLI.Template {
   type Package = 'basic' | 'react';
   type Feature = 'docz' | 'playground';
 
-  interface PackageOptions {
+  interface GenerateOptions {
     dependencies: string[];
-    packageJson: PackageJson;
+    packageJson: CLI.Package.WorkspacePackageJSON;
   }
 
-  interface FeatureOptions {
+  interface AddOptions {
     path: string;
     scripts: { [scriptName: string]: string };
   }

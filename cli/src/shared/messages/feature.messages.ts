@@ -1,5 +1,5 @@
-import { error, info, inverse, success } from '../utils/color.utils';
-import { featureTemplates } from '../../setup/feature';
+import { error, info, inverse, success } from '../utils';
+import { featureTemplates } from '../../setup/add';
 import { PACKAGE_JSON } from '../constants/package.const';
 
 export class FeatureMessages {

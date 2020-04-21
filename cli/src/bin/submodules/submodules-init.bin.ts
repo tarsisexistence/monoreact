@@ -1,7 +1,7 @@
 import execa from 'execa';
 import { Sade } from 'sade';
 
-import { findWorkspaceRootDir } from '../../helpers/utils/package.utils';
+import { findWorkspaceRootDir } from '../../shared/utils';
 
 export function submodulesInitBinCommand(prog: Sade): void {
   prog

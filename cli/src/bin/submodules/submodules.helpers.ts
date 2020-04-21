@@ -1,4 +1,4 @@
-import { success } from '../../helpers/utils/color.utils';
+import { success } from '../../shared/utils';
 
 export const finished = ({
   cmd,

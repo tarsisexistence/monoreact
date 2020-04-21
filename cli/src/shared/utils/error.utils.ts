@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 
-import { error as errMsg } from '../helpers/utils/color.utils';
+import { error as errMsg } from './color.utils';
 
 const stderr = console.error.bind(console);
 

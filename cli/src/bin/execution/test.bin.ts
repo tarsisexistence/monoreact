@@ -3,7 +3,7 @@ import path from 'path';
 import jest from 'jest';
 import { Sade } from 'sade';
 
-import { findWorkspacePackageDir } from '../../helpers/utils/package.utils';
+import { findWorkspacePackageDir } from '../../shared/utils';
 import { createTestConfig } from '../../configs/test.config';
 
 export const testBinCommand = (prog: Sade) => {

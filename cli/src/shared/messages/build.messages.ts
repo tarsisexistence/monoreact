@@ -1,4 +1,4 @@
-import { highlight, info, success } from '../utils/color.utils';
+import { highlight, info, success } from '../utils';
 
 export class BuildMessages {
   bundling = ({ source, module }: { source: string; module: string }) =>

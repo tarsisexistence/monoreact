@@ -5,24 +5,25 @@ import fs from 'fs-extra';
 import { Input, Select } from 'enquirer';
 
 import {
-  logError,
-  NoPackageJsonError,
-  WrongWorkspaceError
-} from '../../errors';
-import {
   buildPackage,
   findPackageSetupPath,
   findWorkspacePackages,
   getAuthorName,
   prettifyPackageJson,
   setAuthorName,
-  sortPackageJson
-} from '../../helpers/utils/package.utils';
-import { error, info } from '../../helpers/utils/color.utils';
-import { featureTemplates, packageTemplates } from '../../setup';
-import { composePackageJson } from '../../setup/package/utils';
-import { PACKAGE_JSON } from '../../helpers/constants/package.const';
-import { GenerateMessages } from '../../helpers/messages/generate.messages';
+  sortPackageJson,
+  error,
+  info,
+  logError
+} from '../../shared/utils';
+import { NoPackageJsonError, WrongWorkspaceError } from '../../shared/models';
+import {
+  featureTemplates,
+  packageTemplates,
+  composePackageJson
+} from '../../setup';
+import { GenerateMessages } from '../../shared/messages';
+import { PACKAGE_JSON } from '../../shared/constants/package.const';
 
 const templateOptions = Object.keys(packageTemplates);
 const featureOptions = Object.keys(featureTemplates);
@@ -169,7 +170,7 @@ export const generateBinCommand = (prog: Sade) => {
         await fs.copy(
           path.resolve(
             __dirname,
-            `../../../../templates/package/${cliConfig.template}`
+            `../../../../templates/generate/${cliConfig.template}`
           ),
           projectPath,
           {

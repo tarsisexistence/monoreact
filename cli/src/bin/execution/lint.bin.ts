@@ -6,9 +6,9 @@ import { CLIEngine } from 'eslint';
 import {
   findWorkspacePackageDir,
   findWorkspaceRootDir
-} from '../../helpers/utils/package.utils';
+} from '../../shared/utils';
 import { createLintConfig } from '../../configs/lint.config';
-import { LintMessages } from '../../helpers/messages/lint.messages';
+import { LintMessages } from '../../shared/messages/lint.messages';
 
 export const lintBinCommand = (prog: Sade) => {
   prog

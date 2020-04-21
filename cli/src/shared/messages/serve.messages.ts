@@ -1,4 +1,4 @@
-import { error, info, success, underline } from '../utils/color.utils';
+import { error, info, success, underline } from '../utils';
 import packageJson from '../../../package.json';
 
 export class ServeMessages {

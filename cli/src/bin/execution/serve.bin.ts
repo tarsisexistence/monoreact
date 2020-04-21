@@ -3,14 +3,14 @@ import path from 'path';
 import fs from 'fs-extra';
 import { watch } from 'rollup';
 
-import { logError } from '../../errors';
-import { ServeMessages } from '../../helpers/messages/serve.messages';
+import { ServeMessages } from '../../shared/messages/serve.messages';
 import { createBuildConfig } from '../../configs/build.config';
 import {
   cleanDistFolder,
-  clearConsole
-} from '../../helpers/utils/common.utils';
-import { findWorkspacePackageDir } from '../../helpers/utils/package.utils';
+  clearConsole,
+  findWorkspacePackageDir,
+  logError
+} from '../../shared/utils';
 
 export const serveBinCommand = (prog: Sade) => {
   prog

@@ -5,10 +5,10 @@ import execa from 'execa';
 
 import { PACKAGE_JSON } from '../constants/package.const';
 import {
-  logError,
   NotFoundPackageWorkspaceError,
   NotFoundWorkspaceRootError
-} from '../../errors';
+} from '../models';
+import { logError } from './error.utils';
 
 export const safePackageName = (name: string) =>
   name

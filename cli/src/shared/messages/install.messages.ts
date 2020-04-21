@@ -1,4 +1,4 @@
-import { error, info } from '../utils/color.utils';
+import { error, info } from '../utils';
 
 export class InstallMessages {
   private dependencies: string;
