@@ -12,11 +12,10 @@ import {
   prettifyPackageJson,
   setAuthorName,
   sortPackageJson,
-  error,
   info,
-  logError
+  logError,
+  findWorkspaceRootDir
 } from '../../shared/utils';
-import { NoPackageJsonError, WrongWorkspaceError } from '../../shared/models';
 import {
   featureTemplates,
   packageTemplates,
@@ -56,62 +55,25 @@ export const generateBinCommand = (prog: Sade) => {
       let packageName = pkgName;
       const {
         changePackageName,
-        wrongWorkspace,
         successfulConfigure,
         failedConfigure,
         successful,
         copy,
         failed,
-        script,
         generating,
         exists,
         invalidTemplate,
         preparedPackage,
         preparingPackage
       } = new GenerateMessages(packageName);
-      const cliConfig: Record<string, any> = {
-        template: null,
-        workspaces: null,
-        rootWorkspaceName: null,
-        license: null
-      };
-
-      // TODO: refactor with findWorkspaceRootPath
-      try {
-        const currentPath = await fs.realpath(process.cwd());
-        const packageJsonPath = path.resolve(currentPath, PACKAGE_JSON);
-
-        const {
-          name,
-          workspaces,
-          license,
-          private: isPackagePrivate
-        } = (await fs.readJSON(
-          packageJsonPath
-        )) as CLI.Package.WorkspaceRootPackageJSON;
-        const workspacePackages = findWorkspacePackages(workspaces);
-        const hasWorkspace = workspacePackages.length > 0;
-
-        if (!hasWorkspace || !isPackagePrivate) {
-          throw new WrongWorkspaceError(wrongWorkspace());
-        }
-
-        cliConfig.license = license;
-        cliConfig.rootWorkspaceName = name;
-        cliConfig.workspaces = findPackageSetupPath(workspacePackages);
-      } catch (err) {
-        if (err.isWrongWorkspace) {
-          console.log(error(err));
-        } else {
-          console.log(
-            error((new NoPackageJsonError(script()) as unknown) as any)
-          );
-          logError(err);
-        }
-
-        process.exit(1);
-      }
-
+      let packageTemplateType: CLI.Template.GenerateType;
+      const workspaceRoot = await findWorkspaceRootDir();
+      const packageJsonPath = path.resolve(workspaceRoot, PACKAGE_JSON);
+      const { name: rootName, workspaces, license } = (await fs.readJSON(
+        packageJsonPath
+      )) as CLI.Package.WorkspaceRootPackageJSON;
+      const workspacePackages = findWorkspacePackages(workspaces);
+      const packageSetupPath = findPackageSetupPath(workspacePackages);
       const bootSpinner = ora(generating());
 
       async function getProjectPath(projectPath: string): Promise<string> {
@@ -131,16 +93,16 @@ export const generateBinCommand = (prog: Sade) => {
 
         packageName = await packageNamePrompt.run();
         changePackageName(packageName);
-        const nextProjectPath = `${await fs.realpath(process.cwd())}/${
-          cliConfig.workspaces
-        }${packageName}`;
+        const nextProjectPath = `${await fs.realpath(
+          process.cwd()
+        )}/${packageSetupPath}/${packageName}`;
         return getProjectPath(nextProjectPath);
       }
 
       try {
         const realPath = await fs.realpath(process.cwd());
         const projectPath = await getProjectPath(
-          `${realPath}/${cliConfig.workspaces}/${packageName}`
+          `${realPath}/${packageSetupPath}/${packageName}`
         );
 
         const prompt = new Select({
@@ -152,25 +114,25 @@ export const generateBinCommand = (prog: Sade) => {
         });
 
         if (template) {
-          cliConfig.template = template.trim();
+          packageTemplateType = template.trim() as CLI.Template.GenerateType;
 
           if (
             !prompt.choices.find(
-              (choice: any) => choice.name === cliConfig.template
+              (choice: any) => choice.name === packageTemplateType
             )
           ) {
-            bootSpinner.fail(invalidTemplate(cliConfig.template));
-            cliConfig.template = await prompt.run();
+            bootSpinner.fail(invalidTemplate(packageTemplateType));
+            packageTemplateType = await prompt.run();
           }
         } else {
-          cliConfig.template = await prompt.run();
+          packageTemplateType = await prompt.run();
         }
 
         bootSpinner.start();
         await fs.copy(
           path.resolve(
             __dirname,
-            `../../../../templates/generate/${cliConfig.template}`
+            `../../../../templates/generate/${packageTemplateType}`
           ),
           projectPath,
           {
@@ -192,14 +154,13 @@ export const generateBinCommand = (prog: Sade) => {
         }
 
         process.chdir(projectPath);
-        const templateConfig =
-          packageTemplates[cliConfig.template as CLI.Template.GenerateType];
+        const templateConfig = packageTemplates[packageTemplateType];
         const generatePackageJson = composePackageJson(templateConfig);
         const pkgJson = generatePackageJson({
           author,
           name: packageName,
-          rootName: cliConfig.rootWorkspaceName,
-          license: cliConfig.license
+          rootName,
+          license
         });
         await fs.outputJSON(path.resolve(projectPath, PACKAGE_JSON), pkgJson);
         bootSpinner.succeed(successful());
@@ -209,9 +170,7 @@ export const generateBinCommand = (prog: Sade) => {
         process.exit(1);
       }
 
-      const { dependencies } = packageTemplates[
-        cliConfig.template as CLI.Template.GenerateType
-      ];
+      const { dependencies } = packageTemplates[packageTemplateType];
       const installSpinner = ora(preparingPackage(dependencies.sort())).start();
 
       try {

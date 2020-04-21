@@ -1,5 +1,4 @@
-import { bold, error, highlight, info, inverse, success } from '../utils';
-import { PACKAGE_JSON } from '../constants/package.const';
+import { bold, error, highlight, info, success } from '../utils';
 
 export class GenerateMessages {
   // shorthand
@@ -9,16 +8,6 @@ export class GenerateMessages {
   public changePackageName = (newPackageName: string): void => {
     this.packageName = newPackageName;
   };
-
-  script = () => inverse(` generate ${this.packageName} `);
-
-  wrongWorkspace = () => `
-    Make sure you run the script ${this.script()} from the workspace root
-
-    The workspace root ${PACKAGE_JSON} should have:
-        private: false;
-        workspaces: ['packages/*']
-          `;
 
   copy = () => `${this.packageName}-copy`;
 

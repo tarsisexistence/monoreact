@@ -1,5 +1,5 @@
 import { highlight } from '../utils';
 
 export const TITLE_CLI = highlight(`
-  RE SPACE // CLI
+  R E  -  S P A C E
     `);
