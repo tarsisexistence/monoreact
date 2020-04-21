@@ -87,7 +87,7 @@
     "parcel": "1.12.4",
     "postcss-nested": "4.2.1",
     "postcss-simple-vars": "5.0.2",
-    "prettier": "2.0.2",
+    "prettier": "2.0.5",
     "prop-types": "15.7.2",
     "react-is": "16.13.1",
     "rollup": "2.7.1",
