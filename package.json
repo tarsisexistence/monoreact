@@ -17,9 +17,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "lint": "re-space lint src/**/*.{js,jsx,ts,tsx}",
-    "lint:css": "stylelint src/**/*.{css,sass,scss}",
+    "stylelint": "stylelint src/**/*.{css,sass,scss}",
     "lint:all": "yarn lint:esm packages/*/src/**/*.{js,jsx,ts,tsx} cli/src/**/*.{js,jsx,ts,tsx}",
-    "lint:css:all": "yarn lint:css packages/*/src/**/*.{css,sass,scss}",
+    "stylelint:all": "yarn stylelint packages/*/src/**/*.{css,sass,scss}",
     "sort:deps": "sort-package-json",
     "cpd": "jscpd **/src"
   },
