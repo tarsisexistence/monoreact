@@ -3,7 +3,7 @@ import path from 'path';
 import fs from 'fs-extra';
 import { watch } from 'rollup';
 
-import { ServeMessages } from '../../shared/messages/serve.messages';
+import { ServeMessages } from '../../shared/messages';
 import { createBuildConfig } from '../../configs/build.config';
 import {
   cleanDistFolder,

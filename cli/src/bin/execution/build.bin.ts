@@ -3,10 +3,9 @@ import path from 'path';
 import fs from 'fs-extra';
 import { rollup } from 'rollup';
 
-import { BuildMessages } from '../../shared/messages/build.messages';
+import { BuildMessages } from '../../shared/messages';
 import { createBuildConfig } from '../../configs/build.config';
-import { cleanDistFolder } from '../../shared/utils';
-import { findWorkspacePackageDir } from '../../shared/utils';
+import { findWorkspacePackageDir, cleanDistFolder } from '../../shared/utils';
 
 export const buildBinCommand = (prog: Sade) => {
   prog

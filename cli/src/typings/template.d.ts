@@ -1,6 +1,6 @@
 declare namespace CLI.Template {
-  type Package = 'basic' | 'react';
-  type Feature = 'docz' | 'playground';
+  type GenerateType = 'basic' | 'react';
+  type AddType = 'docz' | 'playground';
 
   interface GenerateOptions {
     dependencies: string[];

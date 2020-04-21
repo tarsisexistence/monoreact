@@ -68,14 +68,14 @@ export const addBinCommand = (prog: Sade) => {
           path.resolve(__dirname, `../../../../templates/add/${featureName}`),
           path.resolve(
             currentPath,
-            featureTemplates[featureName as CLI.Template.Feature].path
+            featureTemplates[featureName as CLI.Template.AddType].path
           ),
           { overwrite: false, errorOnExist: true }
         );
 
         const updatedScripts = {
           ...packageJson.scripts,
-          ...featureTemplates[featureName as CLI.Template.Feature].scripts
+          ...featureTemplates[featureName as CLI.Template.AddType].scripts
         };
         await fs.outputJSON(packageJsonPath, {
           ...packageJson,

@@ -8,7 +8,7 @@ import {
   findWorkspaceRootDir
 } from '../../shared/utils';
 import { createLintConfig } from '../../configs/lint.config';
-import { LintMessages } from '../../shared/messages/lint.messages';
+import { LintMessages } from '../../shared/messages';
 
 export const lintBinCommand = (prog: Sade) => {
   prog

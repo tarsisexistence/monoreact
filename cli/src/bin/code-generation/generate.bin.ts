@@ -193,7 +193,7 @@ export const generateBinCommand = (prog: Sade) => {
 
         process.chdir(projectPath);
         const templateConfig =
-          packageTemplates[cliConfig.template as CLI.Template.Package];
+          packageTemplates[cliConfig.template as CLI.Template.GenerateType];
         const generatePackageJson = composePackageJson(templateConfig);
         const pkgJson = generatePackageJson({
           author,
@@ -210,7 +210,7 @@ export const generateBinCommand = (prog: Sade) => {
       }
 
       const { dependencies } = packageTemplates[
-        cliConfig.template as CLI.Template.Package
+        cliConfig.template as CLI.Template.GenerateType
       ];
       const installSpinner = ora(preparingPackage(dependencies.sort())).start();
 

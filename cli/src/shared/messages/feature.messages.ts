@@ -4,7 +4,7 @@ import { PACKAGE_JSON } from '../constants/package.const';
 
 export class FeatureMessages {
   // eslint-disable-next-line no-empty-function
-  constructor(public featureName: string) {}
+  constructor(private featureName: string) {}
 
   script = () => inverse(` add ${this.featureName} `);
 

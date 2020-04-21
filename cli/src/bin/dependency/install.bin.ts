@@ -2,7 +2,7 @@ import execa from 'execa';
 import { Sade } from 'sade';
 import ora from 'ora';
 
-import { InstallMessages } from '../../shared/messages/install.messages';
+import { InstallMessages } from '../../shared/messages';
 import {
   findWorkspacePackageDir,
   findWorkspaceRootDir,
