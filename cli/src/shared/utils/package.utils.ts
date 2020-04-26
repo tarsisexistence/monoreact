@@ -54,9 +54,9 @@ export function setAuthorName(author: CLI.Package.Author): void {
 export const sortPackageJson = async () => execa('sort-package-json');
 
 export const prettifyPackageJson = async () =>
-  execa(`prettier --write ${PACKAGE_JSON}`);
+  execa('prettier', ['--write', PACKAGE_JSON]);
 
-export const buildPackage = async () => execa('yarn build');
+export const buildPackage = async () => execa('yarn', ['build']);
 
 export const findWorkspacePackages = (
   workspaces: YarnWorkspaces.Packages | YarnWorkspaces.Config | undefined
