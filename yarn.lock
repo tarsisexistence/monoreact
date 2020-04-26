@@ -20419,10 +20419,10 @@ yargs@~3.10.0:
     decamelize "^1.0.0"
     window-size "0.1.0"
 
-yarn@1.18.0:
-  version "1.18.0"
-  resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.18.0.tgz#9ddfb3adb06c405c960f2d424e131df523c0a2d9"
-  integrity sha512-2xKaLeLQPXd4LBvkfeCXpua2oMLi5E4PACKqDw4U62KzY6qoVgi8iZdXWYLXFK4AExjP9GOxicwgySPoERONPA==
+yarn@1.22.0:
+  version "1.22.0"
+  resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.22.0.tgz#acf82906e36bcccd1ccab1cfb73b87509667c881"
+  integrity sha512-KMHP/Jq53jZKTY9iTUt3dIVl/be6UPs2INo96+BnZHLKxYNTfwMmlgHTaMWyGZoO74RI4AIFvnWhYrXq2USJkg==
 
 yeast@0.1.2:
   version "0.1.2"
