@@ -83,7 +83,6 @@ export const generateBinCommand = (prog: Sade) => {
           return projectPath;
         }
 
-        console.log(projectPath);
         bootSpinner.fail(failed());
         const packageNamePrompt = new Input({
           message: exists(),
@@ -93,16 +92,13 @@ export const generateBinCommand = (prog: Sade) => {
 
         packageName = await packageNamePrompt.run();
         changePackageName(packageName);
-        const nextProjectPath = `${await fs.realpath(
-          process.cwd()
-        )}/${packageSetupPath}/${packageName}`;
+        const nextProjectPath = `${workspaceRoot}/${packageSetupPath}/${packageName}`;
         return getProjectPath(nextProjectPath);
       }
 
       try {
-        const realPath = await fs.realpath(process.cwd());
         const projectPath = await getProjectPath(
-          `${realPath}/${packageSetupPath}/${packageName}`
+          `${workspaceRoot}/${packageSetupPath}/${packageName}`
         );
 
         const prompt = new Select({
