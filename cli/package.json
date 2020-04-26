@@ -24,14 +24,14 @@
     "@types/fs-extra": "8.1.0",
     "@types/ora": "3.2.0",
     "@types/sade": "1.6.0",
-    "@types/shelljs": "0.8.6",
+    "@types/shelljs": "0.8.7",
     "chalk": "4.0.0",
     "enquirer": "2.3.4",
     "execa": "4.0.0",
     "fs-extra": "9.0.0",
     "ora": "4.0.4",
     "sade": "1.7.3",
-    "shelljs": "0.8.3"
+    "shelljs": "0.8.4"
   },
   "publishConfig": {
     "access": "public"
