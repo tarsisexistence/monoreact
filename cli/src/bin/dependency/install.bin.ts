@@ -35,7 +35,11 @@ export const installBinCommand = (prog: Sade) => {
       installSpinner.start();
       try {
         const workspacePackage = await findWorkspacePackageDir(true);
-        await execa(`yarn add ${dependencies.join(' ')}`, ['--peer'], {
+        const installPackageArgs = ['add', '--peer'];
+        for (const dependency of dependencies) {
+          installPackageArgs.push(dependency);
+        }
+        await execa('yarn', installPackageArgs, {
           cwd: workspacePackage
         });
 
@@ -47,13 +51,19 @@ export const installBinCommand = (prog: Sade) => {
 
       try {
         const workspaceRoot = await findWorkspaceRootDir(true);
-        await execa(
-          `yarn add ${dependencies.join(' ')} ${dependencyFlag}`,
-          ['--exact', '-W'],
-          {
-            cwd: workspaceRoot
-          }
-        );
+        const installRootArgs = ['add', '--exact', '-W'];
+
+        if (dependencyFlag.length > 0) {
+          installRootArgs.push(dependencyFlag);
+        }
+
+        for (const dependency of dependencies) {
+          installRootArgs.push(dependency);
+        }
+
+        await execa('yarn', installRootArgs, {
+          cwd: workspaceRoot
+        });
         installSpinner.succeed(successful());
       } catch (err) {
         installSpinner.fail(failed());
