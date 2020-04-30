@@ -4,7 +4,7 @@ export const BASE_PACKAGE_SCRIPTS: CLI.Package.Scripts = {
   start: 're-space serve',
   build: 're-space build',
   test: 're-space test --passWithNoTests',
-  lint: 're-space lint src/**/*.{js,jsx,ts,tsx}'
+  lint: "re-space lint 'src/**/*.{js,jsx,ts,tsx}'"
 } as const;
 
 export const REACT_PACKAGE_SCRIPTS: CLI.Package.Scripts = {
@@ -31,8 +31,8 @@ export const WORKSPACE_PACKAGE_JSON: Omit<
   workspace: true,
   private: false,
   version: '0.1.0',
-  module: 'dist/bundle.esm.js',
-  'jsnext:main': 'dist/bundle.esm.js',
+  module: 'dist/bundle.js',
+  'jsnext:main': 'dist/bundle.js',
   types: 'dist/publicApi.d.ts',
   source: 'src/publicApi.ts',
   publishConfig: {

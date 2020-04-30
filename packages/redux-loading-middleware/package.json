@@ -8,13 +8,13 @@
     "name": "Maksym Tarsis",
     "url": "https://github.com/maktarsis"
   },
-  "module": "dist/bundle.esm.js",
+  "module": "dist/bundle.js",
   "source": "src/publicApi.ts",
-  "jsnext:main": "dist/bundle.esm.js",
+  "jsnext:main": "dist/bundle.js",
   "types": "dist/publicApi.d.ts",
   "scripts": {
     "build": "re-space build",
-    "lint": "re-space lint src/**/*.ts",
+    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "start": "re-space serve",
     "test": "re-space test --passWithNoTests"
   },
