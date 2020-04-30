@@ -1,0 +1,28 @@
+{
+  "name": "redux-loading-middleware",
+  "version": "0.1.0",
+  "private": false,
+  "license": "MIT",
+  "author": {
+    "email": "tarsis.maksym@gmail.com",
+    "name": "Maksym Tarsis",
+    "url": "https://github.com/maktarsis"
+  },
+  "module": "dist/bundle.esm.js",
+  "source": "src/publicApi.ts",
+  "jsnext:main": "dist/bundle.esm.js",
+  "types": "dist/publicApi.d.ts",
+  "scripts": {
+    "build": "re-space build",
+    "lint": "re-space lint src/**/*.ts",
+    "start": "re-space serve",
+    "test": "re-space test --passWithNoTests"
+  },
+  "peerDependencies": {
+    "redux": "^4.0.5"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "workspace": true
+}
