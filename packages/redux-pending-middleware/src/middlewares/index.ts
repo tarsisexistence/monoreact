@@ -23,7 +23,7 @@ export const reduxPendingMiddleware = (
   store: MiddlewareAPI = {} as MiddlewareAPI
 ): ((next: Dispatch) => (action: AnyAction) => AnyAction) =>
   createPendingMiddleware({
-    thunk: true,
-    toolkit: false
+    thunk: false,
+    toolkit: true
     // saga: false
   })(store);
