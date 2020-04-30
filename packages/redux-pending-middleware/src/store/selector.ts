@@ -1,9 +1,4 @@
 import { REDUX_PENDING_MIDDLEWARE } from '../helpers/const';
 
-export function selectPending<TStore>(
-  store: TStore & {
-    [REDUX_PENDING_MIDDLEWARE]: RPM.State;
-  }
-): boolean {
-  return store[REDUX_PENDING_MIDDLEWARE].isPending;
-}
+export const selectPending = <TState>(state: TState): boolean =>
+  (state as any)[REDUX_PENDING_MIDDLEWARE].isPending;
