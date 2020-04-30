@@ -2,6 +2,7 @@ import { Sade } from 'sade';
 import execa from 'execa';
 
 import { findWorkspaceRootDir } from '../../shared/utils';
+import { finished } from './submodules.helpers';
 
 export function submodulesCheckoutBinCommand(prog: Sade): void {
   prog
@@ -16,7 +17,7 @@ export function submodulesCheckoutBinCommand(prog: Sade): void {
     .action(async (branch: string, { self }: CLI.Options.Submodules) => {
       const workspaceRootPath = await findWorkspaceRootDir();
       const cmd = 'checkout';
-      await execa(
+      const { exitCode: submodulesExitCode } = await execa(
         'git',
         ['submodule', 'foreach', 'git checkout', '-B', branch],
         {
@@ -24,16 +25,33 @@ export function submodulesCheckoutBinCommand(prog: Sade): void {
           cwd: workspaceRootPath
         }
       );
-      console.log(`Finished 'submodules' ${cmd}`);
+
+      console.log(
+        finished({
+          cmd,
+          code: submodulesExitCode,
+          type: 'submodules'
+        })
+      );
 
       if (self) {
         console.log(`
 Entering 'core'`);
-        await execa('git', ['checkout', '-B', branch], {
-          stdio: [process.stdin, process.stdout, process.stderr],
-          cwd: workspaceRootPath
-        });
-        console.log(`Finished 'core' ${cmd}`);
+        const { exitCode: coreExitCode } = await execa(
+          'git',
+          ['checkout', '-B', branch],
+          {
+            stdio: [process.stdin, process.stdout, process.stderr],
+            cwd: workspaceRootPath
+          }
+        );
+        console.log(
+          finished({
+            cmd,
+            code: coreExitCode,
+            type: 'core'
+          })
+        );
       }
     });
 }
