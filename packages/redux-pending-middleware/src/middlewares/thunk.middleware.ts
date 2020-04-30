@@ -2,7 +2,7 @@ import { AnyAction, Dispatch, MiddlewareAPI } from 'redux';
 
 import { isPromise } from '../helpers/utils';
 
-export const loadingThunkMiddleware = ({ dispatch }: MiddlewareAPI) => (
+export const pendingThunkMiddleware = ({ dispatch }: MiddlewareAPI) => (
   next: Dispatch
 ) => (action: AnyAction): AnyAction => {
   let promise;

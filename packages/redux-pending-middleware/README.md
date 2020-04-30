@@ -1,6 +1,6 @@
-# Redux Loading Middleware
+# Redux Pending Middleware
 
-Redux Loading Middleware is a unique helper which tracks your asynchronous [Redux](http://redux.js.org) actions.
+A redux middleware which handles global loading by tracking your asynchronous [Redux](http://redux.js.org) actions.
 
 <br/>
 
