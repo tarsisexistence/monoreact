@@ -1,6 +1,6 @@
 # Redux Pending Middleware
 
-A redux middleware which handles global loading by tracking your asynchronous [Redux](http://redux.js.org) actions.
+A redux middleware handles global state of loading by tracking your asynchronous [Redux](http://redux.js.org) actions.
 
 <br/>
 
@@ -11,8 +11,6 @@ A redux middleware which handles global loading by tracking your asynchronous [R
 ### Maintainers
 
 Please reach me out if you have any questions or comments.
-
-Patrick Burtchaell (pburtchaell):
 
 - [Twitter](https://twitter.com/maktarsis)
 - [GitHub](https://github.com/maktarsis)
