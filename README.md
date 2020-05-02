@@ -2,6 +2,17 @@
 
 <br/>
 
+### How to start this?
+
+> Project uses git submodules
+1. git clone --recursive https://github.com/maktarsis/re-space.git
+2. npx yarn install (__you can omit "npx" if you have yarn globally__)
+3. yarn workspaces run build
+4. yarn start
+
+<br/>
+
+
 ### This is an advanced workspace implementation for react applications
 
 **Re-space** includes the following features:
