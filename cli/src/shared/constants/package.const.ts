@@ -4,12 +4,12 @@ export const BASE_PACKAGE_SCRIPTS: CLI.Package.Scripts = {
   start: 're-space serve',
   build: 're-space build',
   test: 're-space test --passWithNoTests',
-  lint: "re-space lint 'src/**/*.{js,jsx,ts,tsx}'"
+  lint: 're-space lint "src/**/*.{js,jsx,ts,tsx}"'
 } as const;
 
 export const REACT_PACKAGE_SCRIPTS: CLI.Package.Scripts = {
   ...BASE_PACKAGE_SCRIPTS,
-  stylelint: 'stylelint src/**/*.{css,sass,scss}'
+  stylelint: 'stylelint "src/**/*.{css,sass,scss}"'
 } as const;
 
 export const REACT_TEMPLATE_DEPENDENCIES: Pick<

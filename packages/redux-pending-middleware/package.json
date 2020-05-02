@@ -14,7 +14,7 @@
   "types": "dist/publicApi.d.ts",
   "scripts": {
     "build": "re-space build",
-    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "start": "re-space serve",
     "test": "re-space test --passWithNoTests"
   },
