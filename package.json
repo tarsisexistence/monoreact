@@ -94,7 +94,7 @@
     "rollup-plugin-analyzer": "3.2.2",
     "rollup-plugin-babel": "4.4.0",
     "rollup-plugin-eslint": "7.0.0",
-    "rollup-plugin-filesize": "8.0.1",
+    "rollup-plugin-filesize": "8.0.2",
     "rollup-plugin-peer-deps-external": "2.2.2",
     "rollup-plugin-postcss": "3.1.1",
     "rollup-plugin-progress": "1.1.1",
