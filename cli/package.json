@@ -20,9 +20,7 @@
   },
   "devDependencies": {
     "@types/eslint": "6.8.0",
-    "@types/execa": "2.0.0",
     "@types/fs-extra": "8.1.0",
-    "@types/ora": "3.2.0",
     "@types/sade": "1.6.0",
     "@types/shelljs": "0.8.7",
     "chalk": "4.0.0",
