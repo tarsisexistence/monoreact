@@ -8,7 +8,7 @@ import beep from '@rollup/plugin-beep';
 import { InputOptions, OutputOptions } from 'rollup';
 import typescript2 from 'rollup-plugin-typescript2';
 import external from 'rollup-plugin-peer-deps-external';
-import babel from 'rollup-plugin-babel';
+import babel from '@rollup/plugin-babel';
 import postcss from 'rollup-plugin-postcss';
 import stripCode from 'rollup-plugin-strip-code';
 import filesize from 'rollup-plugin-filesize';
@@ -37,7 +37,7 @@ export const createBuildConfig = (opts: {
     progress({ clearLine: true }),
     opts.runEslint && eslint(),
     opts.displayFilesize && filesize(),
-    opts.useClosure && closure(),
+     closure(),
     json(),
     url(),
     image(),
@@ -61,12 +61,17 @@ export const createBuildConfig = (opts: {
       use: ['sass']
     }),
     babel({
+      babelHelpers: 'runtime',
+      skipPreflightCheck: true,
       sourceMaps: true,
       inputSourceMap: true,
       babelrc: false,
       extensions: ['.js', 'jsx', '.ts', '.tsx'],
       presets: ['@babel/preset-env', '@babel/preset-react'],
-      plugins: ['@babel/proposal-class-properties'],
+      plugins: [
+        '@babel/plugin-transform-runtime',
+        '@babel/proposal-class-properties'
+      ],
       exclude: /\/node_modules\//
     }),
     stripCode({

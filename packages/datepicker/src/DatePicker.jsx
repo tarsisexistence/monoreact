@@ -7,7 +7,6 @@ import times from 'lodash.times';
 
 import styles from './DatePicker.css';
 
-console.log(styles);
 const labels = ['Su', 'Mo', 'Tu', 'Wd', 'Th', 'Fr', 'Sa'];
 
 const DayCell = ({

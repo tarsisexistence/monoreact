@@ -1,7 +1,9 @@
-declare module 'enquirer';
+declare module '@ampproject/rollup-plugin-closure-compiler';
 declare module '@rollup/plugin-commonjs';
 declare module '@rollup/plugin-url';
 declare module '@rollup/plugin-image';
+declare module '@rollup/plugin-beep';
+declare module '@rollup/plugin-babel';
 declare module 'rollup-plugin-peer-deps-external';
 declare module 'rollup-plugin-babel';
 declare module 'rollup-plugin-postcss';
@@ -15,4 +17,4 @@ declare module 'rollup-plugin-size-snapshot';
 declare module 'postcss-simple-vars';
 declare module 'cssnano';
 declare module 'autoprefixer';
-declare module '@ampproject/rollup-plugin-closure-compiler';
+declare module 'enquirer';
