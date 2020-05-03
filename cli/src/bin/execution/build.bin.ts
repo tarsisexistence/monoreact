@@ -25,7 +25,8 @@ export const buildBinCommand = (prog: Sade) => {
         source,
         module,
         displayFilesize: true,
-        useClosure: true
+        runEslint: true,
+        useClosure: false
       });
       await cleanDistFolder();
       console.log(bundling({ source, module }));

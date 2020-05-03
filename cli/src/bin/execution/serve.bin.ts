@@ -37,7 +37,8 @@ export const serveBinCommand = (prog: Sade) => {
         source,
         module,
         displayFilesize: false,
-        useClosure: true
+        runEslint: false,
+        useClosure: false
       });
       let isFirstChange = true;
 

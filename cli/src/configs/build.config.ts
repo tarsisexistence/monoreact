@@ -23,6 +23,7 @@ export const createBuildConfig = (opts: {
   module: string;
   displayFilesize: boolean;
   useClosure: boolean;
+  runEslint: boolean;
 }): InputOptions & { output: OutputOptions } => ({
   input: opts.source,
   output: {
@@ -32,7 +33,7 @@ export const createBuildConfig = (opts: {
   },
   plugins: [
     progress({ clearLine: true }),
-    eslint(),
+    opts.runEslint && eslint(),
     opts.displayFilesize && filesize(),
     opts.useClosure && closure(),
     json(),
