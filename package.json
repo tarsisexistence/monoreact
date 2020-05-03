@@ -44,6 +44,7 @@
     "@babel/preset-react": "7.9.4",
     "@re-space/cli": "*",
     "@re-space/datepicker": "*",
+    "@rollup/plugin-beep": "0.2.0",
     "@rollup/plugin-commonjs": "11.1.0",
     "@rollup/plugin-image": "2.0.4",
     "@rollup/plugin-json": "4.0.2",

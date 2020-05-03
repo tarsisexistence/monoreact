@@ -4,6 +4,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import url from '@rollup/plugin-url';
 import image from '@rollup/plugin-image';
 import json from '@rollup/plugin-json';
+import beep from '@rollup/plugin-beep';
 import { InputOptions, OutputOptions } from 'rollup';
 import typescript2 from 'rollup-plugin-typescript2';
 import external from 'rollup-plugin-peer-deps-external';
@@ -32,6 +33,7 @@ export const createBuildConfig = (opts: {
     sourcemap: true
   },
   plugins: [
+    beep(),
     progress({ clearLine: true }),
     opts.runEslint && eslint(),
     opts.displayFilesize && filesize(),
