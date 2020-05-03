@@ -1,0 +1,30 @@
+{
+  "name": "@re-space/datepicker",
+  "version": "0.1.0",
+  "private": false,
+  "license": "MIT",
+  "author": "maksym.tarsis",
+  "module": "dist/bundle.js",
+  "source": "src/publicApi.ts",
+  "jsnext:main": "dist/bundle.js",
+  "types": "dist/publicApi.d.ts",
+  "scripts": {
+    "build": "re-space build",
+    "lint": "re-space lint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "start": "re-space serve",
+    "stylelint": "stylelint \"src/**/*.{css,sass,scss}\"",
+    "test": "re-space test --passWithNoTests"
+  },
+  "peerDependencies": {
+    "dayjs": "^1.8.26",
+    "lodash.times": "^4.3.2",
+    "prop-types": "^15.7.2",
+    "react": "*",
+    "react-dom": "*",
+    "@babel/plugin-proposal-class-properties": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "workspace": true
+}

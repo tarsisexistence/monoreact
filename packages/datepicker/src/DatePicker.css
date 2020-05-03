@@ -1,0 +1,37 @@
+.calendar {
+  border: 1px solid #bababa;
+}
+
+.calendar th {
+  border-bottom: 1px solid #ccc;
+  padding: 0.5rem 0.5rem;
+}
+
+.calendar td {
+  border-bottom: 1px solid #bababa;
+  border-right: 1px solid #bababa;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.calendar td.day.selected {
+  color: green;
+}
+
+.calendar td.day.today {
+  font-weight: bold;
+}
+
+.calendar td:hover {
+  background-color: #ccc;
+}
+
+.calendar td.day[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  color: #bababa;
+}
+
+.calendar td:last-child {
+  border-right: 0;
+}
