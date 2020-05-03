@@ -2,7 +2,7 @@
 
 <br/>
 
-### How to start this?
+### Quickstart
 
 > Project uses git submodules
 1. git clone --recursive https://github.com/maktarsis/re-space.git

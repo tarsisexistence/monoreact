@@ -63,6 +63,7 @@ export const createBuildConfig = (opts: {
       babelrc: false,
       extensions: ['.js', 'jsx', '.ts', '.tsx'],
       presets: ['@babel/preset-env', '@babel/preset-react'],
+      plugins: ['@babel/proposal-class-properties'],
       exclude: /\/node_modules\//
     }),
     stripCode({
