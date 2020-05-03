@@ -37,7 +37,7 @@ export const createBuildConfig = (opts: {
     progress({ clearLine: true }),
     opts.runEslint && eslint(),
     opts.displayFilesize && filesize(),
-     closure(),
+    opts.useClosure && closure(),
     json(),
     url(),
     image(),
@@ -63,8 +63,6 @@ export const createBuildConfig = (opts: {
     babel({
       babelHelpers: 'runtime',
       skipPreflightCheck: true,
-      sourceMaps: true,
-      inputSourceMap: true,
       babelrc: false,
       extensions: ['.js', 'jsx', '.ts', '.tsx'],
       presets: ['@babel/preset-env', '@babel/preset-react'],
