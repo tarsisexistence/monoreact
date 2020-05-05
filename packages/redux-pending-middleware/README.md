@@ -1,6 +1,6 @@
 # Redux Pending Middleware
 
-A redux [middleware](https://redux.js.org/advanced/middleware) which monitors your asynchronous [redux](http://redux.js.org) actions (effects) and informs about the progress through selector function.
+A redux [middleware](https://redux.js.org/advanced/middleware) which tracks your asynchronous [redux](http://redux.js.org) actions (effects) and informs about the progress through selector function.
 
 <br/>
 

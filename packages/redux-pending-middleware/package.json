@@ -1,6 +1,6 @@
 {
   "name": "redux-pending-middleware",
-  "description": "A redux middleware which monitors your asynchronous Redux actions (effects) and informs about the progress through selector function",
+  "description": "A redux middleware which tracks your asynchronous Redux actions (effects) and informs about the progress through selector function",
   "version": "0.4.0",
   "private": false,
   "license": "MIT",
