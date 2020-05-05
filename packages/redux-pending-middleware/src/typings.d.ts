@@ -1,10 +1,10 @@
 declare namespace RPM {
-  type EffectHandler = 'thunk' | 'toolkit';
-  // | 'saga'
-
-  type Config = Record<EffectHandler, boolean>;
-
   interface State {
-    isPending: boolean;
+    effectsEntity: Record<string, boolean>;
+  }
+
+  interface PayloadAction<T, P> {
+    type: T;
+    payload: P;
   }
 }

@@ -2,27 +2,36 @@ import { Action, AnyAction, Reducer, ReducersMapObject } from 'redux';
 
 import {
   REDUX_PENDING_MIDDLEWARE,
-  REDUX_PENDING_MIDDLEWARE_FINISH_REQUEST,
-  REDUX_PENDING_MIDDLEWARE_START_REQUEST
+  REDUX_PENDING_MIDDLEWARE_PATCH_EFFECT,
 } from '../helpers/const';
 
-const pendingReducer: Reducer<RPM.State> = (
-  state: RPM.State = { isPending: false },
-  action: Action<
-    | typeof REDUX_PENDING_MIDDLEWARE_START_REQUEST
-    | typeof REDUX_PENDING_MIDDLEWARE_FINISH_REQUEST
+const pendingReducer: Reducer<
+  RPM.State,
+  RPM.PayloadAction<typeof REDUX_PENDING_MIDDLEWARE_PATCH_EFFECT, string>
+> = (
+  state: RPM.State = { effectsEntity: {} },
+  action: RPM.PayloadAction<
+    typeof REDUX_PENDING_MIDDLEWARE_PATCH_EFFECT,
+    string
   >
 ): RPM.State => {
-  switch (action.type) {
-    case REDUX_PENDING_MIDDLEWARE_START_REQUEST:
-      return { ...state, isPending: true };
+  if (action.type === REDUX_PENDING_MIDDLEWARE_PATCH_EFFECT) {
+    const { effectsEntity } = state;
+    const { payload: effectId } = action;
 
-    case REDUX_PENDING_MIDDLEWARE_FINISH_REQUEST:
-      return { ...state, isPending: false };
+    let updatedEffectsEntity;
 
-    default:
-      return state;
+    if (effectsEntity[effectId] === undefined) {
+      updatedEffectsEntity = { ...effectsEntity, [effectId]: true };
+    } else {
+      const { [effectId]: oldEffectId, ...restEffectsId } = effectsEntity;
+      updatedEffectsEntity = restEffectsId;
+    }
+
+    return { ...state, effectsEntity: updatedEffectsEntity };
   }
+
+  return state;
 };
 
 export function insertPending<S, A extends Action = AnyAction>(

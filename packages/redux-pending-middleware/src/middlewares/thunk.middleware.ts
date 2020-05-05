@@ -1,7 +1,12 @@
+/**
+ * some code was borrowed from this:
+ * https://github.com/pburtchaell/redux-promise-middleware/blob/master/src/index.js
+ */
 import { AnyAction, Dispatch, MiddlewareAPI } from 'redux';
 
 import { isPromise } from '../helpers/utils';
-
+import { patchEffect } from '../store/actions';
+import { nanoid } from '../helpers/nanoid.utils';
 export const pendingThunkMiddleware = ({ dispatch }: MiddlewareAPI) => (
   next: Dispatch
 ) => (action: AnyAction): AnyAction => {
@@ -16,6 +21,7 @@ export const pendingThunkMiddleware = ({ dispatch }: MiddlewareAPI) => (
     } else if (isPromise(payload.promise)) {
       promise = payload.promise;
       data = payload.data;
+      // when the promise returned by async function
     } else if (
       typeof payload === 'function' ||
       typeof payload.promise === 'function'
@@ -26,7 +32,7 @@ export const pendingThunkMiddleware = ({ dispatch }: MiddlewareAPI) => (
       if (!isPromise(promise)) {
         return next({
           ...action,
-          payload: promise
+          payload: promise,
         });
       }
     } else {
@@ -37,6 +43,8 @@ export const pendingThunkMiddleware = ({ dispatch }: MiddlewareAPI) => (
   }
 
   const { type, meta } = action.type;
+  const effectId = nanoid();
+
   const getAction = (newPayload: any) => {
     const nextAction: AnyAction = { type };
 
@@ -53,16 +61,19 @@ export const pendingThunkMiddleware = ({ dispatch }: MiddlewareAPI) => (
   const handleReject = (reason: any) => {
     const rejectedAction = getAction(reason);
     dispatch(rejectedAction);
+    dispatch(patchEffect(effectId));
 
     throw reason;
   };
   const handleFulfill = (value = null) => {
     const resolvedAction = getAction(value);
     dispatch(resolvedAction);
+    dispatch(patchEffect(effectId));
 
     return { value, action: resolvedAction };
   };
 
+  dispatch(patchEffect(effectId));
   next({
     type,
     // Include payload (for optimistic updates) if it is defined.
