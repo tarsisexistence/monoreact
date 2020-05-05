@@ -33,7 +33,7 @@ export const pendingPromiseMiddleware = ({ dispatch }: MiddlewareAPI) => (
       if (!isPromise(promise)) {
         return next({
           ...action,
-          payload: promise,
+          payload: promise
         });
       }
     } else {
@@ -48,7 +48,7 @@ export const pendingPromiseMiddleware = ({ dispatch }: MiddlewareAPI) => (
 
   const getAction = (newPayload: any, isRejected: boolean): AnyAction => {
     const nextAction: AnyAction = {
-      type: isRejected ? `${type}_REJECTED` : `${type}_FULFILLED`,
+      type: isRejected ? `${type}_REJECTED` : `${type}_FULFILLED`
     };
 
     if (newPayload !== null && typeof newPayload !== 'undefined') {
@@ -86,7 +86,7 @@ export const pendingPromiseMiddleware = ({ dispatch }: MiddlewareAPI) => (
     // Include payload (for optimistic updates) if it is defined.
     ...(data !== undefined ? { payload: data } : {}),
     // Include meta data if it is defined.
-    ...(meta !== undefined ? { meta } : {}),
+    ...(meta !== undefined ? { meta } : {})
   });
 
   return promise.then(handleFulfill, handleReject);
