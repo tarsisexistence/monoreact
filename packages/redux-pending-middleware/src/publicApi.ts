@@ -4,5 +4,5 @@ export { insertPending } from './store/reducer';
 export {
   attachPendingToWorker /*pendingSagaMiddleware as reduxSagaPendingMiddleware*/
 } from './middlewares/saga.middleware';
-export { pendingThunkMiddleware as reduxThunkPendingMiddleware } from './middlewares/thunk.middleware';
-export { pendingToolkitMiddleware as reduxToolkitPendingMiddleware } from './middlewares/toolkit.middleware';
+export { pendingPromiseMiddleware as reduxPendingPromiseMiddleware } from './middlewares/promise.middleware';
+export { pendingToolkitMiddleware as reduxPendingToolkitMiddleware } from './middlewares/toolkit.middleware';

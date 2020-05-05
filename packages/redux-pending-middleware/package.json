@@ -1,6 +1,6 @@
 {
   "name": "redux-pending-middleware",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": false,
   "license": "MIT",
   "author": {
@@ -13,10 +13,10 @@
   "jsnext:main": "dist/bundle.js",
   "types": "dist/publicApi.d.ts",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "build": "re-space build",
     "start": "re-space serve",
-    "test": "re-space test --passWithNoTests"
+    "test": "re-space test --passWithNoTests",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "peerDependencies": {
     "redux": "^4.0.5"

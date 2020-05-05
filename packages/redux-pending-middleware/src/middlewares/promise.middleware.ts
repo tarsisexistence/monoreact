@@ -7,7 +7,8 @@ import { AnyAction, Dispatch, MiddlewareAPI } from 'redux';
 import { isPromise } from '../helpers/utils';
 import { patchEffect } from '../store/actions';
 import { nanoid } from '../helpers/nanoid.utils';
-export const pendingThunkMiddleware = ({ dispatch }: MiddlewareAPI) => (
+
+export const pendingPromiseMiddleware = ({ dispatch }: MiddlewareAPI) => (
   next: Dispatch
 ) => (action: AnyAction): AnyAction => {
   let promise;
@@ -32,7 +33,7 @@ export const pendingThunkMiddleware = ({ dispatch }: MiddlewareAPI) => (
       if (!isPromise(promise)) {
         return next({
           ...action,
-          payload: promise,
+          payload: promise
         });
       }
     } else {

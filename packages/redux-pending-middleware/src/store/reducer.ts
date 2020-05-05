@@ -2,7 +2,7 @@ import { Action, AnyAction, Reducer, ReducersMapObject } from 'redux';
 
 import {
   REDUX_PENDING_MIDDLEWARE,
-  REDUX_PENDING_MIDDLEWARE_PATCH_EFFECT,
+  REDUX_PENDING_MIDDLEWARE_PATCH_EFFECT
 } from '../helpers/const';
 
 const pendingReducer: Reducer<
