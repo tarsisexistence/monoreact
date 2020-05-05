@@ -1,4 +1,4 @@
-// Borrowed from https://github.com/ai/nanoid/tree/master/non-secure
+// Borrowed from https://github.com/ai/nanoid/tree/master/non-secure and @reduxjs/toolkit
 // This alphabet uses a-z A-Z 0-9 _- symbols.
 // Symbols are generated for smaller size.
 // -_zyxwvutsrqponmlkjihgfedcba9876543210ZYXWVUTSRQPONMLKJIHGFEDCBA

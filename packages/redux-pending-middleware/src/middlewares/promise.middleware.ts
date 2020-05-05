@@ -33,7 +33,7 @@ export const pendingPromiseMiddleware = ({ dispatch }: MiddlewareAPI) => (
       if (!isPromise(promise)) {
         return next({
           ...action,
-          payload: promise
+          payload: promise,
         });
       }
     } else {
@@ -43,11 +43,13 @@ export const pendingPromiseMiddleware = ({ dispatch }: MiddlewareAPI) => (
     return next(action);
   }
 
-  const { type, meta } = action.type;
+  const { type, meta } = action;
   const effectId = nanoid();
 
-  const getAction = (newPayload: any) => {
-    const nextAction: AnyAction = { type };
+  const getAction = (newPayload: any, isRejected: boolean): AnyAction => {
+    const nextAction: AnyAction = {
+      type: isRejected ? `${type}_REJECTED` : `${type}_FULFILLED`,
+    };
 
     if (newPayload !== null && typeof newPayload !== 'undefined') {
       nextAction.payload = newPayload;
@@ -57,17 +59,21 @@ export const pendingPromiseMiddleware = ({ dispatch }: MiddlewareAPI) => (
       nextAction.meta = meta;
     }
 
+    if (isRejected) {
+      nextAction.error = true;
+    }
+
     return nextAction;
   };
   const handleReject = (reason: any) => {
-    const rejectedAction = getAction(reason);
+    const rejectedAction = getAction(reason, true);
     dispatch(rejectedAction);
     dispatch(patchEffect(effectId));
 
     throw reason;
   };
   const handleFulfill = (value = null) => {
-    const resolvedAction = getAction(value);
+    const resolvedAction = getAction(value, false);
     dispatch(resolvedAction);
     dispatch(patchEffect(effectId));
 
@@ -76,11 +82,11 @@ export const pendingPromiseMiddleware = ({ dispatch }: MiddlewareAPI) => (
 
   dispatch(patchEffect(effectId));
   next({
-    type,
+    type: `${type}_PENDING`,
     // Include payload (for optimistic updates) if it is defined.
     ...(data !== undefined ? { payload: data } : {}),
     // Include meta data if it is defined.
-    ...(meta !== undefined ? { meta } : {})
+    ...(meta !== undefined ? { meta } : {}),
   });
 
   return promise.then(handleFulfill, handleReject);
