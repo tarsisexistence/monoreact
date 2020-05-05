@@ -6,14 +6,12 @@ import { nanoid } from '../helpers/nanoid.utils';
 
 // not implemented
 // export const pendingSagaMiddleware =  null;
-export const attachPendingToWorker = (worker: (action: AnyAction) => any) =>
+export const trackWorker = (worker: (action: AnyAction) => any) =>
   function* wrapper(action: AnyAction) {
     const effectId = nanoid();
 
     if (!put) {
-      throw new Error(
-        'attachPendingToWorker expects installed redux-saga package.'
-      );
+      throw new Error('trackWorker expects installed redux-saga package.');
     }
 
     try {
