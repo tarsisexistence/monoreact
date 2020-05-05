@@ -1,3 +1,6 @@
 [submodule "packages/example"]
 	path = packages/example
 	url = https://github.com/maktarsis/re-space-example.git
+[submodule "packages/redux-pending-middleware"]
+	path = packages/redux-pending-middleware
+	url = https://github.com/maktarsis/redux-pending-middleware.git
