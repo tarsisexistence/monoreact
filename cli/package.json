@@ -60,7 +60,7 @@
     "ora": "4.0.4",
     "postcss-nested": "4.2.1",
     "postcss-simple-vars": "5.0.2",
-    "rollup": "2.7.6",
+    "rollup": "2.8.0",
     "rollup-plugin-analyzer": "3.2.2",
     "rollup-plugin-eslint": "7.0.0",
     "rollup-plugin-filesize": "8.0.2",
