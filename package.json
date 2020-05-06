@@ -98,7 +98,7 @@
     "prettier": "2.0.5",
     "prop-types": "15.7.2",
     "react-is": "16.13.1",
-    "rollup": "2.7.6",
+    "rollup": "2.8.0",
     "rollup-plugin-analyzer": "3.2.2",
     "rollup-plugin-eslint": "7.0.0",
     "rollup-plugin-filesize": "8.0.2",
@@ -113,7 +113,7 @@
     "stylelint": "13.3.2",
     "stylelint-config-recommended": "3.0.0",
     "ts-jest": "24.3.0",
-    "tslib": "1.11.1",
+    "tslib": "1.11.2",
     "typescript": "3.8.3",
     "yarn": "1.22.4"
   },
