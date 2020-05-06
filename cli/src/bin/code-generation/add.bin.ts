@@ -6,7 +6,7 @@ import fs from 'fs-extra';
 import { NoPackageJsonError, WrongWorkspaceError } from '../../shared/models';
 import { featureTemplates } from '../../setup/add';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
-import { error, logError, prettifyPackageJson } from '../../shared/utils';
+import { error, logError } from '../../shared/utils';
 import { FeatureMessages } from '../../shared/messages';
 
 const featureOptions = Object.keys(featureTemplates);
@@ -81,7 +81,6 @@ export const addBinCommand = (prog: Sade) => {
           ...packageJson,
           scripts: updatedScripts
         });
-        await prettifyPackageJson();
         bootSpinner.succeed(successful());
       } catch (err) {
         bootSpinner.fail(failed());

@@ -9,7 +9,6 @@ import {
   findPackageSetupPath,
   findWorkspacePackages,
   getAuthorName,
-  prettifyPackageJson,
   setAuthorName,
   sortPackageJson,
   info,
@@ -158,7 +157,7 @@ export const generateBinCommand = (prog: Sade) => {
           rootName,
           license
         });
-        await fs.outputJSON(path.resolve(projectPath, PACKAGE_JSON), pkgJson);
+        await fs.outputJSON(path.resolve(projectPath, PACKAGE_JSON), pkgJson, { spaces: 2});
         bootSpinner.succeed(successful());
       } catch (err) {
         bootSpinner.fail(failed());
@@ -171,7 +170,6 @@ export const generateBinCommand = (prog: Sade) => {
 
       try {
         await sortPackageJson();
-        await prettifyPackageJson();
         await buildPackage();
         installSpinner.succeed(successfulConfigure());
         console.log(await preparedPackage(packageName));

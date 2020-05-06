@@ -1,9 +1,7 @@
 import path from 'path';
 import fs from 'fs-extra';
-import execa from 'execa';
 import { exec } from 'shelljs';
 
-import { PACKAGE_JSON } from '../constants/package.const';
 import {
   NotFoundPackageWorkspaceError,
   NotFoundWorkspaceRootError
@@ -51,12 +49,10 @@ export function setAuthorName(author: CLI.Package.Author): void {
   exec(`npm config set init-author-name "${author}"`, { silent: true });
 }
 
-export const sortPackageJson = async () => execa('sort-package-json');
+export const sortPackageJson = async () =>
+  exec('npx sort-package-json', { silent: true });
 
-export const prettifyPackageJson = async () =>
-  execa('prettier', ['--write', PACKAGE_JSON]);
-
-export const buildPackage = async () => execa('yarn', ['build']);
+export const buildPackage = async () => exec('yarn build', { silent: true });
 
 export const findWorkspacePackages = (
   workspaces: YarnWorkspaces.Packages | YarnWorkspaces.Config | undefined
