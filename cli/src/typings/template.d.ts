@@ -1,6 +1,7 @@
 declare namespace CLI.Template {
   type GenerateType = 'basic' | 'react';
   type AddType = 'docz' | 'playground';
+  type MigrationType = 'independency';
 
   interface GenerateOptions {
     dependencies: string[];
@@ -10,5 +11,9 @@ declare namespace CLI.Template {
   interface AddOptions {
     path: string;
     scripts: { [scriptName: string]: string };
+  }
+
+  interface MigrationOptions {
+    devDependencies: CLI.Package.Dependencies;
   }
 }

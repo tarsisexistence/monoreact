@@ -10,7 +10,8 @@ import { serveBinCommand } from './execution/serve.bin';
 import { testBinCommand } from './execution/test.bin';
 import { lintBinCommand } from './execution/lint.bin';
 import { submodulesBinCommand } from './submodules/submodules.bin';
-import { TITLE_CLI } from '../shared/messages/common.messages';
+import { independencyBinCommand } from './code-generation/independency.bin';
+import { TITLE_CLI } from '../shared/messages';
 import pkg from '../../package.json';
 
 const prog = sade('re-space');
@@ -19,6 +20,7 @@ console.log(TITLE_CLI);
 
 addBinCommand(prog);
 buildBinCommand(prog);
+independencyBinCommand(prog);
 generateBinCommand(prog);
 installBinCommand(prog);
 serveBinCommand(prog);

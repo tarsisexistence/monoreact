@@ -49,10 +49,12 @@ export function setAuthorName(author: CLI.Package.Author): void {
   exec(`npm config set init-author-name "${author}"`, { silent: true });
 }
 
-export const sortPackageJson = async () =>
+export const sortPackageJson = () =>
   exec('npx sort-package-json', { silent: true });
 
-export const buildPackage = async () => exec('yarn build', { silent: true });
+export const buildPackage = () => exec('yarn build', { silent: true });
+
+export const installDependencies = () => exec('yarn install', { silent: true });
 
 export const findWorkspacePackages = (
   workspaces: YarnWorkspaces.Packages | YarnWorkspaces.Config | undefined

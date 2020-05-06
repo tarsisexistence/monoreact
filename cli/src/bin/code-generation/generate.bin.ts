@@ -157,7 +157,9 @@ export const generateBinCommand = (prog: Sade) => {
           rootName,
           license
         });
-        await fs.outputJSON(path.resolve(projectPath, PACKAGE_JSON), pkgJson, { spaces: 2});
+        await fs.outputJSON(path.resolve(projectPath, PACKAGE_JSON), pkgJson, {
+          spaces: 2
+        });
         bootSpinner.succeed(successful());
       } catch (err) {
         bootSpinner.fail(failed());
@@ -166,15 +168,15 @@ export const generateBinCommand = (prog: Sade) => {
       }
 
       const { dependencies } = packageTemplates[packageTemplateType];
-      const installSpinner = ora(preparingPackage(dependencies.sort())).start();
+      const preparingSpinner = ora(preparingPackage(dependencies.sort())).start();
 
       try {
         await sortPackageJson();
         await buildPackage();
-        installSpinner.succeed(successfulConfigure());
+        preparingSpinner.succeed(successfulConfigure());
         console.log(await preparedPackage(packageName));
       } catch (err) {
-        installSpinner.fail(failedConfigure());
+        preparingSpinner.fail(failedConfigure());
         logError(err);
         process.exit(1);
       }
