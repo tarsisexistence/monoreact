@@ -6,15 +6,6 @@ export class FeatureMessages {
   // eslint-disable-next-line no-empty-function
   constructor(private featureName: string) {}
 
-  script = () => inverse(` add ${this.featureName} `);
-
-  wrongWorkspace = () => `
-    Make sure you run the script ${this.script()} from the package workspace.
-    
-    The workspace ${PACKAGE_JSON} should have:
-        workspace: true;
-          `;
-
   exists = () =>
     error(`
     It seems like you already have this feature.
