@@ -5,7 +5,6 @@ declare module '@rollup/plugin-image';
 declare module '@rollup/plugin-beep';
 declare module '@rollup/plugin-babel';
 declare module 'rollup-plugin-peer-deps-external';
-declare module 'rollup-plugin-babel';
 declare module 'rollup-plugin-postcss';
 declare module 'rollup-plugin-strip-code';
 declare module 'rollup-plugin-filesize';

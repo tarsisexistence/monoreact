@@ -8,7 +8,6 @@ export const App: React.FC = () => (
   <div className={styles.container}>
     <Products />
     Re-space: react workspace groundwork
-
     <DatePicker />
   </div>
 );
