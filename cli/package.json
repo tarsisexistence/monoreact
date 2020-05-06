@@ -56,7 +56,7 @@
     "eslint-plugin-sonarjs": "0.5.0",
     "execa": "4.0.0",
     "fs-extra": "9.0.0",
-    "jest": "24.9.0",
+    "jest": "26.0.1",
     "ora": "4.0.4",
     "postcss-nested": "4.2.1",
     "postcss-simple-vars": "5.0.2",
