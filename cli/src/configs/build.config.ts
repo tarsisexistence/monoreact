@@ -73,9 +73,6 @@ export const createBuildConfig = (opts: {
           '**/*.test.ts',
           '**/*.spec.tsx',
           '**/*.test.tsx',
-          '**/*.css',
-          '**/*.scss',
-          '**/*.sass',
           'node_modules',
           'dist'
         ],
