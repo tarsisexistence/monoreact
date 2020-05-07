@@ -1,3 +1,4 @@
+import path from 'path';
 import closure from '@ampproject/rollup-plugin-closure-compiler';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
@@ -14,9 +15,9 @@ import stripCode from 'rollup-plugin-strip-code';
 import filesize from 'rollup-plugin-filesize';
 import progress from 'rollup-plugin-progress';
 import { eslint } from 'rollup-plugin-eslint';
-import simplevars from 'postcss-simple-vars';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
+import simplevars from 'postcss-simple-vars';
 import nested from 'postcss-nested';
 
 export const createBuildConfig = (opts: {
@@ -42,13 +43,6 @@ export const createBuildConfig = (opts: {
     url(),
     image(),
     external({ includeDependencies: true }),
-    typescript2({ clean: true }),
-    commonjs({ include: /\/node_modules\// }),
-    resolve({
-      extensions: ['.js', '.jsx', '.ts', '.tsx'],
-      preferBuiltins: false,
-      browser: true
-    }),
     postcss({
       modules: true,
       plugins: [
@@ -59,6 +53,31 @@ export const createBuildConfig = (opts: {
       ],
       extensions: ['.css', '.scss', '.sass'],
       use: ['sass']
+    }),
+    typescript2({
+      clean: true,
+        include: [path.resolve(__dirname, 'styles.d.ts')],
+      tsconfigDefaults: {
+        exclude: [
+          '**/*.spec.ts',
+          '**/*.test.ts',
+          '**/*.spec.tsx',
+          '**/*.test.tsx',
+          'node_modules',
+          'dist'
+        ],
+        compilerOptions: {
+          sourceMap: true,
+          declaration: true,
+          jsx: 'react'
+        }
+      }
+    }),
+    commonjs({ include: /\/node_modules\// }),
+    resolve({
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      preferBuiltins: false,
+      browser: true
     }),
     babel({
       babelHelpers: 'runtime',

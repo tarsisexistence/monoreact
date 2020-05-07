@@ -7,7 +7,7 @@
     "esModuleInterop": true,
     "outDir": "dist",
     "module": "commonjs",
-    "declaration": false,
+    "declaration": true,
     "strict": true,
     "skipLibCheck": true,
     "target": "es5"
