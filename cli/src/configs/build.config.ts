@@ -73,7 +73,6 @@ export const createBuildConfig = (opts: {
           '**/*.test.ts',
           '**/*.spec.tsx',
           '**/*.test.tsx',
-          'node_modules',
           'dist'
         ],
         compilerOptions: {

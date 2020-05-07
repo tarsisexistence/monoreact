@@ -76,9 +76,10 @@
   "devDependencies": {
     "@types/eslint": "6.8.0",
     "@types/fs-extra": "8.1.0",
-    "@types/jest": "25.2.1",
     "@types/sade": "1.6.0",
     "@types/shelljs": "0.8.7",
+    "@types/jest": "25.2.1",
+    "@types/node": "13.13.5",
     "autoprefixer": "9.7.5",
     "cssnano": "4.1.10",
     "postcss-nested": "4.2.1",
