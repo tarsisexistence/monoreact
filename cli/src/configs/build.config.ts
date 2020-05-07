@@ -20,16 +20,20 @@ import cssnano from 'cssnano';
 import simplevars from 'postcss-simple-vars';
 import nested from 'postcss-nested';
 
+import { tsconfigJSON } from '../typings/tsconfig';
+
+const tsconfigInclude = ['src', path.resolve(__dirname, 'styles.d.ts')];
+
 export const createBuildConfig = (opts: {
-  source: string;
-  module: string;
   displayFilesize: boolean;
   useClosure: boolean;
   runEslint: boolean;
+  packageJson: CLI.Package.WorkspacePackageJSON;
+  tsconfigJson: tsconfigJSON;
 }): InputOptions & { output: OutputOptions } => ({
-  input: opts.source,
+  input: opts.packageJson.source,
   output: {
-    file: opts.module,
+    file: opts.packageJson.module,
     format: 'es',
     sourcemap: true
   },
@@ -44,7 +48,9 @@ export const createBuildConfig = (opts: {
     image(),
     external({ includeDependencies: true }),
     postcss({
+      extract: false,
       modules: true,
+      writeDefinitions: true,
       plugins: [
         simplevars({ variables: {} }),
         nested(),
@@ -56,20 +62,43 @@ export const createBuildConfig = (opts: {
     }),
     typescript2({
       clean: true,
-        include: [path.resolve(__dirname, 'styles.d.ts')],
       tsconfigDefaults: {
+        // https://github.com/ezolenko/rollup-plugin-typescript2/issues/226 && checkTsConfig parsedConfig
+        // TODO: refactor this code when this issue resolved
+        include:
+          opts.tsconfigJson.include?.concat(...tsconfigInclude) ??
+          tsconfigInclude,
         exclude: [
           '**/*.spec.ts',
           '**/*.test.ts',
           '**/*.spec.tsx',
           '**/*.test.tsx',
+          '**/*.css',
+          '**/*.scss',
+          '**/*.sass',
           'node_modules',
           'dist'
         ],
         compilerOptions: {
+          baseUrl: './',
+          rootDir: './src',
           sourceMap: true,
           declaration: true,
-          jsx: 'react'
+          jsx: 'react',
+          target: 'es5',
+          lib: ['dom', 'dom.iterable', 'esnext'],
+          allowJs: true,
+          skipLibCheck: true,
+          esModuleInterop: true,
+          allowSyntheticDefaultImports: true,
+          strict: true,
+          forceConsistentCasingInFileNames: true,
+          module: 'esnext',
+          moduleResolution: 'node',
+          resolveJsonModule: true,
+          isolatedModules: true,
+          noEmit: true,
+          typeRoots: ['node_modules/@types']
         }
       }
     }),

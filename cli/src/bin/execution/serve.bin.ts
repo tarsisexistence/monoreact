@@ -11,6 +11,7 @@ import {
   findWorkspacePackageDir,
   logError
 } from '../../shared/utils';
+import { tsconfigJSON } from '../../typings/tsconfig';
 
 export const serveBinCommand = (prog: Sade) => {
   prog
@@ -32,10 +33,16 @@ export const serveBinCommand = (prog: Sade) => {
       } = new ServeMessages();
       const packagePath = await findWorkspacePackageDir();
       const packageJsonPath = path.resolve(packagePath, 'package.json');
-      const { source, module } = await fs.readJSON(packageJsonPath);
+      const tsconfigJsonPath = path.resolve(packagePath, 'tsconfig.json');
+      const packageJson = (await fs.readJSON(
+        packageJsonPath
+      )) as CLI.Package.WorkspacePackageJSON;
+      const tsconfigJson = (await fs.readJSON(
+        tsconfigJsonPath
+      )) as tsconfigJSON;
       const buildConfig = createBuildConfig({
-        source,
-        module,
+        tsconfigJson,
+        packageJson,
         displayFilesize: false,
         runEslint: false,
         useClosure: false
@@ -48,7 +55,7 @@ export const serveBinCommand = (prog: Sade) => {
         if (event.code === 'BUNDLE_START') {
           clearConsole();
           console.log(introduce());
-          console.log(bundles({ source, module }));
+          console.log(bundles(packageJson));
           console.log(compiling());
         }
         if (event.code === 'ERROR') {
@@ -59,7 +66,11 @@ export const serveBinCommand = (prog: Sade) => {
         if (event.code === 'BUNDLE_END') {
           console.log(compiled(isFirstChange));
           console.log(
-            bundled({ isFirstChange, module, duration: event.duration })
+            bundled({
+              isFirstChange,
+              module: packageJson.module,
+              duration: event.duration
+            })
           );
           await event.result.write(buildConfig.output);
         }

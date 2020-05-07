@@ -6,6 +6,7 @@ import { rollup } from 'rollup';
 import { BuildMessages } from '../../shared/messages';
 import { createBuildConfig } from '../../configs/build.config';
 import { findWorkspacePackageDir, cleanDistFolder } from '../../shared/utils';
+import { tsconfigJSON } from '../../typings/tsconfig';
 
 export const buildBinCommand = (prog: Sade) => {
   prog
@@ -20,16 +21,22 @@ export const buildBinCommand = (prog: Sade) => {
       const { bundling, successful } = new BuildMessages();
       const packagePath = await findWorkspacePackageDir();
       const packageJsonPath = path.resolve(packagePath, 'package.json');
-      const { source, module } = await fs.readJSON(packageJsonPath);
+      const tsconfigJsonPath = path.resolve(packagePath, 'tsconfig.json');
+      const packageJson = (await fs.readJSON(
+        packageJsonPath
+      )) as CLI.Package.WorkspacePackageJSON;
+      const tsconfigJson = (await fs.readJSON(
+        tsconfigJsonPath
+      )) as tsconfigJSON;
       const buildConfig = createBuildConfig({
-        source,
-        module,
+        tsconfigJson,
+        packageJson,
         displayFilesize: true,
         runEslint: true,
         useClosure: false
       });
       await cleanDistFolder();
-      console.log(bundling({ source, module }));
+      console.log(bundling(packageJson));
       const bundle = await rollup(buildConfig);
       await bundle.write(buildConfig.output);
       const duration = process.hrtime(time);
