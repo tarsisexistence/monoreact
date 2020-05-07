@@ -10,7 +10,7 @@ import {
   logError
 } from '../../shared/utils';
 import { IndependencyMessages } from '../../shared/messages';
-import { migrationSetup } from '../../setup/migration';
+import { migrationSetup } from '../../setup';
 
 export const independencyBinCommand = (prog: Sade) => {
   prog

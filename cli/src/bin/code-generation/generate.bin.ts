@@ -16,15 +16,15 @@ import {
   findWorkspaceRootDir
 } from '../../shared/utils';
 import {
-  featureTemplates,
-  packageTemplates,
+  featureSetup,
+  generateSetup,
   composePackageJson
 } from '../../setup';
 import { GenerateMessages } from '../../shared/messages';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
 
-const templateOptions = Object.keys(packageTemplates);
-const featureOptions = Object.keys(featureTemplates);
+const templateOptions = Object.keys(generateSetup);
+const featureOptions = Object.keys(featureSetup);
 
 export const generateBinCommand = (prog: Sade) => {
   prog
@@ -65,7 +65,7 @@ export const generateBinCommand = (prog: Sade) => {
         preparedPackage,
         preparingPackage
       } = new GenerateMessages(packageName);
-      let packageTemplateType: CLI.Template.GenerateType;
+      let packageTemplateType: CLI.Setup.GenerateType;
       const workspaceRoot = await findWorkspaceRootDir();
       const packageJsonPath = path.resolve(workspaceRoot, PACKAGE_JSON);
       const { name: rootName, workspaces, license } = (await fs.readJSON(
@@ -109,7 +109,7 @@ export const generateBinCommand = (prog: Sade) => {
         });
 
         if (template) {
-          packageTemplateType = template.trim() as CLI.Template.GenerateType;
+          packageTemplateType = template.trim() as CLI.Setup.GenerateType;
 
           if (
             !prompt.choices.find(
@@ -149,7 +149,7 @@ export const generateBinCommand = (prog: Sade) => {
         }
 
         process.chdir(projectPath);
-        const templateConfig = packageTemplates[packageTemplateType];
+        const templateConfig = generateSetup[packageTemplateType];
         const generatePackageJson = composePackageJson(templateConfig);
         const pkgJson = generatePackageJson({
           author,
@@ -167,7 +167,7 @@ export const generateBinCommand = (prog: Sade) => {
         process.exit(1);
       }
 
-      const { dependencies } = packageTemplates[packageTemplateType];
+      const { dependencies } = generateSetup[packageTemplateType];
       const preparingSpinner = ora(preparingPackage(dependencies.sort())).start();
 
       try {

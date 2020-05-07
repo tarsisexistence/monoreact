@@ -1,6 +1,5 @@
 import { error, info, inverse, success } from '../utils';
-import { featureTemplates } from '../../setup/add';
-import { PACKAGE_JSON } from '../constants/package.const';
+import { featureSetup } from '../../setup/add';
 
 export class FeatureMessages {
   // eslint-disable-next-line no-empty-function
@@ -17,7 +16,7 @@ export class FeatureMessages {
     Invalid feature template.
     Unfortunately, cli doesn't provide ${highlightedFeatureName} feature template.
     
-    Available feature templates: [${Object.keys(featureTemplates).join(', ')}]
+    Available feature templates: [${Object.keys(featureSetup).join(', ')}]
         `);
   };
 

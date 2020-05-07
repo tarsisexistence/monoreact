@@ -1,10 +1,10 @@
-import { basicTemplate } from './basic.generate';
-import { reactTemplate } from './react.generate';
+import { basicSetup } from './basic.setup';
+import { reactSetup } from './react.setup';
 
-export const packageTemplates: Record<
-  CLI.Template.GenerateType,
-  CLI.Template.GenerateOptions
+export const generateSetup: Record<
+  CLI.Setup.GenerateType,
+  CLI.Setup.GenerateOptions
 > = {
-  basic: basicTemplate,
-  react: reactTemplate
+  basic: basicSetup,
+  react: reactSetup
 };

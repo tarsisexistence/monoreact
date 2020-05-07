@@ -1,10 +1,10 @@
-import { doczTemplate } from './docz.add';
-import { playgroundTemplate } from './playground.add';
+import { doczSetup } from './docz.setup';
+import { playgroundSetup } from './playground.setup';
 
-export const featureTemplates: Record<
-  CLI.Template.AddType,
-  CLI.Template.AddOptions
+export const featureSetup: Record<
+  CLI.Setup.AddType,
+  CLI.Setup.AddOptions
 > = {
-  docz: doczTemplate,
-  playground: playgroundTemplate
+  docz: doczSetup,
+  playground: playgroundSetup
 };

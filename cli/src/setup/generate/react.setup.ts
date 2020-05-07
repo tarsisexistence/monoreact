@@ -4,7 +4,7 @@ import {
   REACT_PACKAGE_SCRIPTS
 } from '../../shared/constants/package.const';
 
-export const reactTemplate: CLI.Template.GenerateOptions = {
+export const reactSetup: CLI.Setup.GenerateOptions = {
   dependencies: [
     ...Object.keys(
       REACT_TEMPLATE_DEPENDENCIES.peerDependencies as Record<string, string>

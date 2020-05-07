@@ -1,4 +1,5 @@
-export { featureTemplates } from './add';
-export { packageTemplates } from './generate';
-export { composePackageJson } from './generate/utils.generate';
-export { }
+export { featureSetup } from './add';
+export { generateSetup } from './generate';
+export { migrationSetup } from './migration';
+
+export { composePackageJson } from './generate/utils.setup';

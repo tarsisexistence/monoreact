@@ -1,4 +1,4 @@
-declare namespace CLI.Template {
+declare namespace CLI.Setup {
   type GenerateType = 'basic' | 'react';
   type AddType = 'docz' | 'playground';
   type MigrationType = 'independency';

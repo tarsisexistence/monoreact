@@ -1,4 +1,4 @@
-export const playgroundTemplate: CLI.Template.AddOptions = {
+export const playgroundSetup: CLI.Setup.AddOptions = {
   path: './playground',
   scripts: {
     'start:playground':

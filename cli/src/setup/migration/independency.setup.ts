@@ -1,4 +1,4 @@
-export const independencySetup: CLI.Template.MigrationOptions = {
+export const independencySetup: CLI.Setup.MigrationOptions = {
   devDependencies: {
     "@re-space/cli": "latest",
     "@typescript-eslint/parser": "^2.31.0",

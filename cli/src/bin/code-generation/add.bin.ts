@@ -3,12 +3,12 @@ import path from 'path';
 import ora from 'ora';
 import fs from 'fs-extra';
 
-import { featureTemplates } from '../../setup/add';
+import { featureSetup } from '../../setup/add';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
 import { error, findWorkspacePackageDir, logError } from '../../shared/utils';
 import { FeatureMessages } from '../../shared/messages';
 
-const featureOptions = Object.keys(featureTemplates);
+const featureOptions = Object.keys(featureSetup);
 
 export const addBinCommand = (prog: Sade) => {
   prog
@@ -46,7 +46,7 @@ export const addBinCommand = (prog: Sade) => {
           path.resolve(__dirname, `../../../../templates/add/${featureName}`),
           path.resolve(
             workspacePackage,
-            featureTemplates[featureName as CLI.Template.AddType].path
+            featureSetup[featureName as CLI.Setup.AddType].path
           ),
           { overwrite: false, errorOnExist: true }
         );
@@ -57,7 +57,7 @@ export const addBinCommand = (prog: Sade) => {
             ...packageJson,
             scripts: {
               ...packageJson.scripts,
-              ...featureTemplates[featureName as CLI.Template.AddType].scripts
+              ...featureSetup[featureName as CLI.Setup.AddType].scripts
             }
           },
           { spaces: 2 }

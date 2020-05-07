@@ -3,7 +3,7 @@ import {
   WORKSPACE_PACKAGE_JSON
 } from '../../shared/constants/package.const';
 
-export const basicTemplate: CLI.Template.GenerateOptions = {
+export const basicSetup: CLI.Setup.GenerateOptions = {
   dependencies: [],
   packageJson: {
     ...WORKSPACE_PACKAGE_JSON,
