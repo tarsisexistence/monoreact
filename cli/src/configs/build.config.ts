@@ -22,7 +22,8 @@ import nested from 'postcss-nested';
 
 import { tsconfigJSON } from '../typings/tsconfig';
 
-const tsconfigInclude = ['src', path.resolve(__dirname, 'styles.d.ts')];
+// TODO: index.d.ts is redundant here, remove later
+const tsconfigInclude = ['src', path.resolve(__dirname, '../../index.d.ts')];
 
 export const createBuildConfig = (opts: {
   displayFilesize: boolean;
@@ -73,6 +74,7 @@ export const createBuildConfig = (opts: {
           '**/*.test.ts',
           '**/*.spec.tsx',
           '**/*.test.tsx',
+          'node_modules',
           'dist'
         ],
         compilerOptions: {
