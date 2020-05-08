@@ -1,29 +1,27 @@
 import { error, info, inverse, success } from '../utils';
-import { featureSetup } from '../../setup/add';
 
 export class FeatureMessages {
   // eslint-disable-next-line no-empty-function
-  constructor(private featureName: string) {}
+  constructor() {}
 
   exists = () =>
     error(`
     It seems like you already have this feature.
         `);
 
-  invalidTemplate = () => {
-    const highlightedFeatureName = inverse(` ${this.featureName} `);
+  invalidFeatureName = (featureName: string) => {
+    const highlightedFeatureName = inverse(` ${featureName} `);
     return error(`
-    Invalid feature template.
-    Unfortunately, cli doesn't provide ${highlightedFeatureName} feature template.
-    
-    Available feature templates: [${Object.keys(featureSetup).join(', ')}]
+  Invalid feature name
+  Unfortunately, re-space doesn't provide ${highlightedFeatureName} feature
         `);
   };
 
-  generating = () => `Generating ${info(this.featureName)} feature...`;
+  adding = (featureName: string) => `Adding ${info(featureName)} feature...`;
 
-  successful = () => `Added ${success(this.featureName)} feature template`;
+  successful = (featureName: string) =>
+    `Added ${success(featureName)} feature template`;
 
-  failed = () =>
-    `Failed to generate ${error(this.featureName)} feature template`;
+  failed = (featureName: string) =>
+    `Failed to add ${error(featureName)} feature template`;
 }

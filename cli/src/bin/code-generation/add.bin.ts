@@ -2,52 +2,60 @@ import { Sade } from 'sade';
 import path from 'path';
 import ora from 'ora';
 import fs from 'fs-extra';
+import { Select } from 'enquirer';
 
 import { featureSetup } from '../../setup/add';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
-import { error, findWorkspacePackageDir, logError } from '../../shared/utils';
 import { FeatureMessages } from '../../shared/messages';
+import { findWorkspacePackageDir, info, logError } from '../../shared/utils';
 
 const featureOptions = Object.keys(featureSetup);
 
 export const addBinCommand = (prog: Sade) => {
   prog
-    .command('add <feature>')
+    .command('add [featureName]')
     .describe(
       `Add available feature.
   Currently available choices: [${featureOptions.join(', ')}]`
     )
+    .example('add')
     .example('add playground')
-    .action(async (featureName: string) => {
+    .action(async (featureName: string = '') => {
       const {
-        generating,
         failed,
         successful,
-        invalidTemplate,
-        exists
-      } = new FeatureMessages(featureName);
-      const bootSpinner = ora(generating());
+        adding,
+        exists,
+        invalidFeatureName
+      } = new FeatureMessages();
+      let featureOption: CLI.Setup.AddOptionType = featureName as any;
+
+      if (!featureOptions.includes(featureOption)) {
+        console.log(invalidFeatureName(featureOption));
+
+        const featureNamePrompt = new Select({
+          message: 'Choose a feature',
+          choices: featureOptions.map(option => ({
+            name: option,
+            message: info(option)
+          }))
+        });
+        featureOption = (await featureNamePrompt.run()) as CLI.Setup.AddOptionType;
+      }
+
       const workspacePackage = await findWorkspacePackageDir();
       const packageJsonPath = path.resolve(workspacePackage, PACKAGE_JSON);
       const packageJson = (await fs.readJSON(
         packageJsonPath
       )) as CLI.Package.WorkspacePackageJSON;
 
-      if (!featureOptions.includes(featureName)) {
-        bootSpinner.fail(failed());
-        console.log(error(invalidTemplate()));
-        process.exit(1);
-      }
-
+      const bootSpinner = ora(adding(featureOption));
       bootSpinner.start();
 
       try {
         await fs.copy(
-          path.resolve(__dirname, `../../../../templates/add/${featureName}`),
-          path.resolve(
-            workspacePackage,
-            featureSetup[featureName as CLI.Setup.AddType].path
-          ),
+          path.resolve(__dirname, `../../../../templates/add/${featureOption}`),
+          path.resolve(workspacePackage, featureSetup[featureOption].path),
           { overwrite: false, errorOnExist: true }
         );
 
@@ -57,14 +65,14 @@ export const addBinCommand = (prog: Sade) => {
             ...packageJson,
             scripts: {
               ...packageJson.scripts,
-              ...featureSetup[featureName as CLI.Setup.AddType].scripts
+              ...featureSetup[featureOption].scripts
             }
           },
           { spaces: 2 }
         );
-        bootSpinner.succeed(successful());
+        bootSpinner.succeed(successful(featureOption));
       } catch (err) {
-        bootSpinner.fail(failed());
+        bootSpinner.fail(failed(featureOption));
 
         if (err.toString().includes('already exists')) {
           console.log(exists());

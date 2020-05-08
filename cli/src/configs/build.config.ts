@@ -1,4 +1,3 @@
-import path from 'path';
 import closure from '@ampproject/rollup-plugin-closure-compiler';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';

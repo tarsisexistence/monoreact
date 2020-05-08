@@ -61,7 +61,7 @@ export const generateBinCommand = (prog: Sade) => {
         preparedPackage,
         preparingPackage
       } = new GenerateMessages(packageName);
-      let packageTemplateType: CLI.Setup.GenerateType;
+      let packageTemplateType: CLI.Setup.GenerateOptionType;
       const workspaceRoot = await findWorkspaceRootDir();
       const packageJsonPath = path.resolve(workspaceRoot, PACKAGE_JSON);
       const { name: rootName, workspaces, license } = (await fs.readJSON(
@@ -71,7 +71,7 @@ export const generateBinCommand = (prog: Sade) => {
       const packageSetupPath = findPackageSetupPath(workspacePackages);
       const bootSpinner = ora(generating());
 
-      async function getProjectPath(projectPath: string): Promise<string> {
+      async function getPackagePath(projectPath: string): Promise<string> {
         const isExist = await fs.pathExists(projectPath);
 
         if (!isExist) {
@@ -88,11 +88,11 @@ export const generateBinCommand = (prog: Sade) => {
         packageName = await packageNamePrompt.run();
         changePackageName(packageName);
         const nextProjectPath = `${workspaceRoot}/${packageSetupPath}/${packageName}`;
-        return getProjectPath(nextProjectPath);
+        return getPackagePath(nextProjectPath);
       }
 
       try {
-        const projectPath = await getProjectPath(
+        const projectPath = await getPackagePath(
           `${workspaceRoot}/${packageSetupPath}/${packageName}`
         );
 
@@ -105,7 +105,7 @@ export const generateBinCommand = (prog: Sade) => {
         });
 
         if (template) {
-          packageTemplateType = template.trim() as CLI.Setup.GenerateType;
+          packageTemplateType = template.trim() as CLI.Setup.GenerateOptionType;
 
           if (
             !prompt.choices.find(

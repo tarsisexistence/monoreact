@@ -1,7 +1,7 @@
 declare namespace CLI.Setup {
-  type GenerateType = 'basic' | 'react';
-  type AddType = 'docz' | 'playground';
-  type MigrationType = 'independency';
+  type GenerateOptionType = 'basic' | 'react';
+  type AddOptionType = 'docz' | 'playground';
+  type MigrationOptionType = 'independency';
 
   interface GenerateOptions {
     dependencies: string[];

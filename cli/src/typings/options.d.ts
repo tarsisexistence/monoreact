@@ -5,10 +5,10 @@ declare namespace CLI.Options {
 
   interface Generate extends BaseOptions {
     workspaces: string;
-    template: CLI.Setup.GenerateType;
-    t: CLI.Setup.GenerateType;
-    feature: CLI.Setup.AddType;
-    f: CLI.Setup.AddType;
+    template: CLI.Setup.GenerateOptionType;
+    t: CLI.Setup.GenerateOptionType;
+    feature: CLI.Setup.AddOptionType;
+    f: CLI.Setup.AddOptionType;
   }
 
   interface Install extends BaseOptions {
