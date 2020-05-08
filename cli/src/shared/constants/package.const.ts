@@ -5,7 +5,7 @@ export const BASE_PACKAGE_SCRIPTS: CLI.Package.Scripts = {
   build: 're-space build',
   test: 're-space test --passWithNoTests',
   lint: 're-space lint "src/**/*.{js,jsx,ts,tsx}"',
-  prepublishOnly: "yarn build"
+  prepublishOnly: 'yarn build'
 } as const;
 
 export const REACT_PACKAGE_SCRIPTS: CLI.Package.Scripts = {

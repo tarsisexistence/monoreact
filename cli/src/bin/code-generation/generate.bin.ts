@@ -15,11 +15,7 @@ import {
   logError,
   findWorkspaceRootDir
 } from '../../shared/utils';
-import {
-  featureSetup,
-  generateSetup,
-  composePackageJson
-} from '../../setup';
+import { featureSetup, generateSetup, composePackageJson } from '../../setup';
 import { GenerateMessages } from '../../shared/messages';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
 
@@ -168,7 +164,9 @@ export const generateBinCommand = (prog: Sade) => {
       }
 
       const { dependencies } = generateSetup[packageTemplateType];
-      const preparingSpinner = ora(preparingPackage(dependencies.sort())).start();
+      const preparingSpinner = ora(
+        preparingPackage(dependencies.sort())
+      ).start();
 
       try {
         await sortPackageJson();

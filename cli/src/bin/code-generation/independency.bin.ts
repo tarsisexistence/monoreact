@@ -24,7 +24,7 @@ export const independencyBinCommand = (prog: Sade) => {
       const bootSpinner = ora(generating());
       const workspacePackage = await findWorkspacePackageDir();
       const packageJsonPath = path.resolve(workspacePackage, PACKAGE_JSON);
-      let packageJson = (await fs.readJSON(
+      const packageJson = (await fs.readJSON(
         packageJsonPath
       )) as CLI.Package.WorkspacePackageJSON;
 
