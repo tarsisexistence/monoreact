@@ -23,7 +23,7 @@ import nested from 'postcss-nested';
 import { tsconfigJSON } from '../typings/tsconfig';
 
 // TODO: index.d.ts is redundant here, remove later
-const tsconfigInclude = ['src', path.resolve(__dirname, '../../index.d.ts')];
+// const tsconfigInclude = ['src', path.resolve(__dirname, '../../index.d.ts')];
 
 export const createBuildConfig = (opts: {
   displayFilesize: boolean;
@@ -66,9 +66,9 @@ export const createBuildConfig = (opts: {
       tsconfigDefaults: {
         // https://github.com/ezolenko/rollup-plugin-typescript2/issues/226 && checkTsConfig parsedConfig
         // TODO: refactor this code when this issue resolved
-        include:
-          opts.tsconfigJson.include?.concat(...tsconfigInclude) ??
-          tsconfigInclude,
+        // include:
+        //   opts.tsconfigJson.include?.concat(...tsconfigInclude) ??
+        //   tsconfigInclude,
         exclude: [
           '**/*.spec.ts',
           '**/*.test.ts',
@@ -95,8 +95,7 @@ export const createBuildConfig = (opts: {
           moduleResolution: 'node',
           resolveJsonModule: true,
           isolatedModules: true,
-          noEmit: true,
-          typeRoots: ['node_modules/@types']
+          noEmit: true
         }
       }
     }),
