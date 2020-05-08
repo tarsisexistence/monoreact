@@ -16,12 +16,12 @@
     "test": "re-space test --passWithNoTests"
   },
   "peerDependencies": {
+    "@babel/plugin-proposal-class-properties": "*",
     "dayjs": "^1.8.26",
     "lodash.times": "^4.3.2",
     "prop-types": "^15.7.2",
     "react": "*",
-    "react-dom": "*",
-    "@babel/plugin-proposal-class-properties": "*"
+    "react-dom": "*"
   },
   "publishConfig": {
     "access": "public"
