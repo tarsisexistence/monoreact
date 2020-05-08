@@ -143,7 +143,7 @@ export const findWorkspacePackageDir = async (
 };
 
 export async function getAllPackages(): Promise<CLI.Package.Package[]> {
-  const a = exec('yarn workspaces info --json', { silent: true }).stdout.trim();
+  const a = exec('yarn workspaces --json info', { silent: true }).stdout.trim();
   const yarnWorkspaces = JSON.parse(JSON.parse(a).data);
   const rootDir = await findWorkspaceRootDir();
 
