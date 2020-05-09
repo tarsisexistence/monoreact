@@ -12,12 +12,12 @@ declare namespace CLI.Package {
     scripts: { [script: string]: string };
     license?: string;
     eslintConfig?: Record<string, string | string[]>;
+    dependencies?: Dependencies;
+    devDependencies?: Dependencies;
   }
 
   interface WorkspaceRootPackageJSON extends BasePackageJSON {
     workspaces: string[];
-    dependencies?: Dependencies;
-    devDependencies?: Dependencies;
   }
 
   interface WorkspacePackageJSON extends BasePackageJSON {
