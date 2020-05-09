@@ -6,8 +6,8 @@ import { Input, Select } from 'enquirer';
 
 import {
   buildPackage,
-  findPackageSetupPath,
-  findWorkspacePackages,
+  getWorkspacePackageSetupPath,
+  getWorkspacePackagePaths,
   getAuthorName,
   setAuthorName,
   sortPackageJson,
@@ -67,8 +67,8 @@ export const generateBinCommand = (prog: Sade) => {
       const { name: rootName, workspaces, license } = (await fs.readJSON(
         packageJsonPath
       )) as CLI.Package.WorkspaceRootPackageJSON;
-      const workspacePackages = findWorkspacePackages(workspaces);
-      const packageSetupPath = findPackageSetupPath(workspacePackages);
+      const workspacePackages = getWorkspacePackagePaths(workspaces);
+      const packageSetupPath = getWorkspacePackageSetupPath(workspacePackages);
       const bootSpinner = ora(generating());
 
       async function getPackagePath(projectPath: string): Promise<string> {
