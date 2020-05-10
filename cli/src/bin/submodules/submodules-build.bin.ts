@@ -12,7 +12,7 @@ export function submodulesBuildBinCommand(prog: Sade): void {
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     .alias('sb')
-    .option('s, self', 'Apply yarn build for the workspace root repository')
+    .option('s, self', 'Apply build for the host workspace')
     .example('submodules build --self')
     .action(async ({ self }: CLI.Options.Submodules) => {
       const workspaceRootPath = await findWorkspaceRootDir();

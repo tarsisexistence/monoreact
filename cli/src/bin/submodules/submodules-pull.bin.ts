@@ -15,7 +15,7 @@ export function submodulesPullBinCommand(prog: Sade): void {
     .alias('sp')
     .option('r, remote', 'Define git remote', 'origin')
     .example('submodules pull master --remote fork')
-    .option('s, self', 'Apply git pull for the workspace root repository')
+    .option('s, self', 'Apply pull for the host workspace')
     .example('submodules pull --self')
     .action(
       async (
