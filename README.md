@@ -17,9 +17,11 @@
 
 **Re-space** includes the following features:
 
-- write normal react apps
-- create js/ts/react libraries
-- implement monorepo / submodules
+- develop regular react apps
+- create JavaScript, TypeScript, React libraries
+- implement monorepo, submodules
+- workspace, submodules management
+- efficient rollup bundling
 
 <br/>
 

@@ -5,7 +5,7 @@ import { error } from './color.utils';
 import { getWorkspacesInfo } from './workspace.utils';
 import BasePackageJSON = CLI.Package.BasePackageJSON;
 
-const readWorkspacesDependencies = async (
+const readWorkspacePackages = async (
   packagesInfo: CLI.Package.PackageInfo[]
 ): Promise<CLI.Package.BasePackageJSON[]> => {
   const packageJsons$: Promise<
@@ -77,7 +77,7 @@ export const makeDependencyChunks = (
 
 export const getWorkspacesDependencyChunks = async (): Promise<string[][]> => {
   const packagesInfo = await getWorkspacesInfo();
-  const packageJsons = await readWorkspacesDependencies(packagesInfo);
+  const packageJsons = await readWorkspacePackages(packagesInfo);
   const { chunks, unprocessed } = makeDependencyChunks(packageJsons);
 
   if (unprocessed.length > 0) {
