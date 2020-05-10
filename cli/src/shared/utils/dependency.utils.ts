@@ -6,12 +6,12 @@ import { getWorkspacesInfo } from './workspace.utils';
 import BasePackageJSON = CLI.Package.BasePackageJSON;
 
 const readWorkspacesDependencies = async (
-  packagesInfo: CLI.Package.Package[]
+  packagesInfo: CLI.Package.PackageInfo[]
 ): Promise<CLI.Package.BasePackageJSON[]> => {
   const packageJsons$: Promise<
     CLI.Package.BasePackageJSON
-  >[] = packagesInfo.map((pkg: CLI.Package.Package) =>
-    fs.readJSON(path.resolve(pkg.path, 'package.json'))
+  >[] = packagesInfo.map((pkg: CLI.Package.PackageInfo) =>
+    fs.readJSON(path.resolve(pkg.location, 'package.json'))
   );
   const settledPackageJsons = (await Promise.allSettled<
     Promise<CLI.Package.BasePackageJSON>
@@ -23,7 +23,7 @@ const readWorkspacesDependencies = async (
 
 export const makeDependencyChunks = (
   packageJsons: Pick<CLI.Package.BasePackageJSON, 'name' | 'dependencies'>[]
-): { chunks: string[][]; unprocessedDependencies: Map<string, string[]> } => {
+): { chunks: string[][]; unprocessed: [string, string[]][] } => {
   const chunks = [];
   const workspacePackagesMap: Record<
     string,
@@ -33,8 +33,8 @@ export const makeDependencyChunks = (
   );
   const packageDependenciesMap: Map<string, string[]> = new Map();
 
-  for (const pkgJson of packageJsons) {
-    const { name, dependencies = {} } = pkgJson;
+  for (const json of packageJsons) {
+    const { name, dependencies = {} } = json;
     packageDependenciesMap.set(
       name,
       Object.keys(dependencies).filter(
@@ -44,10 +44,10 @@ export const makeDependencyChunks = (
   }
 
   let currentChunk: string[] = Array.from(packageDependenciesMap.keys()).reduce(
-    (acc: string[], pkgName) => {
+    (acc: string[], name) => {
       const hasWorkspaceDependencies =
-        (packageDependenciesMap as any).get(pkgName).length > 0;
-      return hasWorkspaceDependencies ? acc : [...acc, pkgName];
+        (packageDependenciesMap as any).get(name).length > 0;
+      return hasWorkspaceDependencies ? acc : [...acc, name];
     },
     []
   );
@@ -55,8 +55,8 @@ export const makeDependencyChunks = (
   while (currentChunk.length > 0) {
     chunks.push(currentChunk);
 
-    for (const pkgName of currentChunk) {
-      packageDependenciesMap.delete(pkgName);
+    for (const name of currentChunk) {
+      packageDependenciesMap.delete(name);
     }
 
     currentChunk = Array.from(packageDependenciesMap.keys()).filter(pkg => {
@@ -71,26 +71,21 @@ export const makeDependencyChunks = (
 
   return {
     chunks,
-    unprocessedDependencies: packageDependenciesMap
+    unprocessed: Array.from(packageDependenciesMap.entries())
   };
 };
 
 export const getWorkspacesDependencyChunks = async (): Promise<string[][]> => {
   const packagesInfo = await getWorkspacesInfo();
   const packageJsons = await readWorkspacesDependencies(packagesInfo);
-  const { chunks, unprocessedDependencies } = makeDependencyChunks(
-    packageJsons
-  );
+  const { chunks, unprocessed } = makeDependencyChunks(packageJsons);
 
-  if (unprocessedDependencies.size > 0) {
+  if (unprocessed.length > 0) {
     console.log(
       error(`Potentially circular dependency
 Please check the following packages attentively:
-${Array.from(unprocessedDependencies.keys()).map(
-  pkgName =>
-    `   ${pkgName}  =>  ${
-      unprocessedDependencies.get(pkgName)?.join(', ') ?? ''
-    }`
+${unprocessed.map(
+  ([name, dependencies]) => `   ${name}  =>  ${dependencies?.join(', ') ?? ''}`
 ).join(`
 `)}
 `)

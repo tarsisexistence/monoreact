@@ -1,7 +1,7 @@
 declare namespace CLI.Package {
-  interface Package {
+  interface PackageInfo {
     name: string;
-    path: string;
+    location: string;
   }
 
   interface BasePackageJSON {
@@ -38,6 +38,6 @@ declare namespace CLI.Package {
         url: string;
       };
 
-  type Dependencies = { [name: string]: string };
+  type Dependencies = { [name: string]: string } | {};
   type Scripts = { [script: string]: string };
 }

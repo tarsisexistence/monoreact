@@ -93,17 +93,19 @@ export const findWorkspacePackageDir = async (
   return dir;
 };
 
-export async function getWorkspacesInfo(): Promise<CLI.Package.Package[]> {
-  const a = exec('yarn workspaces --json info', { silent: true }).stdout.trim();
-  const yarnWorkspaces = JSON.parse(JSON.parse(a).data);
+export async function getWorkspacesInfo(): Promise<CLI.Package.PackageInfo[]> {
+  const yarnWorkspacesJsonInfo = exec('yarn workspaces --json info', {
+    silent: true
+  }).stdout.trim();
+  const yarnWorkspaces = JSON.parse(JSON.parse(yarnWorkspacesJsonInfo).data);
   const rootDir = await findWorkspaceRootDir();
 
   return Object.keys(yarnWorkspaces).reduce(
-    (packages: CLI.Package.Package[], pkg: string) => [
+    (packages: CLI.Package.PackageInfo[], name: string) => [
       ...packages,
       {
-        name: pkg,
-        path: path.resolve(rootDir, yarnWorkspaces[pkg].location)
+        name,
+        location: path.resolve(rootDir, yarnWorkspaces[name].location)
       }
     ],
     []
