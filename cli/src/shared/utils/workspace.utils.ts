@@ -1,11 +1,13 @@
 import path from 'path';
 import fs from 'fs-extra';
+import { exec } from 'shelljs';
+
 import {
   NotFoundPackageWorkspaceError,
   NotFoundWorkspaceRootError
 } from '../models';
 import { logError } from './error.utils';
-import { exec } from 'shelljs';
+import { PACKAGE_JSON } from '../constants/package.const';
 
 export const getWorkspacePackagePaths = (
   workspaces: YarnWorkspaces.Packages | YarnWorkspaces.Config | undefined
@@ -42,7 +44,7 @@ async function findWorkspaceDir<TPackageJson>(
     return null;
   }
 
-  const packageJsonPath = path.resolve(possiblePath, 'package.json');
+  const packageJsonPath = path.resolve(possiblePath, PACKAGE_JSON);
   return fs.existsSync(packageJsonPath) &&
     conditionCallback((await fs.readJSON(packageJsonPath)) as TPackageJson)
     ? possiblePath

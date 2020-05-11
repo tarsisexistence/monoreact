@@ -5,6 +5,7 @@ import { Sade } from 'sade';
 
 import { findWorkspacePackageDir } from '../../shared/utils';
 import { createTestConfig } from '../../configs/test.config';
+import { PACKAGE_JSON } from '../../shared/constants/package.const';
 
 export const testBinCommand = (prog: Sade) => {
   prog
@@ -21,7 +22,7 @@ export const testBinCommand = (prog: Sade) => {
       process.env.BABEL_ENV = 'test';
 
       const packagePath = await findWorkspacePackageDir();
-      const packageJsonPath = path.resolve(packagePath, 'package.json');
+      const packageJsonPath = path.resolve(packagePath, PACKAGE_JSON);
 
       let jestConfigOptions;
 

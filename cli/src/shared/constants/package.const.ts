@@ -1,4 +1,5 @@
 export const PACKAGE_JSON = 'package.json';
+export const TSCONFIG_JSON = 'tsconfig.json';
 
 export const BASE_PACKAGE_SCRIPTS: CLI.Package.Scripts = {
   start: 're-space serve',

@@ -1,21 +1,19 @@
 import fs from 'fs-extra';
 
 import path from 'path';
-import { error } from './color.utils';
-import { getWorkspacesInfo } from './workspace.utils';
-import BasePackageJSON = CLI.Package.BasePackageJSON;
+import { PACKAGE_JSON } from '../constants/package.const';
 
-const readWorkspacePackages = async (
+export const readWorkspacePackages = async (
   packagesInfo: CLI.Package.PackageInfo[]
 ): Promise<CLI.Package.BasePackageJSON[]> => {
   const packageJsons$: Promise<
     CLI.Package.BasePackageJSON
   >[] = packagesInfo.map((pkg: CLI.Package.PackageInfo) =>
-    fs.readJSON(path.resolve(pkg.location, 'package.json'))
+    fs.readJSON(path.resolve(pkg.location, PACKAGE_JSON))
   );
   const settledPackageJsons = (await Promise.allSettled<
     Promise<CLI.Package.BasePackageJSON>
-  >(packageJsons$)) as PromiseFulfilledResult<BasePackageJSON>[];
+  >(packageJsons$)) as PromiseFulfilledResult<CLI.Package.BasePackageJSON>[];
   return settledPackageJsons.map(
     settledPackageJson => settledPackageJson.value
   );
@@ -73,26 +71,6 @@ export const makeDependencyChunks = (
     chunks,
     unprocessed: Array.from(packageDependenciesMap.entries())
   };
-};
-
-export const getWorkspacesDependencyChunks = async (): Promise<string[][]> => {
-  const packagesInfo = await getWorkspacesInfo();
-  const packageJsons = await readWorkspacePackages(packagesInfo);
-  const { chunks, unprocessed } = makeDependencyChunks(packageJsons);
-
-  if (unprocessed.length > 0) {
-    console.log(
-      error(`Potentially circular dependency
-Please check the following packages attentively:
-${unprocessed.map(
-  ([name, dependencies]) => `   ${name}  =>  ${dependencies?.join(', ') ?? ''}`
-).join(`
-`)}
-`)
-    );
-  }
-
-  return chunks;
 };
 
 // 0

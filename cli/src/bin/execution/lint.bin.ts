@@ -9,6 +9,10 @@ import {
 } from '../../shared/utils';
 import { createLintConfig } from '../../configs/lint.config';
 import { LintMessages } from '../../shared/messages';
+import {
+  PACKAGE_JSON,
+  TSCONFIG_JSON
+} from '../../shared/constants/package.const';
 
 export const lintBinCommand = (prog: Sade) => {
   prog
@@ -35,7 +39,7 @@ export const lintBinCommand = (prog: Sade) => {
         packageDir = rootDir;
       }
 
-      const packageJsonPath = path.resolve(packageDir, 'package.json');
+      const packageJsonPath = path.resolve(packageDir, PACKAGE_JSON);
       const { eslintConfig } = await fs.readJSON(packageJsonPath);
       const lintConfig = createLintConfig({
         dir: packageDir,
@@ -53,8 +57,8 @@ export const lintBinCommand = (prog: Sade) => {
         parserOptions: {
           tsconfigRootDir: packageDir,
           project: [
-            path.resolve(rootDir, 'tsconfig.json'),
-            path.resolve(packageDir, 'tsconfig.json')
+            path.resolve(rootDir, TSCONFIG_JSON),
+            path.resolve(packageDir, TSCONFIG_JSON)
           ]
         }
       });

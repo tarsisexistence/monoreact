@@ -43,8 +43,8 @@ export const addBinCommand = (prog: Sade) => {
         featureOption = (await featureNamePrompt.run()) as CLI.Setup.AddOptionType;
       }
 
-      const workspacePackage = await findWorkspacePackageDir();
-      const packageJsonPath = path.resolve(workspacePackage, PACKAGE_JSON);
+      const packageDir = await findWorkspacePackageDir();
+      const packageJsonPath = path.resolve(packageDir, PACKAGE_JSON);
       const packageJson = (await fs.readJSON(
         packageJsonPath
       )) as CLI.Package.WorkspacePackageJSON;
@@ -55,7 +55,7 @@ export const addBinCommand = (prog: Sade) => {
       try {
         await fs.copy(
           path.resolve(__dirname, `../../../../templates/add/${featureOption}`),
-          path.resolve(workspacePackage, featureSetup[featureOption].path),
+          path.resolve(packageDir, featureSetup[featureOption].path),
           { overwrite: false, errorOnExist: true }
         );
 

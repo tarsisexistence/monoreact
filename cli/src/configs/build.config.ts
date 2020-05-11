@@ -19,7 +19,7 @@ import cssnano from 'cssnano';
 import simplevars from 'postcss-simple-vars';
 import nested from 'postcss-nested';
 
-import { tsconfigJSON } from '../typings/tsconfig';
+import { TsconfigJSON } from '../typings/tsconfig';
 
 // TODO: index.d.ts is redundant here, remove later
 // const tsconfigInclude = ['src', path.resolve(__dirname, '../../index.d.ts')];
@@ -29,7 +29,7 @@ export const createBuildConfig = (opts: {
   useClosure: boolean;
   runEslint: boolean;
   packageJson: CLI.Package.WorkspacePackageJSON;
-  tsconfigJson: tsconfigJSON;
+  tsconfigJson: TsconfigJSON;
 }): InputOptions & { output: OutputOptions } => ({
   input: opts.packageJson.source,
   output: {
