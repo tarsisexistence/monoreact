@@ -42,8 +42,8 @@ export function submodulesPullBinCommand(prog: Sade): void {
 
         if (self) {
           console.log(`
-Entering 'core'`);
-          const { exitCode: coreExitCode } = await execa(
+Entering 'host'`);
+          const { exitCode: hostExitCode } = await execa(
             'git',
             [cmd, remote, branch],
             {
@@ -54,8 +54,8 @@ Entering 'core'`);
           console.log(
             finished({
               cmd,
-              code: coreExitCode,
-              type: 'core'
+              code: hostExitCode,
+              type: 'host'
             })
           );
         }

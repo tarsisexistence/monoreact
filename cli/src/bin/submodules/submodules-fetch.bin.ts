@@ -37,16 +37,16 @@ export function submodulesFetchBinCommand(prog: Sade): void {
 
       if (self) {
         console.log(`
-Entering 'core'`);
-        const { exitCode: coreExitCode } = await execa('git', [cmd, '--all'], {
+Entering 'host'`);
+        const { exitCode: hostExitCode } = await execa('git', [cmd, '--all'], {
           stdio: [process.stdin, process.stdout, process.stderr],
           cwd: workspaceRootPath
         });
         console.log(
           finished({
             cmd,
-            code: coreExitCode,
-            type: 'core'
+            code: hostExitCode,
+            type: 'host'
           })
         );
       }

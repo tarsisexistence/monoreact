@@ -5,13 +5,13 @@
 ### Quickstart
 
 > Project uses git submodules
+
 1. git clone --recursive https://github.com/maktarsis/re-space.git
-2. npx yarn install (__you can omit "npx" if you have yarn globally__)
+2. npx yarn install (**you can omit "npx" if you have yarn globally**)
 3. yarn workspaces run build
 4. yarn start
 
 <br/>
-
 
 ### This is an advanced workspace implementation for react applications
 
@@ -22,6 +22,7 @@
 - implement monorepo, submodules
 - workspace, submodules management
 - efficient rollup bundling
+- workspace dependency awareness
 
 <br/>
 

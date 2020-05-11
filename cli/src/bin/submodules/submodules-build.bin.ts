@@ -36,7 +36,7 @@ export function submodulesBuildBinCommand(prog: Sade): void {
 
       if (self) {
         console.log(`
-Entering 'core'`);
+Entering 'host'`);
         const { exitCode } = await execa('yarn', [cmd], {
           stdio: [process.stdin, process.stdout, process.stderr],
           cwd: workspaceRootPath
@@ -45,7 +45,7 @@ Entering 'core'`);
           finished({
             cmd,
             code: exitCode,
-            type: 'core'
+            type: 'host'
           })
         );
       }

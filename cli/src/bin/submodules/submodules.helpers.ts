@@ -6,6 +6,6 @@ export const finished = ({
   code
 }: {
   cmd: CLI.Submodules.Command;
-  type: 'core' | 'submodules';
+  type: 'host' | 'submodules';
   code: number;
 }) => success(`Finished ${cmd} '${type}' with code ${code}`);
