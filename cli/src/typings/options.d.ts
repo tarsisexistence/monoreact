@@ -30,6 +30,17 @@ declare namespace CLI.Options {
     s: boolean;
   }
 
+  interface Workspaces extends BaseOptions {
+    self: boolean;
+    s: boolean;
+    only: string[];
+    o: string[];
+    exclude: string[];
+    e: string[];
+    jobs: number;
+    j: number;
+  }
+
   interface SubmodulesPull extends Submodules {
     remote: string;
     r: string;

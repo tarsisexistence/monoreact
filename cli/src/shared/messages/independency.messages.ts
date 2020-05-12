@@ -1,7 +1,7 @@
 export class IndependencyMessages {
   generating = () => 'Migrating...';
 
-  successful = () => 'The package is independent now.';
+  successful = () => 'Migration completed successfully';
 
   failed = () => 'Failed independency migration';
 }
