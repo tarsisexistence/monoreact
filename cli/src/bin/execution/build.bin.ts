@@ -21,7 +21,6 @@ export const buildBinCommand = (prog: Sade) => {
     .alias('b')
     .example('build')
     .action(async () => {
-      const time = process.hrtime();
       const { bundling, successful } = new BuildMessages();
       const packagePath = await findWorkspacePackageDir();
       const packageJsonPath = path.resolve(packagePath, PACKAGE_JSON);
@@ -32,6 +31,8 @@ export const buildBinCommand = (prog: Sade) => {
       const tsconfigJson = (await fs.readJSON(
         tsconfigJsonPath
       )) as TsconfigJSON;
+
+      const time = process.hrtime();
       const buildConfig = createBuildConfig({
         tsconfigJson,
         packageJson,

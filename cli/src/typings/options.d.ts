@@ -31,8 +31,8 @@ declare namespace CLI.Options {
   }
 
   interface Workspaces extends BaseOptions {
-    self: boolean;
-    s: boolean;
+    quiet: boolean;
+    q: boolean;
     only: string[];
     o: string[];
     exclude: string[];
