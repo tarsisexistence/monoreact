@@ -1,7 +1,7 @@
 import { Sade } from 'sade';
 import execa from 'execa';
-// import * as assert from 'assert';
-// import { cpus } from 'os';
+import { cpus } from 'os';
+import pLimit from 'p-limit';
 
 import {
   findWorkspaceRootDir,
@@ -21,15 +21,13 @@ export function workspacesBuildBinCommand(prog: Sade): void {
     .alias('wb')
     .option('o, only', 'Build only specific workspaces')
     .option('e, exclude', 'Exclude specific workspaces')
-    .option('j, jobs', 'Number of parallel jobs to run')
     .option('s, self', 'Apply build for the host workspace')
 
     .example('workspaces build --self')
     .action(async ({ self }: CLI.Options.Workspaces) => {
       const stdio = [process.stdin, process.stdout, process.stderr];
-      // const parallel = true;
-      // const jobs = Math.max(1, cpus().length / 2);
-      // assert.ok(jobs > 1, 'parallel jobs must be greater than 1');
+      const jobs = Math.max(1, cpus().length / 2);
+      const limit = pLimit(jobs);
 
       const packagesInfo = await getWorkspacesInfo();
       const packagesLocationMap = Object.fromEntries(
@@ -39,15 +37,17 @@ export function workspacesBuildBinCommand(prog: Sade): void {
       const { chunks, unprocessed } = makeDependencyChunks(packageJsons);
 
       for (const chunk of chunks) {
-        for (const name of chunk) {
-          console.log(`
-Entering ${name}
-`);
-          await execa('yarn', ['build'], {
-            cwd: packagesLocationMap[name],
-            stdio
-          });
-        }
+        await Promise.all(
+          chunk.map(async name =>
+            limit(async () => {
+              console.log(`Entering ${name}`);
+              await execa('yarn', ['build'], {
+                cwd: packagesLocationMap[name]
+              });
+              console.log(`Finished ${name}`);
+            })
+          )
+        );
       }
 
       if (unprocessed.length > 0) {

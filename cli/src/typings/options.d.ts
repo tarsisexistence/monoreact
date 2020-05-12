@@ -37,8 +37,6 @@ declare namespace CLI.Options {
     o: string[];
     exclude: string[];
     e: string[];
-    jobs: number;
-    j: number;
   }
 
   interface SubmodulesPull extends Submodules {

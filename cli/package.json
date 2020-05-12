@@ -68,6 +68,7 @@
     "rollup-plugin-strip-code": "0.2.7",
     "rollup-plugin-typescript2": "0.27.0",
     "rollup-plugin-visualizer": "4.0.4",
+    "p-limit": "2.3.0",
     "sade": "1.7.3",
     "shelljs": "0.8.4",
     "ts-jest": "24.3.0",
