@@ -6,14 +6,11 @@ declare namespace CLI.Options {
   interface Generate extends BaseOptions {
     workspaces: string;
     template: CLI.Setup.GenerateOptionType;
-    t: CLI.Setup.GenerateOptionType;
     feature: CLI.Setup.AddOptionType;
-    f: CLI.Setup.AddOptionType;
   }
 
   interface Install extends BaseOptions {
     dev: boolean | string;
-    D: boolean | string;
   }
 
   interface Test extends BaseOptions {
@@ -27,20 +24,13 @@ declare namespace CLI.Options {
 
   interface Submodules extends BaseOptions {
     self: boolean;
-    s: boolean;
   }
 
   interface Workspaces extends BaseOptions {
     quiet: boolean;
-    q: boolean;
-    only: string[];
-    o: string[];
-    exclude: string[];
-    e: string[];
   }
 
   interface SubmodulesPull extends Submodules {
     remote: string;
-    r: string;
   }
 }

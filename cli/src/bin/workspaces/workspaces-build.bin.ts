@@ -22,8 +22,6 @@ export function workspacesBuildBinCommand(prog: Sade): void {
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     .alias('wb')
-    .option('o, only', 'Build only specific workspaces')
-    .option('e, exclude', 'Exclude specific workspaces')
     .option(
       'q, quiet',
       'Do not print any information about builds that are in the process',
@@ -53,6 +51,7 @@ export function workspacesBuildBinCommand(prog: Sade): void {
       try {
         console.log(introduce());
         console.log(compiling());
+
         if (!quiet) {
           space();
         }
