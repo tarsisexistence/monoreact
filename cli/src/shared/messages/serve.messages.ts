@@ -10,7 +10,7 @@ Watching for changes...`;
   compiling = () => `
 ${info('Compiling modules...')}`;
 
-  failed = () => error(`Failed to compile`);
+  failed = () => error(`Failed compilation`);
 
   compiled = (isFirstChange: boolean) =>
     success(`${isFirstChange ? 'Compiled' : 'Recompiled'} successfully.`);

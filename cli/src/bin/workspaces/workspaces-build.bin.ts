@@ -13,6 +13,8 @@ import {
   logError,
   space
 } from '../../shared/utils';
+import { convertStringArrayIntoMap } from '../../shared/utils/dataStructures.utils';
+import packageJson from '../../../package.json';
 
 export function workspacesBuildBinCommand(prog: Sade): void {
   prog
@@ -27,8 +29,9 @@ export function workspacesBuildBinCommand(prog: Sade): void {
       'Do not print any information about builds that are in the process',
       false
     )
+    .option('exclude', 'Exclude specific workspaces', '')
     .example('workspaces build --self')
-    .action(async ({ quiet }: CLI.Options.Workspaces) => {
+    .action(async ({ quiet, exclude }: CLI.Options.Workspaces) => {
       const {
         introduce,
         compiled,
@@ -45,6 +48,8 @@ export function workspacesBuildBinCommand(prog: Sade): void {
       );
       const packageJsons = await readWorkspacePackages(packagesInfo);
       const { chunks, unprocessed } = makeDependencyChunks(packageJsons);
+      const excluded = convertStringArrayIntoMap(exclude);
+      excluded.set(packageJson.name, true);
 
       clearConsole();
 
@@ -62,11 +67,15 @@ export function workspacesBuildBinCommand(prog: Sade): void {
           await Promise.all(
             chunk.map(async name =>
               limit(async () => {
+                if (excluded.has(name)) {
+                  return;
+                }
+
                 if (!quiet) {
                   console.log(entering(name));
                 }
 
-                await execa('yarn', ['build'], {
+                await execa('re-space', ['build'], {
                   cwd: packagesLocationMap[name]
                 });
 

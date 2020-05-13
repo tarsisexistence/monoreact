@@ -28,6 +28,7 @@ declare namespace CLI.Options {
 
   interface Workspaces extends BaseOptions {
     quiet: boolean;
+    exclude: string;
   }
 
   interface SubmodulesPull extends Submodules {
