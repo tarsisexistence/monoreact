@@ -27,8 +27,8 @@ export function workspacesTestBinCommand(prog: Sade): void {
     .action(async ({ quiet, exclude }: CLI.Options.Workspaces) => {
       const {
         introduce,
-        tested,
-        testing,
+        started,
+        finished,
         failed,
         successful,
         running
@@ -39,6 +39,7 @@ export function workspacesTestBinCommand(prog: Sade): void {
       );
       const packageJsons = await readWorkspacePackages(packagesInfo);
       const { chunks, unprocessed } = makeDependencyChunks(packageJsons);
+      const args = ['test', '--passWithNoTests'];
       const excluded = convertStringArrayIntoMap(exclude);
       excluded.set(packageJson.name, true);
 
@@ -46,7 +47,7 @@ export function workspacesTestBinCommand(prog: Sade): void {
 
       try {
         console.log(introduce());
-        console.log(testing());
+        console.log(started('test'));
 
         if (!quiet) {
           space();
@@ -65,13 +66,13 @@ export function workspacesTestBinCommand(prog: Sade): void {
               console.log(running(name));
             }
 
-            await execa('re-space', ['test', '--passWithNoTests'], {
+            await execa('re-space', args, {
               cwd: packagesLocationMap[name],
               stdio: [process.stdin, process.stdout, process.stderr]
             });
 
             if (!quiet) {
-              console.log(tested(name));
+              console.log(finished('test', name));
             }
           }
         }

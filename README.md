@@ -81,7 +81,7 @@ The following options are now available:
 - **generate** a new package (submodule): basic, react. Re-space creates a distribution of responsibility. Not all packages must deal with react components. Sometimes you want to build plain JavaScript/TypeScript libraries.
 - **add** a new feature (available options: docz, playground(run packages locally inside the package workspace)). Re-space allows you to not generate components with all the things that may not necessarily need in each package.
 - **install** dependencies. This option provides workspace dependency management. If you are running **install** inside some package, it'll add these dependencies as "peer" and add them to the root.
-- manage **submodules**. It is quite challenging to managing git submodules. You have to perform many actions to make a simple task happen, and this is what scares people off from using submodules. In turn, Re-space offers user-friendly control through commands, which increases understanding and speed of interaction with git submodules.
+- manage **submodules**. It is quite challenging for managing git submodules. You have to perform many actions to make a simple task happen, and this is what scares people off from using submodules. In turn, Re-space offers user-friendly control through commands, which increases understanding and speed of interaction with git submodules.
 - manage **workspaces**. Re-space offers a much efficient alternative to the "yarn workspaces". It analyzes your dependencies between workspaces and runs them in the desired sequence and in parallel, when necessary and appropriate.
 
 It planned to add the following options soon:

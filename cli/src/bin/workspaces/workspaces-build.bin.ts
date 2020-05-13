@@ -35,8 +35,8 @@ export function workspacesBuildBinCommand(prog: Sade): void {
     .action(async ({ quiet, exclude }: CLI.Options.Workspaces) => {
       const {
         introduce,
-        compiled,
-        compiling,
+        started,
+        finished,
         failed,
         successful,
         running
@@ -49,21 +49,20 @@ export function workspacesBuildBinCommand(prog: Sade): void {
       );
       const packageJsons = await readWorkspacePackages(packagesInfo);
       const { chunks, unprocessed } = makeDependencyChunks(packageJsons);
+      const ags = ['build'];
       const excluded = convertStringArrayIntoMap(exclude);
       excluded.set(packageJson.name, true);
 
       clearConsole();
+      console.log(introduce());
+      console.log(started('build'));
+
+      if (!quiet) {
+        space();
+      }
 
       try {
-        console.log(introduce());
-        console.log(compiling());
-
-        if (!quiet) {
-          space();
-        }
-
         const time = process.hrtime();
-
         for (const chunk of chunks) {
           await Promise.all(
             chunk.map(async name =>
@@ -76,12 +75,12 @@ export function workspacesBuildBinCommand(prog: Sade): void {
                   console.log(running(name));
                 }
 
-                await execa('re-space', ['build'], {
+                await execa('re-space', ags, {
                   cwd: packagesLocationMap[name]
                 });
 
                 if (!quiet) {
-                  console.log(compiled(name));
+                  console.log(finished('build', name));
                 }
               })
             )
@@ -89,6 +88,7 @@ export function workspacesBuildBinCommand(prog: Sade): void {
         }
 
         const duration = process.hrtime(time);
+
         if (!quiet) {
           space();
         }
