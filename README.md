@@ -28,7 +28,7 @@
 
 ### Why is this an advanced implementation
 
-It uses CLI, which does exactly what you need to write react applications.
+It uses CLI, which does what you exactly need to write react applications.
 Currently, the solution is fully customizable.
 Future design implementation will be revised.
 
@@ -36,13 +36,13 @@ Future design implementation will be revised.
 
 ### Motivation
 
-The main motivation was not to be tied to existing solutions of vendors, so as not to get into vendor lock.
+The primary motivation was not to be tied to existing solutions of vendors, so as not to get into vendor lock.
 
 Nevertheless, I recommend considering alternative solutions:
 
-- [nx/react](https://nx.dev/react) - super powerful tool that can do everything, but turned out to be redundant for me.
-- [lerna](https://github.com/lerna/lerna) - completely threw this idea away with existing yarn workspaces, yarn and git submodules scripts.
-- [tsdx](https://github.com/jaredpalmer/tsdx) - an interesting idea, where I had to learn a lot, however, it also does and does not do exactly what my project needed.
+- [nx/react](https://nx.dev/react) - a super powerful tool that can do everything, but turned out to be redundant for me.
+- [lerna](https://github.com/lerna/lerna) - completely threw this idea away with existing yarn workspaces, yarn, and git submodules scripts.
+- [tsdx](https://github.com/jaredpalmer/tsdx) - an interesting idea, where I had to learn a lot; however, it also does and does not do what my project precisely needed.
 
 I will explain in more detail later why these solutions did not fit perfectly into the business problems I encountered
 
@@ -50,12 +50,12 @@ I will explain in more detail later why these solutions did not fit perfectly in
 
 ### The solution is currently raw
 
-In fact, the base implementation is ready for use.
+The base implementation is ready for use.
 
-Nevertheless, I would also like to finish some important changes in the **re-space/cli** that will help show off the full power of this implementation.
+Nevertheless, I would also like to finish some essential changes in the **re-space/cli** that will help show off the full power of this implementation.
 
-Namely, it is necessary to complete the CLI, which will generate a completely basic boilerplate of the main application (repository / module),
-which will be the workspace root of the whole project.
+Namely, it is necessary to complete the CLI, which generates a completely basic boilerplate of the main application (repository/module),
+which is the workspace root of the whole project.
 
 <br/>
 
@@ -76,17 +76,19 @@ Even in its raw form, it is already ready for use, and here is what exactly you 
 
 The following options are now available:
 
-- build and serve your package with rollup. Rollup is the best choice for building independent libraries due to efficient tree-shaking and fast compilation.
-- test and lint your package with Jest and eslint. These built-in commands will help to increase and maintain the quality of built libraries.
-- generate a new package (submodule): basic, react. This creates a distribution of responsibility. Not all packages must deal with react components. Sometimes you wanna build plain JavaScript/TypeScript libraries.
-- add a new feature (feature): docz, playground(run packages locally). Allows you to not generate components with all the things that may not necessarily be needed in each package.
-- install dependencies. This option provides workspace dependency management. If you run install inside some package, it'll add this dependency as peer and will add dependencies to the root to the appropriate dependency section.
-- manage submodules. It is quite difficult to manage git submodules. You have to perform many actions just to make a simple task happen and this is what scares people off from using submodules. In turn, re-space offers user-friendly control through commands, which will increase understanding and speed of interaction with submodules.
+- **build** and **serve** your package with a modern rollup bundler. Rollup is the best choice for building independent libraries due to efficient tree-shaking and fast compilation.
+- **test** and **lint** your package with Jest and eslint. These built-in packages are crucial for increasing and maintaining the quality of built libraries.
+- **generate** a new package (submodule): basic, react. Re-space creates a distribution of responsibility. Not all packages must deal with react components. Sometimes you want to build plain JavaScript/TypeScript libraries.
+- **add** a new feature (available options: docz, playground(run packages locally inside the package workspace)). Re-space allows you to not generate components with all the things that may not necessarily need in each package.
+- install dependencies. This option provides workspace dependency management. If you are running **install** inside some package, it'll add these dependencies as "peer" and add them to the root.
+- manage submodules. It is quite challenging to manage git submodules. You have to perform many actions to make a simple task happen, and this is what scares people off from using submodules. In turn, Re-space offers user-friendly control through commands, which increases understanding and speed of interaction with git submodules.
+- manage workspaces. Re-space offers a much efficient alternative to the "yarn workspaces". It analyzes your dependencies between workspaces and runs them in the desired sequence and in parallel, when necessary and appropriate.
 
-It is planned to add the following options in the near future:
+It planned to add the following options soon:
 
 - generate a new main application.
-- increase the number of plug-ins features
+- generate independent package (out of workspace).
+- increase the number of plug-in features.
 
 <br/>
 
@@ -98,7 +100,7 @@ This project is [MIT](https://choosealicense.com/licenses/mit/) licensed.
 
 ### Contributing
 
-Contributions are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Contributions are welcome. For significant changes, please open an issue first to discuss what you would like to change.
 
 If you made a PR, make sure to update tests as appropriate and keep the examples consistent.
 
