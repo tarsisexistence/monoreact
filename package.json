@@ -98,7 +98,7 @@
     "prop-types": "15.7.2",
     "react-is": "16.13.1",
     "rollup": "2.10.0",
-    "rollup-plugin-analyzer": "3.2.2",
+    "rollup-plugin-analyzer": "3.2.3",
     "rollup-plugin-eslint": "7.0.0",
     "rollup-plugin-filesize": "8.0.2",
     "rollup-plugin-peer-deps-external": "2.2.2",
