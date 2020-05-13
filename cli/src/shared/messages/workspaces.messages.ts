@@ -4,12 +4,14 @@ import packageJson from '../../../package.json';
 const startingTextByCommand: Record<CLI.Workspaces.Command, string> = {
   build: 'Compiling',
   lint: 'Linting',
+  serve: 'Start watching',
   test: 'Testing'
 };
 
 const finishingTextByCommand: Record<CLI.Workspaces.Command, string> = {
   build: 'Compiled',
   lint: 'Linted',
+  serve: 'Finished watching',
   test: 'Tested'
 };
 

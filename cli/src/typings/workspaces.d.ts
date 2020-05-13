@@ -1,3 +1,3 @@
 declare namespace CLI.Workspaces {
-  type Command = 'build' | 'lint' | 'test';
+  type Command = 'build' | 'lint' | 'serve' | 'test';
 }
