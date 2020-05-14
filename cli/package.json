@@ -71,7 +71,7 @@
     "p-limit": "2.3.0",
     "sade": "1.7.3",
     "shelljs": "0.8.4",
-    "ts-jest": "24.3.0",
+    "ts-jest": "25.5.1",
     "tslib": "1.13.0",
     "typescript": "3.8.3"
   },
