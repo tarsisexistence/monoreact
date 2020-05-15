@@ -34,7 +34,6 @@ export const WORKSPACE_PACKAGE_JSON: Omit<
   private: false,
   version: '0.1.0',
   module: 'dist/bundle.js',
-  'jsnext:main': 'dist/bundle.js',
   types: 'dist/publicApi.d.ts',
   source: 'src/publicApi.ts',
   publishConfig: {

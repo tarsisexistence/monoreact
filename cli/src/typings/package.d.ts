@@ -23,7 +23,6 @@ declare namespace CLI.Package {
   interface WorkspacePackageJSON extends BasePackageJSON {
     workspace: true;
     module: 'dist/bundle.js';
-    'jsnext:main': 'dist/bundle.js';
     types: 'dist/publicApi.d.ts';
     source: string;
     publishConfig: { access: 'public' };

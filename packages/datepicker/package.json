@@ -6,7 +6,6 @@
   "author": "maksym.tarsis",
   "module": "dist/bundle.js",
   "source": "src/publicApi.ts",
-  "jsnext:main": "dist/bundle.js",
   "typings": "dist/publicApi.d.ts",
   "scripts": {
     "build": "re-space build",
