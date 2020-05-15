@@ -2,12 +2,12 @@ import { Sade } from 'sade';
 import path from 'path';
 import ora from 'ora';
 import fs from 'fs-extra';
-import { Select } from 'enquirer';
 
 import { featureSetup } from '../../setup/add';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
 import { FeatureMessages } from '../../shared/messages';
-import { findWorkspacePackageDir, info, logError } from '../../shared/utils';
+import { findWorkspacePackageDir, logError } from '../../shared/utils';
+import { validateFeatureOption } from './add.helpers';
 
 const featureOptions = Object.keys(featureSetup);
 
@@ -28,21 +28,12 @@ export const addBinCommand = (prog: Sade) => {
         exists,
         invalidFeatureName
       } = new FeatureMessages();
-      let featureOption: CLI.Setup.AddOptionType = featureName as any;
 
-      if (!featureOptions.includes(featureOption)) {
-        console.log(invalidFeatureName(featureOption));
-
-        const featureNamePrompt = new Select({
-          message: 'Choose a feature',
-          choices: featureOptions.map(option => ({
-            name: option,
-            message: info(option)
-          }))
-        });
-        featureOption = (await featureNamePrompt.run()) as CLI.Setup.AddOptionType;
-      }
-
+      const featureOption: CLI.Setup.AddOptionType = await validateFeatureOption(
+        featureName,
+        featureOptions,
+        () => console.log(invalidFeatureName(featureOption))
+      );
       const packageDir = await findWorkspacePackageDir();
       const packageJsonPath = path.resolve(packageDir, PACKAGE_JSON);
       const packageJson = (await fs.readJSON(
