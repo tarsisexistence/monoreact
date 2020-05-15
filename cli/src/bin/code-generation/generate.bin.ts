@@ -2,22 +2,24 @@ import { Sade } from 'sade';
 import path from 'path';
 import ora from 'ora';
 import fs from 'fs-extra';
-import { Input, Select } from 'enquirer';
 
 import {
   buildPackage,
   getWorkspacePackageSetupPath,
   getWorkspacePackagePaths,
-  getAuthorName,
   setAuthorName,
   sortPackageJson,
-  info,
   logError,
   findWorkspaceRootDir
 } from '../../shared/utils';
 import { featureSetup, generateSetup, composePackageJson } from '../../setup';
-import { GenerateMessages } from '../../shared/messages';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
+import {
+  getAuthor,
+  getPackageTemplateType,
+  getSafePackageName
+} from './generate.helpers';
+import { generateMessage } from '../../shared/messages';
 
 const templateOptions = Object.keys(generateSetup);
 const featureOptions = Object.keys(featureSetup);
@@ -48,20 +50,8 @@ export const generateBinCommand = (prog: Sade) => {
     .example(`generate packageName --feature ${featureOptions[0]}`)
     .action(async (pkgName: string, { template }: CLI.Options.Generate) => {
       let packageName = pkgName;
-      const {
-        changePackageName,
-        successfulConfigure,
-        failedConfigure,
-        successful,
-        copy,
-        failed,
-        generating,
-        exists,
-        invalidTemplate,
-        preparedPackage,
-        preparingPackage
-      } = new GenerateMessages(packageName);
-      let packageTemplateType: CLI.Setup.GenerateOptionType;
+      let packageTemplateType = template;
+
       const workspaceRoot = await findWorkspaceRootDir();
       const packageJsonPath = path.resolve(workspaceRoot, PACKAGE_JSON);
       const { name: rootName, workspaces, license } = (await fs.readJSON(
@@ -69,55 +59,19 @@ export const generateBinCommand = (prog: Sade) => {
       )) as CLI.Package.WorkspaceRootPackageJSON;
       const workspacePackages = getWorkspacePackagePaths(workspaces);
       const packageSetupPath = getWorkspacePackageSetupPath(workspacePackages);
-      const bootSpinner = ora(generating());
-
-      async function getPackagePath(projectPath: string): Promise<string> {
-        const isExist = await fs.pathExists(projectPath);
-
-        if (!isExist) {
-          return projectPath;
-        }
-
-        bootSpinner.fail(failed());
-        const packageNamePrompt = new Input({
-          message: exists(),
-          initial: copy(),
-          result: (v: string) => v.trim()
-        });
-
-        packageName = await packageNamePrompt.run();
-        changePackageName(packageName);
-        const nextProjectPath = `${workspaceRoot}/${packageSetupPath}/${packageName}`;
-        return getPackagePath(nextProjectPath);
-      }
+      const bootSpinner = ora(generateMessage.generating(pkgName));
 
       try {
-        const projectPath = await getPackagePath(
-          `${workspaceRoot}/${packageSetupPath}/${packageName}`
-        );
-
-        const prompt = new Select({
-          message: 'Choose a template',
-          choices: templateOptions.map(option => ({
-            name: option,
-            message: info(option)
-          }))
-        });
-
-        if (template) {
-          packageTemplateType = template.trim() as CLI.Setup.GenerateOptionType;
-
-          if (
-            !prompt.choices.find(
-              (choice: any) => choice.name === packageTemplateType
-            )
-          ) {
-            bootSpinner.fail(invalidTemplate(packageTemplateType));
-            packageTemplateType = await prompt.run();
+        const packageName = await getSafePackageName(
+          { workspaceRoot, packageSetupPath, packageName: pkgName },
+          (name: string) => {
+            bootSpinner.fail(generateMessage.failed(name));
           }
-        } else {
-          packageTemplateType = await prompt.run();
-        }
+        );
+        const packagePath = `${workspaceRoot}/${packageSetupPath}/${packageName}`;
+        packageTemplateType = await getPackageTemplateType(template, () => {
+          bootSpinner.fail(generateMessage.invalidTemplate(template));
+        });
 
         bootSpinner.start();
         await fs.copy(
@@ -125,26 +79,18 @@ export const generateBinCommand = (prog: Sade) => {
             __dirname,
             `../../../../templates/generate/${packageTemplateType}`
           ),
-          projectPath,
+          packagePath,
           {
             overwrite: true
           }
         );
 
-        let author = getAuthorName();
+        bootSpinner.stop();
+        const author = await getAuthor();
+        bootSpinner.start();
+        setAuthorName(author);
 
-        if (!author) {
-          bootSpinner.stop();
-          const licenseInput = new Input({
-            name: 'author',
-            message: 'Who is the package author?'
-          });
-          author = await licenseInput.run();
-          setAuthorName(author);
-          bootSpinner.start();
-        }
-
-        process.chdir(projectPath);
+        process.chdir(packagePath);
         const templateConfig = generateSetup[packageTemplateType];
         const generatePackageJson = composePackageJson(templateConfig);
         const pkgJson = generatePackageJson({
@@ -153,28 +99,28 @@ export const generateBinCommand = (prog: Sade) => {
           rootName,
           license
         });
-        await fs.outputJSON(path.resolve(projectPath, PACKAGE_JSON), pkgJson, {
+        await fs.outputJSON(path.resolve(packagePath, PACKAGE_JSON), pkgJson, {
           spaces: 2
         });
-        bootSpinner.succeed(successful());
+        bootSpinner.succeed(generateMessage.successful(packageName));
       } catch (err) {
-        bootSpinner.fail(failed());
+        bootSpinner.fail(generateMessage.failed(packageName));
         logError(err);
         process.exit(1);
       }
 
       const { dependencies } = generateSetup[packageTemplateType];
       const preparingSpinner = ora(
-        preparingPackage(dependencies.sort())
+        generateMessage.preparingPackage(packageName, dependencies.sort())
       ).start();
 
       try {
         await sortPackageJson();
         await buildPackage();
-        preparingSpinner.succeed(successfulConfigure());
-        console.log(await preparedPackage(packageName));
+        preparingSpinner.succeed(generateMessage.successfulConfigure());
+        console.log(await generateMessage.preparedPackage(packageName));
       } catch (err) {
-        preparingSpinner.fail(failedConfigure());
+        preparingSpinner.fail(generateMessage.failedConfigure());
         logError(err);
         process.exit(1);
       }

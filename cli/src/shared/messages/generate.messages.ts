@@ -1,44 +1,38 @@
 import { bold, error, highlight, info, success } from '../utils';
 
-export class GenerateMessages {
-  // shorthand
-  // eslint-disable-next-line no-empty-function
-  constructor(private packageName: string) {}
+export const generateMessage = {
+  copy: (packageName: string) => `${packageName}-copy`,
 
-  public changePackageName = (newPackageName: string): void => {
-    this.packageName = newPackageName;
-  };
+  successful: (packageName: string) => `Generated ${info(packageName)} package`,
 
-  copy = () => `${this.packageName}-copy`;
+  generating: (packageName: string) =>
+    `Generating ${info(packageName)} package...`,
 
-  successful = () => `Generated ${info(this.packageName)} package`;
+  failed: (packageName: string) =>
+    `Failed to generate ${error(packageName)} package`,
 
-  generating = () => `Generating ${info(this.packageName)} package...`;
+  successfulConfigure: () => 'The package successfully configured',
 
-  failed = () => `Failed to generate ${error(this.packageName)} package`;
+  failedConfigure: () => `Failed to fully configure the package`,
 
-  successfulConfigure = () => 'The package successfully configured';
+  invalidTemplate: (template: string) => `Invalid template ${error(template)}`,
 
-  failedConfigure = () => `Failed to fully configure the package`;
-
-  invalidTemplate = (template: string) => `Invalid template ${error(template)}`;
-
-  exists = () =>
-    `A folder named ${error(this.packageName)} already exists! ${bold(
+  exists: (packageName: string) =>
+    `A folder named ${error(packageName)} already exists! ${bold(
       'Choose a different name'
-    )}`;
+    )}`,
 
-  preparingPackage = (packages: string[]) => {
-    const pkgText = packages.map(pkg => `     ${info(pkg)}`).join('\n');
-    const requiredText = `Preparing ${info(this.packageName)} package`;
-    return packages.length > 0
+  preparingPackage: (packageName: string, dependencies: string[]) => {
+    const pkgText = dependencies.map(pkg => `     ${info(pkg)}`).join('\n');
+    const requiredText = `Preparing ${info(packageName)} package`;
+    return dependencies.length > 0
       ? `${requiredText} with the following peer dependencies: 
 ${pkgText}
 `
       : requiredText;
-  };
+  },
 
-  preparedPackage = async (projectName: string) => {
+  preparedPackage: async (projectName: string) => {
     const commands = {
       install: 're-space install',
       start: 're-space serve',
@@ -66,5 +60,5 @@ ${pkgText}
     ${info(commands.test)}
     
   ${highlight('Happy coding :)')}`;
-  };
-}
+  }
+};
