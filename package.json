@@ -53,14 +53,11 @@
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.2",
     "husky": "4.2.5",
-    "identity-obj-proxy": "3.0.0",
     "jscpd": "3.2.0",
     "jscpd-badge-reporter": "1.1.3",
     "lint-staged": "10.2.2",
-    "node-sass": "4.14.1",
     "prettier": "2.0.5",
     "prop-types": "15.7.2",
-    "react-is": "16.13.1",
     "stylelint": "13.3.2",
     "stylelint-config-recommended": "3.0.0",
     "tslib": "2.0.0",
@@ -81,6 +78,7 @@
   },
   "jest": {
     "moduleNameMapper": {
+      "@re-space/datepicker": "<rootDir>/packages/datepicker/src/publicApi.ts",
       "@re-space/example": "<rootDir>/packages/example/src/publicApi.ts"
     }
   }
