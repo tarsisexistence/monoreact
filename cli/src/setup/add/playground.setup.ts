@@ -2,6 +2,6 @@ export const playgroundSetup: CLI.Setup.AddOptions = {
   path: './playground',
   scripts: {
     'start:playground':
-      'yarn build & concurrently --kill-others "yarn start" "cd playground & yarn start"'
+      'yarn build & npx concurrently --kill-others "yarn start" "cd playground & yarn start"'
   }
 };
