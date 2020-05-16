@@ -8,7 +8,7 @@ import {
   findWorkspaceRootDir
 } from '../../shared/utils';
 import { createLintConfig } from '../../configs/lint.config';
-import { LintMessages } from '../../shared/messages';
+import { lintMessage } from '../../shared/messages';
 import {
   PACKAGE_JSON,
   TSCONFIG_JSON
@@ -27,7 +27,6 @@ export const lintBinCommand = (prog: Sade) => {
     .example('lint --ignore-pattern src/foo.ts')
     .action(async (opts: CLI.Options.Lint) => {
       const time = process.hrtime();
-      const { linting, linted } = new LintMessages();
       const files = opts._.length > 0 ? opts._ : ['src/**/*.{js,jsx,ts,tsx}'];
 
       const rootDir = await findWorkspaceRootDir();
@@ -63,7 +62,7 @@ export const lintBinCommand = (prog: Sade) => {
         }
       });
 
-      console.log(linting(files));
+      console.log(lintMessage.linting(files));
       const report = cli.executeOnFiles(files);
 
       if (opts.fix) {
@@ -73,7 +72,7 @@ export const lintBinCommand = (prog: Sade) => {
       console.log(cli.getFormatter()(report.results));
 
       const duration = process.hrtime(time);
-      console.log(linted(duration));
+      console.log(lintMessage.linted(duration));
 
       if (report.errorCount) {
         process.exit(1);

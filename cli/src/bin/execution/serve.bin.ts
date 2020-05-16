@@ -3,7 +3,7 @@ import path from 'path';
 import fs from 'fs-extra';
 import { watch } from 'rollup';
 
-import { ServeMessages } from '../../shared/messages';
+import { serveMessage } from '../../shared/messages';
 import { createBuildConfig } from '../../configs/build.config';
 import {
   cleanDistFolder,
@@ -26,15 +26,6 @@ export const serveBinCommand = (prog: Sade) => {
     .alias('s', 'start', 'w', 'watch')
     .example('serve')
     .action(async () => {
-      const {
-        bundled,
-        bundles,
-        compiling,
-        compiled,
-        failed,
-        introduce,
-        watching
-      } = new ServeMessages();
       const packagePath = await findWorkspacePackageDir();
       const packageJsonPath = path.resolve(packagePath, PACKAGE_JSON);
       const tsconfigJsonPath = path.resolve(packagePath, TSCONFIG_JSON);
@@ -58,19 +49,19 @@ export const serveBinCommand = (prog: Sade) => {
       watch(buildConfig).on('event', async event => {
         if (event.code === 'BUNDLE_START') {
           clearConsole();
-          console.log(introduce());
-          console.log(bundles(packageJson));
-          console.log(compiling());
+          console.log(serveMessage.introduce());
+          console.log(serveMessage.bundles(packageJson));
+          console.log(serveMessage.compiling());
         }
         if (event.code === 'ERROR') {
-          console.log(failed());
+          console.log(serveMessage.failed());
           logError(event.error);
         }
 
         if (event.code === 'BUNDLE_END') {
-          console.log(compiled(isFirstChange));
+          console.log(serveMessage.compiled(isFirstChange));
           console.log(
-            bundled({
+            serveMessage.bundled({
               isFirstChange,
               module: packageJson.module,
               duration: event.duration
@@ -81,7 +72,7 @@ export const serveBinCommand = (prog: Sade) => {
 
         if (event.code === 'END') {
           isFirstChange = false;
-          console.log(watching());
+          console.log(serveMessage.watching());
         }
       });
     });

@@ -12,7 +12,7 @@ import {
   installDependencies,
   logError
 } from '../../shared/utils';
-import { IndependencyMessages } from '../../shared/messages';
+import { independencyMessage } from '../../shared/messages';
 import { migrationSetup } from '../../setup';
 import { TsconfigJSON } from '../../typings/tsconfig';
 
@@ -24,8 +24,7 @@ export const independencyBinCommand = (prog: Sade) => {
     )
     .example('migration independency')
     .action(async () => {
-      const { failed, generating, successful } = new IndependencyMessages();
-      const bootSpinner = ora(generating());
+      const bootSpinner = ora(independencyMessage.generating());
       const packageDir = await findWorkspacePackageDir();
       const packageJsonPath = path.resolve(packageDir, PACKAGE_JSON);
       const tsconfigJsonPath = path.resolve(packageDir, TSCONFIG_JSON);
@@ -74,9 +73,9 @@ export const independencyBinCommand = (prog: Sade) => {
         );
 
         installDependencies();
-        bootSpinner.succeed(successful());
+        bootSpinner.succeed(independencyMessage.successful());
       } catch (err) {
-        bootSpinner.fail(failed());
+        bootSpinner.fail(independencyMessage.failed());
 
         logError(err);
         process.exit(1);

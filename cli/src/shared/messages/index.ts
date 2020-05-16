@@ -1,8 +1,9 @@
-export { BuildMessages } from './build.messages';
+export { buildMessage } from './build.messages';
 export * from './common.messages';
-export { FeatureMessages } from './feature.messages';
+export { addMessage } from './add.messages';
 export { generateMessage } from './generate.messages';
-export { IndependencyMessages } from './independency.messages';
+export { independencyMessage } from './independency.messages';
 export { InstallMessages } from './install.messages';
-export { LintMessages } from './lint.messages';
-export { ServeMessages } from './serve.messages';
+export { lintMessage } from './lint.messages';
+export { serveMessage } from './serve.messages';
+export { workspacesMessage } from './workspaces.messages';

@@ -3,7 +3,8 @@ import execa from 'execa';
 import { cpus } from 'os';
 import pLimit from 'p-limit';
 
-import { WorkspacesMessages } from '../../shared/messages/workspaces.messages';
+import { workspacesMessage } from '../../shared/messages';
+import { serveMessage } from '../../shared/messages';
 import {
   getWorkspacesInfo,
   splitWorkspacesIntoDependencyGraph,
@@ -15,7 +16,6 @@ import {
 } from '../../shared/utils';
 import { convertStringArrayIntoMap } from '../../shared/utils/dataStructures.utils';
 import packageJson from '../../../package.json';
-import { ServeMessages } from '../../shared/messages';
 
 export function workspacesServeBinCommand(prog: Sade): void {
   prog
@@ -34,14 +34,6 @@ export function workspacesServeBinCommand(prog: Sade): void {
     .option('exclude', 'Exclude specific workspaces')
     .example('workspaces serve --exclude  workspace1,workspace2,workspace3')
     .action(async ({ quiet, exclude }: CLI.Options.Workspaces) => {
-      const {
-        introduce,
-        started,
-        failed,
-        successful,
-        running
-      } = new WorkspacesMessages();
-      const { compiled } = new ServeMessages();
       const jobs = Math.max(1, cpus().length / 2);
       const limit = pLimit(jobs);
       const packagesInfo = await getWorkspacesInfo();
@@ -57,8 +49,8 @@ export function workspacesServeBinCommand(prog: Sade): void {
       excluded.set(packageJson.name, true);
 
       clearConsole();
-      console.log(introduce());
-      console.log(started('serve'));
+      console.log(workspacesMessage.introduce());
+      console.log(workspacesMessage.started('serve'));
 
       if (!quiet) {
         space();
@@ -75,7 +67,7 @@ export function workspacesServeBinCommand(prog: Sade): void {
                 }
 
                 if (!quiet) {
-                  console.log(running(name));
+                  console.log(workspacesMessage.running(name));
                 }
 
                 const proc = execa('re-space', ags, {
@@ -86,7 +78,7 @@ export function workspacesServeBinCommand(prog: Sade): void {
 
                 await new Promise(resolve => {
                   proc.stdout?.on('data', data => {
-                    if (data.toString().includes(compiled(true))) {
+                    if (data.toString().includes(serveMessage.compiled(true))) {
                       resolve();
                     }
                   });
@@ -103,10 +95,10 @@ export function workspacesServeBinCommand(prog: Sade): void {
         }
 
         clearConsole();
-        console.log(successful(duration));
+        console.log(workspacesMessage.successful(duration));
         space();
       } catch (error) {
-        console.log(failed());
+        console.log(workspacesMessage.failed());
         logError(error);
       }
 

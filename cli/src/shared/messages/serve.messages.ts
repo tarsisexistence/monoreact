@@ -1,24 +1,24 @@
 import { error, info, success, underline } from '../utils';
 import packageJson from '../../../package.json';
 
-export class ServeMessages {
-  introduce = () => underline(`${packageJson.name} v${packageJson.version}`);
+export const serveMessage = {
+  introduce: () => underline(`${packageJson.name} v${packageJson.version}`),
 
-  watching = () => `
-Watching for changes...`;
+  watching: () => `
+Watching for changes...`,
 
-  compiling = () => `
-${info('Compiling modules...')}`;
+  compiling: () => `
+${info('Compiling modules...')}`,
 
-  failed = () => error(`Failed compilation`);
+  failed: () => error(`Failed compilation`),
 
-  compiled = (isFirstChange: boolean) =>
-    success(`${isFirstChange ? 'Compiled' : 'Recompiled'} successfully.`);
+  compiled: (isFirstChange: boolean) =>
+    success(`${isFirstChange ? 'Compiled' : 'Recompiled'} successfully.`),
 
-  bundles = ({ source, module }: { source: string; module: string }) =>
-    info(`Bundles ${source} → ${module}`);
+  bundles: ({ source, module }: { source: string; module: string }) =>
+    info(`Bundles ${source} → ${module}`),
 
-  bundled = ({
+  bundled: ({
     isFirstChange,
     duration,
     module
@@ -34,5 +34,5 @@ ${info('Compiling modules...')}`;
         3
       )}s.`
     );
-  };
-}
+  }
+};

@@ -1,7 +1,7 @@
 import { Sade } from 'sade';
 import execa from 'execa';
 
-import { WorkspacesMessages } from '../../shared/messages/workspaces.messages';
+import { workspacesMessage } from '../../shared/messages';
 import {
   getWorkspacesInfo,
   splitWorkspacesIntoDependencyGraph,
@@ -25,14 +25,6 @@ export function workspacesTestBinCommand(prog: Sade): void {
     .option('exclude', 'Exclude specific workspaces', '')
     .example('workspaces test --exclude workspace1,workspace2,workspace3')
     .action(async ({ quiet, exclude }: CLI.Options.Workspaces) => {
-      const {
-        introduce,
-        started,
-        finished,
-        failed,
-        successful,
-        running
-      } = new WorkspacesMessages();
       const packagesInfo = await getWorkspacesInfo();
       const packagesLocationMap = Object.fromEntries(
         packagesInfo.map(({ name, location }) => [name, location])
@@ -48,8 +40,8 @@ export function workspacesTestBinCommand(prog: Sade): void {
       clearConsole();
 
       try {
-        console.log(introduce());
-        console.log(started('test'));
+        console.log(workspacesMessage.introduce());
+        console.log(workspacesMessage.started('test'));
 
         if (!quiet) {
           space();
@@ -65,7 +57,7 @@ export function workspacesTestBinCommand(prog: Sade): void {
 
             if (!quiet) {
               space();
-              console.log(running(name));
+              console.log(workspacesMessage.running(name));
             }
 
             await execa('re-space', args, {
@@ -74,7 +66,7 @@ export function workspacesTestBinCommand(prog: Sade): void {
             });
 
             if (!quiet) {
-              console.log(finished('test', name));
+              console.log(workspacesMessage.finished('test', name));
             }
           }
         }
@@ -84,10 +76,10 @@ export function workspacesTestBinCommand(prog: Sade): void {
           space();
         }
 
-        console.log(successful(duration));
+        console.log(workspacesMessage.successful(duration));
         space();
       } catch (error) {
-        console.log(failed());
+        console.log(workspacesMessage.failed());
         logError(error);
       }
 

@@ -15,16 +15,16 @@ const finishingTextByCommand: Record<CLI.Workspaces.Command, string> = {
   test: 'Tested'
 };
 
-export class WorkspacesMessages {
-  introduce = () => underline(`${packageJson.name} v${packageJson.version}`);
-  running = (name: string) => details(`Running ${name}`);
+export const workspacesMessage = {
+  introduce: () => underline(`${packageJson.name} v${packageJson.version}`),
+  running: (name: string) => details(`Running ${name}`),
 
-  started = (cmd: CLI.Workspaces.Command) => `
-${info(`${startingTextByCommand[cmd]} modules...`)}`;
-  finished = (cmd: CLI.Workspaces.Command, name: string) =>
-    success(`${finishingTextByCommand[cmd]} ${name}`);
+  started: (cmd: CLI.Workspaces.Command) => `
+${info(`${startingTextByCommand[cmd]} modules...`)}`,
+  finished: (cmd: CLI.Workspaces.Command, name: string) =>
+    success(`${finishingTextByCommand[cmd]} ${name}`),
 
-  failed = () => error(`Failed to compile workspaces`);
-  successful = ([s, ms]: [number, number]) =>
-    success('Done in ') + highlight(`${s}.${ms.toString().slice(0, 3)}s.`);
-}
+  failed: () => error(`Failed to compile workspaces`),
+  successful: ([s, ms]: [number, number]) =>
+    success('Done in ') + highlight(`${s}.${ms.toString().slice(0, 3)}s.`)
+};

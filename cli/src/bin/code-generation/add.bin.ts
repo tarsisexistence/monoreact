@@ -5,7 +5,7 @@ import fs from 'fs-extra';
 
 import { featureSetup } from '../../setup/add';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
-import { FeatureMessages } from '../../shared/messages';
+import { addMessage } from '../../shared/messages';
 import { findWorkspacePackageDir, logError } from '../../shared/utils';
 import { validateFeatureOption } from './add.helpers';
 
@@ -21,18 +21,10 @@ export const addBinCommand = (prog: Sade) => {
     .example('add')
     .example('add playground')
     .action(async (featureName: string = '') => {
-      const {
-        failed,
-        successful,
-        adding,
-        exists,
-        invalidFeatureName
-      } = new FeatureMessages();
-
       const featureOption: CLI.Setup.AddOptionType = await validateFeatureOption(
         featureName,
         featureOptions,
-        () => console.log(invalidFeatureName(featureOption))
+        () => console.log(addMessage.invalidFeatureName(featureOption))
       );
       const packageDir = await findWorkspacePackageDir();
       const packageJsonPath = path.resolve(packageDir, PACKAGE_JSON);
@@ -40,7 +32,7 @@ export const addBinCommand = (prog: Sade) => {
         packageJsonPath
       )) as CLI.Package.WorkspacePackageJSON;
 
-      const bootSpinner = ora(adding(featureOption));
+      const bootSpinner = ora(addMessage.adding(featureOption));
       bootSpinner.start();
 
       try {
@@ -61,12 +53,12 @@ export const addBinCommand = (prog: Sade) => {
           },
           { spaces: 2 }
         );
-        bootSpinner.succeed(successful(featureOption));
+        bootSpinner.succeed(addMessage.successful(featureOption));
       } catch (err) {
-        bootSpinner.fail(failed(featureOption));
+        bootSpinner.fail(addMessage.failed(featureOption));
 
         if (err.toString().includes('already exists')) {
-          console.log(exists());
+          console.log(addMessage.exists());
         }
 
         logError(err);

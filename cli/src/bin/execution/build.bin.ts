@@ -3,7 +3,7 @@ import path from 'path';
 import fs from 'fs-extra';
 import { rollup } from 'rollup';
 
-import { BuildMessages } from '../../shared/messages';
+import { buildMessage } from '../../shared/messages';
 import { createBuildConfig } from '../../configs/build.config';
 import { findWorkspacePackageDir, cleanDistFolder } from '../../shared/utils';
 import { TsconfigJSON } from '../../typings/tsconfig';
@@ -21,7 +21,6 @@ export const buildBinCommand = (prog: Sade) => {
     .alias('b')
     .example('build')
     .action(async () => {
-      const { bundling, successful } = new BuildMessages();
       const packagePath = await findWorkspacePackageDir();
       const packageJsonPath = path.resolve(packagePath, PACKAGE_JSON);
       const tsconfigJsonPath = path.resolve(packagePath, TSCONFIG_JSON);
@@ -41,10 +40,10 @@ export const buildBinCommand = (prog: Sade) => {
         useClosure: false
       });
       await cleanDistFolder();
-      console.log(bundling(packageJson));
+      console.log(buildMessage.bundling(packageJson));
       const bundle = await rollup(buildConfig);
       await bundle.write(buildConfig.output);
       const duration = process.hrtime(time);
-      console.log(successful(duration));
+      console.log(buildMessage.successful(duration));
     });
 };

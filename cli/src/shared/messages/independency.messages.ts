@@ -1,7 +1,7 @@
-export class IndependencyMessages {
-  generating = () => 'Migrating...';
+export const independencyMessage = {
+  generating: () => 'Migrating...',
 
-  successful = () => 'Migration completed successfully';
+  successful: () => 'Migration completed successfully',
 
-  failed = () => 'Failed independency migration';
-}
+  failed: () => 'Failed independency migration'
+};

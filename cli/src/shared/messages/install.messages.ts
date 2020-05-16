@@ -3,7 +3,6 @@ import { error, info } from '../utils';
 export class InstallMessages {
   private dependencies: string;
 
-  // eslint-disable-next-line no-empty-function
   constructor(deps: string[]) {
     this.dependencies = deps.join(' ');
   }

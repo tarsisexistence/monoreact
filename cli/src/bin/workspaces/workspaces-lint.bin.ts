@@ -1,7 +1,7 @@
 import { Sade } from 'sade';
 import execa from 'execa';
 
-import { WorkspacesMessages } from '../../shared/messages/workspaces.messages';
+import { workspacesMessage } from '../../shared/messages';
 import {
   getWorkspacesInfo,
   splitWorkspacesIntoDependencyGraph,
@@ -27,14 +27,6 @@ export function workspacesLintBinCommand(prog: Sade): void {
     .option('exclude', 'Exclude specific workspaces', '')
     .example('workspaces lint --exclude workspace1,workspace2,workspace3')
     .action(async ({ quiet, exclude, fix }: CLI.Options.Workspaces) => {
-      const {
-        introduce,
-        started,
-        finished,
-        failed,
-        successful,
-        running
-      } = new WorkspacesMessages();
       const packagesInfo = await getWorkspacesInfo();
       const packagesLocationMap = Object.fromEntries(
         packagesInfo.map(({ name, location }) => [name, location])
@@ -55,8 +47,8 @@ export function workspacesLintBinCommand(prog: Sade): void {
       clearConsole();
 
       try {
-        console.log(introduce());
-        console.log(started('lint'));
+        console.log(workspacesMessage.introduce());
+        console.log(workspacesMessage.started('lint'));
 
         if (!quiet) {
           space();
@@ -72,7 +64,7 @@ export function workspacesLintBinCommand(prog: Sade): void {
 
             if (!quiet) {
               space();
-              console.log(running(name));
+              console.log(workspacesMessage.running(name));
             }
 
             try {
@@ -85,7 +77,7 @@ export function workspacesLintBinCommand(prog: Sade): void {
             }
 
             if (!quiet) {
-              console.log(finished('lint', name));
+              console.log(workspacesMessage.finished('lint', name));
             }
           }
         }
@@ -95,10 +87,10 @@ export function workspacesLintBinCommand(prog: Sade): void {
           space();
         }
 
-        console.log(successful(duration));
+        console.log(workspacesMessage.successful(duration));
         space();
       } catch (error) {
-        console.log(failed());
+        console.log(workspacesMessage.failed());
         logError(error);
       }
 
