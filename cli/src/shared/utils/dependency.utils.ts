@@ -19,20 +19,19 @@ export const readWorkspacePackages = async (
   );
 };
 
-export const makeDependencyChunks = (
-  packageJsons: Pick<CLI.Package.BasePackageJSON, 'name' | 'dependencies'>[]
+export const splitWorkspacesIntoDependencyGraph = (
+  workspaces: Pick<CLI.Package.BasePackageJSON, 'name' | 'dependencies'>[]
 ): { chunks: string[][]; unprocessed: [string, string[]][] } => {
   const chunks = [];
   const workspacePackagesMap: Record<
     string,
     CLI.Package.Dependencies
   > = Object.fromEntries(
-    packageJsons.map(({ name, dependencies = {} }) => [name, dependencies])
+    workspaces.map(({ name, dependencies = {} }) => [name, dependencies])
   );
   const packageDependenciesMap: Map<string, string[]> = new Map();
 
-  for (const json of packageJsons) {
-    const { name, dependencies = {} } = json;
+  for (const { name, dependencies = {} } of workspaces) {
     packageDependenciesMap.set(
       name,
       Object.keys(dependencies).filter(
@@ -72,18 +71,3 @@ export const makeDependencyChunks = (
     unprocessed: Array.from(packageDependenciesMap.entries())
   };
 };
-
-// 0
-// 1: 0
-// 2: 0
-// 3: 1, 2
-// 4: 3
-
-// check circularity (0: 2 | 1: 0 | 2: 0 | 3: 1, 2 | 4: 3)
-// check circularity of nested deps (it won't build all package (0 | 1: 2 | 2: 1 | 3: 1, 2 | 4: 3)
-
-// 0
-// 1: 0
-// 2: 0,1
-// 3: 1,2
-// 4: 3

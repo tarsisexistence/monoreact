@@ -6,7 +6,7 @@ import pLimit from 'p-limit';
 import { WorkspacesMessages } from '../../shared/messages/workspaces.messages';
 import {
   getWorkspacesInfo,
-  makeDependencyChunks,
+  splitWorkspacesIntoDependencyGraph,
   readWorkspacePackages,
   error,
   clearConsole,
@@ -49,7 +49,9 @@ export function workspacesServeBinCommand(prog: Sade): void {
         packagesInfo.map(({ name, location }) => [name, location])
       );
       const packageJsons = await readWorkspacePackages(packagesInfo);
-      const { chunks, unprocessed } = makeDependencyChunks(packageJsons);
+      const { chunks, unprocessed } = splitWorkspacesIntoDependencyGraph(
+        packageJsons
+      );
       const ags = ['serve', '--color'];
       const excluded = convertStringArrayIntoMap(exclude);
       excluded.set(packageJson.name, true);

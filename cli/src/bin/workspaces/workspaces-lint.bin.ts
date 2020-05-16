@@ -4,7 +4,7 @@ import execa from 'execa';
 import { WorkspacesMessages } from '../../shared/messages/workspaces.messages';
 import {
   getWorkspacesInfo,
-  makeDependencyChunks,
+  splitWorkspacesIntoDependencyGraph,
   readWorkspacePackages,
   error,
   clearConsole,
@@ -40,7 +40,9 @@ export function workspacesLintBinCommand(prog: Sade): void {
         packagesInfo.map(({ name, location }) => [name, location])
       );
       const packageJsons = await readWorkspacePackages(packagesInfo);
-      const { chunks, unprocessed } = makeDependencyChunks(packageJsons);
+      const { chunks, unprocessed } = splitWorkspacesIntoDependencyGraph(
+        packageJsons
+      );
       const excluded = convertStringArrayIntoMap(exclude);
       excluded.set(packageJson.name, true);
 
