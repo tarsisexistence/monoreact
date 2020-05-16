@@ -111,7 +111,7 @@
     "stylelint": "13.3.2",
     "stylelint-config-recommended": "3.0.0",
     "tslib": "1.13.0",
-    "typescript": "3.8.3",
+    "typescript": "3.9.2",
     "yarn": "1.22.4"
   },
   "browserslist": {
