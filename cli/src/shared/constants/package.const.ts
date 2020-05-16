@@ -11,7 +11,7 @@ export const BASE_PACKAGE_SCRIPTS: CLI.Package.Scripts = {
 
 export const REACT_PACKAGE_SCRIPTS: CLI.Package.Scripts = {
   ...BASE_PACKAGE_SCRIPTS,
-  stylelint: 'stylelint "src/**/*.{css,sass,scss}"'
+  stylelint: 'npx stylelint "src/**/*.{css,sass,scss}"'
 } as const;
 
 export const REACT_TEMPLATE_DEPENDENCIES: Pick<
