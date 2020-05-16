@@ -14,6 +14,7 @@ declare namespace CLI.Setup {
   }
 
   interface MigrationOptions {
+    dependencies: CLI.Package.Dependencies;
     devDependencies: CLI.Package.Dependencies;
   }
 }

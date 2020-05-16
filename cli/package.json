@@ -1,6 +1,6 @@
 {
   "name": "@re-space/cli",
-  "version": "0.11.3",
+  "version": "0.11.7",
   "main": "./dist/src/bin/index.js",
   "bin": {
     "re-space": "./dist/src/bin/index.js",
@@ -52,6 +52,8 @@
     "eslint-plugin-react": "7.20.0",
     "eslint-plugin-react-hooks": "4.0.2",
     "eslint-plugin-sonarjs": "0.5.0",
+    "@typescript-eslint/eslint-plugin": "2.33.0",
+    "eslint-plugin-flowtype": "5.0.3",
     "execa": "4.0.1",
     "fs-extra": "9.0.0",
     "jest": "24.9.0",
@@ -75,6 +77,10 @@
     "ts-jest": "24.3.0",
     "tslib": "2.0.0",
     "typescript": "3.9.2",
+    "cssnano": "4.1.10",
+    "postcss-nested": "4.2.1",
+    "postcss-simple-vars": "5.0.2",
+    "node-sass": "4.14.1",
     "identity-obj-proxy": "3.0.0"
   },
   "devDependencies": {
@@ -84,10 +90,6 @@
     "@types/node": "13.13.5",
     "@types/sade": "1.6.0",
     "@types/shelljs": "0.8.7",
-    "cssnano": "4.1.10",
-    "postcss-nested": "4.2.1",
-    "postcss-simple-vars": "5.0.2",
-    "node-sass": "4.14.1",
     "yarn": "1.22.4"
   },
   "publishConfig": {

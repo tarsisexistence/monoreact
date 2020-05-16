@@ -29,21 +29,30 @@ export const lintBinCommand = (prog: Sade) => {
       const time = process.hrtime();
       const files = opts._.length > 0 ? opts._ : ['src/**/*.{js,jsx,ts,tsx}'];
 
-      const rootDir = await findWorkspaceRootDir();
-      let packageDir;
+      const project = [];
+      let dir = '';
+      let isRoot = false;
 
       try {
-        packageDir = await findWorkspacePackageDir(true);
-      } catch (e) {
-        packageDir = rootDir;
-      }
+        dir = await findWorkspacePackageDir(true);
+        project.push(path.resolve(dir, TSCONFIG_JSON));
+      } catch {}
 
-      const packageJsonPath = path.resolve(packageDir, PACKAGE_JSON);
+      try {
+        const hasPackageDir = dir !== '';
+        const rootDir = await findWorkspaceRootDir(hasPackageDir);
+        isRoot = true;
+
+        if (!hasPackageDir) {
+          dir = rootDir;
+        }
+
+        project.push(path.resolve(rootDir, TSCONFIG_JSON));
+      } catch {}
+
+      const packageJsonPath = path.resolve(dir, PACKAGE_JSON);
       const { eslintConfig } = await fs.readJSON(packageJsonPath);
-      const lintConfig = createLintConfig({
-        dir: packageDir,
-        isRoot: rootDir === packageDir
-      });
+      const lintConfig = createLintConfig({ dir, isRoot });
       const cli = new CLIEngine({
         baseConfig: {
           ...lintConfig,
@@ -54,11 +63,8 @@ export const lintBinCommand = (prog: Sade) => {
         ignorePattern: opts['ignore-pattern'],
         parser: '@typescript-eslint/parser',
         parserOptions: {
-          tsconfigRootDir: packageDir,
-          project: [
-            path.resolve(rootDir, TSCONFIG_JSON),
-            path.resolve(packageDir, TSCONFIG_JSON)
-          ]
+          tsconfigRootDir: dir,
+          project
         }
       });
 

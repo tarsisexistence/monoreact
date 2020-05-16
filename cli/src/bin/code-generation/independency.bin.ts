@@ -67,7 +67,14 @@ export const independencyBinCommand = (prog: Sade) => {
           packageJsonPath,
           {
             ...packageJson,
-            ...migrationSetup.independency
+            dependencies: {
+              ...(packageJson?.dependencies ?? {}),
+              ...migrationSetup.independency.dependencies
+            },
+            devDependencies: {
+              ...(packageJson?.devDependencies ?? {}),
+              ...migrationSetup.independency.devDependencies
+            }
           },
           { spaces: 2 }
         );
