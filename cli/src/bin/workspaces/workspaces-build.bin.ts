@@ -30,7 +30,7 @@ export function workspacesBuildBinCommand(prog: Sade): void {
       false
     )
     .example('workspaces build --quiet')
-    .option('exclude', 'Exclude specific workspaces')
+    .option('e, exclude', 'Exclude specific workspaces')
     .example('workspaces build --exclude  workspace1,workspace2,workspace3')
     .action(async ({ quiet, exclude }: CLI.Options.Workspaces) => {
       const {

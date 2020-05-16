@@ -2,7 +2,7 @@
 import { splitWorkspacesIntoDependencyGraph } from './dependency.utils';
 
 describe('[utils.dependency]', () => {
-  describe('makeDependencyChunks', () => {
+  describe('splitWorkspacesIntoDependencyGraph', () => {
     test('should return chunks when there is no package jsons', () => {
       const packageJsons: CLI.Package.BasePackageJSON[] = [];
       expect(splitWorkspacesIntoDependencyGraph(packageJsons)).toEqual({
