@@ -5,7 +5,7 @@ import { submodulesFetchBinCommand } from './submodules-fetch.bin';
 import { submodulesInitBinCommand } from './submodules-init.bin';
 import { submodulesPullBinCommand } from './submodules-pull.bin';
 
-export const submodulesBins = (prog: Sade) => {
+export const submodulesBins = (prog: Sade): void => {
   submodulesCheckoutBinCommand(prog);
   submodulesFetchBinCommand(prog);
   submodulesInitBinCommand(prog);

@@ -6,7 +6,7 @@ import { serveBinCommand } from './serve.bin';
 import { testBinCommand } from './test.bin';
 import { installBinCommand } from './install.bin';
 
-export const executionBins = (prog: Sade) => {
+export const executionBins = (prog: Sade): void => {
   buildBinCommand(prog);
   lintBinCommand(prog);
   serveBinCommand(prog);

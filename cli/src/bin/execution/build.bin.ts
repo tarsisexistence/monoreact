@@ -12,7 +12,7 @@ import {
   TSCONFIG_JSON
 } from '../../shared/constants/package.const';
 
-export const buildBinCommand = (prog: Sade) => {
+export const buildBinCommand = (prog: Sade): void => {
   prog
     .command('build')
     .describe('Build a package.')
@@ -21,12 +21,12 @@ export const buildBinCommand = (prog: Sade) => {
     .alias('b')
     .example('build')
     .action(async () => {
-      const packagePath = await findWorkspacePackageDir();
+      const packageDir = await findWorkspacePackageDir();
       const packageJson = (await fs.readJSON(
-        path.resolve(packagePath, PACKAGE_JSON)
+        path.resolve(packageDir, PACKAGE_JSON)
       )) as CLI.Package.WorkspacePackageJSON;
       const tsconfigJson = (await fs.readJSON(
-        path.resolve(packagePath, TSCONFIG_JSON)
+        path.resolve(packageDir, TSCONFIG_JSON)
       )) as TsconfigJSON;
 
       const time = process.hrtime();

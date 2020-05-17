@@ -3,7 +3,7 @@ import fs from 'fs-extra';
 
 import { getAuthorName, info } from '../../shared/utils';
 import { generateSetup } from '../../setup/generate';
-import { generateMessage } from '../../shared/messages/generate.messages';
+import { generateMessage } from '../../shared/messages';
 
 export const getAuthor = async (): Promise<CLI.Package.Author> => {
   let author = getAuthorName();

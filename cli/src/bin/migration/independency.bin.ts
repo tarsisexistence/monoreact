@@ -20,7 +20,7 @@ import {
   makeTsconfigJsonIndependent
 } from './independency.helpers';
 
-export const independencyBinCommand = (prog: Sade) => {
+export const independencyBinCommand = (prog: Sade): void => {
   prog
     .command('migration independency')
     .describe(

@@ -8,7 +8,7 @@ import { createTestConfig } from '../../configs/test.config';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
 import { getJestConfigOptions } from './test.helpers';
 
-export const testBinCommand = (prog: Sade) => {
+export const testBinCommand = (prog: Sade): void => {
   prog
     .command('test')
     .describe('Test a package.')
@@ -22,15 +22,15 @@ export const testBinCommand = (prog: Sade) => {
       process.env.NODE_ENV = 'test';
       process.env.BABEL_ENV = 'test';
 
-      const packagePath = await findWorkspacePackageDir();
-      const packageJsonPath = path.resolve(packagePath, PACKAGE_JSON);
+      const packageDir = await findWorkspacePackageDir();
+      const packageJsonPath = path.resolve(packageDir, PACKAGE_JSON);
       const jestConfigOptions = await getJestConfigOptions(
-        packagePath,
+        packageDir,
         opts.config
       );
       const { jest: jestPackageOptions } = await fs.readJSON(packageJsonPath);
       const testConfig = createTestConfig({
-        rootDir: packagePath,
+        rootDir: packageDir,
         jestPackageOptions,
         jestConfigOptions
       });

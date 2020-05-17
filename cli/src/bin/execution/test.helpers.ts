@@ -2,12 +2,12 @@ import path from 'path';
 import fs from 'fs-extra';
 
 export const getJestConfigOptions = async (
-  packagePath: string,
+  packageDir: string,
   config: string | undefined
 ) => {
   try {
     if (config) {
-      const jestConfigPathOption = path.resolve(packagePath, config);
+      const jestConfigPathOption = path.resolve(packageDir, config);
       // const isSpecifiedConfigExists = fs.existsSync(jestConfigPathOption);
       for (let i = 0; i < process.argv.length; i += 1) {
         if (process.argv[i] === '--config') {
@@ -26,8 +26,8 @@ export const getJestConfigOptions = async (
         : await fs.readJSON(jestConfigPathOption);
     }
 
-    const jestConfigPathJS = path.resolve(packagePath, `jest.config.js`);
-    const jestConfigPathJSON = path.resolve(packagePath, `jest.config.json`);
+    const jestConfigPathJS = path.resolve(packageDir, `jest.config.js`);
+    const jestConfigPathJSON = path.resolve(packageDir, `jest.config.json`);
     if (fs.existsSync(jestConfigPathJS)) {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(jestConfigPathJS);

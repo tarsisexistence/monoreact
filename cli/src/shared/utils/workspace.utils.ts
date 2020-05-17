@@ -9,7 +9,7 @@ import {
 import { logError } from './error.utils';
 import { PACKAGE_JSON } from '../constants/package.const';
 
-export const getWorkspacePackagePaths = (
+export const getWorkspacePackageDirs = (
   workspaces: YarnWorkspaces.Packages | YarnWorkspaces.Config | undefined
 ): YarnWorkspaces.Packages => {
   if (workspaces === undefined) {

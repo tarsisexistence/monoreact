@@ -3,19 +3,12 @@ import path from 'path';
 import { Sade } from 'sade';
 import { CLIEngine } from 'eslint';
 
-import {
-  findWorkspacePackageDir,
-  findWorkspaceRootDir
-} from '../../shared/utils';
 import { createLintConfig } from '../../configs/lint.config';
 import { lintMessage } from '../../shared/messages';
-import {
-  PACKAGE_JSON,
-  TSCONFIG_JSON
-} from '../../shared/constants/package.const';
+import { PACKAGE_JSON } from '../../shared/constants/package.const';
 import { getPackageLintInfo } from './lint.helpers';
 
-export const lintBinCommand = (prog: Sade) => {
+export const lintBinCommand = (prog: Sade): void => {
   prog
     .command('lint')
     .describe('Lint a package. (default lint pattern src/**/*.{js,jsx,ts,tsx}')

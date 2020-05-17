@@ -6,7 +6,7 @@ import fs from 'fs-extra';
 import {
   buildPackage,
   getWorkspacePackageSetupPath,
-  getWorkspacePackagePaths,
+  getWorkspacePackageDirs,
   setAuthorName,
   sortPackageJson,
   logError,
@@ -24,7 +24,7 @@ import { generateMessage } from '../../shared/messages';
 const templateOptions = Object.keys(generateSetup);
 const featureOptions = Object.keys(featureSetup);
 
-export const generateBinCommand = (prog: Sade) => {
+export const generateBinCommand = (prog: Sade): void => {
   prog
     .command('generate <pkg>')
     .describe('Generate a new package.')
@@ -57,7 +57,7 @@ export const generateBinCommand = (prog: Sade) => {
       const { name: rootName, workspaces, license } = (await fs.readJSON(
         packageJsonPath
       )) as CLI.Package.WorkspaceRootPackageJSON;
-      const workspacePackages = getWorkspacePackagePaths(workspaces);
+      const workspacePackages = getWorkspacePackageDirs(workspaces);
       const packageSetupPath = getWorkspacePackageSetupPath(workspacePackages);
       const bootSpinner = ora(generateMessage.generating(pkgName));
 
@@ -68,7 +68,7 @@ export const generateBinCommand = (prog: Sade) => {
             bootSpinner.fail(generateMessage.failed(name));
           }
         );
-        const packagePath = `${workspaceRoot}/${packageSetupPath}/${packageName}`;
+        const packageDir = `${workspaceRoot}/${packageSetupPath}/${packageName}`;
         packageTemplateType = await getPackageTemplateType(template, () => {
           bootSpinner.fail(generateMessage.invalidTemplate(template));
         });
@@ -79,7 +79,7 @@ export const generateBinCommand = (prog: Sade) => {
             __dirname,
             `../../../../templates/generate/${packageTemplateType}`
           ),
-          packagePath,
+          packageDir,
           {
             overwrite: true
           }
@@ -90,7 +90,7 @@ export const generateBinCommand = (prog: Sade) => {
         bootSpinner.start();
         setAuthorName(author);
 
-        process.chdir(packagePath);
+        process.chdir(packageDir);
         const templateConfig = generateSetup[packageTemplateType];
         const generatePackageJson = composePackageJson(templateConfig);
         const pkgJson = generatePackageJson({
@@ -99,7 +99,7 @@ export const generateBinCommand = (prog: Sade) => {
           rootName,
           license
         });
-        await fs.outputJSON(path.resolve(packagePath, PACKAGE_JSON), pkgJson, {
+        await fs.outputJSON(path.resolve(packageDir, PACKAGE_JSON), pkgJson, {
           spaces: 2
         });
         bootSpinner.succeed(generateMessage.successful(packageName));

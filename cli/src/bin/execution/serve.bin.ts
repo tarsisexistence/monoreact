@@ -17,7 +17,7 @@ import {
   TSCONFIG_JSON
 } from '../../shared/constants/package.const';
 
-export const serveBinCommand = (prog: Sade) => {
+export const serveBinCommand = (prog: Sade): void => {
   prog
     .command('serve')
     .describe('Rebuild a package on change.')
@@ -26,12 +26,12 @@ export const serveBinCommand = (prog: Sade) => {
     .alias('s', 'start', 'w', 'watch')
     .example('serve')
     .action(async () => {
-      const packagePath = await findWorkspacePackageDir();
+      const packageDir = await findWorkspacePackageDir();
       const packageJson = (await fs.readJSON(
-        path.resolve(packagePath, PACKAGE_JSON)
+        path.resolve(packageDir, PACKAGE_JSON)
       )) as CLI.Package.WorkspacePackageJSON;
       const tsconfigJson = (await fs.readJSON(
-        path.resolve(packagePath, TSCONFIG_JSON)
+        path.resolve(packageDir, TSCONFIG_JSON)
       )) as TsconfigJSON;
       const buildConfig = createBuildConfig({
         tsconfigJson,

@@ -9,7 +9,7 @@ import {
   logError
 } from '../../shared/utils';
 
-export const installBinCommand = (prog: Sade) => {
+export const installBinCommand = (prog: Sade): void => {
   prog
     .command('install')
     .describe(

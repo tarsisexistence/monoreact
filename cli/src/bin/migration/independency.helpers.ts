@@ -1,7 +1,8 @@
 import fs from 'fs-extra';
+import path from 'path';
+
 import { migrationSetup } from '../../setup/migration';
 import { TsconfigJSON } from '../../typings/tsconfig';
-import path from 'path';
 
 const removeNestedNodeModulesTypes = (
   typeRoots: string[] | undefined
