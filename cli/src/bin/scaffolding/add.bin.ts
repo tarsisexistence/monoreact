@@ -7,11 +7,15 @@ import { featureSetup } from '../../setup/add';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
 import { addMessage } from '../../shared/messages';
 import { findWorkspacePackageDir, logError } from '../../shared/utils';
-import { validateFeatureOption } from './add.helpers';
+import {
+  addFeatureScriptsToPackageJson,
+  copyFeatureTemplate,
+  validateFeatureOption
+} from './add.helpers';
 
 const featureOptions = Object.keys(featureSetup);
 
-export const addBinCommand = (prog: Sade) => {
+export const addBinCommand = (prog: Sade): void => {
   prog
     .command('add [featureName]')
     .describe(
@@ -36,23 +40,12 @@ export const addBinCommand = (prog: Sade) => {
       bootSpinner.start();
 
       try {
-        await fs.copy(
-          path.resolve(__dirname, `../../../../templates/add/${featureOption}`),
-          path.resolve(packageDir, featureSetup[featureOption].path),
-          { overwrite: false, errorOnExist: true }
-        );
-
-        await fs.outputJSON(
-          packageJsonPath,
-          {
-            ...packageJson,
-            scripts: {
-              ...packageJson.scripts,
-              ...featureSetup[featureOption].scripts
-            }
-          },
-          { spaces: 2 }
-        );
+        await copyFeatureTemplate(packageDir, featureOption);
+        await addFeatureScriptsToPackageJson({
+          dir: packageJsonPath,
+          packageJson,
+          option: featureOption
+        });
         bootSpinner.succeed(addMessage.successful(featureOption));
       } catch (err) {
         bootSpinner.fail(addMessage.failed(featureOption));

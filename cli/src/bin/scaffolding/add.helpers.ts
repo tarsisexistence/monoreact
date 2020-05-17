@@ -1,3 +1,5 @@
+import fs from 'fs-extra';
+import path from 'path';
 import { Select } from 'enquirer';
 
 import { info } from '../../shared/utils';
@@ -23,3 +25,34 @@ export const validateFeatureOption = (
   });
   return featureNamePrompt.run();
 };
+
+export const copyFeatureTemplate = (
+  packageDir: string,
+  option: CLI.Setup.AddOptionType
+): Promise<void> =>
+  fs.copy(
+    path.resolve(__dirname, `../../../../templates/add/${option}`),
+    path.resolve(packageDir, featureSetup[option].path),
+    { overwrite: false, errorOnExist: true }
+  );
+
+export const addFeatureScriptsToPackageJson = ({
+  dir,
+  packageJson,
+  option
+}: {
+  dir: string;
+  packageJson: CLI.Package.WorkspacePackageJSON;
+  option: CLI.Setup.AddOptionType;
+}): Promise<void> =>
+  fs.outputJSON(
+    dir,
+    {
+      ...packageJson,
+      scripts: {
+        ...packageJson.scripts,
+        ...featureSetup[option].scripts
+      }
+    },
+    { spaces: 2 }
+  );
