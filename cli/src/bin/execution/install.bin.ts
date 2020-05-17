@@ -2,7 +2,7 @@ import execa from 'execa';
 import { Sade } from 'sade';
 import ora from 'ora';
 
-import { InstallMessages } from '../../shared/messages';
+import { installMessage } from '../../shared/messages';
 import {
   findWorkspacePackageDir,
   findWorkspaceRootDir,
@@ -19,29 +19,20 @@ export const installBinCommand = (prog: Sade) => {
     // @ts-ignore
     .alias('i')
     .example('install libraryName')
-    .option('D, dev', 'Install development dependencies')
+    .option('dev, D', 'Install development dependencies')
     .example(`install libraryName --dev`)
-    .action(async ({ _: dependencies, dev }: CLI.Options.Install) => {
-      const dependencyFlag = dev ? '--dev' : '';
-      const { installing, failed, successful } = new InstallMessages(
-        dependencies
-      );
-      const installSpinner = ora(installing());
-
-      if (typeof dev === 'string') {
-        dependencies.push(dev as string);
-      }
-
+    .action(async ({ _: dependenciesList, dev }: CLI.Options.Install) => {
+      const dependencies = dependenciesList.join(' ');
+      const installSpinner = ora(installMessage.installing(dependencies));
       installSpinner.start();
+
       try {
         const workspacePackage = await findWorkspacePackageDir(true);
         const installPackageArgs = ['add', '--peer'];
-        for (const dependency of dependencies) {
+        for (const dependency of dependenciesList) {
           installPackageArgs.push(dependency);
         }
-        await execa('yarn', installPackageArgs, {
-          cwd: workspacePackage
-        });
+        await execa('yarn', installPackageArgs, { cwd: workspacePackage });
 
         /** it is ok if findWorkspacePackageDir will throw an error
          * it just means that we are not in the package dir
@@ -53,20 +44,22 @@ export const installBinCommand = (prog: Sade) => {
         const workspaceRoot = await findWorkspaceRootDir(true);
         const installRootArgs = ['add', '--exact', '-W'];
 
-        if (dependencyFlag.length > 0) {
-          installRootArgs.push(dependencyFlag);
+        if (dev) {
+          installRootArgs.push('--dev');
         }
 
-        for (const dependency of dependencies) {
+        if (typeof dev === 'string') {
+          dependenciesList.push(dev as string);
+        }
+
+        for (const dependency of dependenciesList) {
           installRootArgs.push(dependency);
         }
 
-        await execa('yarn', installRootArgs, {
-          cwd: workspaceRoot
-        });
-        installSpinner.succeed(successful());
+        await execa('yarn', installRootArgs, { cwd: workspaceRoot });
+        installSpinner.succeed(installMessage.successful(dependencies));
       } catch (err) {
-        installSpinner.fail(failed());
+        installSpinner.fail(installMessage.failed(dependencies));
         logError(err);
         process.exit(1);
       }

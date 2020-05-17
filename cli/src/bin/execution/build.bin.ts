@@ -22,13 +22,11 @@ export const buildBinCommand = (prog: Sade) => {
     .example('build')
     .action(async () => {
       const packagePath = await findWorkspacePackageDir();
-      const packageJsonPath = path.resolve(packagePath, PACKAGE_JSON);
-      const tsconfigJsonPath = path.resolve(packagePath, TSCONFIG_JSON);
       const packageJson = (await fs.readJSON(
-        packageJsonPath
+        path.resolve(packagePath, PACKAGE_JSON)
       )) as CLI.Package.WorkspacePackageJSON;
       const tsconfigJson = (await fs.readJSON(
-        tsconfigJsonPath
+        path.resolve(packagePath, TSCONFIG_JSON)
       )) as TsconfigJSON;
 
       const time = process.hrtime();

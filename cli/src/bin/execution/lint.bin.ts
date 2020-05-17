@@ -28,7 +28,6 @@ export const lintBinCommand = (prog: Sade) => {
     .action(async (opts: CLI.Options.Lint) => {
       const time = process.hrtime();
       const files = opts._.length > 0 ? opts._ : ['src/**/*.{js,jsx,ts,tsx}'];
-
       const project = [];
       let dir = '';
       let isRoot = false;

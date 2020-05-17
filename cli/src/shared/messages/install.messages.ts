@@ -1,16 +1,12 @@
 import { error, info } from '../utils';
 
-export class InstallMessages {
-  private dependencies: string;
+export const installMessage = {
+  successful: (dependencies: string) =>
+    `Successfully installed [${info(dependencies)}] dependencies`,
 
-  constructor(deps: string[]) {
-    this.dependencies = deps.join(' ');
-  }
+  installing: (dependencies: string) =>
+    `Installing [${info(dependencies)}] dependencies...`,
 
-  successful = () =>
-    `Successfully installed [${info(this.dependencies)}] dependencies`;
-
-  installing = () => `Installing [${info(this.dependencies)}] dependencies...`;
-
-  failed = () => `Failed to install [${error(this.dependencies)}] dependencies`;
-}
+  failed: (dependencies: string) =>
+    `Failed to install [${error(dependencies)}] dependencies`
+};

@@ -64,9 +64,10 @@ export const testBinCommand = (prog: Sade) => {
             jestConfigOptions = {};
           }
         }
+      } catch {
+        jestConfigOptions = {};
+      }
 
-        // eslint-disable-next-line no-empty
-      } catch {}
       const { jest: jestPackageOptions } = await fs.readJSON(packageJsonPath);
       const testConfig = createTestConfig({
         rootDir: packagePath,
