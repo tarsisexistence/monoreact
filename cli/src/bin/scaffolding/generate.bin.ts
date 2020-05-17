@@ -15,6 +15,8 @@ import {
 import { featureSetup, generateSetup, composePackageJson } from '../../setup';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
 import {
+  copyPackageTemplate,
+  createPackageJson,
   getAuthor,
   getPackageTemplateType,
   getSafePackageName
@@ -54,7 +56,7 @@ export const generateBinCommand = (prog: Sade): void => {
 
       const workspaceRoot = await findWorkspaceRootDir();
       const packageJsonPath = path.resolve(workspaceRoot, PACKAGE_JSON);
-      const { name: rootName, workspaces, license } = (await fs.readJSON(
+      const { name: hostName, workspaces, license } = (await fs.readJSON(
         packageJsonPath
       )) as CLI.Package.WorkspaceRootPackageJSON;
       const workspacePackages = getWorkspacePackageDirs(workspaces);
@@ -74,17 +76,10 @@ export const generateBinCommand = (prog: Sade): void => {
         });
 
         bootSpinner.start();
-        await fs.copy(
-          path.resolve(
-            __dirname,
-            `../../../../templates/generate/${packageTemplateType}`
-          ),
-          packageDir,
-          {
-            overwrite: true
-          }
-        );
-
+        await copyPackageTemplate({
+          dir: packageDir,
+          template: packageTemplateType
+        });
         bootSpinner.stop();
         const author = await getAuthor();
         bootSpinner.start();
@@ -92,16 +87,16 @@ export const generateBinCommand = (prog: Sade): void => {
 
         process.chdir(packageDir);
         const templateConfig = generateSetup[packageTemplateType];
-        const generatePackageJson = composePackageJson(templateConfig);
-        const pkgJson = generatePackageJson({
-          author,
-          name: packageName,
-          rootName,
-          license
-        });
-        await fs.outputJSON(path.resolve(packageDir, PACKAGE_JSON), pkgJson, {
-          spaces: 2
-        });
+        const packageJsonPreset: CLI.Package.WorkspacePackageJSON = composePackageJson(
+          {
+            author,
+            name: packageName,
+            license,
+            hostName,
+            template: templateConfig
+          }
+        );
+        await createPackageJson({ dir: packageDir, preset: packageJsonPreset });
         bootSpinner.succeed(generateMessage.successful(packageName));
       } catch (err) {
         bootSpinner.fail(generateMessage.failed(packageName));

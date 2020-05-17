@@ -1,9 +1,11 @@
-import { Input, Select } from 'enquirer';
+import path from 'path';
 import fs from 'fs-extra';
+import { Input, Select } from 'enquirer';
 
 import { getAuthorName, info } from '../../shared/utils';
 import { generateSetup } from '../../setup/generate';
 import { generateMessage } from '../../shared/messages';
+import { PACKAGE_JSON } from '../../shared/constants/package.const';
 
 export const getAuthor = async (): Promise<CLI.Package.Author> => {
   let author = getAuthorName();
@@ -81,3 +83,29 @@ export const getSafePackageName = async (
     onFailedPath
   );
 };
+
+export const copyPackageTemplate = ({
+  dir,
+  template
+}: {
+  dir: string;
+  template: string;
+}): Promise<void> =>
+  fs.copy(
+    path.resolve(__dirname, `../../../../templates/generate/${template}`),
+    dir,
+    {
+      overwrite: true
+    }
+  );
+
+export const createPackageJson = ({
+  dir,
+  preset
+}: {
+  dir: string;
+  preset: CLI.Package.WorkspacePackageJSON;
+}): Promise<void> =>
+  fs.outputJSON(path.resolve(dir, PACKAGE_JSON), preset, {
+    spaces: 2
+  });
