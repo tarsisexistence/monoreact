@@ -13,8 +13,12 @@ import {
   logError
 } from '../../shared/utils';
 import { independencyMessage } from '../../shared/messages';
-import { migrationSetup } from '../../setup';
 import { TsconfigJSON } from '../../typings/tsconfig';
+import {
+  copyIndependencyTemplate,
+  makePackageJsonIndependent,
+  makeTsconfigJsonIndependent
+} from './independency.helpers';
 
 export const independencyBinCommand = (prog: Sade) => {
   prog
@@ -37,49 +41,10 @@ export const independencyBinCommand = (prog: Sade) => {
       bootSpinner.start();
 
       try {
-        if (tsconfigJson.compilerOptions !== undefined) {
-          const types = 'node_modules/@types';
-          tsconfigJson.compilerOptions.typeRoots =
-            tsconfigJson.compilerOptions.typeRoots?.filter(
-              typeRoot => !typeRoot.includes(types)
-            ) ?? [];
-          tsconfigJson.compilerOptions.typeRoots.push(types);
-        }
-
-        await fs.outputJSON(
-          tsconfigJsonPath,
-          {
-            ...tsconfigJson
-          },
-          { spaces: 2 }
-        );
-
-        await fs.copy(
-          path.resolve(
-            __dirname,
-            '../../../../templates/migration/independency'
-          ),
-          packageDir,
-          { overwrite: true, errorOnExist: false }
-        );
-
-        await fs.outputJSON(
-          packageJsonPath,
-          {
-            ...packageJson,
-            dependencies: {
-              ...(packageJson?.dependencies ?? {}),
-              ...migrationSetup.independency.dependencies
-            },
-            devDependencies: {
-              ...(packageJson?.devDependencies ?? {}),
-              ...migrationSetup.independency.devDependencies
-            }
-          },
-          { spaces: 2 }
-        );
-
-        installDependencies();
+        await makeTsconfigJsonIndependent(tsconfigJsonPath, tsconfigJson);
+        await makePackageJsonIndependent(packageJsonPath, packageJson);
+        await copyIndependencyTemplate(packageDir);
+        await installDependencies();
         bootSpinner.succeed(independencyMessage.successful());
       } catch (err) {
         bootSpinner.fail(independencyMessage.failed());
