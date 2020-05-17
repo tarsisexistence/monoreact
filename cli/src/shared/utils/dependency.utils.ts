@@ -21,7 +21,10 @@ export const readWorkspacePackages = async (
 
 export const splitWorkspacesIntoDependencyGraph = (
   workspaces: Pick<CLI.Package.BasePackageJSON, 'name' | 'dependencies'>[]
-): { chunks: string[][]; unprocessed: [string, string[]][] } => {
+): {
+  chunks: CLI.Workspaces.WorkspaceChunk[];
+  unprocessed: CLI.Workspaces.UnprocessedWorkspace[];
+} => {
   const chunks = [];
   const workspacePackagesMap: Record<
     string,

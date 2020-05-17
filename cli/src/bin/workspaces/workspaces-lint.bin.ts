@@ -6,12 +6,15 @@ import {
   getWorkspacesInfo,
   splitWorkspacesIntoDependencyGraph,
   readWorkspacePackages,
-  error,
   clearConsole,
   logError,
   space
 } from '../../shared/utils';
 import { convertStringArrayIntoMap } from '../../shared/utils/dataStructures.utils';
+import {
+  handleUnprocessedWorkspaces,
+  withExcludedWorkspaces
+} from './workspaces.helpers';
 import packageJson from '../../../package.json';
 
 export function workspacesLintBinCommand(prog: Sade): void {
@@ -57,11 +60,7 @@ export function workspacesLintBinCommand(prog: Sade): void {
         const time = process.hrtime();
 
         for (const chunk of chunks) {
-          for (const name of chunk) {
-            if (excluded.has(name)) {
-              continue;
-            }
-
+          for (const name of withExcludedWorkspaces(chunk, excluded)) {
             if (!quiet) {
               space();
               console.log(workspacesMessage.running(name));
@@ -82,11 +81,11 @@ export function workspacesLintBinCommand(prog: Sade): void {
           }
         }
 
-        const duration = process.hrtime(time);
         if (!quiet) {
           space();
         }
 
+        const duration = process.hrtime(time);
         console.log(workspacesMessage.successful(duration));
         space();
       } catch (error) {
@@ -95,16 +94,7 @@ export function workspacesLintBinCommand(prog: Sade): void {
       }
 
       if (unprocessed.length > 0) {
-        console.log(
-          error(`Potentially circular dependency
-      Please check the following packages attentively:
-      ${unprocessed.map(
-        ([name, dependencies]) =>
-          `   ${name}  =>  ${dependencies?.join(', ') ?? ''}`
-      ).join(`
-      `)}
-      `)
-        );
+        handleUnprocessedWorkspaces(unprocessed);
       }
     });
 }
