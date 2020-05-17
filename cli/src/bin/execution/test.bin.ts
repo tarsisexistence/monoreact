@@ -6,6 +6,7 @@ import { Sade } from 'sade';
 import { findWorkspacePackageDir } from '../../shared/utils';
 import { createTestConfig } from '../../configs/test.config';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
+import { getJestConfigOptions } from './test.helpers';
 
 export const testBinCommand = (prog: Sade) => {
   prog
@@ -23,64 +24,22 @@ export const testBinCommand = (prog: Sade) => {
 
       const packagePath = await findWorkspacePackageDir();
       const packageJsonPath = path.resolve(packagePath, PACKAGE_JSON);
-
-      let jestConfigOptions;
-
-      try {
-        if (opts.config) {
-          const jestConfigPathOption = path.resolve(packagePath, opts.config);
-          // const isSpecifiedConfigExists = fs.existsSync(jestConfigPathOption);
-          for (let i = 0; i < process.argv.length; i += 1) {
-            if (process.argv[i] === '--config') {
-              process.argv = process.argv
-                .slice(0, i)
-                .concat(process.argv.slice(i + 2));
-              break;
-            }
-          }
-          const filenameSegments = opts.config.split('.');
-          const isJavaScript =
-            filenameSegments[filenameSegments.length - 1] === 'JS';
-          jestConfigOptions = isJavaScript
-            ? // eslint-disable-next-line global-require,import/no-dynamic-require
-              require(jestConfigPathOption)
-            : await fs.readJSON(jestConfigPathOption);
-        } else {
-          const JEST_CONFIG = 'jest.config';
-          const jestConfigPathJS = path.resolve(
-            packagePath,
-            `${JEST_CONFIG}.js`
-          );
-          const jestConfigPathJSON = path.resolve(
-            packagePath,
-            `${JEST_CONFIG}.json`
-          );
-          if (fs.existsSync(jestConfigPathJS)) {
-            // eslint-disable-next-line global-require,import/no-dynamic-require
-            jestConfigOptions = require(jestConfigPathJS);
-          } else if (fs.existsSync(jestConfigPathJSON)) {
-            jestConfigOptions = await fs.readJSON(jestConfigPathJSON);
-          } else {
-            jestConfigOptions = {};
-          }
-        }
-      } catch {
-        jestConfigOptions = {};
-      }
-
+      const jestConfigOptions = await getJestConfigOptions(
+        packagePath,
+        opts.config
+      );
       const { jest: jestPackageOptions } = await fs.readJSON(packageJsonPath);
       const testConfig = createTestConfig({
         rootDir: packagePath,
         jestPackageOptions,
         jestConfigOptions
       });
-      const jestArgs = [
+      jest.run([
         ...process.argv.slice(2),
         '--config',
         JSON.stringify({
           ...testConfig
         })
-      ];
-      jest.run(jestArgs);
+      ]);
     });
 };
