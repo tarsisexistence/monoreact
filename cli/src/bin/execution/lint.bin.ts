@@ -13,6 +13,7 @@ import {
   PACKAGE_JSON,
   TSCONFIG_JSON
 } from '../../shared/constants/package.const';
+import { getPackageLintInfo } from './lint.helpers';
 
 export const lintBinCommand = (prog: Sade) => {
   prog
@@ -28,34 +29,13 @@ export const lintBinCommand = (prog: Sade) => {
     .action(async (opts: CLI.Options.Lint) => {
       const time = process.hrtime();
       const files = opts._.length > 0 ? opts._ : ['src/**/*.{js,jsx,ts,tsx}'];
-      const project = [];
-      let dir = '';
-      let isRoot = false;
-
-      try {
-        dir = await findWorkspacePackageDir(true);
-        project.push(path.resolve(dir, TSCONFIG_JSON));
-      } catch {}
-
-      try {
-        const hasPackageDir = dir !== '';
-        const rootDir = await findWorkspaceRootDir(hasPackageDir);
-        isRoot = true;
-
-        if (!hasPackageDir) {
-          dir = rootDir;
-        }
-
-        project.push(path.resolve(rootDir, TSCONFIG_JSON));
-      } catch {}
-
+      const { isRoot, dir, project } = await getPackageLintInfo();
       const packageJsonPath = path.resolve(dir, PACKAGE_JSON);
-      const { eslintConfig } = await fs.readJSON(packageJsonPath);
-      const lintConfig = createLintConfig({ dir, isRoot });
+      const { eslintConfig = {} } = await fs.readJSON(packageJsonPath);
       const cli = new CLIEngine({
         baseConfig: {
-          ...lintConfig,
-          ...(eslintConfig || {})
+          ...createLintConfig({ dir, isRoot }),
+          ...eslintConfig
         },
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
         fix: opts.fix,
