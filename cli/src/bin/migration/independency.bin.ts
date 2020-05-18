@@ -19,6 +19,9 @@ export const independencyBinCommand = (prog: Sade): void => {
     .describe(
       'Add all necessary settings to the package so that it can function outside of the workspace'
     )
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+    // @ts-ignore
+    .alias('mi')
     .example('migration independency')
     .action(async () => {
       const bootSpinner = ora(independencyMessage.generating());
