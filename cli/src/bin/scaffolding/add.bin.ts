@@ -3,7 +3,7 @@ import path from 'path';
 import ora from 'ora';
 import fs from 'fs-extra';
 
-import { featureSetup } from '../../setup/add';
+import { featureSetup } from './setup/add';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
 import { addMessage } from '../../shared/messages';
 import { findWorkspacePackageDir, logError } from '../../shared/utils';

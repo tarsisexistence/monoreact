@@ -3,7 +3,7 @@ import path from 'path';
 import { Sade } from 'sade';
 import { CLIEngine } from 'eslint';
 
-import { createLintConfig } from '../../configs/lint.config';
+import { createLintConfig } from './configs/lint.config';
 import { lintMessage } from '../../shared/messages';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
 import { getPackageLintInfo } from './lint.helpers';

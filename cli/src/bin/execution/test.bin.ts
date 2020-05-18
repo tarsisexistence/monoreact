@@ -4,7 +4,7 @@ import jest from 'jest';
 import { Sade } from 'sade';
 
 import { findWorkspacePackageDir } from '../../shared/utils';
-import { createTestConfig } from '../../configs/test.config';
+import { createTestConfig } from './configs/test.config';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
 import { getJestConfigOptions } from './test.helpers';
 

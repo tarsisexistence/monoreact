@@ -2,8 +2,8 @@ import path from 'path';
 import fs from 'fs-extra';
 import { Input, Select } from 'enquirer';
 
-import { getAuthorName, info } from '../../shared/utils';
-import { generateSetup } from '../../setup/generate';
+import { getAuthorName, info, safePackageName } from '../../shared/utils';
+import { generateSetup } from './setup/generate';
 import { generateMessage } from '../../shared/messages';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
 
@@ -109,3 +109,31 @@ export const createPackageJson = ({
   fs.outputJSON(path.resolve(dir, PACKAGE_JSON), preset, {
     spaces: 2
   });
+
+export const composePackageJson = ({
+  author,
+  name,
+  hostName,
+  license,
+  template
+}: Pick<CLI.Package.WorkspaceRootPackageJSON, 'name' | 'author' | 'license'> & {
+  hostName: string;
+  template: CLI.Setup.GenerateOptions;
+}): CLI.Package.WorkspacePackageJSON => {
+  const slashNameIndex = hostName.indexOf('/');
+  const namespace =
+    slashNameIndex === -1 ? `@${hostName}` : hostName.slice(0, slashNameIndex);
+  const safeName = safePackageName(name);
+  const packageName = namespace ? `${namespace}/${safeName}` : safeName;
+  const packageJson = {
+    ...template.packageJson,
+    name: packageName,
+    author
+  };
+
+  if (license) {
+    packageJson.license = license;
+  }
+
+  return packageJson;
+};

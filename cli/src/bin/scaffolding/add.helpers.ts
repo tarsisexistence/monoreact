@@ -3,7 +3,7 @@ import path from 'path';
 import { Select } from 'enquirer';
 
 import { info } from '../../shared/utils';
-import { featureSetup } from '../../setup/add';
+import { featureSetup } from './setup/add';
 
 export const validateFeatureOption = (
   featureName: string,

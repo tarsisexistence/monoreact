@@ -12,9 +12,10 @@ import {
   logError,
   findWorkspaceRootDir
 } from '../../shared/utils';
-import { featureSetup, generateSetup, composePackageJson } from '../../setup';
+import { featureSetup, generateSetup } from './setup';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
 import {
+  composePackageJson,
   copyPackageTemplate,
   createPackageJson,
   getAuthor,

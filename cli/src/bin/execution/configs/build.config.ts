@@ -19,7 +19,7 @@ import cssnano from 'cssnano';
 import simplevars from 'postcss-simple-vars';
 import nested from 'postcss-nested';
 
-import { TsconfigJSON } from '../typings/tsconfig';
+import { TsconfigJSON } from '../../../typings/tsconfig';
 
 // TODO: index.d.ts is redundant here, remove later
 // const tsconfigInclude = ['src', path.resolve(__dirname, '../../index.d.ts')];

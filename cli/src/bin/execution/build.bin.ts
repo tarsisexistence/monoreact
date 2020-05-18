@@ -4,7 +4,7 @@ import fs from 'fs-extra';
 import { rollup } from 'rollup';
 
 import { buildMessage } from '../../shared/messages';
-import { createBuildConfig } from '../../configs/build.config';
+import { createBuildConfig } from './configs/build.config';
 import { findWorkspacePackageDir, cleanDistFolder } from '../../shared/utils';
 import { TsconfigJSON } from '../../typings/tsconfig';
 import {

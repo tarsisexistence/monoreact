@@ -4,7 +4,7 @@ import fs from 'fs-extra';
 import { watch } from 'rollup';
 
 import { serveMessage } from '../../shared/messages';
-import { createBuildConfig } from '../../configs/build.config';
+import { createBuildConfig } from './configs/build.config';
 import {
   cleanDistFolder,
   clearConsole,
