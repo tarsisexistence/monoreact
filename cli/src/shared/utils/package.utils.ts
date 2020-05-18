@@ -1,12 +1,4 @@
-import path from 'path';
-import fs from 'fs-extra';
 import { exec } from 'shelljs';
-
-import {
-  NotFoundPackageWorkspaceError,
-  NotFoundWorkspaceRootError
-} from '../models';
-import { logError } from './error.utils';
 
 export const safePackageName = (name: string) =>
   name

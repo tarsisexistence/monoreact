@@ -1,23 +1,15 @@
-import path from 'path';
-import fs from 'fs-extra';
 import { watch } from 'rollup';
 
 import { cleanDistFolder, clearConsole, logError } from '../../shared/utils';
-import {
-  PACKAGE_JSON,
-  TSCONFIG_JSON
-} from '../../shared/constants/package.const';
-import { TsconfigJSON } from '../../typings/tsconfig';
 import { serveMessage } from '../../shared/messages';
 import { createBuildConfig } from './configs/build.config';
+import { readPackageJson, readTsconfigJson } from '../../shared/utils/fs.utils';
 
 export const serveWorkspace = async (dir: string): Promise<any> => {
-  const packageJson = (await fs.readJSON(
-    path.resolve(dir, PACKAGE_JSON)
-  )) as CLI.Package.WorkspacePackageJSON;
-  const tsconfigJson = (await fs.readJSON(
-    path.resolve(dir, TSCONFIG_JSON)
-  )) as TsconfigJSON;
+  const packageJson = await readPackageJson<CLI.Package.WorkspacePackageJSON>(
+    dir
+  );
+  const tsconfigJson = await readTsconfigJson(dir);
 
   const buildConfig = createBuildConfig({
     tsconfigJson,

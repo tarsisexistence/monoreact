@@ -1,7 +1,4 @@
-import fs from 'fs-extra';
-
-import path from 'path';
-import { PACKAGE_JSON } from '../constants/package.const';
+import { readPackageJson } from './fs.utils';
 
 export const readWorkspacePackages = async (
   packagesInfo: CLI.Package.PackageInfo[]
@@ -9,7 +6,7 @@ export const readWorkspacePackages = async (
   const packageJsons$: Promise<
     CLI.Package.BasePackageJSON
   >[] = packagesInfo.map((pkg: CLI.Package.PackageInfo) =>
-    fs.readJSON(path.resolve(pkg.location, PACKAGE_JSON))
+    readPackageJson(pkg.location)
   );
   const settledPackageJsons = (await Promise.allSettled<
     Promise<CLI.Package.BasePackageJSON>
