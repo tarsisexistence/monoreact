@@ -85,7 +85,7 @@
   "devDependencies": {
     "@types/eslint": "6.8.0",
     "@types/fs-extra": "9.0.0",
-    "@types/jest": "25.2.1",
+    "@types/jest": "25.2.3",
     "@types/node": "13.13.5",
     "@types/sade": "1.6.0",
     "@types/shelljs": "0.8.7",
