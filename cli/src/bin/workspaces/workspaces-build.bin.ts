@@ -63,7 +63,7 @@ export function workspacesBuildBinCommand(prog: Sade): void {
                 console.log(workspacesMessage.running(name));
               }
 
-              await execa('re-space', ags, {
+              await execa('re-space', ['build'], {
                 cwd: packagesLocationMap[name]
               });
 

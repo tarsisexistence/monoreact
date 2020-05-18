@@ -13,7 +13,7 @@ export const installBinCommand = (prog: Sade): void => {
   prog
     .command('install')
     .describe(
-      'Install one or more dependencies to the workspace root. Run this script inside any package and re-space will add peer dependencies as well.'
+      'Install one or more dependencies to the workspace root. Run this script inside any package and re-space will add peer dependencies as well'
     )
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore

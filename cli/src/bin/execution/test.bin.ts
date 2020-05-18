@@ -11,7 +11,7 @@ import { getJestConfigOptions } from './test.helpers';
 export const testBinCommand = (prog: Sade): void => {
   prog
     .command('test')
-    .describe('Test a package.')
+    .describe('Test a package')
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     .alias('t')

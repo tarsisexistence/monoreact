@@ -18,10 +18,7 @@ const featureOptions = Object.keys(featureSetup);
 export const addBinCommand = (prog: Sade): void => {
   prog
     .command('add [featureName]')
-    .describe(
-      `Add available feature.
-  Currently available choices: [${featureOptions.join(', ')}]`
-    )
+    .describe(`Add available feature [${featureOptions.join(', ')}]`)
     .example('add')
     .example('add playground')
     .action(async (featureName: string = '') => {

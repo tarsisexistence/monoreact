@@ -43,7 +43,6 @@ export function workspacesServeBinCommand(prog: Sade): void {
       const { chunks, unprocessed } = splitWorkspacesIntoDependencyGraph(
         packageJsons
       );
-      const ags = ['serve', '--color'];
       const excluded = convertStringArrayIntoMap(exclude);
       excluded.set(packageJson.name, true);
 
@@ -65,7 +64,7 @@ export function workspacesServeBinCommand(prog: Sade): void {
                 console.log(workspacesMessage.running(name));
               }
 
-              const proc = execa('re-space', ags, {
+              const proc = execa('re-space', ['serve', '--color'], {
                 cwd: packagesLocationMap[name]
               });
 

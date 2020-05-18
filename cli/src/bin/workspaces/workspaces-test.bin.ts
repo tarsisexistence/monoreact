@@ -36,7 +36,6 @@ export function workspacesTestBinCommand(prog: Sade): void {
       const { chunks, unprocessed } = splitWorkspacesIntoDependencyGraph(
         packageJsons
       );
-      const args = ['test', '--passWithNoTests'];
       const excluded = convertStringArrayIntoMap(exclude);
       excluded.set(packageJson.name, true);
 
@@ -59,7 +58,7 @@ export function workspacesTestBinCommand(prog: Sade): void {
               console.log(workspacesMessage.running(name));
             }
 
-            await execa('re-space', args, {
+            await execa('re-space', ['test', '--passWithNoTests'], {
               cwd: packagesLocationMap[name],
               stdio: [process.stdin, process.stdout, process.stderr]
             });
