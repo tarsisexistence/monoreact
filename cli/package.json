@@ -60,7 +60,7 @@
     "ora": "4.0.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "rollup": "2.10.4",
+    "rollup": "2.10.5",
     "rollup-plugin-analyzer": "3.2.3",
     "rollup-plugin-eslint": "7.0.0",
     "rollup-plugin-filesize": "9.0.0",
