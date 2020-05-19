@@ -88,7 +88,7 @@
     "@types/jest": "25.2.1",
     "@types/node": "13.13.5",
     "@types/sade": "1.6.0",
-    "@types/shelljs": "0.8.7",
+    "@types/shelljs": "0.8.8",
     "yarn": "1.22.4"
   },
   "publishConfig": {
