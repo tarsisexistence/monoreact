@@ -65,7 +65,8 @@ export function workspacesServeBinCommand(prog: Sade): void {
               }
 
               const proc = execa('re-space', ['serve', '--color'], {
-                cwd: packagesLocationMap[name]
+                cwd: packagesLocationMap[name],
+                stderr: process.stderr
               });
 
               proc.stdout?.pipe(process.stdout);
