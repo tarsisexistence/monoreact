@@ -1,8 +1,9 @@
 import { Sade } from 'sade';
-import execa from 'execa';
 
-import { findWorkspaceRootDir } from '../../shared/utils';
-import { finished } from './submodules.helpers';
+import { findWorkspaceRootDir, space } from '../../shared/utils';
+import { submodulesMessage } from '../../shared/messages/submodules.messages';
+import { getSubmodulesLocations } from '../../shared/utils/submodules.utils';
+import { gitPull } from './submodules-pull.helpers';
 
 export function submodulesPullBinCommand(prog: Sade): void {
   prog
@@ -23,41 +24,18 @@ export function submodulesPullBinCommand(prog: Sade): void {
         { self, remote }: CLI.Options.SubmodulesPull
       ) => {
         const rootDir = await findWorkspaceRootDir();
-        const cmd = 'pull';
-        const { exitCode: submodulesExitCode } = await execa(
-          'git',
-          ['submodule', 'foreach', 'git', cmd, remote, branch],
-          {
-            stdio: [process.stdin, process.stdout, process.stderr],
-            cwd: rootDir
-          }
-        );
-        console.log(
-          finished({
-            cmd,
-            code: submodulesExitCode,
-            type: 'submodules'
-          })
-        );
+        const locations = await getSubmodulesLocations();
+
+        for (const location of locations) {
+          console.log(submodulesMessage.entering(location));
+          await gitPull({ rootDir, repoDir: location, remote, branch });
+          space();
+        }
 
         if (self) {
-          console.log(`
-Entering 'host'`);
-          const { exitCode: hostExitCode } = await execa(
-            'git',
-            [cmd, remote, branch],
-            {
-              stdio: [process.stdin, process.stdout, process.stderr],
-              cwd: rootDir
-            }
-          );
-          console.log(
-            finished({
-              cmd,
-              code: hostExitCode,
-              type: 'host'
-            })
-          );
+          console.log(submodulesMessage.entering('host'));
+          await gitPull({ rootDir, remote, branch });
+          space();
         }
       }
     );
