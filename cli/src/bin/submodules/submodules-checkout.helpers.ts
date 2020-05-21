@@ -22,23 +22,3 @@ export const smartGitCheckout = async ({
     });
   }
 };
-
-export const gitFetch = async ({
-  rootDir,
-  repoDir = ''
-}: {
-  rootDir: string;
-  repoDir?: string;
-}) => {
-  await execa('git', ['fetch', '--all'], {
-    cwd: path.resolve(rootDir, repoDir),
-    stdio: 'inherit'
-  });
-};
-
-export const gitSubmoduleInit = async (rootDir: string) => {
-  await execa('git', ['submodule', 'update', '--remote', '--init'], {
-    cwd: rootDir,
-    stdio: 'inherit'
-  });
-};

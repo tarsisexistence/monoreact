@@ -3,7 +3,7 @@ import { Sade } from 'sade';
 import { findWorkspaceRootDir, space } from '../../shared/utils';
 import { submodulesMessage } from '../../shared/messages/submodules.messages';
 import { getSubmodulesLocations } from '../../shared/utils/submodules.utils';
-import { gitFetch } from './submodules-checkout.helpers';
+import { gitFetch } from './submodules-fetch.helpers';
 
 export function submodulesFetchBinCommand(prog: Sade): void {
   prog
