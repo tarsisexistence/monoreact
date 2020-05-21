@@ -15,14 +15,14 @@ export function submodulesFetchBinCommand(prog: Sade): void {
     .option('s, self', 'Apply fetch for the host workspace')
     .example('submodules fetch --self')
     .action(async ({ self }: CLI.Options.Submodules) => {
-      const workspaceRootPath = await findWorkspaceRootDir();
+      const rootDir = await findWorkspaceRootDir();
       const cmd = 'fetch';
 
       const { exitCode: submodulesExitCode } = await execa(
         'git',
         ['submodule', 'foreach', 'git', cmd, '--all'],
         {
-          cwd: workspaceRootPath,
+          cwd: rootDir,
           stdio: [process.stdin, process.stdout, process.stderr]
         }
       );
@@ -40,7 +40,7 @@ export function submodulesFetchBinCommand(prog: Sade): void {
 Entering 'host'`);
         const { exitCode: hostExitCode } = await execa('git', [cmd, '--all'], {
           stdio: [process.stdin, process.stdout, process.stderr],
-          cwd: workspaceRootPath
+          cwd: rootDir
         });
         console.log(
           finished({

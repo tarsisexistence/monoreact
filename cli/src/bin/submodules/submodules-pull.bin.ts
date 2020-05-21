@@ -22,14 +22,14 @@ export function submodulesPullBinCommand(prog: Sade): void {
         branch = 'master',
         { self, remote }: CLI.Options.SubmodulesPull
       ) => {
-        const workspaceRootPath = await findWorkspaceRootDir();
+        const rootDir = await findWorkspaceRootDir();
         const cmd = 'pull';
         const { exitCode: submodulesExitCode } = await execa(
           'git',
           ['submodule', 'foreach', 'git', cmd, remote, branch],
           {
             stdio: [process.stdin, process.stdout, process.stderr],
-            cwd: workspaceRootPath
+            cwd: rootDir
           }
         );
         console.log(
@@ -48,7 +48,7 @@ Entering 'host'`);
             [cmd, remote, branch],
             {
               stdio: [process.stdin, process.stdout, process.stderr],
-              cwd: workspaceRootPath
+              cwd: rootDir
             }
           );
           console.log(

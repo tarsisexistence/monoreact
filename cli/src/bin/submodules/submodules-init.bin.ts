@@ -13,14 +13,14 @@ export function submodulesInitBinCommand(prog: Sade): void {
     // @ts-ignore
     .alias('si')
     .action(async () => {
-      const workspaceRootPath = await findWorkspaceRootDir();
+      const rootDir = await findWorkspaceRootDir();
       const cmd = 'init';
       const { exitCode: submodulesExitCode } = await execa(
         'git',
         ['submodule', 'update', '--remote', '--init'],
         {
           stdio: [process.stdin, process.stdout, process.stderr],
-          cwd: workspaceRootPath
+          cwd: rootDir
         }
       );
 
