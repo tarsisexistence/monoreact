@@ -1,8 +1,8 @@
 import { Sade } from 'sade';
-import execa from 'execa';
 
-import { findWorkspaceRootDir } from '../../shared/utils';
-import { finished } from './submodules.helpers';
+import { findWorkspaceRootDir, space } from '../../shared/utils';
+import { getSubmodulesLocations } from '../../shared/utils/submodules.utils';
+import { smartCheckout } from './submodules-checkout.helpers';
 
 export function submodulesCheckoutBinCommand(prog: Sade): void {
   prog
@@ -15,43 +15,21 @@ export function submodulesCheckoutBinCommand(prog: Sade): void {
     .option('s, self', 'Apply checkout for the host workspace')
     .example('submodules checkout branch-name --self')
     .action(async (branch: string, { self }: CLI.Options.Submodules) => {
-      const workspaceRootPath = await findWorkspaceRootDir();
-      const cmd = 'checkout';
-      const { exitCode: submodulesExitCode } = await execa(
-        'git',
-        ['submodule', 'foreach', 'git checkout', '-B', branch],
-        {
-          stdio: [process.stdin, process.stdout, process.stderr],
-          cwd: workspaceRootPath
-        }
-      );
+      const rootDir = await findWorkspaceRootDir();
+      const locations = await getSubmodulesLocations();
 
-      console.log(
-        finished({
-          cmd,
-          code: submodulesExitCode,
-          type: 'submodules'
-        })
-      );
+      for (const location of locations) {
+        space();
+        console.log(`Entering '${location}'`);
+        await smartCheckout({ rootDir, repoDir: location, branch });
+      }
+
+      space();
 
       if (self) {
-        console.log(`
-Entering 'host'`);
-        const { exitCode: hostExitCode } = await execa(
-          'git',
-          ['checkout', '-B', branch],
-          {
-            stdio: [process.stdin, process.stdout, process.stderr],
-            cwd: workspaceRootPath
-          }
-        );
-        console.log(
-          finished({
-            cmd,
-            code: hostExitCode,
-            type: 'host'
-          })
-        );
+        console.log("Entering 'host'");
+        await smartCheckout({ rootDir, branch });
+        space();
       }
     });
 }
