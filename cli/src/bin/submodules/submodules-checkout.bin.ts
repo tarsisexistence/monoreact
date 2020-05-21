@@ -3,6 +3,7 @@ import { Sade } from 'sade';
 import { findWorkspaceRootDir, space } from '../../shared/utils';
 import { getSubmodulesLocations } from '../../shared/utils/submodules.utils';
 import { smartCheckout } from './submodules-checkout.helpers';
+import { submodulesMessage } from '../../shared/messages/submodules.messages';
 
 export function submodulesCheckoutBinCommand(prog: Sade): void {
   prog
@@ -19,15 +20,13 @@ export function submodulesCheckoutBinCommand(prog: Sade): void {
       const locations = await getSubmodulesLocations();
 
       for (const location of locations) {
-        space();
-        console.log(`Entering '${location}'`);
+        console.log(submodulesMessage.entering(location));
         await smartCheckout({ rootDir, repoDir: location, branch });
+        space();
       }
 
-      space();
-
       if (self) {
-        console.log("Entering 'host'");
+        console.log(submodulesMessage.entering('host'));
         await smartCheckout({ rootDir, branch });
         space();
       }
