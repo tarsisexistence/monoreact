@@ -1,7 +1,7 @@
 import execa from 'execa';
 import path from 'path';
 
-export const smartCheckout = async ({
+export const smartGitCheckout = async ({
   rootDir,
   branch,
   repoDir = ''
@@ -21,4 +21,17 @@ export const smartCheckout = async ({
       cwd: path.resolve(rootDir, repoDir)
     });
   }
+};
+
+export const gitFetch = async ({
+  rootDir,
+  repoDir = ''
+}: {
+  rootDir: string;
+  repoDir?: string;
+}) => {
+  await execa('git', ['fetch', '--all'], {
+    stdio: 'inherit',
+    cwd: path.resolve(rootDir, repoDir)
+  });
 };

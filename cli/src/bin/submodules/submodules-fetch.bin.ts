@@ -1,8 +1,9 @@
 import { Sade } from 'sade';
-import execa from 'execa';
 
-import { findWorkspaceRootDir } from '../../shared/utils';
-import { finished } from './submodules.helpers';
+import { findWorkspaceRootDir, space } from '../../shared/utils';
+import { submodulesMessage } from '../../shared/messages/submodules.messages';
+import { getSubmodulesLocations } from '../../shared/utils/submodules.utils';
+import { gitFetch } from './submodules-checkout.helpers';
 
 export function submodulesFetchBinCommand(prog: Sade): void {
   prog
@@ -16,39 +17,18 @@ export function submodulesFetchBinCommand(prog: Sade): void {
     .example('submodules fetch --self')
     .action(async ({ self }: CLI.Options.Submodules) => {
       const rootDir = await findWorkspaceRootDir();
-      const cmd = 'fetch';
+      const locations = await getSubmodulesLocations();
 
-      const { exitCode: submodulesExitCode } = await execa(
-        'git',
-        ['submodule', 'foreach', 'git', cmd, '--all'],
-        {
-          cwd: rootDir,
-          stdio: [process.stdin, process.stdout, process.stderr]
-        }
-      );
-
-      console.log(
-        finished({
-          cmd,
-          code: submodulesExitCode,
-          type: 'submodules'
-        })
-      );
+      for (const location of locations) {
+        console.log(submodulesMessage.entering(location));
+        await gitFetch({ rootDir, repoDir: location });
+        space();
+      }
 
       if (self) {
-        console.log(`
-Entering 'host'`);
-        const { exitCode: hostExitCode } = await execa('git', [cmd, '--all'], {
-          stdio: [process.stdin, process.stdout, process.stderr],
-          cwd: rootDir
-        });
-        console.log(
-          finished({
-            cmd,
-            code: hostExitCode,
-            type: 'host'
-          })
-        );
+        console.log(submodulesMessage.entering('host'));
+        await gitFetch({ rootDir });
+        space();
       }
     });
 }
