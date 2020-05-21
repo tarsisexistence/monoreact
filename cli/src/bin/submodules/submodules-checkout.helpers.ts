@@ -17,8 +17,8 @@ export const smartGitCheckout = async ({
     });
   } catch {
     await execa('git', ['checkout', '-b', branch], {
-      stdio: 'inherit',
-      cwd: path.resolve(rootDir, repoDir)
+      cwd: path.resolve(rootDir, repoDir),
+      stdio: 'inherit'
     });
   }
 };
@@ -31,7 +31,14 @@ export const gitFetch = async ({
   repoDir?: string;
 }) => {
   await execa('git', ['fetch', '--all'], {
-    stdio: 'inherit',
-    cwd: path.resolve(rootDir, repoDir)
+    cwd: path.resolve(rootDir, repoDir),
+    stdio: 'inherit'
+  });
+};
+
+export const gitSubmoduleInit = async (rootDir: string) => {
+  await execa('git', ['submodule', 'update', '--remote', '--init'], {
+    cwd: rootDir,
+    stdio: 'inherit'
   });
 };
