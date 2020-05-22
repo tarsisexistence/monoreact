@@ -42,7 +42,6 @@ export function workspacesBuildBinCommand(prog: Sade): void {
       const { chunks, unprocessed } = splitWorkspacesIntoDependencyGraph(
         packageJsons
       );
-      const ags = ['build'];
       const excluded = convertStringArrayIntoMap(exclude);
       excluded.set(packageJson.name, true);
 

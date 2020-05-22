@@ -40,11 +40,10 @@ export function workspacesTestBinCommand(prog: Sade): void {
       excluded.set(packageJson.name, true);
 
       clearConsole();
+      console.log(workspacesMessage.introduce());
+      console.log(workspacesMessage.started('test'));
 
       try {
-        console.log(workspacesMessage.introduce());
-        console.log(workspacesMessage.started('test'));
-
         if (!quiet) {
           space();
         }
@@ -60,7 +59,7 @@ export function workspacesTestBinCommand(prog: Sade): void {
 
             await execa('re-space', ['test', '--passWithNoTests'], {
               cwd: packagesLocationMap[name],
-              stdio: [process.stdin, process.stdout, process.stderr]
+              stdio: 'inherit'
             });
 
             if (!quiet) {

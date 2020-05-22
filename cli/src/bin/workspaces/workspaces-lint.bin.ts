@@ -48,11 +48,10 @@ export function workspacesLintBinCommand(prog: Sade): void {
       }
 
       clearConsole();
+      console.log(workspacesMessage.introduce());
+      console.log(workspacesMessage.started('lint'));
 
       try {
-        console.log(workspacesMessage.introduce());
-        console.log(workspacesMessage.started('lint'));
-
         if (!quiet) {
           space();
         }
@@ -67,10 +66,8 @@ export function workspacesLintBinCommand(prog: Sade): void {
             }
 
             try {
-              await execa('re-space', args, {
-                cwd: packagesLocationMap[name],
-                stdio: [process.stdin, process.stdout, process.stderr]
-              });
+              const cwd = packagesLocationMap[name];
+              await execa('re-space', args, { cwd, stdio: 'inherit' });
             } catch (error) {
               logError(error);
             }
