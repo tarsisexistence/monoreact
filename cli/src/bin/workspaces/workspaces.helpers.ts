@@ -1,11 +1,16 @@
-import { error } from '../../shared/utils';
+import {
+  error,
+  getWorkspacesInfo,
+  readWorkspacePackages,
+  splitWorkspacesIntoDependencyGraph
+} from '../../shared/utils';
 
 export const withExcludedWorkspaces = (
   chunk: string[],
   excluded: Map<string, boolean>
 ): string[] => chunk.filter(name => !excluded.has(name));
 
-export const handleUnprocessedWorkspaces = (
+const handleUnprocessedWorkspaces = (
   unprocessed: CLI.Workspaces.UnprocessedWorkspace[]
 ) => {
   console.log(
@@ -18,4 +23,26 @@ export const handleUnprocessedWorkspaces = (
       `)}
       `)
   );
+};
+
+export const exposeWorkspacesInfo = async (): Promise<{
+  chunks: string[][];
+  packagesLocationMap: Record<string, string>;
+}> => {
+  const packagesInfo = await getWorkspacesInfo();
+  const entries = packagesInfo.map(({ name, location }) => [name, location]);
+  const packagesJsons = await readWorkspacePackages(packagesInfo);
+  const { chunks, unprocessed } = splitWorkspacesIntoDependencyGraph(
+    packagesJsons
+  );
+  const info = {
+    chunks,
+    packagesLocationMap: Object.fromEntries(entries)
+  };
+
+  if (unprocessed.length > 0) {
+    handleUnprocessedWorkspaces(unprocessed);
+  }
+
+  return info;
 };

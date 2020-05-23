@@ -2,17 +2,10 @@ import { Sade } from 'sade';
 import execa from 'execa';
 
 import { workspacesMessage } from '../../shared/messages';
-import {
-  getWorkspacesInfo,
-  splitWorkspacesIntoDependencyGraph,
-  readWorkspacePackages,
-  clearConsole,
-  logError,
-  space
-} from '../../shared/utils';
+import { clearConsole, logError, space } from '../../shared/utils';
 import { convertStringArrayIntoMap } from '../../shared/utils/dataStructures.utils';
 import {
-  handleUnprocessedWorkspaces,
+  exposeWorkspacesInfo,
   withExcludedWorkspaces
 } from './workspaces.helpers';
 import packageJson from '../../../package.json';
@@ -30,14 +23,7 @@ export function workspacesLintBinCommand(prog: Sade): void {
     .option('exclude', 'Exclude specific workspaces', '')
     .example('workspaces lint --exclude workspace1,workspace2,workspace3')
     .action(async ({ quiet, exclude, fix }: CLI.Options.Workspaces) => {
-      const packagesInfo = await getWorkspacesInfo();
-      const packagesLocationMap = Object.fromEntries(
-        packagesInfo.map(({ name, location }) => [name, location])
-      );
-      const packageJsons = await readWorkspacePackages(packagesInfo);
-      const { chunks, unprocessed } = splitWorkspacesIntoDependencyGraph(
-        packageJsons
-      );
+      const { chunks, packagesLocationMap } = await exposeWorkspacesInfo();
       const excluded = convertStringArrayIntoMap(exclude);
       excluded.set(packageJson.name, true);
 
@@ -88,10 +74,6 @@ export function workspacesLintBinCommand(prog: Sade): void {
       } catch (error) {
         console.log(workspacesMessage.failed());
         logError(error);
-      }
-
-      if (unprocessed.length > 0) {
-        handleUnprocessedWorkspaces(unprocessed);
       }
     });
 }
