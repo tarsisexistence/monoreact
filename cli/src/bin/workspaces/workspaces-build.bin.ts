@@ -48,11 +48,16 @@ export function workspacesBuildBinCommand(prog: Sade): void {
                 console.log(workspacesMessage.running(name));
               }
 
-              await execa('re-space', ['build'], {
+              const { stderr } = await execa('re-space', ['build'], {
                 cwd: packagesLocationMap[name]
               });
 
               if (!quiet) {
+                // TODO: refactor when build/serveWorkspace ready
+                if (stderr !== '' && stderr !== undefined) {
+                  throw new Error(stderr);
+                }
+
                 console.log(workspacesMessage.finished('build', name));
               }
             })
