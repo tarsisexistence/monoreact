@@ -11,8 +11,10 @@ export const buildBinCommand = (prog: Sade): void => {
     // @ts-ignore
     .alias('b')
     .example('build')
-    .action(async () => {
-      const packageDir = await findWorkspacePackageDir();
-      await buildWorkspace(packageDir);
-    });
+    .action(
+      async (): Promise<void> => {
+        const packageDir = await findWorkspacePackageDir();
+        await buildWorkspace(packageDir);
+      }
+    );
 };

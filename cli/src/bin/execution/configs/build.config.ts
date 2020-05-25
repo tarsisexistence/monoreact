@@ -77,7 +77,6 @@ export const createBuildConfig = (opts: {
           'dist'
         ],
         compilerOptions: {
-          baseUrl: './',
           rootDir: './src',
           sourceMap: true,
           declaration: true,

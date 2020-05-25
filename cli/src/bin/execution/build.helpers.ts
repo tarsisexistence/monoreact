@@ -10,6 +10,7 @@ export const buildWorkspace = async (dir: string) => {
   const packageJson = await readPackageJson<CLI.Package.WorkspacePackageJSON>(
     dir
   );
+  await cleanDistFolder();
 
   const time = process.hrtime();
   const buildConfig = createBuildConfig({
@@ -19,7 +20,6 @@ export const buildWorkspace = async (dir: string) => {
     runEslint: true,
     useClosure: false
   });
-  await cleanDistFolder();
   console.log(buildMessage.bundling(packageJson));
   const bundle = await rollup(buildConfig);
   await bundle.write(buildConfig.output);
