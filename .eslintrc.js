@@ -92,7 +92,7 @@ module.exports = {
         prop: 'parens-new-line'
       }
     ],
-    'import/no-unresolved': 2,
+    'import/no-unresolved': 0,
     'import/named': 2,
     'import/namespace': 2,
     'import/default': 2,

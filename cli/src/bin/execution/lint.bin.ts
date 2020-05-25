@@ -22,12 +22,12 @@ export const lintBinCommand = (prog: Sade): void => {
     .action(async (opts: CLI.Options.Lint) => {
       const time = process.hrtime();
       const files = opts._.length > 0 ? opts._ : ['src/**/*.{js,jsx,ts,tsx}'];
-      const { isRoot, dir, project } = await getPackageLintInfo();
+      const { dir, project } = await getPackageLintInfo();
       const packageJsonPath = path.resolve(dir, PACKAGE_JSON);
       const { eslintConfig = {} } = await fs.readJSON(packageJsonPath);
       const cli = new CLIEngine({
         baseConfig: {
-          ...createLintConfig({ dir, isRoot }),
+          ...createLintConfig(dir),
           ...eslintConfig
         },
         extensions: ['.ts', '.tsx', '.js', '.jsx'],

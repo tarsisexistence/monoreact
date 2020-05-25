@@ -7,13 +7,11 @@ import {
 import { TSCONFIG_JSON } from '../../shared/constants/package.const';
 
 export const getPackageLintInfo = async (): Promise<{
-  isRoot: boolean;
   dir: string;
   project: string[];
 }> => {
   const project = [];
   let dir = '';
-  let isRoot = false;
 
   try {
     dir = await findWorkspacePackageDir(true);
@@ -23,7 +21,6 @@ export const getPackageLintInfo = async (): Promise<{
   try {
     const hasPackageDir = dir !== '';
     const rootDir = await findWorkspaceRootDir(hasPackageDir);
-    isRoot = true;
 
     if (!hasPackageDir) {
       dir = rootDir;
@@ -33,7 +30,6 @@ export const getPackageLintInfo = async (): Promise<{
   } catch {}
 
   return {
-    isRoot,
     dir,
     project
   };

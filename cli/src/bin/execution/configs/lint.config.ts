@@ -2,13 +2,9 @@
 import path from 'path';
 import { CLIEngine } from 'eslint';
 
-export const createLintConfig = ({
-  dir,
-  isRoot
-}: {
-  dir: string;
-  isRoot: boolean;
-}): CLIEngine.Options['baseConfig'] => {
+export const createLintConfig = (
+  dir: string
+): CLIEngine.Options['baseConfig'] => {
   const settings: Record<string, any> = {
     'import/resolver': {
       node: {
@@ -23,12 +19,6 @@ export const createLintConfig = ({
       version: 'detect'
     }
   };
-
-  if (isRoot) {
-    settings['import/resolver']['eslint-import-resolver-lerna'] = {
-      packages: path.resolve(dir, 'packages')
-    };
-  }
 
   const ignorePatterns = ['*.*ss'];
 
@@ -107,7 +97,7 @@ export const createLintConfig = ({
         prop: 'parens-new-line'
       }
     ],
-    'import/no-unresolved': 2,
+    'import/no-unresolved': 0,
     'import/named': 2,
     'import/namespace': 2,
     'import/default': 2,
