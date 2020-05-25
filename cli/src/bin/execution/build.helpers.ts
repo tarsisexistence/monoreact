@@ -17,7 +17,7 @@ export const buildWorkspace = async (dir: string) => {
     tsconfigJson,
     packageJson,
     displayFilesize: true,
-    runEslint: true,
+    runEslint: false,
     useClosure: false
   });
   console.log(buildMessage.bundling(packageJson));
