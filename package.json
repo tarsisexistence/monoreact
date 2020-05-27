@@ -22,6 +22,7 @@
     "cpd": "jscpd **/src"
   },
   "dependencies": {
+    "@re-space/cli": "*",
     "classnames": "2.2.6",
     "dayjs": "1.8.26",
     "grommet": "2.13.0",
@@ -34,7 +35,6 @@
     "styled-components": "5.1.0"
   },
   "devDependencies": {
-    "@re-space/cli": "*",
     "@testing-library/dom": "6.12.2",
     "@testing-library/jest-dom": "4.2.4",
     "@testing-library/react": "9.4.0",
@@ -52,16 +52,13 @@
     "enzyme-adapter-react-16": "1.15.2",
     "eslint-config-prettier": "6.11.0",
     "eslint-config-react-app": "5.2.1",
-    "eslint-import-resolver-lerna": "1.1.0",
-    "eslint-import-resolver-typescript": "2.0.0",
+    "eslint-plugin-prettier": "3.1.3",
     "eslint-plugin-compat": "3.7.0",
-    "eslint-plugin-import": "2.20.2",
-    "eslint-plugin-jsx-a11y": "6.2.3",
-    "eslint-plugin-prettier": "3.1.2",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-react": "7.20.0",
     "eslint-plugin-react-hooks": "4.0.4",
     "eslint-plugin-sonarjs": "0.5.0",
+    "eslint-plugin-jsx-a11y": "6.2.3",
     "husky": "4.2.5",
     "jscpd": "3.2.0",
     "jscpd-badge-reporter": "1.1.3",

@@ -1,4 +1,3 @@
-/* eslint-disable sonarjs/no-duplicate-string */
 import { splitWorkspacesIntoDependencyGraph } from './dependency.utils';
 
 describe('[utils.dependency]', () => {

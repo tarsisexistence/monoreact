@@ -9,7 +9,8 @@ module.exports = {
     'import',
     'react-hooks',
     'promise',
-    'sonarjs'
+    'sonarjs',
+    'jsx-a11y'
   ],
   extends: [
     'eslint:recommended',
@@ -25,13 +26,11 @@ module.exports = {
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
-    'plugin:@typescript-eslint/recommended'
+    'plugin:@typescript-eslint/recommended',
+    'plugin:jsx-a11y/recommended'
   ],
   settings: {
     'import/resolver': {
-      'eslint-import-resolver-lerna': {
-        packages: path.resolve(__dirname, 'packages')
-      },
       node: {
         paths: [path.resolve(__dirname, 'src')],
         extensions: ['.js', '.jsx', '.ts', '.tsx']
