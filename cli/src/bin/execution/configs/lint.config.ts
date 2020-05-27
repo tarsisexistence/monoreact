@@ -35,9 +35,14 @@ export const createLintConfig = (
     'plugin:@typescript-eslint/recommended'
   ];
 
+  const rules = {
+    'import/no-unresolved': 0
+  };
+
   return {
     settings,
     ignorePatterns,
-    extends: extendsConfig
+    extends: extendsConfig,
+    rules
   };
 };

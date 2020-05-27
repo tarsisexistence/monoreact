@@ -2,12 +2,12 @@
 
 <br/>
 
-### Quickstart
+### Bootstrap this repo
 
 > Project uses git submodules
 
 1. git clone --recursive https://github.com/maktarsis/re-space.git
-2. npx yarn install (**you can omit "npx" if you have yarn globally**)
+2. npx yarn install (**you can omit "npx" if you have installed yarn globally**)
 3. yarn workspaces run build
 4. yarn start
 
