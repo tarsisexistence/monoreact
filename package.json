@@ -24,7 +24,7 @@
   "dependencies": {
     "@re-space/cli": "*",
     "classnames": "2.2.6",
-    "dayjs": "1.8.26",
+    "dayjs": "1.8.28",
     "grommet": "2.13.0",
     "grommet-icons": "4.4.0",
     "lodash.times": "4.3.2",
