@@ -1,13 +1,10 @@
 import { Sade } from 'sade';
 import ora from 'ora';
 
-import {
-  findWorkspacePackageDir,
-  installDependencies,
-  logError
-} from '../../shared/utils';
+import { findWorkspacePackageDir, logError } from '../../shared/utils';
 import { independencyMessage } from '../../shared/messages';
 import {
+  installDependencies,
   copyIndependencyTemplate,
   makePackageJsonIndependent,
   makeTsconfigJsonIndependent

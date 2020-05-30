@@ -68,3 +68,5 @@ export const copyIndependencyTemplate = (dir: string): Promise<void> =>
     dir,
     { overwrite: true, errorOnExist: false }
   );
+
+export const installDependencies = () => exec('yarn install', { silent: true });

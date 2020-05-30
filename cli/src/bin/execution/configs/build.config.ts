@@ -20,9 +20,6 @@ import nested from 'postcss-nested';
 
 import { TsconfigJSON } from '../../../typings/tsconfig';
 
-// TODO: index.d.ts is redundant here, remove later
-// const tsconfigInclude = ['src', path.resolve(__dirname, '../../index.d.ts')];
-
 export const createBuildConfig = ({
   packageJson: {
     source: input,
@@ -83,11 +80,6 @@ export const createBuildConfig = ({
       typescript2({
         clean: true,
         tsconfigDefaults: {
-          // https://github.com/ezolenko/rollup-plugin-typescript2/issues/226 && checkTsConfig parsedConfig
-          // TODO: refactor this code when this issue resolved
-          // include:
-          //   opts.tsconfigJson.include?.concat(...tsconfigInclude) ??
-          //   tsconfigInclude,
           exclude: [
             '**/*.spec.ts',
             '**/*.test.ts',

@@ -4,23 +4,23 @@ import ora from 'ora';
 import fs from 'fs-extra';
 
 import {
-  buildPackage,
   getWorkspacePackageSetupPath,
   getWorkspacePackageDirs,
-  setAuthorName,
-  sortPackageJson,
   logError,
   findWorkspaceRootDir
 } from '../../shared/utils';
 import { featureSetup, generateSetup } from './setup';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
 import {
+  buildPackage,
   composePackageJson,
   copyPackageTemplate,
   createPackageJson,
   getAuthor,
   getPackageTemplateType,
-  getSafePackageName
+  getSafePackageName,
+  sortPackageJson,
+  setAuthorName
 } from './generate.helpers';
 import { generateMessage } from '../../shared/messages';
 
