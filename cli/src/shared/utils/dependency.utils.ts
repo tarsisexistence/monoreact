@@ -71,3 +71,19 @@ export const splitWorkspacesIntoDependencyGraph = (
     unprocessed: Array.from(packageDependenciesMap.entries())
   };
 };
+
+export const getExternalScreen = ({
+  dependencies = {},
+  peerDependencies = {},
+  devDependencies = {}
+}: Record<string, CLI.Package.Dependencies | undefined>) => {
+  const externals = [
+    ...Object.keys(dependencies),
+    ...Object.keys(peerDependencies),
+    ...Object.keys(devDependencies)
+  ];
+  const externalsMap = new Map(externals.map(key => [key, key]));
+  return (id: string) =>
+    externalsMap.has(id) ||
+    Boolean(externals.find(key => id.startsWith(`${key}/`)));
+};

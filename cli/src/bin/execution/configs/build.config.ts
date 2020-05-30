@@ -19,15 +19,10 @@ import simplevars from 'postcss-simple-vars';
 import nested from 'postcss-nested';
 
 import { TsconfigJSON } from '../../../typings/tsconfig';
+import { getExternalScreen } from '../../../shared/utils';
 
 export const createBuildConfig = ({
-  packageJson: {
-    source: input,
-    module: outputFile,
-    dependencies = {},
-    peerDependencies = {},
-    devDependencies = {}
-  },
+  packageJson,
   runEslint,
   displayFilesize,
   useClosure
@@ -38,23 +33,18 @@ export const createBuildConfig = ({
   packageJson: CLI.Package.WorkspacePackageJSON;
   tsconfigJson: TsconfigJSON;
 }): InputOptions & { output: OutputOptions } => {
-  const externals = [
-    ...Object.keys(dependencies),
-    ...Object.keys(peerDependencies),
-    ...Object.keys(devDependencies)
-  ];
-  const externalsMap = new Map(externals.map(key => [key, key]));
+  const externalScreen = getExternalScreen({
+    dependencies: packageJson.dependencies
+  });
 
   return {
-    input,
+    input: packageJson.source,
     output: {
-      file: outputFile,
+      file: packageJson.module,
       format: 'es',
       sourcemap: true
     },
-    external: (id: string) =>
-      externalsMap.has(id) ||
-      Boolean(externals.find(key => id.startsWith(key))),
+    external: externalScreen,
     plugins: [
       beep(),
       progress({ clearLine: true }),
