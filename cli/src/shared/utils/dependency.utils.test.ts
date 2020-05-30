@@ -1,4 +1,7 @@
-import { splitWorkspacesIntoDependencyGraph } from './dependency.utils';
+import {
+  getExternalScreen,
+  splitWorkspacesIntoDependencyGraph
+} from './dependency.utils';
 
 describe('[utils.dependency]', () => {
   describe('splitWorkspacesIntoDependencyGraph', () => {
@@ -402,6 +405,78 @@ describe('[utils.dependency]', () => {
           ['host', ['landing', 'layout']]
         ]
       });
+    });
+  });
+
+  describe('getExternalScreen', () => {
+    test('should not include anything from empty dependencies', () => {
+      const externalScreen = getExternalScreen({
+        peerDependencies: { grommet: '*' }
+      });
+      expect(externalScreen('')).toBeFalsy();
+      expect(externalScreen('react')).toBeFalsy();
+    });
+
+    test('should include prod deps', () => {
+      expect(
+        getExternalScreen({
+          dependencies: { react: '*' }
+        })('react')
+      ).toBeTruthy();
+    });
+
+    test('should include dev deps', () => {
+      expect(
+        getExternalScreen({
+          devDependencies: { react: '*' }
+        })('react')
+      ).toBeTruthy();
+    });
+
+    test('should include peer deps', () => {
+      const externalScreen = getExternalScreen({
+        peerDependencies: { react: '*' }
+      });
+      expect(externalScreen('react')).toBeTruthy();
+    });
+
+    test('should include all deps', () => {
+      const externalScreen = getExternalScreen({
+        dependencies: { grommet: '*' },
+        peerDependencies: { react: '*' },
+        devDependencies: { rollup: '*' }
+      });
+      expect(externalScreen('grommet')).toBeTruthy();
+      expect(externalScreen('react')).toBeTruthy();
+      expect(externalScreen('rollup')).toBeTruthy();
+    });
+
+    test('should include deps with slash in the end', () => {
+      const externalScreen = getExternalScreen({
+        dependencies: { grommet: '*' },
+        peerDependencies: { react: '*' },
+        devDependencies: { rollup: '*' }
+      });
+      expect(externalScreen('grommet/')).toBeTruthy();
+      expect(externalScreen('react/')).toBeTruthy();
+      expect(externalScreen('rollup/')).toBeTruthy();
+    });
+
+    test('should include import from nested modules', () => {
+      const externalScreen = getExternalScreen({
+        peerDependencies: { grommet: '*' }
+      });
+      expect(externalScreen('grommet/utils')).toBeTruthy();
+      expect(externalScreen('grommet/utils/noop')).toBeTruthy();
+      expect(externalScreen('grommet/utils-react')).toBeTruthy();
+    });
+
+    test('should not include external package with the same startWith name', () => {
+      const externalScreen = getExternalScreen({
+        peerDependencies: { grommet: '*' }
+      });
+      expect(externalScreen('grommet-utils')).toBeFalsy();
+      expect(externalScreen('grommet-utils/react')).toBeFalsy();
     });
   });
 });
