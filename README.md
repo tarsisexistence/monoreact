@@ -21,8 +21,8 @@
 - create JavaScript, TypeScript, React libraries
 - implement monorepo, submodules
 - workspace, submodules management
-- efficient rollup bundling
-- workspace dependency awareness
+- efficient bundling (rollup)
+- workspace dependency awareness (connectivity)
 
 <br/>
 
