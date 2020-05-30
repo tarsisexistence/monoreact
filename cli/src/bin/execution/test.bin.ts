@@ -12,8 +12,6 @@ export const testBinCommand = (prog: Sade): void => {
   prog
     .command('test')
     .describe('Test a package')
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
     .alias('t')
     .option('config', 'Specify a path to the jest config')
     .action(async (opts: CLI.Options.Test) => {

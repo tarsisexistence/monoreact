@@ -31,8 +31,6 @@ export const generateBinCommand = (prog: Sade): void => {
   prog
     .command('generate <pkg>')
     .describe('Generate a new package')
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
     .alias('g')
     .example('generate packageName')
     .option(

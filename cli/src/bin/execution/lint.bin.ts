@@ -12,8 +12,6 @@ export const lintBinCommand = (prog: Sade): void => {
   prog
     .command('lint')
     .describe('Lint a package (default lint pattern src/**/*.{js,jsx,ts,tsx}')
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
     .alias('l')
     .option('fix', 'Resolve fixable eslint errors')
     .example('lint --fix')

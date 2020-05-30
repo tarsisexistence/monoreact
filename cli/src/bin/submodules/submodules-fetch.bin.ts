@@ -10,8 +10,6 @@ export function submodulesFetchBinCommand(prog: Sade): void {
     .command('submodules fetch')
     .describe('Fetch each submodule')
     .example('submodules fetch')
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
     .alias('sf')
     .option('s, self', 'Apply fetch for the host workspace')
     .example('submodules fetch --self')

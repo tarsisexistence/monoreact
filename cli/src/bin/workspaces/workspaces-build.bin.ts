@@ -15,8 +15,6 @@ export function workspacesBuildBinCommand(prog: Sade): void {
     .command('workspaces build')
     .describe('Build each workspace')
     .example('workspaces build')
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
     .alias('wb')
     .option(
       'q, quiet',

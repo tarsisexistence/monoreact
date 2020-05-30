@@ -15,8 +15,6 @@ export function workspacesTestBinCommand(prog: Sade): void {
     .command('workspaces test')
     .describe('Test each workspace')
     .example('workspaces test')
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
     .alias('wt')
     .option('exclude', 'Exclude specific workspaces', '')
     .example('workspaces test --exclude workspace1,workspace2,workspace3')

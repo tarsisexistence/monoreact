@@ -16,8 +16,6 @@ export function workspacesServeBinCommand(prog: Sade): void {
     .command('workspaces serve')
     .describe('Serve each workspace')
     .example('workspaces serve')
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
     .alias('workspaces start', 'workspaces watch', 'ws')
     .option(
       'q, quiet',

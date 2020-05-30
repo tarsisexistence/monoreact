@@ -9,8 +9,6 @@ export function submodulesInitBinCommand(prog: Sade): void {
     .command('submodules init')
     .describe('Initialize missed submodules')
     .example('submodules init')
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
     .alias('si')
     .action(async () => {
       const rootDir = await findWorkspaceRootDir();

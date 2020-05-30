@@ -10,8 +10,6 @@ export function submodulesCheckoutBinCommand(prog: Sade): void {
     .command('submodules checkout <branch>')
     .describe('Checkout each submodule on the specific branch')
     .example('submodules checkout branch-name')
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
     .alias('sc')
     .option('s, self', 'Apply checkout for the host workspace')
     .example('submodules checkout branch-name --self')

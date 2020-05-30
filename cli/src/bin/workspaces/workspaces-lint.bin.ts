@@ -15,8 +15,6 @@ export function workspacesLintBinCommand(prog: Sade): void {
     .command('workspaces lint')
     .describe('Lint each workspace')
     .example('workspaces lint')
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
     .alias('wl')
     .option('fix', 'Resolve fixable eslint errors')
     .example('workspaces lint --fix')

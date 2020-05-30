@@ -11,8 +11,6 @@ export function submodulesPullBinCommand(prog: Sade): void {
     .describe('Pull each submodule (default master)')
     .example('submodules pull')
     .example('submodules pull develop')
-    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-    // @ts-ignore
     .alias('sp')
     .option('r, remote', 'Define git remote', 'origin')
     .example('submodules pull master --remote fork')
