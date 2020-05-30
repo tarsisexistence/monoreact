@@ -16,3 +16,7 @@ export function clearConsole() {
 }
 
 export const space = () => process.stdout.write('\n');
+
+export const normalizeBoolCLI = (
+  value: boolean | string | undefined
+): boolean => value === true || value === 'true';

@@ -2,7 +2,12 @@ import { Sade } from 'sade';
 import execa from 'execa';
 
 import { workspacesMessage } from '../../shared/messages';
-import { clearConsole, logError, space } from '../../shared/utils';
+import {
+  clearConsole,
+  logError,
+  normalizeBoolCLI,
+  space
+} from '../../shared/utils';
 import { convertStringArrayIntoMap } from '../../shared/utils/dataStructures.utils';
 import {
   exposeWorkspacesInfo,
@@ -20,14 +25,15 @@ export function workspacesLintBinCommand(prog: Sade): void {
     .example('workspaces lint --fix')
     .option('exclude', 'Exclude specific workspaces', '')
     .example('workspaces lint --exclude workspace1,workspace2,workspace3')
-    .action(async ({ quiet, exclude, fix }: CLI.Options.Workspaces) => {
+    .action(async ({ exclude, fix }: CLI.Options.Workspaces) => {
+      const shouldFix = normalizeBoolCLI(fix);
       const { chunks, packagesLocationMap } = await exposeWorkspacesInfo();
       const excluded = convertStringArrayIntoMap(exclude);
       excluded.set(packageJson.name, true);
 
       const args = ['lint', 'src/**/*.{js,jsx,ts,tsx}'];
 
-      if (fix) {
+      if (shouldFix) {
         args.push('--fix');
       }
 
@@ -36,18 +42,14 @@ export function workspacesLintBinCommand(prog: Sade): void {
       console.log(workspacesMessage.started('lint'));
 
       try {
-        if (!quiet) {
-          space();
-        }
+        space();
 
         const time = process.hrtime();
 
         for (const chunk of chunks) {
           for (const name of withExcludedWorkspaces(chunk, excluded)) {
-            if (!quiet) {
-              space();
-              console.log(workspacesMessage.running(name));
-            }
+            space();
+            console.log(workspacesMessage.running(name));
 
             try {
               const cwd = packagesLocationMap[name];
@@ -56,14 +58,8 @@ export function workspacesLintBinCommand(prog: Sade): void {
               logError(error);
             }
 
-            if (!quiet) {
-              console.log(workspacesMessage.finished('lint', name));
-            }
+            console.log(workspacesMessage.finished('lint', name));
           }
-        }
-
-        if (!quiet) {
-          space();
         }
 
         const duration = process.hrtime(time);
