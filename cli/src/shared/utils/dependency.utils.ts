@@ -76,13 +76,18 @@ export const getExternalScreen = ({
   dependencies = {},
   peerDependencies = {},
   devDependencies = {}
-}: Record<string, CLI.Package.Dependencies | undefined>) => {
+}: Partial<{
+  dependencies: CLI.Package.Dependencies;
+  peerDependencies: CLI.Package.Dependencies;
+  devDependencies: CLI.Package.Dependencies;
+}>) => {
   const externals = [
     ...Object.keys(dependencies),
     ...Object.keys(peerDependencies),
     ...Object.keys(devDependencies)
   ];
   const externalsMap = new Map(externals.map(key => [key, key]));
+
   return (id: string) =>
     externalsMap.has(id) ||
     Boolean(externals.find(key => id.startsWith(`${key}/`)));

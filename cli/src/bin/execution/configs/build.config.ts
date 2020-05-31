@@ -33,9 +33,7 @@ export const createBuildConfig = ({
   packageJson: CLI.Package.WorkspacePackageJSON;
   tsconfigJson: TsconfigJSON;
 }): InputOptions & { output: OutputOptions } => {
-  const externalScreen = getExternalScreen({
-    dependencies: packageJson.dependencies
-  });
+  const externalScreen = getExternalScreen(packageJson);
 
   return {
     input: packageJson.source,
