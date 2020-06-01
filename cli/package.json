@@ -20,7 +20,7 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@ampproject/rollup-plugin-closure-compiler": "0.25.2",
+    "@ampproject/rollup-plugin-closure-compiler": "0.26.0",
     "@babel/cli": "7.10.1",
     "@babel/core": "7.10.2",
     "@babel/plugin-proposal-class-properties": "7.10.1",
