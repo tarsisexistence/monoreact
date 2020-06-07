@@ -39,75 +39,72 @@ const DayCell = ({
   return <td {...props}>{d.format('D')}</td>;
 };
 
-export class DatePicker extends React.Component {
-  static propTypes = {
-    date: PropTypes.date
-  };
+export const DatePicker = props => {
+  const [date, setDate] = React.useState(
+    (props.date && dayjs(props.date)) || dayjs()
+  );
+  const [selectedDate, setSelectedDate] = React.useState(null);
+  const clickedDate = React.useCallback(date => {
+    setSelectedDate(date.clone());
+  }, []);
 
-  state = {
-    date: (this.props.date && dayjs(this.props.date)) || dayjs(),
-    selectedDate: null
-  };
+  const changeMonth = React.useCallback(
+    by => {
+      let newDate;
+      if (by > 0) {
+        newDate = date.clone().add(1, 'month');
+      } else {
+        newDate = date.clone().subtract(1, 'month');
+      }
 
-  render() {
-    const { date, selectedDate } = this.state;
-    const year = date.year();
-    const rows = generateDateRows(date);
+      setDate(newDate);
+    },
+    [date]
+  );
 
-    return (
+  const rows = React.useMemo(() => generateDateRows(date), [date]);
+
+  return (
+    <div>
       <div>
-        <div>
-          <strong>Date: </strong> {date.format('MMM')} {year}
-        </div>
+        <strong>Date: </strong> {date.format('MMM')} {date.year()}
+      </div>
 
-        <button onClick={() => this.changeMonth(-1)}>Prev Month</button>
-        <button onClick={() => this.changeMonth(1)}>Next Month</button>
+      <button onClick={() => changeMonth(-1)}>Prev Month</button>
+      <button onClick={() => changeMonth(1)}>Next Month</button>
 
-        <table cellPadding='0' cellSpacing='0' className={styles.calendar}>
-          <thead>
-            <tr>
-              {labels.map(label => (
-                <th key={label}>{label}</th>
+      <table cellPadding='0' cellSpacing='0' className={styles.calendar}>
+        <thead>
+          <tr>
+            {labels.map(label => (
+              <th key={label}>{label}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, i) => (
+            <tr key={i}>
+              {row.map((d, i) => (
+                <DayCell
+                  key={i}
+                  current={date}
+                  date={d}
+                  disablePast={true}
+                  selectedDate={selectedDate}
+                  onClick={clickedDate}
+                />
               ))}
             </tr>
-          </thead>
-          <tbody>
-            {rows.map((row, i) => (
-              <tr key={i}>
-                {row.map((d, i) => (
-                  <DayCell
-                    key={i}
-                    current={date}
-                    date={d}
-                    disablePast={true}
-                    selectedDate={selectedDate}
-                    onClick={this.clickedDate}
-                  />
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    );
-  }
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
 
-  clickedDate = date => {
-    this.setState({ selectedDate: date.clone() });
-  };
-
-  changeMonth = by => {
-    const { date } = this.state;
-
-    let newDate;
-    if (by > 0) {
-      newDate = date.clone().add(1, 'month');
-    } else {
-      newDate = date.clone().subtract(1, 'month');
-    }
-    this.setState({ date: newDate });
-  };
-}
+DatePicker.propTypes = {
+  date: PropTypes.date
+};
 
 /**
  * This beast generates a multi-dimensional array of dates,

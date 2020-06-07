@@ -12,7 +12,8 @@
     "lint": "re-space lint \"src/**/*.{js,jsx,ts,tsx}\"",
     "start": "re-space serve",
     "stylelint": "npx stylelint \"src/**/*.{css,sass,scss}\"",
-    "test": "re-space test --passWithNoTests"
+    "test": "re-space test --passWithNoTests",
+    "start:playground": "yarn build & npx concurrently --kill-others \"yarn start\" \"cd playground & yarn start\""
   },
   "peerDependencies": {
     "@babel/plugin-proposal-class-properties": "*",
