@@ -6,5 +6,15 @@
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html"
+  },
+  "alias": {
+    "react": "../../../node_modules/react",
+    "react-dom": "../../../node_modules/react-dom/profiling"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.11",
+    "@types/react-dom": "^16.8.4",
+    "parcel": "^1.12.3",
+    "typescript": "^3.4.5"
   }
 }

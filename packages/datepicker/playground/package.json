@@ -11,9 +11,6 @@
     "react": "../../../node_modules/react",
     "react-dom": "../../../node_modules/react-dom/profiling"
   },
-  "dependencies": {
-    "react-app-polyfill": "^1.0.0"
-  },
   "devDependencies": {
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.8.4",
