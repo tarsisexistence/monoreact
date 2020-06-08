@@ -9,7 +9,7 @@ import {
   logError,
   findWorkspaceRootDir
 } from '../../shared/utils';
-import { featureSetup, generateSetup } from './setup';
+import { generateSetup } from './setup';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
 import {
   buildPackage,
@@ -25,7 +25,6 @@ import {
 import { generateMessage } from '../../shared/messages';
 
 const templateOptions = Object.keys(generateSetup);
-const featureOptions = Object.keys(featureSetup);
 
 export const generateBinCommand = (prog: Sade): void => {
   prog
@@ -41,14 +40,6 @@ export const generateBinCommand = (prog: Sade): void => {
      `
     )
     .example(`generate packageName --template ${templateOptions[0]}`)
-    .option(
-      'f, feature',
-      `Specify a feature.
-     Available features: [${featureOptions.join(', ')}]
-     
-     `
-    )
-    .example(`generate packageName --feature ${featureOptions[0]}`)
     .action(async (pkgName: string, { template }: CLI.Options.Generate) => {
       let packageName = pkgName;
       let packageTemplateType = template;
