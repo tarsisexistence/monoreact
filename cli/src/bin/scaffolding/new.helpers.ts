@@ -11,7 +11,7 @@ export const getProjectName = async ({
   name: string;
   onFailure: (message: string) => void;
 }): Promise<string> =>
-  dir !== undefined && process.cwd() === path.resolve(dir)
+  dir !== undefined
     ? name
     : await getSafeName({
         basePath: process.cwd(),

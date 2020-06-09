@@ -6,8 +6,7 @@ export const newMessage = {
     `The folder at ${error(dir)} already exists! ${bold(
       'Choose a different name'
     )}`,
-
-  exists: (dir: string) => error(`The folder is already exists at ${dir}`),
+  exists: (dir: string) => `The folder already exists at ${error(dir)}`,
 
   failedPreparation: () => error('A preparation error has occurred'),
   preparing: () =>
@@ -25,7 +24,7 @@ export const newMessage = {
   ${success('Awesome!')} You're now ready to start coding
   
   You might begin with:
-  ${info('cd')} ${dir}
+  ${info('cd')} ${bold(dir)}
   ${info('yarn start')}
   
   ${info('yarn start')}

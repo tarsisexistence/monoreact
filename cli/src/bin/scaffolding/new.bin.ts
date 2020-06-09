@@ -41,7 +41,6 @@ export const newBinCommand = (prog: Sade): void => {
 
       try {
         if (fs.existsSync(projectDir)) {
-          bootSpinner.fail(newMessage.exists(projectDir));
           throw new Error(newMessage.exists(projectDir));
         }
 
