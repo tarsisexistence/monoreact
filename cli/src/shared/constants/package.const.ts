@@ -52,6 +52,7 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.WorkspaceRootPackageJSON =
     start: 'react-scripts start',
     build: 'react-scripts build',
     test: 'react-scripts test',
+    eject: 'react-scripts eject',
     lint: 're-space lint',
     stylelint: 'stylelint "src/**/*.{css,sass,scss}"'
   },
