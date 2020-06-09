@@ -1,20 +1,18 @@
 import { Sade } from 'sade';
-import path from 'path';
 import ora from 'ora';
 import fs from 'fs-extra';
 
-import { logError } from '../../shared/utils';
+import { installDependencies, logError } from '../../shared/utils';
 import {
-  buildPackage,
   createPackageJson,
   copyTemplate,
   getAuthor,
-  getSafeName,
   sortPackageJson,
   setAuthorName
 } from './scaffolding.helpers';
-import { generateMessage } from '../../shared/messages';
 import { newSetup } from './setup/new';
+import { newMessage } from '../../shared/messages';
+import { getProjectDir, getProjectName } from './new.helpers';
 
 export const newBinCommand = (prog: Sade): void => {
   prog
@@ -25,28 +23,28 @@ export const newBinCommand = (prog: Sade): void => {
     .action(async (name: string, dir?: string) => {
       // TODO: specify template option
       const template: CLI.Setup.NewOptionType = 'cra';
-      const bootSpinner = ora('Start creating host React project');
+      const bootSpinner = ora();
 
-      const projectName =
-        dir !== undefined && process.cwd() === path.resolve(dir)
-          ? name
-          : await getSafeName({
-              basePath: process.cwd(),
-              name,
-              onFail: (unsafeName: string) => {
-                bootSpinner.fail(`Already exists ${unsafeName}`);
-              }
-            });
-      const projectDir =
-        dir !== undefined ? path.resolve(dir) : path.resolve(projectName);
+      const projectName = await getProjectName({
+        dir,
+        name,
+        onFailure: async (message: string) => {
+          bootSpinner.fail(message);
+        }
+      });
+      const projectDir = getProjectDir({
+        dir,
+        name: projectName
+      });
 
-      if (fs.existsSync(projectDir)) {
-        bootSpinner.fail(`Already exists directory ${projectDir}`);
-        process.exit(1);
-      }
+      bootSpinner.start(newMessage.creating(projectDir));
 
       try {
-        bootSpinner.start(`Creating a new React app in ${projectDir}`);
+        if (fs.existsSync(projectDir)) {
+          bootSpinner.fail(newMessage.exists(projectDir));
+          throw new Error(newMessage.exists(projectDir));
+        }
+
         await copyTemplate({ dir: projectDir, bin: 'new', template });
         bootSpinner.stop();
         const author = await getAuthor();
@@ -60,24 +58,29 @@ export const newBinCommand = (prog: Sade): void => {
           author: author
         };
         await createPackageJson({ dir: projectDir, preset: packageJsonPreset });
-        bootSpinner.succeed(generateMessage.successful(projectName));
+        bootSpinner.succeed(
+          newMessage.created({
+            dir: projectDir,
+            name: projectName
+          })
+        );
       } catch (err) {
-        bootSpinner.fail(generateMessage.failed(projectName));
+        bootSpinner.fail(newMessage.failed(projectName));
         logError(err);
         process.exit(1);
       }
 
-      const preparingSpinner = ora('Preparing').start();
+      const preparingSpinner = ora(newMessage.preparing()).start();
 
       try {
-        await sortPackageJson();
-        await buildPackage();
-        preparingSpinner.succeed(generateMessage.successfulConfigure());
-        console.log(await generateMessage.preparedPackage(projectName));
+        sortPackageJson();
+        installDependencies();
+        preparingSpinner.succeed(newMessage.prepared());
       } catch (err) {
-        preparingSpinner.fail(generateMessage.failedConfigure());
+        preparingSpinner.fail(newMessage.failedPreparation());
         logError(err);
-        process.exit(1);
       }
+
+      console.log(newMessage.finish(projectDir));
     });
 };

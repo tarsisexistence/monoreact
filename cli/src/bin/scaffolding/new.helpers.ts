@@ -1,28 +1,35 @@
-import fs from 'fs-extra';
 import path from 'path';
-import { Input } from 'enquirer';
+import { getSafeName } from './scaffolding.helpers';
+import { newMessage } from '../../shared/messages';
 
-// TODO: replace with newMessage
-import { generateMessage } from '../../shared/messages';
+export const getProjectName = async ({
+  dir,
+  name,
+  onFailure
+}: {
+  dir: string | undefined;
+  name: string;
+  onFailure: (message: string) => void;
+}): Promise<string> =>
+  dir !== undefined && process.cwd() === path.resolve(dir)
+    ? name
+    : await getSafeName({
+        basePath: process.cwd(),
+        name,
+        onPromptInitial: newMessage.initial,
+        onPromptMessage: (unsafeName: string) => {
+          const message = newMessage.existsPrompt(
+            path.resolve(process.cwd(), unsafeName)
+          );
+          onFailure(message);
+          return message;
+        }
+      });
 
-export const getSafeProjectName = async (
-  projectName: string,
-  onFailedPath: (name: string) => void
-): Promise<string> => {
-  const isExist = fs.existsSync(path.resolve(process.cwd(), projectName));
-
-  if (!isExist) {
-    return projectName;
-  }
-
-  onFailedPath(projectName);
-
-  const projectNamePrompt = new Input({
-    message: generateMessage.exists(projectName),
-    initial: generateMessage.copy(projectName),
-    result: (v: string) => v.trim()
-  });
-  const newProjectName = await projectNamePrompt.run();
-
-  return getSafeProjectName(newProjectName, onFailedPath);
-};
+export const getProjectDir = ({
+  dir,
+  name
+}: {
+  dir: string | undefined;
+  name: string;
+}) => (dir !== undefined ? path.resolve(dir) : path.resolve(name));

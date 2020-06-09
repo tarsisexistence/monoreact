@@ -59,9 +59,12 @@ export const generateBinCommand = (prog: Sade): void => {
         const packageName = await getSafeName({
           basePath: path.resolve(`${workspaceRoot}/${packageSetupPath}`),
           name: pkgName,
-          onFail: (name: string) => {
+          onPromptMessage: (name: string) => {
+            const message = generateMessage.failed(name);
             bootSpinner.fail(generateMessage.failed(name));
-          }
+            return message;
+          },
+          onPromptInitial: (name: string) => generateMessage.copy(name)
         });
         const packageDir = path.resolve(
           workspaceRoot,
@@ -111,7 +114,7 @@ export const generateBinCommand = (prog: Sade): void => {
         await sortPackageJson();
         await buildPackage();
         preparingSpinner.succeed(generateMessage.successfulConfigure());
-        console.log(await generateMessage.preparedPackage(packageName));
+        console.log(generateMessage.preparedPackage(packageName));
       } catch (err) {
         preparingSpinner.fail(generateMessage.failedConfigure());
         logError(err);

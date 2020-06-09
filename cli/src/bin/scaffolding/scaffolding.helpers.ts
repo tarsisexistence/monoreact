@@ -91,11 +91,13 @@ export const copyTemplate = ({
 export const getSafeName = async ({
   basePath,
   name,
-  onFail
+  onPromptMessage,
+  onPromptInitial
 }: {
   basePath: string;
   name: string;
-  onFail: (name: string) => void;
+  onPromptMessage: (name: string) => string;
+  onPromptInitial: (name: string) => string;
 }): Promise<string> => {
   const isExist = fs.existsSync(path.resolve(basePath, name));
 
@@ -103,11 +105,9 @@ export const getSafeName = async ({
     return name;
   }
 
-  onFail(name);
-
   const namePrompt = new Input({
-    message: generateMessage.exists(name),
-    initial: generateMessage.copy(name),
+    message: onPromptMessage(name),
+    initial: onPromptInitial(name),
     result: (v: string) => v.trim()
   });
   const newProjectName = await namePrompt.run();
@@ -115,6 +115,7 @@ export const getSafeName = async ({
   return getSafeName({
     basePath,
     name: newProjectName,
-    onFail
+    onPromptMessage,
+    onPromptInitial
   });
 };
