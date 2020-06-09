@@ -2,8 +2,8 @@ import { Sade } from 'sade';
 
 import { findWorkspaceRootDir, space } from '../../shared/utils';
 import { getSubmodulesLocations } from '../../shared/utils/submodules.utils';
+import { submodulesMessage } from '../../shared/messages';
 import { smartGitCheckout } from './submodules-checkout.helpers';
-import { submodulesMessage } from '../../shared/messages/submodules.messages';
 
 export function submodulesCheckoutBinCommand(prog: Sade): void {
   prog
