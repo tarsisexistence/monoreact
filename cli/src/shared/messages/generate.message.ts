@@ -1,15 +1,13 @@
 import { bold, error, highlight, info, success } from '../utils';
 
 export const generateMessage = {
-  copy: (packageName: string) => `${packageName}-copy`,
+  copy: (name: string) => `${name}-copy`,
 
-  successful: (packageName: string) => `Generated ${info(packageName)} package`,
+  successful: (name: string) => `Generated ${info(name)} package`,
 
-  generating: (packageName: string) =>
-    `Generating ${info(packageName)} package...`,
+  generating: (name: string) => `Generating ${info(name)} package...`,
 
-  failed: (packageName: string) =>
-    `Failed to generate ${error(packageName)} package`,
+  failed: (name: string) => `Failed to generate ${error(name)} package`,
 
   successfulConfigure: () => 'The package successfully configured',
 
@@ -17,14 +15,14 @@ export const generateMessage = {
 
   invalidTemplate: (template: string) => `Invalid template ${error(template)}`,
 
-  exists: (packageName: string) =>
-    `A folder named ${error(packageName)} already exists! ${bold(
+  exists: (name: string) =>
+    `A folder named ${error(name)} already exists! ${bold(
       'Choose a different name'
     )}`,
 
-  preparingPackage: (packageName: string, dependencies: string[]) => {
+  preparingPackage: (name: string, dependencies: string[]) => {
     const pkgText = dependencies.map(pkg => `     ${info(pkg)}`).join('\n');
-    const requiredText = `Preparing ${info(packageName)} package`;
+    const requiredText = `Preparing ${info(name)} package`;
     return dependencies.length > 0
       ? `${requiredText} with the following peer dependencies: 
 ${pkgText}
@@ -32,7 +30,7 @@ ${pkgText}
       : requiredText;
   },
 
-  preparedPackage: async (projectName: string) => {
+  preparedPackage: (projectName: string) => {
     const commands = {
       install: 're-space install',
       start: 're-space serve',
@@ -59,6 +57,7 @@ ${pkgText}
   To test the package:
     ${info(commands.test)}
     
-  ${highlight('Happy coding :)')}`;
+  ${highlight('Happy coding :)')}
+  `;
   }
 };

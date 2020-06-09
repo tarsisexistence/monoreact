@@ -5,6 +5,7 @@ export { generateMessage } from './generate.message';
 export { independencyMessage } from './independency.message';
 export { installMessage } from './install.message';
 export { lintMessage } from './lint.message';
+export { newMessage } from './new.message';
 export { serveMessage } from './serve.message';
 export { submodulesMessage } from './submodules.message';
 export { workspacesMessage } from './workspaces.message';
