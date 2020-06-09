@@ -11,18 +11,17 @@ import {
 } from '../../shared/utils';
 import { generateSetup } from './setup';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
+import { composePackageJson, getPackageTemplateType } from './generate.helpers';
+import { generateMessage } from '../../shared/messages';
 import {
   buildPackage,
-  composePackageJson,
-  copyPackageTemplate,
+  copyTemplate,
   createPackageJson,
   getAuthor,
-  getPackageTemplateType,
-  getSafePackageName,
-  sortPackageJson,
-  setAuthorName
-} from './generate.helpers';
-import { generateMessage } from '../../shared/messages';
+  getSafeName,
+  setAuthorName,
+  sortPackageJson
+} from './scaffolding.helpers';
 
 const templateOptions = Object.keys(generateSetup);
 
@@ -54,20 +53,26 @@ export const generateBinCommand = (prog: Sade): void => {
       const bootSpinner = ora(generateMessage.generating(pkgName));
 
       try {
-        const packageName = await getSafePackageName(
-          { workspaceRoot, packageSetupPath, packageName: pkgName },
-          (name: string) => {
+        const packageName = await getSafeName({
+          basePath: path.resolve(`${workspaceRoot}/${packageSetupPath}`),
+          name: pkgName,
+          onFail: (name: string) => {
             bootSpinner.fail(generateMessage.failed(name));
           }
+        });
+        const packageDir = path.resolve(
+          workspaceRoot,
+          packageSetupPath,
+          packageName
         );
-        const packageDir = `${workspaceRoot}/${packageSetupPath}/${packageName}`;
         packageTemplateType = await getPackageTemplateType(template, () => {
           bootSpinner.fail(generateMessage.invalidTemplate(template));
         });
 
         bootSpinner.start();
-        await copyPackageTemplate({
+        await copyTemplate({
           dir: packageDir,
+          bin: 'generate',
           template: packageTemplateType
         });
         bootSpinner.stop();
