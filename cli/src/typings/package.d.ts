@@ -18,6 +18,11 @@ declare namespace CLI.Package {
 
   interface WorkspaceRootPackageJSON extends BasePackageJSON {
     workspaces: string[];
+    browserslist: {
+      production: string[];
+      development: string[];
+    };
+    jest: Record<string, any>;
   }
 
   interface WorkspacePackageJSON extends BasePackageJSON {

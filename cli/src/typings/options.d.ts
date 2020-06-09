@@ -9,6 +9,10 @@ declare namespace CLI.Options {
     feature: CLI.Setup.AddOptionType;
   }
 
+  interface New extends BaseOptions {
+    template: CLI.Setup.NewOptionType;
+  }
+
   interface Install extends BaseOptions {
     dev: boolean | string;
   }

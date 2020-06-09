@@ -1,7 +1,7 @@
 import { Sade } from 'sade';
 
 import { findWorkspaceRootDir, space } from '../../shared/utils';
-import { submodulesMessage } from '../../shared/messages/submodules.messages';
+import { submodulesMessage } from '../../shared/messages';
 import { getSubmodulesLocations } from '../../shared/utils/submodules.utils';
 import { gitFetch } from './submodules-fetch.helpers';
 

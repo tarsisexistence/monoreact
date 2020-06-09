@@ -11,18 +11,20 @@ import {
 } from '../../shared/utils';
 import { generateSetup } from './setup';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
+import { generateMessage } from '../../shared/messages';
 import {
-  buildPackage,
-  composePackageJson,
-  copyPackageTemplate,
+  copyTemplate,
   createPackageJson,
   getAuthor,
+  getSafeName,
+  setAuthorName,
+  sortPackageJson
+} from './scaffolding.helpers';
+import {
+  composePackageJson,
   getPackageTemplateType,
-  getSafePackageName,
-  sortPackageJson,
-  setAuthorName
+  buildPackage
 } from './generate.helpers';
-import { generateMessage } from '../../shared/messages';
 
 const templateOptions = Object.keys(generateSetup);
 
@@ -54,20 +56,29 @@ export const generateBinCommand = (prog: Sade): void => {
       const bootSpinner = ora(generateMessage.generating(pkgName));
 
       try {
-        const packageName = await getSafePackageName(
-          { workspaceRoot, packageSetupPath, packageName: pkgName },
-          (name: string) => {
+        const packageName = await getSafeName({
+          basePath: path.resolve(`${workspaceRoot}/${packageSetupPath}`),
+          name: pkgName,
+          onPromptMessage: (name: string) => {
+            const message = generateMessage.failed(name);
             bootSpinner.fail(generateMessage.failed(name));
-          }
+            return message;
+          },
+          onPromptInitial: (name: string) => generateMessage.copy(name)
+        });
+        const packageDir = path.resolve(
+          workspaceRoot,
+          packageSetupPath,
+          packageName
         );
-        const packageDir = `${workspaceRoot}/${packageSetupPath}/${packageName}`;
         packageTemplateType = await getPackageTemplateType(template, () => {
           bootSpinner.fail(generateMessage.invalidTemplate(template));
         });
 
         bootSpinner.start();
-        await copyPackageTemplate({
+        await copyTemplate({
           dir: packageDir,
+          bin: 'generate',
           template: packageTemplateType
         });
         bootSpinner.stop();
@@ -103,7 +114,7 @@ export const generateBinCommand = (prog: Sade): void => {
         await sortPackageJson();
         await buildPackage();
         preparingSpinner.succeed(generateMessage.successfulConfigure());
-        console.log(await generateMessage.preparedPackage(packageName));
+        console.log(generateMessage.preparedPackage(packageName));
       } catch (err) {
         preparingSpinner.fail(generateMessage.failedConfigure());
         logError(err);
