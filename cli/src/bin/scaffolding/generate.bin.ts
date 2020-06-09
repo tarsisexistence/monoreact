@@ -11,10 +11,8 @@ import {
 } from '../../shared/utils';
 import { generateSetup } from './setup';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
-import { composePackageJson, getPackageTemplateType } from './generate.helpers';
 import { generateMessage } from '../../shared/messages';
 import {
-  buildPackage,
   copyTemplate,
   createPackageJson,
   getAuthor,
@@ -22,6 +20,11 @@ import {
   setAuthorName,
   sortPackageJson
 } from './scaffolding.helpers';
+import {
+  composePackageJson,
+  getPackageTemplateType,
+  buildPackage
+} from './generate.helpers';
 
 const templateOptions = Object.keys(generateSetup);
 

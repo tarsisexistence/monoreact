@@ -4,9 +4,6 @@ import path from 'path';
 import { Input } from 'enquirer';
 
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
-import { generateMessage } from '../../shared/messages';
-
-export const buildPackage = () => exec('yarn build', { silent: true });
 
 export const sortPackageJson = () =>
   exec('npx sort-package-json', { silent: true });

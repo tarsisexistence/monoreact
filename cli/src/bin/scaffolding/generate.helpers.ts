@@ -2,6 +2,7 @@ import { Select } from 'enquirer';
 
 import { info } from '../../shared/utils';
 import { generateSetup } from './setup/generate';
+import { exec } from 'shelljs';
 
 export const safePackageName = (name: string) =>
   name
@@ -58,3 +59,5 @@ export const composePackageJson = ({
 
   return packageJson;
 };
+
+export const buildPackage = () => exec('yarn build', { silent: true });

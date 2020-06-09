@@ -1,5 +1,6 @@
 import fs from 'fs-extra';
 import path from 'path';
+import { exec } from 'shelljs';
 
 export const cleanDistFolder = async () => {
   const cwd = process.cwd();
@@ -20,3 +21,5 @@ export const space = () => process.stdout.write('\n');
 export const normalizeBoolCLI = (
   value: boolean | string | undefined
 ): boolean => value === true || value === 'true';
+
+export const installDependencies = () => exec('yarn install', { silent: true });
