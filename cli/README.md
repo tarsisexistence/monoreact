@@ -58,6 +58,8 @@ Even in its raw form, it is already ready for use, and here is what exactly you 
 
 ### Powerful CLI
 
+This CLI has the built-in documentation. Type in the console `re-space --help` to see all possible scripts and their description.
+
 The following options are now available:
 
 #### Scaffolding
