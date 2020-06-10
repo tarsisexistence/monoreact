@@ -1,0 +1,91 @@
+{
+  "name": "@re-space/host",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "author": {
+    "name": "Maksym Tarsis",
+    "email": "tarsis.maksym@gmail.com",
+    "url": "https://github.com/maktarsis"
+  },
+  "workspaces": [
+    "../cli",
+    "packages/*"
+  ],
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "re-space lint",
+    "stylelint": "stylelint \"src/**/*.{css,sass,scss}\""
+  },
+  "dependencies": {
+    "classnames": "2.2.6",
+    "dayjs": "1.8.26",
+    "grommet": "2.13.0",
+    "grommet-icons": "4.4.0",
+    "lodash.times": "4.3.2",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-router-dom": "5.2.0",
+    "react-scripts": "3.4.1",
+    "styled-components": "5.1.0"
+  },
+  "devDependencies": {
+    "@re-space/cli": "*",
+    "@testing-library/dom": "6.12.2",
+    "@testing-library/jest-dom": "4.2.4",
+    "@testing-library/react": "9.4.0",
+    "@testing-library/user-event": "7.2.1",
+    "@types/classnames": "2.2.9",
+    "@types/enzyme": "3.10.5",
+    "@types/enzyme-adapter-react-16": "1.0.6",
+    "@types/node": "13.13.11",
+    "@types/react": "16.9.35",
+    "@types/react-dom": "16.9.8",
+    "@types/react-router-dom": "5.1.5",
+    "@typescript-eslint/eslint-plugin": "3.2.0",
+    "@typescript-eslint/parser": "3.2.0",
+    "enzyme": "3.11.0",
+    "enzyme-adapter-react-16": "1.15.2",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-config-react-app": "5.2.1",
+    "eslint-plugin-prettier": "3.1.3",
+    "eslint-plugin-compat": "3.7.0",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-react": "7.20.0",
+    "eslint-plugin-react-hooks": "4.0.4",
+    "eslint-plugin-sonarjs": "0.5.0",
+    "eslint-plugin-jsx-a11y": "6.2.3",
+    "husky": "4.2.5",
+    "jscpd": "3.2.0",
+    "jscpd-badge-reporter": "1.1.3",
+    "lint-staged": "10.2.9",
+    "prettier": "2.0.5",
+    "prop-types": "15.7.2",
+    "stylelint": "13.6.0",
+    "stylelint-config-recommended": "3.0.0",
+    "tslib": "2.0.0",
+    "typescript": "3.9.5",
+    "yarn": "1.22.4"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "@re-space/datepicker": "<rootDir>/packages/datepicker/src/publicApi.ts",
+      "@re-space/example": "<rootDir>/packages/example/src/publicApi.ts"
+    }
+  }
+}

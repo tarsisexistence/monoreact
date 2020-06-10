@@ -67,7 +67,6 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.WorkspaceRootPackageJSON =
     '@testing-library/jest-dom': '4.2.4',
     '@testing-library/react': '9.4.0',
     '@testing-library/user-event': '7.2.1',
-    '@types/classnames': '2.2.9',
     '@types/enzyme': '3.10.5',
     '@types/enzyme-adapter-react-16': '1.0.6',
     '@types/node': '13.13.6',
