@@ -87,5 +87,15 @@
   "publishConfig": {
     "access": "public"
   },
-  "workspace": true
+  "workspace": true,
+  "keywords": [
+    "cli",
+    "microfrontend",
+    "workspaces",
+    "submodules",
+    "monorepo",
+    "react",
+    "typescript",
+    "rollup"
+  ]
 }

@@ -89,5 +89,15 @@
       "@re-space/datepicker": "<rootDir>/packages/datepicker/src/publicApi.ts",
       "@re-space/example": "<rootDir>/packages/example/src/publicApi.ts"
     }
-  }
+  },
+  "keywords": [
+    "cli",
+    "microfrontend",
+    "workspaces",
+    "submodules",
+    "monorepo",
+    "react",
+    "typescript",
+    "rollup"
+  ]
 }
