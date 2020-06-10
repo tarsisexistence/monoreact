@@ -105,8 +105,9 @@ This section is responsible for scripts that will help to adapt the basic state 
 
 1. git clone --recursive https://github.com/maktarsis/re-space.git
 2. npx yarn install (**you can omit "npx" if you have installed yarn globally**)
-3. yarn workspaces run build
-4. yarn start
+3. cd playground-project
+4. yarn workspaces run build
+5. yarn start
 
 <br/>
 
