@@ -1,6 +1,17 @@
 ## The project is under active development. The documentation updated iteratively.
 
-### This is an advanced workspace implementation for react applications
+### What problems does it solve
+
+- [microfrontend](https://martinfowler.com/articles/micro-frontends.html)
+- [monolithic repository, monorepo](https://www.perforce.com/blog/vcs/what-monorepo)
+- [workspaces](https://www.smashingmagazine.com/2019/07/yarn-workspaces-organize-project-codebase-pro/)
+- [submodules](https://chrisjean.com/git-submodules-adding-using-removing-and-updating/)
+
+<br/>
+
+### What is it
+
+This is an advanced workspace implementation for react applications. 
 
 **Re-space** includes the following features:
 
@@ -16,7 +27,9 @@
 
 ### Why is this an advanced implementation
 
-It uses CLI, which does what you exactly need to build react applications.<br/>
+It uses CLI, which does what you exactly need to build react applications.
+
+<br/>
 
 ### Motivation
 
@@ -27,8 +40,6 @@ Nevertheless, I recommend considering alternative solutions:
 - [nx/react](https://nx.dev/react) - a super powerful tool that can do everything, but turned out to be redundant for me.
 - [lerna](https://github.com/lerna/lerna) - completely threw this idea away with existing yarn workspaces, yarn, and git submodules scripts.
 - [tsdx](https://github.com/jaredpalmer/tsdx) - an interesting idea, where I had to learn a lot; however, it also does and does not do what my project precisely needed.
-
-I will explain in more detail later why these solutions did not fit perfectly into the business problems I encountered
 
 <br/>
 
