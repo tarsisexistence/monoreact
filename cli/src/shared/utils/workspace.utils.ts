@@ -10,7 +10,7 @@ import { logError } from './error.utils';
 import { PACKAGE_JSON } from '../constants/package.const';
 
 export const getWorkspacePackageDirs = (
-  workspaces: YarnWorkspaces.Packages | YarnWorkspaces.Config | undefined
+  workspaces: YarnWorkspaces.Workspaces
 ): YarnWorkspaces.Packages => {
   if (workspaces === undefined) {
     return [];
@@ -33,6 +33,43 @@ export const getWorkspacePackageSetupPath = (
     rootPath
   );
   return packageSetupPath === rootPath ? 'packages' : packageSetupPath;
+};
+
+export const includePackageIntoWorkspaces = ({
+  packages,
+  packageName,
+  setupPath
+}: {
+  packages: YarnWorkspaces.Packages;
+  packageName: string;
+  setupPath: string;
+}): YarnWorkspaces.Packages => {
+  const packageWorkspacePath = `${setupPath}/${packageName}`;
+  const workspacesSetupWildcard = `${setupPath}/*`;
+  for (const pkg of packages) {
+    if (pkg === workspacesSetupWildcard || pkg === packageWorkspacePath) {
+      return packages;
+    }
+  }
+
+  return packages.concat(packageWorkspacePath);
+};
+
+export const updateYarnWorkspacesDeclaration = (
+  workspaces: YarnWorkspaces.Workspaces,
+  packages: YarnWorkspaces.Packages
+): YarnWorkspaces.Workspaces => {
+  if (workspaces === undefined) {
+    return packages;
+  }
+
+  if ('packages' in workspaces) {
+    workspaces.packages = packages;
+  } else {
+    workspaces = packages;
+  }
+
+  return workspaces;
 };
 
 async function findWorkspaceDir<TPackageJson>(

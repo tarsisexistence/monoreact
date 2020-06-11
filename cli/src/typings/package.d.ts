@@ -17,7 +17,7 @@ declare namespace CLI.Package {
   }
 
   interface WorkspaceRootPackageJSON extends BasePackageJSON {
-    workspaces: string[];
+    workspaces: YarnWorkspaces.Workspaces;
     browserslist: {
       production: string[];
       development: string[];

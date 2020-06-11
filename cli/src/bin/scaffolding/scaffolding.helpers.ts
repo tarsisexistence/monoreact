@@ -8,7 +8,7 @@ import { PACKAGE_JSON } from '../../shared/constants/package.const';
 export const sortPackageJson = () =>
   exec('npx sort-package-json', { silent: true });
 
-export function setAuthorName(author: CLI.Package.Author): void {
+export function setNpmAuthorName(author: CLI.Package.Author): void {
   exec(`npm config set init-author-name "${author}"`, { silent: true });
 }
 
@@ -25,7 +25,7 @@ export const createPackageJson = ({
     spaces: 2
   });
 
-function getAuthorName(): CLI.Package.Author {
+function getNpmAuthorName(): CLI.Package.Author {
   let author = '';
 
   author = exec('npm config get init-author-name', {
@@ -38,7 +38,7 @@ function getAuthorName(): CLI.Package.Author {
 
   author = exec('git config user.name', { silent: true }).stdout.trim();
   if (author) {
-    setAuthorName(author);
+    setNpmAuthorName(author);
     return author;
   }
 
@@ -58,7 +58,7 @@ function getAuthorName(): CLI.Package.Author {
 }
 
 export const getAuthor = async (): Promise<CLI.Package.Author> => {
-  const author = getAuthorName();
+  const author = getNpmAuthorName();
 
   if (author) {
     return author;

@@ -8,7 +8,7 @@ import {
   copyTemplate,
   getAuthor,
   sortPackageJson,
-  setAuthorName
+  setNpmAuthorName
 } from './scaffolding.helpers';
 import { newSetup } from './setup/new';
 import { newMessage } from '../../shared/messages';
@@ -61,7 +61,7 @@ export const newBinCommand = (prog: Sade): void => {
           await copyTemplate({ dir: projectDir, bin: 'new', template });
           bootSpinner.stop();
           const author = await getAuthor();
-          setAuthorName(author);
+          setNpmAuthorName(author);
           bootSpinner.start();
           process.chdir(projectDir);
           const templateConfig = newSetup[template];

@@ -1,6 +1,11 @@
+import { outputJSON } from 'fs-extra';
 import { Select } from 'enquirer';
 
-import { info } from '../../shared/utils';
+import {
+  includePackageIntoWorkspaces,
+  info,
+  updateYarnWorkspacesDeclaration
+} from '../../shared/utils';
 import { generateSetup } from './setup/generate';
 import { exec } from 'shelljs';
 
@@ -61,3 +66,28 @@ export const composePackageJson = ({
 };
 
 export const buildPackage = () => exec('yarn build', { silent: true });
+
+export const updatePackageJsonWorkspacesDeclaration = async ({
+  packageJson,
+  packageJsonPath,
+  packages,
+  setupPath,
+  packageName
+}: {
+  packageJson: CLI.Package.WorkspaceRootPackageJSON;
+  packageJsonPath: string;
+  packages: string[];
+  setupPath: string;
+  packageName: string;
+}) => {
+  const updatedWorkspaces = includePackageIntoWorkspaces({
+    packages,
+    setupPath,
+    packageName
+  });
+  packageJson.workspaces = updateYarnWorkspacesDeclaration(
+    packageJson.workspaces,
+    updatedWorkspaces
+  );
+  await outputJSON(packageJsonPath, packageJson, { spaces: 2 });
+};

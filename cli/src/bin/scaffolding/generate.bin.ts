@@ -17,13 +17,14 @@ import {
   createPackageJson,
   getAuthor,
   getSafeName,
-  setAuthorName,
+  setNpmAuthorName,
   sortPackageJson
 } from './scaffolding.helpers';
 import {
   composePackageJson,
   getPackageTemplateType,
-  buildPackage
+  buildPackage,
+  updatePackageJsonWorkspacesDeclaration
 } from './generate.helpers';
 
 const templateOptions = Object.keys(generateSetup);
@@ -48,16 +49,20 @@ export const generateBinCommand = (prog: Sade): void => {
 
       const workspaceRoot = await findWorkspaceRootDir();
       const packageJsonPath = path.resolve(workspaceRoot, PACKAGE_JSON);
-      const { name: hostName, workspaces, license } = (await fs.readJSON(
+      const packageJson = (await fs.readJSON(
         packageJsonPath
       )) as CLI.Package.WorkspaceRootPackageJSON;
-      const workspacePackages = getWorkspacePackageDirs(workspaces);
-      const packageSetupPath = getWorkspacePackageSetupPath(workspacePackages);
       const bootSpinner = ora(generateMessage.generating(pkgName));
 
       try {
+        const workspacePackages = getWorkspacePackageDirs(
+          packageJson.workspaces
+        );
+        const packageSetupPath = getWorkspacePackageSetupPath(
+          workspacePackages
+        );
         const packageName = await getSafeName({
-          basePath: path.resolve(`${workspaceRoot}/${packageSetupPath}`),
+          basePath: path.resolve(workspaceRoot, packageSetupPath),
           name: pkgName,
           onPromptMessage: (name: string) => {
             const message = generateMessage.failed(name);
@@ -71,20 +76,26 @@ export const generateBinCommand = (prog: Sade): void => {
           packageSetupPath,
           packageName
         );
+
+        await updatePackageJsonWorkspacesDeclaration({
+          packageJsonPath,
+          packageJson,
+          packageName,
+          packages: workspacePackages,
+          setupPath: packageSetupPath
+        });
         packageTemplateType = await getPackageTemplateType(template, () => {
           bootSpinner.fail(generateMessage.invalidTemplate(template));
         });
 
+        const author = await getAuthor();
         bootSpinner.start();
+        setNpmAuthorName(author);
         await copyTemplate({
           dir: packageDir,
           bin: 'generate',
           template: packageTemplateType
         });
-        bootSpinner.stop();
-        const author = await getAuthor();
-        bootSpinner.start();
-        setAuthorName(author);
 
         process.chdir(packageDir);
         const templateConfig = generateSetup[packageTemplateType];
@@ -92,8 +103,8 @@ export const generateBinCommand = (prog: Sade): void => {
           {
             author,
             name: packageName,
-            license,
-            hostName,
+            license: packageJson.license,
+            hostName: packageJson.name,
             template: templateConfig
           }
         );
