@@ -21,6 +21,7 @@
     "stylelint": "stylelint \"src/**/*.{css,sass,scss}\""
   },
   "dependencies": {
+    "@re-space/example": "*",
     "classnames": "2.2.6",
     "dayjs": "1.8.26",
     "grommet": "2.13.0",

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Products } from '@re-space/example';
-import { DatePicker } from '@re-space/datepicker';
+import { DatePicker, Products } from '@re-space/example';
 
 import styles from './App.module.css';
 
