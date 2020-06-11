@@ -1,5 +1,6 @@
 import React from 'react';
-import { DatePicker, Products } from '@re-space/example';
+import { Products } from '@re-space/example';
+import { DatePicker } from '@tarsis/datepicker';
 
 import styles from './App.module.css';
 

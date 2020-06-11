@@ -1,6 +1,6 @@
 {
-  "name": "@re-space/datepicker",
-  "version": "0.1.0",
+  "name": "@tarsis/datepicker",
+  "version": "0.2.0",
   "private": false,
   "license": "MIT",
   "author": "maksym.tarsis",
