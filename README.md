@@ -100,16 +100,25 @@ This section is responsible for scripts that will help to adapt the basic state 
 
 <br/>
 
-### Bootstrap this repo
+### Bootstrap example-app
 
 > Project uses git submodules
 > If you are not familiar with git submodules, please follow the instructions to bootstrap the project
 
 1. git clone --recursive https://github.com/maktarsis/re-space.git
 2. npx yarn install (**you can omit "npx" if you have installed yarn globally**)
-3. cd playground-project
+3. cd example-app
 4. yarn workspaces run build
 5. yarn start
+
+<br/>
+
+### Bootstrap CLI
+
+1. git clone --recursive https://github.com/maktarsis/re-space.git
+2. npx yarn install (**you can omit "npx" if you have installed yarn globally**)
+3. cd cli
+4. yarn start
 
 <br/>
 
