@@ -77,13 +77,6 @@ export const generateBinCommand = (prog: Sade): void => {
           packageName
         );
 
-        await updatePackageJsonWorkspacesDeclaration({
-          packageJsonPath,
-          packageJson,
-          packageName,
-          packages: workspacePackages,
-          setupPath: packageSetupPath
-        });
         packageTemplateType = await getPackageTemplateType(template, () => {
           bootSpinner.fail(generateMessage.invalidTemplate(template));
         });
@@ -109,6 +102,13 @@ export const generateBinCommand = (prog: Sade): void => {
           }
         );
         await createPackageJson({ dir: packageDir, preset: packageJsonPreset });
+        await updatePackageJsonWorkspacesDeclaration({
+          packageJsonPath,
+          packageJson,
+          packageName,
+          packages: workspacePackages,
+          setupPath: packageSetupPath
+        });
         bootSpinner.succeed(generateMessage.successful(packageName));
       } catch (err) {
         bootSpinner.fail(generateMessage.failed(packageName));
