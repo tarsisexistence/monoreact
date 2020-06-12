@@ -10,11 +10,11 @@
   },
   "workspaces": [
     "cli",
-    "playground-project/packages/*"
+    "example-app/packages/*"
   ],
   "scripts": {
     "cpd": "jscpd **/src",
-    "postinstall": "cd playground-project && yarn install"
+    "postinstall": "cd example-app && yarn install"
   },
   "devDependencies": {
     "eslint": "6.8.0",
