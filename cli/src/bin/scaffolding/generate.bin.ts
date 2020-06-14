@@ -44,7 +44,7 @@ export const generateBinCommand = (prog: Sade): void => {
     )
     .example(`generate packageName --template ${templateOptions[0]}`)
     .action(async (pkgName: string, { template }: CLI.Options.Generate) => {
-      let packageName = pkgName;
+      const packageName = pkgName;
       let packageTemplateType = template;
 
       const workspaceRoot = await findWorkspaceRootDir();

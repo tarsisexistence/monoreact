@@ -21,7 +21,7 @@ export const addBinCommand = (prog: Sade): void => {
     .describe(`Add available feature [${featureOptions.join(', ')}]`)
     .example('add')
     .example('add playground')
-    .action(async (featureName: string = '') => {
+    .action(async (featureName = '') => {
       const featureOption: CLI.Setup.AddOptionType = await validateFeatureOption(
         featureName,
         featureOptions,

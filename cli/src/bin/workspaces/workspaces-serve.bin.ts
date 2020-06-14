@@ -3,7 +3,12 @@ import execa from 'execa';
 
 import { workspacesMessage } from '../../shared/messages';
 import { serveMessage } from '../../shared/messages';
-import { clearConsole, logError, normalizeBoolCLI, space } from '../../shared/utils';
+import {
+  clearConsole,
+  logError,
+  normalizeBoolCLI,
+  space
+} from '../../shared/utils';
 import { convertStringArrayIntoMap } from '../../shared/utils/dataStructures.utils';
 import {
   exposeWorkspacesInfo,
@@ -19,7 +24,7 @@ export function workspacesServeBinCommand(prog: Sade): void {
     .alias('workspaces start', 'workspaces watch', 'ws')
     .option(
       'q, quiet',
-      'Do not print any information about builds that are in the process',
+      'Do not print any information about builds that are in the process'
     )
     .example('workspaces serve --quiet')
     .option('exclude', 'Exclude specific workspaces')

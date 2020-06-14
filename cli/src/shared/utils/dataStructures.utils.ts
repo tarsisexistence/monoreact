@@ -1,6 +1,4 @@
-export const convertStringArrayIntoMap = (
-  input: string = ''
-): Map<string, true> => {
+export const convertStringArrayIntoMap = (input = ''): Map<string, true> => {
   let str = '';
 
   for (let i = 0; i < input.length; i += 1) {
