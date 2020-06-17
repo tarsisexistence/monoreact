@@ -17,7 +17,10 @@ export const readWorkspacePackages = async (
 };
 
 export const splitWorkspacesIntoDependencyGraph = (
-  workspaces: Pick<CLI.Package.BasePackageJSON, 'name' | 'dependencies'>[]
+  workspaces: Pick<
+    CLI.Package.WorkspacePackageJSON,
+    'name' | 'dependencies' | 'devDependencies' | 'peerDependencies'
+  >[]
 ): {
   chunks: CLI.Workspaces.WorkspaceChunk[];
   unprocessed: CLI.Workspaces.UnprocessedWorkspace[];
@@ -27,14 +30,28 @@ export const splitWorkspacesIntoDependencyGraph = (
     string,
     CLI.Package.Dependencies
   > = Object.fromEntries(
-    workspaces.map(({ name, dependencies = {} }) => [name, dependencies])
+    workspaces.map(
+      ({
+        name,
+        dependencies = {},
+        devDependencies = {},
+        peerDependencies = {}
+      }) => [
+        name,
+        {
+          ...dependencies,
+          ...devDependencies,
+          ...peerDependencies
+        }
+      ]
+    )
   );
   const packageDependenciesMap: Map<string, string[]> = new Map();
 
-  for (const { name, dependencies = {} } of workspaces) {
+  for (const workspacePackage in workspacePackagesMap) {
     packageDependenciesMap.set(
-      name,
-      Object.keys(dependencies).filter(
+      workspacePackage,
+      Object.keys(workspacePackagesMap[workspacePackage]).filter(
         dependency => workspacePackagesMap[dependency] !== undefined
       )
     );
