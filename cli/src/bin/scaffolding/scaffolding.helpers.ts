@@ -84,7 +84,7 @@ export const copyTemplate = ({
     path.resolve(__dirname, `../../../../templates/${bin}/${template}`),
     dir,
     {
-      overwrite: true
+      overwrite: false
     }
   );
 
