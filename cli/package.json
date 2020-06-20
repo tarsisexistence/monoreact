@@ -1,17 +1,23 @@
 {
   "name": "@re-space/cli",
-  "version": "0.18.0",
+  "version": "0.19.0",
   "main": "./dist/src/bin/index.js",
   "bin": {
     "re-space": "./dist/src/bin/index.js",
     "resp": "./dist/src/bin/index.js"
   },
-  "license": "MIT",
   "author": {
     "email": "tarsis.maksym@gmail.com",
     "name": "Maksym Tarsis",
     "url": "https://github.com/maktarsis"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maktarsis/re-space.git"
+  },
+  "homepage": "https://github.com/maktarsis/re-space#readme",
+  "bugs": "https://github.com/maktarsis/re-space/issues",
+  "license": "MIT",
   "scripts": {
     "start": "yarn build --watch",
     "build": "tsc -p tsconfig.json",
@@ -48,8 +54,10 @@
     "eslint-import-resolver-typescript": "2.0.0",
     "eslint-plugin-flowtype": "5.1.3",
     "eslint-plugin-import": "2.21.2",
+    "eslint-plugin-jsx-a11y": "6.3.1",
     "eslint-plugin-prettier": "3.1.4",
     "eslint-plugin-react": "7.20.0",
+    "eslint-plugin-react-hooks": "4.0.4",
     "execa": "4.0.2",
     "fs-extra": "9.0.1",
     "identity-obj-proxy": "3.0.0",
