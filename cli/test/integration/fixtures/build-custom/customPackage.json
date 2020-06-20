@@ -1,0 +1,13 @@
+{
+  "name": "build-custom-package",
+  "version": "0.1.0",
+  "private": false,
+  "workspace": true,
+  "license": "MIT",
+  "module": "dist/outputCustom.js",
+  "source": "src/index.ts",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "re-space build"
+  }
+}
