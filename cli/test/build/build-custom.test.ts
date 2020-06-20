@@ -1,23 +1,22 @@
 import * as shell from 'shelljs';
 import { resolve } from 'path';
 
-import { setupStageWithFixture, teardownStage } from '../utils/fixture';
+import { setupStage, teardownStage } from '../utils/fixture';
 import { execWithCache } from '../utils/shell';
 
 shell.config.silent = false;
 
-const testDir = 'integration';
+const testDir = 'build';
 const fixtureName = 'build-custom';
-const stageName = `stage-${fixtureName}`;
 
 describe('[bin.build.custom]', () => {
   beforeAll(() => {
-    teardownStage(stageName);
-    setupStageWithFixture(testDir, stageName, fixtureName);
+    teardownStage(fixtureName);
+    setupStage(testDir, fixtureName);
   });
 
   afterAll(() => {
-    teardownStage(stageName);
+    teardownStage(fixtureName);
   });
 
   it('should compile files into a dist directory', () => {

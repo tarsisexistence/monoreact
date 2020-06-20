@@ -5,22 +5,21 @@ import { execWithCache } from '../utils/shell';
 
 shell.config.silent = false;
 
-const testDir = 'integration';
+const testDir = 'build';
 const fixtureName = 'build-invalid';
-const stageName = `stage-${fixtureName}`;
 
 describe('[bin.build.invalid]', () => {
   beforeAll(() => {
-    util.teardownStage(stageName);
-    util.setupStageWithFixture(testDir, stageName, fixtureName);
+    util.teardownStage(fixtureName);
+    util.setupStage(testDir, fixtureName);
+  });
+
+  afterAll(() => {
+    util.teardownStage(fixtureName);
   });
 
   it('should not compile with exit code 1 when build failed', () => {
     const output = execWithCache('node ../dist/src/bin/index.js build');
     expect(output.code).toBe(1);
-  });
-
-  afterAll(() => {
-    util.teardownStage(stageName);
   });
 });
