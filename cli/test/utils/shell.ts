@@ -2,7 +2,6 @@ import * as shell from 'shelljs';
 
 shell.config.silent = true;
 
-// simple shell.exec "cache" that doesn't re-run the same command twice in a row
 let prevCommand = '';
 let prevCommandOutput = {} as shell.ShellReturnValue;
 
@@ -25,12 +24,4 @@ export function execWithCache(
   }
 
   return output;
-}
-
-// shell.js grep wrapper returns true if pattern has matches in file
-export function grep(pattern: RegExp, fileName: string[]): boolean {
-  const output = shell.grep(pattern, fileName);
-  // output.code is always 0 regardless of matched/unmatched patterns
-  // so need to test output.stdout
-  return Boolean(output.stdout.match(pattern));
 }

@@ -1,16 +1,14 @@
 import * as path from 'path';
 import * as shell from 'shelljs';
 
-export const rootDir = process.cwd();
-
 shell.config.silent = true;
 
-export function setupStageWithFixture(
-  testDir: string,
-  stageName: string,
-  fixtureName: string
-): void {
-  const stagePath = path.join(rootDir, stageName);
+const rootDir = process.cwd();
+
+const getStageName = (fixtureName: string): string => `stage-${fixtureName}`;
+
+export function setupStage(testDir: string, fixtureName: string): void {
+  const stagePath = path.join(rootDir, getStageName(fixtureName));
   shell.mkdir(stagePath);
   shell.exec(
     `cp -a ${rootDir}/test/${testDir}/fixtures/${fixtureName}/. ${stagePath}/`
@@ -23,7 +21,7 @@ export function setupStageWithFixture(
   shell.cd(stagePath);
 }
 
-export function teardownStage(stageName: string): void {
+export function teardownStage(fixtureName: string): void {
   shell.cd(rootDir);
-  shell.rm('-rf', path.join(rootDir, stageName));
+  shell.rm('-rf', path.join(rootDir, getStageName(fixtureName)));
 }
