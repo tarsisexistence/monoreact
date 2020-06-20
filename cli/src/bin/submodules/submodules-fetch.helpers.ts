@@ -7,7 +7,7 @@ export const gitFetch = async ({
 }: {
   rootDir: string;
   repoDir?: string;
-}) => {
+}): Promise<void> => {
   await execa('git', ['fetch', '--all'], {
     cwd: path.resolve(rootDir, repoDir),
     stdio: 'inherit'

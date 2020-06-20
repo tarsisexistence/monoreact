@@ -1,6 +1,6 @@
 import { error, info, inverse, success } from '../utils';
 
-export const addMessage = {
+export const addMessage: CLI.Common.Messages = {
   exists: () =>
     error(`
     It seems like you already have this feature.

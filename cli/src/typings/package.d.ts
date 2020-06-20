@@ -42,6 +42,6 @@ declare namespace CLI.Package {
         url: string;
       };
 
-  type Dependencies = { [name: string]: string } | {};
+  type Dependencies = { [name: string]: string } | Record<string, unknown>;
   type Scripts = { [script: string]: string };
 }

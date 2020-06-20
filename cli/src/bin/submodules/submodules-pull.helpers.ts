@@ -11,7 +11,7 @@ export const gitPull = async ({
   remote: string;
   branch: string;
   repoDir?: string;
-}) => {
+}): Promise<void> => {
   await execa('git', ['pull', remote, branch], {
     cwd: path.resolve(rootDir, repoDir),
     stdio: 'inherit'

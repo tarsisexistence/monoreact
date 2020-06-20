@@ -1,6 +1,6 @@
 import { info, success } from '../utils';
 
-export const submodulesMessage = {
+export const submodulesMessage: CLI.Common.Messages = {
   init: () => info('Initializing missing submodules'),
 
   entering: (repo: string) => info(`Entering '${repo}'`),

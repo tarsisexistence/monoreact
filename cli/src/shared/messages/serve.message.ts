@@ -1,7 +1,7 @@
 import { error, info, success, underline } from '../utils';
 import packageJson from '../../../package.json';
 
-export const serveMessage = {
+export const serveMessage: CLI.Common.Messages = {
   introduce: () => underline(`${packageJson.name} v${packageJson.version}`),
 
   watching: () => `

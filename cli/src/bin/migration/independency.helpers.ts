@@ -1,6 +1,5 @@
 import fs from 'fs-extra';
 import path from 'path';
-import { exec } from 'shelljs';
 
 import { migrationSetup } from './setup';
 import {

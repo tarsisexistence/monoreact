@@ -1,11 +1,11 @@
-import { exec } from 'shelljs';
 import fs from 'fs-extra';
 import path from 'path';
+import { exec, ShellString } from 'shelljs';
 import { Input } from 'enquirer';
 
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
 
-export const sortPackageJson = () =>
+export const sortPackageJson = (): ShellString =>
   exec('npx sort-package-json', { silent: true });
 
 export function setNpmAuthorName(author: CLI.Package.Author): void {

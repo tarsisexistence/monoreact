@@ -6,7 +6,7 @@ import { Sade } from 'sade';
 import { findWorkspacePackageDir } from '../../shared/utils';
 import { createTestConfig } from './configs/test.config';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
-import { getJestConfigOptions } from './test.helpers';
+import { getJestConfigOptions, setTestNodeVariables } from './test.helpers';
 
 export const testBinCommand = (prog: Sade): void => {
   prog
@@ -15,11 +15,7 @@ export const testBinCommand = (prog: Sade): void => {
     .alias('t')
     .option('config', 'Specify a path to the jest config')
     .action(async (opts: CLI.Options.Test) => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      process.env.NODE_ENV = 'test';
-      process.env.BABEL_ENV = 'test';
-
+      setTestNodeVariables();
       const packageDir = await findWorkspacePackageDir();
       const packageJsonPath = path.resolve(packageDir, PACKAGE_JSON);
       const jestConfigOptions = await getJestConfigOptions(

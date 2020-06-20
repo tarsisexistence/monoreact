@@ -32,4 +32,4 @@ export const getProjectDir = ({
 }: {
   dir: string | undefined;
   name: string;
-}) => (dir !== undefined ? path.resolve(dir) : path.resolve(name));
+}): string => (dir !== undefined ? path.resolve(dir) : path.resolve(name));

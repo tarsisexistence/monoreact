@@ -9,7 +9,7 @@ export const smartGitCheckout = async ({
   rootDir: string;
   branch: string;
   repoDir?: string;
-}) => {
+}): Promise<void> => {
   try {
     await execa('git', ['checkout', branch], {
       stdio: 'inherit',

@@ -1,6 +1,6 @@
 import { highlight, info } from '../utils';
 
-export const lintMessage = {
+export const lintMessage: CLI.Common.Messages = {
   linting: (files: string[]) => info(`Linting ${files} ...`),
 
   linted: ([s, ms]: [number, number]) =>

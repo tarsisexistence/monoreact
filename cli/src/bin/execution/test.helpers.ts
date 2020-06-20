@@ -1,14 +1,14 @@
 import path from 'path';
 import fs from 'fs-extra';
+import { InitialOptions } from '@jest/types/build/Config';
 
 export const getJestConfigOptions = async (
   packageDir: string,
   config: string | undefined
-) => {
+): Promise<InitialOptions> => {
   try {
     if (config) {
       const jestConfigPathOption = path.resolve(packageDir, config);
-      // const isSpecifiedConfigExists = fs.existsSync(jestConfigPathOption);
       for (let i = 0; i < process.argv.length; i += 1) {
         if (process.argv[i] === '--config') {
           process.argv = process.argv
@@ -21,22 +21,21 @@ export const getJestConfigOptions = async (
       const isJavaScript =
         filenameSegments[filenameSegments.length - 1] === 'JS';
       return isJavaScript
-        ? // eslint-disable-next-line global-require,import/no-dynamic-require
-          require(jestConfigPathOption)
+        ? require(jestConfigPathOption)
         : await fs.readJSON(jestConfigPathOption);
     }
 
     const jestConfigPathJS = path.resolve(packageDir, `jest.config.js`);
     const jestConfigPathJSON = path.resolve(packageDir, `jest.config.json`);
     if (fs.existsSync(jestConfigPathJS)) {
-      // eslint-disable-next-line global-require,import/no-dynamic-require
       return require(jestConfigPathJS);
     } else if (fs.existsSync(jestConfigPathJSON)) {
       return await fs.readJSON(jestConfigPathJSON);
     }
+    /* eslint-disable-next-line no-empty */
   } catch {}
 
-  return {};
+  return {} as InitialOptions;
 };
 
 export const setTestNodeVariables = (): void => {

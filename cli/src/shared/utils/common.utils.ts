@@ -1,8 +1,8 @@
 import fs from 'fs-extra';
 import path from 'path';
-import { exec } from 'shelljs';
+import { exec, ShellString } from 'shelljs';
 
-export const cleanDistFolder = async () => {
+export const cleanDistFolder = async (): Promise<void> => {
   const cwd = process.cwd();
   const distPath = path.resolve(cwd, 'dist');
   await fs.remove(distPath);
@@ -10,16 +10,20 @@ export const cleanDistFolder = async () => {
 
 // Taken from Create React App, react-dev-utils/clearConsole
 // @see https://github.com/facebook/create-react-app/blob/master/packages/react-dev-utils/clearConsole.js
-export function clearConsole() {
+export function clearConsole(): void {
   process.stdout.write(
     process.platform === 'win32' ? '\x1B[2J\x1B[0f' : '\x1B[2J\x1B[3J\x1B[H'
   );
 }
 
-export const space = () => process.stdout.write('\n');
+export const space = (): boolean => process.stdout.write('\n');
 
 export const normalizeBoolCLI = (
   value: boolean | string | undefined
 ): boolean => value === true || value === 'true';
 
-export const installDependencies = () => exec('yarn install', { silent: true });
+export const installDependencies = (): ShellString =>
+  exec('yarn install', { silent: true });
+
+/* eslint-disable no-empty-function, @typescript-eslint/no-empty-function */
+export const noop = (): void => {};

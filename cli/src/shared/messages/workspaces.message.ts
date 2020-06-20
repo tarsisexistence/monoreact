@@ -15,7 +15,7 @@ const finishingTextByCommand: Record<CLI.Workspaces.Command, string> = {
   test: 'Tested'
 };
 
-export const workspacesMessage = {
+export const workspacesMessage: CLI.Common.Messages = {
   introduce: () => underline(`${packageJson.name} v${packageJson.version}`),
   running: (name: string) => details(`Running ${name}`),
 

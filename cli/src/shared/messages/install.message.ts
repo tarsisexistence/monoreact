@@ -1,6 +1,6 @@
 import { error, info } from '../utils';
 
-export const installMessage = {
+export const installMessage: CLI.Common.Messages = {
   successful: (dependencies: string) =>
     `Successfully installed [${info(dependencies)}] dependencies`,
 

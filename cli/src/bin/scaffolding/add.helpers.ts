@@ -2,13 +2,13 @@ import fs from 'fs-extra';
 import path from 'path';
 import { Select } from 'enquirer';
 
-import { info } from '../../shared/utils';
+import { info, noop } from '../../shared/utils';
 import { featureSetup } from './setup/add';
 
 export const validateFeatureOption = (
   featureName: string,
   options: string[],
-  onInvalid = () => {}
+  onInvalid = noop
 ): Promise<CLI.Setup.AddOptionType> => {
   if (featureName in featureSetup) {
     return Promise.resolve(featureName as keyof typeof featureSetup);

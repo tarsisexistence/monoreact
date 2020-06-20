@@ -1,6 +1,6 @@
 import { highlight, info, success } from '../utils';
 
-export const buildMessage = {
+export const buildMessage: CLI.Common.Messages = {
   bundling: ({ source, module }: { source: string; module: string }) =>
     info(`${source} → ${module}`),
 

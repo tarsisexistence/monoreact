@@ -1,6 +1,6 @@
 import { bold, error, highlight, info, success } from '../utils';
 
-export const newMessage = {
+export const newMessage: CLI.Common.Messages = {
   initial: (name: string) => name,
   existsPrompt: (dir: string) =>
     `The folder at ${error(dir)} already exists! ${bold(

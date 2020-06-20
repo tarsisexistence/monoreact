@@ -16,6 +16,7 @@ export const getPackageLintInfo = async (): Promise<{
   try {
     dir = await findWorkspacePackageDir(true);
     project.push(path.resolve(dir, TSCONFIG_JSON));
+    /* eslint-disable-next-line no-empty */
   } catch {}
 
   try {
@@ -27,6 +28,7 @@ export const getPackageLintInfo = async (): Promise<{
     }
 
     project.push(path.resolve(rootDir, TSCONFIG_JSON));
+    /* eslint-disable-next-line no-empty */
   } catch {}
 
   return {

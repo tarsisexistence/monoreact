@@ -97,7 +97,7 @@ export const getExternalScreen = ({
   dependencies: CLI.Package.Dependencies;
   peerDependencies: CLI.Package.Dependencies;
   devDependencies: CLI.Package.Dependencies;
-}>) => {
+}>): ((id: string) => boolean) => {
   const externals = [
     ...Object.keys(dependencies),
     ...Object.keys(peerDependencies),

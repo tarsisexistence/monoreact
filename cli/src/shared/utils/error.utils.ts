@@ -4,7 +4,7 @@ import { error as errMsg } from './color.utils';
 
 const stderr = console.error.bind(console);
 
-export function logError(err: any) {
+export function logError(err: any): void {
   const error = err.error || err;
   const description = `${error.name ? `${error.name}: ` : ''}${
     error.message || error

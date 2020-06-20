@@ -7,9 +7,9 @@ import {
   updateYarnWorkspacesDeclaration
 } from '../../shared/utils';
 import { generateSetup } from './setup/generate';
-import { exec } from 'shelljs';
+import { exec, ShellString } from 'shelljs';
 
-export const safePackageName = (name: string) =>
+export const safePackageName = (name: string): string =>
   name
     .toLowerCase()
     .replace(/(^@.*\/)|((^[^a-zA-Z]+)|[^\w.-])|([^a-zA-Z0-9]+$)/g, '');
@@ -65,7 +65,8 @@ export const composePackageJson = ({
   return packageJson;
 };
 
-export const buildPackage = () => exec('yarn build', { silent: true });
+export const buildPackage = (): ShellString =>
+  exec('yarn build', { silent: true });
 
 export const updatePackageJsonWorkspacesDeclaration = async ({
   packageJson,
@@ -79,7 +80,7 @@ export const updatePackageJsonWorkspacesDeclaration = async ({
   packages: string[];
   setupPath: string;
   packageName: string;
-}) => {
+}): Promise<void> => {
   const updatedWorkspaces = includePackageIntoWorkspaces({
     packages,
     setupPath,
