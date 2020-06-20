@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import kleur from 'kleur';
 
 import { error as errMsg } from './color.utils';
 
@@ -30,9 +30,9 @@ export function logError(err: any) {
 
   if (error.frame) {
     stderr();
-    stderr(chalk.dim(error.frame));
+    stderr(kleur.dim(error.frame));
   } else if (err.stack) {
     const headlessStack = error.stack.replace(message, '');
-    stderr(chalk.dim(headlessStack));
+    stderr(kleur.dim(headlessStack));
   }
 }
