@@ -9,7 +9,7 @@ const testDir = 'integration';
 const fixtureName = 'build-default';
 const stageName = `stage-integration-${fixtureName}`;
 
-describe('[integration.build.default]', () => {
+describe('[bin.build.default]', () => {
   beforeAll(() => {
     teardownStage(stageName);
     setupStageWithFixture(testDir, stageName, fixtureName);

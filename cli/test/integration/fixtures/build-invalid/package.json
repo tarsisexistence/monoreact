@@ -1,0 +1,13 @@
+{
+  "name": "build-invalid",
+  "version": "0.1.0",
+  "private": false,
+  "workspace": true,
+  "license": "MIT",
+  "module": "dist/bundle.js",
+  "source": "src/publicApi.ts",
+  "types": "dist/publicApi.d.ts",
+  "scripts": {
+    "build": "re-space build"
+  }
+}
