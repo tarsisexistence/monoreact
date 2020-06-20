@@ -6,10 +6,10 @@ import { execWithCache } from '../utils/shell';
 shell.config.silent = false;
 
 const testDir = 'integration';
-const fixtureName = 'build';
+const fixtureName = 'build-default';
 const stageName = `stage-integration-${fixtureName}`;
 
-describe('[integration.build]', () => {
+describe('[integration.build.default]', () => {
   beforeAll(() => {
     teardownStage(stageName);
     setupStageWithFixture(testDir, stageName, fixtureName);
@@ -31,7 +31,7 @@ describe('[integration.build]', () => {
     expect(output.code).toBe(0);
   });
 
-  it('should compile declaration ts file for entry point', () => {
+  it('should compile declaration typescripts file for entry point', () => {
     const output = execWithCache('node ../dist/src/bin/index.js build');
     expect(shell.test('-f', 'dist/publicApi.d.ts')).toBeTruthy();
     expect(output.code).toBe(0);

@@ -23,8 +23,5 @@
       "esnext"
     ]
   },
-  "include": [
-    "src",
-    "package.json"
-  ]
+  "include": ["src", "package.json"]
 }
