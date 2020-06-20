@@ -25,7 +25,6 @@ export const buildWorkspace = async (dir: string) => {
 
   try {
     const bundle = await rollup(buildConfig);
-    console.log(bundle);
     await bundle.write(buildConfig.output);
     const duration = process.hrtime(time);
     console.log(buildMessage.successful(duration));

@@ -76,7 +76,6 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.WorkspaceRootPackageJSON =
     'eslint-config-prettier': '6.11.0',
     'eslint-config-react-app': '5.2.1',
     'eslint-plugin-prettier': '3.1.3',
-    'eslint-plugin-compat': '3.7.0',
     'eslint-plugin-promise': '4.2.1',
     'eslint-plugin-react': '7.20.0',
     'eslint-plugin-react-hooks': '4.0.4',
