@@ -1,7 +1,7 @@
 import { rollup } from 'rollup';
 
 import { createBuildConfig } from './configs/build.config';
-import { cleanDistFolder } from '../../shared/utils';
+import { cleanDistFolder, logError } from '../../shared/utils';
 import { buildMessage } from '../../shared/messages';
 import { readPackageJson, readTsconfigJson } from '../../shared/utils/fs.utils';
 
@@ -20,9 +20,17 @@ export const buildWorkspace = async (dir: string) => {
     runEslint: false,
     useClosure: false
   });
+
   console.log(buildMessage.bundling(packageJson));
-  const bundle = await rollup(buildConfig);
-  await bundle.write(buildConfig.output);
-  const duration = process.hrtime(time);
-  console.log(buildMessage.successful(duration));
+
+  try {
+    const bundle = await rollup(buildConfig);
+    console.log(bundle);
+    await bundle.write(buildConfig.output);
+    const duration = process.hrtime(time);
+    console.log(buildMessage.successful(duration));
+  } catch (error) {
+    logError(error);
+    process.exit(1);
+  }
 };
