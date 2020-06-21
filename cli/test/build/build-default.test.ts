@@ -1,7 +1,7 @@
 import * as shell from 'shelljs';
 
-import { setupStage, teardownStage } from '../utils/fixture';
-import { execWithCache } from '../utils/shell';
+import { setupStage, teardownStage } from '../../src/shared/utils/fixture.utils';
+import { execWithCache } from '../../src/shared/utils/shell.utils';
 
 shell.config.silent = false;
 

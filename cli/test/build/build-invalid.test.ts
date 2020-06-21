@@ -1,7 +1,10 @@
 import * as shell from 'shelljs';
 
-import * as util from '../utils/fixture';
-import { execWithCache } from '../utils/shell';
+import {
+  setupStage,
+  teardownStage
+} from '../../src/shared/utils/fixture.utils';
+import { execWithCache } from '../../src/shared/utils/shell.utils';
 
 shell.config.silent = false;
 
@@ -10,12 +13,12 @@ const fixtureName = 'build-invalid';
 
 describe('[bin.build.invalid]', () => {
   beforeAll(() => {
-    util.teardownStage(fixtureName);
-    util.setupStage(testDir, fixtureName);
+    teardownStage(fixtureName);
+    setupStage(testDir, fixtureName);
   });
 
   afterAll(() => {
-    util.teardownStage(fixtureName);
+    teardownStage(fixtureName);
   });
 
   it('should not compile with exit code 1 when build failed', () => {
