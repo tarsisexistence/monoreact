@@ -29,7 +29,7 @@ export const testBinCommand = (prog: Sade): void => {
         jestConfigOptions
       });
       jest.run([
-        ...process.argv.slice(2),
+        ...process.argv.slice(3),
         '--config',
         JSON.stringify({
           ...testConfig
