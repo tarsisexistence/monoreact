@@ -1,38 +1,47 @@
-import kleur from 'kleur';
+import { RollupError } from 'rollup';
 
-import { error as errMsg } from './color.utils';
+import { error as red } from './color.utils';
+import { space } from './common.utils';
 
 const stderr = console.error.bind(console);
 
-export function logError(err: any): void {
+export function logError(err: RollupError): void {
+  /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
+  // @ts-ignore
   const error = err.error || err;
-  const description = `${error.name ? `${error.name}: ` : ''}${
-    error.message || error
-  }`;
+  const errorName = error.name ? `${error.name} ` : '';
+  const errorMessage = error.message || error;
+  const description = errorName ? `${errorName} ${errorMessage}` : errorMessage;
+  const message = normalizeErrorMessage(error, description);
 
-  let message;
-
-  if (error.plugin) {
-    message =
-      error.plugin === 'rpt2'
-        ? `(typescript) ${description}`
-        : `(${error.plugin} plugin) ${description}`;
-  } else {
-    message = description;
-  }
-
-  stderr(errMsg(`    ${message}`));
+  space();
+  stderr(red(message));
 
   if (error.loc) {
-    stderr();
     stderr(`at ${error.loc.file}:${error.loc.line}:${error.loc.column}`);
   }
 
+  space();
+
   if (error.frame) {
-    stderr();
-    stderr(kleur.dim(error.frame));
+    stderr(red(error.frame));
   } else if (err.stack) {
     const headlessStack = error.stack.replace(message, '');
-    stderr(kleur.dim(headlessStack));
+    stderr(red(headlessStack));
   }
+
+  space();
+}
+
+function normalizeErrorMessage(
+  error: RollupError,
+  description: string
+): string {
+  if (!error.plugin) {
+    return description;
+  }
+
+  return error.plugin === 'rpt2'
+    ? `(typescript) ${description}`
+    : `(${error.plugin} plugin) ${description}`;
 }
