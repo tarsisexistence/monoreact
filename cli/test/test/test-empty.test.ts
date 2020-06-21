@@ -21,12 +21,12 @@ describe('[bin.test.empty]', () => {
     teardownStage(fixtureName);
   });
 
-  it('should finish with exit code 1', () => {
+  it('should fail with exit code 1', () => {
     const output = execWithCache('node ../dist/src/bin/index.js test');
     expect(output.code).toBe(1);
   });
 
-  it('should finish with exit code 0 with --passWithNoTests', () => {
+  it('should fail with exit code 0 with --passWithNoTests', () => {
     const output = execWithCache('node ../dist/src/bin/index.js test --passWithNoTests');
     expect(output.code).toBe(0);
   });

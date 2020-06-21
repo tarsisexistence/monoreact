@@ -9,17 +9,11 @@ export const getJestConfigOptions = async (
   try {
     if (config) {
       const jestConfigPathOption = path.resolve(packageDir, config);
-      for (let i = 0; i < process.argv.length; i += 1) {
-        if (process.argv[i] === '--config') {
-          process.argv = process.argv
-            .slice(0, i)
-            .concat(process.argv.slice(i + 2));
-          break;
-        }
-      }
+      process.argv.splice(process.argv.indexOf('--config'), 2);
       const filenameSegments = config.split('.');
       const isJavaScript =
-        filenameSegments[filenameSegments.length - 1] === 'JS';
+        filenameSegments[filenameSegments.length - 1] === 'js';
+
       return isJavaScript
         ? require(jestConfigPathOption)
         : await fs.readJSON(jestConfigPathOption);
@@ -27,6 +21,7 @@ export const getJestConfigOptions = async (
 
     const jestConfigPathJS = path.resolve(packageDir, `jest.config.js`);
     const jestConfigPathJSON = path.resolve(packageDir, `jest.config.json`);
+
     if (fs.existsSync(jestConfigPathJS)) {
       return require(jestConfigPathJS);
     } else if (fs.existsSync(jestConfigPathJSON)) {
