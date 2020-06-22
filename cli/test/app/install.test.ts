@@ -58,7 +58,6 @@ describe('[bin.app.install]', () => {
       path.resolve(process.cwd(), 'package.json')
     );
 
-    console.log(path.resolve(process.cwd(), 'package.json'), rootPkg);
     expect(rootPkg.dependencies).toHaveProperty('@re-space/cli');
     expect(output.code).toBe(0);
   });
@@ -73,7 +72,6 @@ describe('[bin.app.install]', () => {
     const packagePkg = fs.readJSONSync(
       path.resolve(process.cwd(), 'packages', 'install-example', 'package.json')
     );
-    console.log(path.resolve(process.cwd(), 'package.json'), rootPkg);
 
     expect(rootPkg.devDependencies).not.toHaveProperty('@re-space/cli');
     expect(rootPkg.peerDependencies).not.toHaveProperty('@re-space/cli');
