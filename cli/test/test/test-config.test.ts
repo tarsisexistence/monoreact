@@ -4,7 +4,7 @@ import {
   setupStage,
   teardownStage
 } from '../../src/shared/utils/fixture.utils';
-import { execWithCache } from '../../src/shared/utils/shell.utils';
+import { smartExec } from '../../src/shared/utils/shell.utils';
 
 shell.config.silent = false;
 
@@ -22,33 +22,33 @@ describe('[bin.test.config]', () => {
   });
 
   it('should test one test in src dir by default', () => {
-    const output = execWithCache('node ../dist/src/bin/index.js test');
+    const output = smartExec('node ../dist/src/bin/index.js test');
     expect(output.code).toBe(0);
   });
 
   it('should test in src __tests__ dir', () => {
-    const output = execWithCache(
+    const output = smartExec(
       'node ../dist/src/bin/index.js test --config customJestSrcTests.config.js'
     );
     expect(output.code).toBe(0);
   });
 
   it('should fail with no found tests in src level dir', () => {
-    const output = execWithCache(
+    const output = smartExec(
       'node ../dist/src/bin/index.js test --config customJestSrc.config.js'
     );
     expect(output.code).toBe(1);
   });
 
   it('should finish positive tests in test dir', () => {
-    const output = execWithCache(
+    const output = smartExec(
       'node ../dist/src/bin/index.js test --config customJestTest.config.js'
     );
     expect(output.code).toBe(0);
   });
 
   it('should fail with no found tests in __tests__ dir', () => {
-    const output = execWithCache(
+    const output = smartExec(
       'node ../dist/src/bin/index.js test --config customJestTests.config.js'
     );
     expect(output.code).toBe(0);

@@ -6,7 +6,7 @@ import {
   setupStage,
   teardownStage
 } from '../../src/shared/utils/fixture.utils';
-import { execWithCache } from '../../src/shared/utils/shell.utils';
+import { smartExec } from '../../src/shared/utils/shell.utils';
 
 shell.config.silent = false;
 
@@ -51,7 +51,7 @@ describe('[bin.app.install]', () => {
   });
 
   it('should install few prod dependencies in the root', () => {
-    const output = execWithCache(
+    const output = smartExec(
       'node ../dist/src/bin/index.js install @re-space/cli routeshub'
     );
     const rootPkg = fs.readJSONSync(
@@ -64,7 +64,7 @@ describe('[bin.app.install]', () => {
   });
 
   it('should install nothing but prod dependencies in the root', () => {
-    const output = execWithCache(
+    const output = smartExec(
       'node ../dist/src/bin/index.js install @re-space/cli routeshub'
     );
     const rootPkg = fs.readJSONSync(
@@ -87,7 +87,7 @@ describe('[bin.app.install]', () => {
   });
 
   it('should install only dev dependencies in the root', () => {
-    const output = execWithCache(
+    const output = smartExec(
       'node ../dist/src/bin/index.js install @re-space/cli routeshub -D'
     );
     const rootPkg = fs.readJSONSync(
@@ -99,7 +99,7 @@ describe('[bin.app.install]', () => {
   });
 
   it('should install nothing but dev dependencies in the root', () => {
-    const output = execWithCache(
+    const output = smartExec(
       'node ../dist/src/bin/index.js install @re-space/cli routeshub -D'
     );
     const rootPkg = fs.readJSONSync(
@@ -126,7 +126,7 @@ describe('[bin.app.install]', () => {
     const cwd = process.cwd();
     const packageDir = path.resolve(cwd, 'packages', 'install-example');
     process.chdir(packageDir);
-    const output = execWithCache(
+    const output = smartExec(
       'node ../../../dist/src/bin/index.js install @re-space/cli routeshub'
     );
     process.chdir(cwd);
@@ -146,7 +146,7 @@ describe('[bin.app.install]', () => {
     const cwd = process.cwd();
     const packageDir = path.resolve(cwd, 'packages', 'install-example');
     process.chdir(packageDir);
-    const output = execWithCache(
+    const output = smartExec(
       'node ../../../dist/src/bin/index.js install @re-space/cli routeshub'
     );
     process.chdir(cwd);
@@ -171,7 +171,7 @@ describe('[bin.app.install]', () => {
     const cwd = process.cwd();
     const packageDir = path.resolve(cwd, 'packages', 'install-example');
     process.chdir(packageDir);
-    const output = execWithCache(
+    const output = smartExec(
       'node ../../../dist/src/bin/index.js install @re-space/cli routeshub -D'
     );
     process.chdir(cwd);
@@ -191,7 +191,7 @@ describe('[bin.app.install]', () => {
     const cwd = process.cwd();
     const packageDir = path.resolve(cwd, 'packages', 'install-example');
     process.chdir(packageDir);
-    const output = execWithCache(
+    const output = smartExec(
       'node ../../../dist/src/bin/index.js install @re-space/cli routeshub -D'
     );
     process.chdir(cwd);
@@ -213,7 +213,7 @@ describe('[bin.app.install]', () => {
   });
 
   it('should not have tilde and caret (~, ^) in the root', () => {
-    const output = execWithCache(
+    const output = smartExec(
       'node ../dist/src/bin/index.js install routeshub'
     );
     const rootPkg = fs.readJSONSync(
@@ -229,7 +229,7 @@ describe('[bin.app.install]', () => {
     const cwd = process.cwd();
     const packageDir = path.resolve(cwd, 'packages', 'install-example');
     process.chdir(packageDir);
-    const output = execWithCache(
+    const output = smartExec(
       'node ../../../dist/src/bin/index.js install routeshub'
     );
     process.chdir(cwd);

@@ -4,7 +4,7 @@ import {
   setupStage,
   teardownStage
 } from '../../src/shared/utils/fixture.utils';
-import { execWithCache } from '../../src/shared/utils/shell.utils';
+import { smartExec } from '../../src/shared/utils/shell.utils';
 
 shell.config.silent = false;
 
@@ -22,17 +22,17 @@ describe('[bin.test.default]', () => {
   });
 
   it('should finish positive tests', () => {
-    const output = execWithCache('node ../dist/src/bin/index.js test');
+    const output = smartExec('node ../dist/src/bin/index.js test');
     expect(output.code).toBe(0);
   });
 
   it('should fail, with no found tests with pattern arg and finish with code 1', () => {
-    const output = execWithCache('node ../dist/src/bin/index.js test patternTest');
+    const output = smartExec('node ../dist/src/bin/index.js test patternTest');
     expect(output.code).toBe(1);
   });
 
   it('should not find any test with pattern arg and passWithNoTests option and finish with code 0', () => {
-    const output = execWithCache(
+    const output = smartExec(
       'node ../dist/src/bin/index.js test patternTest --passWithNoTests'
     );
     expect(output.code).toBe(0);

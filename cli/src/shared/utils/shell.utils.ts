@@ -6,7 +6,7 @@ const cache: Record<string, shell.ShellReturnValue> = {};
 
 // TODO: staging directory
 // TODO: rename
-export function execWithCache(
+export function smartExec(
   command: string,
   { noCache = false } = {}
 ): shell.ShellReturnValue {

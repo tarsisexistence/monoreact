@@ -4,7 +4,7 @@ import {
   setupStage,
   teardownStage
 } from '../../src/shared/utils/fixture.utils';
-import { execWithCache } from '../../src/shared/utils/shell.utils';
+import { smartExec } from '../../src/shared/utils/shell.utils';
 
 shell.config.silent = false;
 
@@ -22,19 +22,19 @@ describe('[bin.build.jsx]', () => {
   });
 
   it('should compile files into a dist directory', () => {
-    const output = execWithCache('node ../dist/src/bin/index.js build');
+    const output = smartExec('node ../dist/src/bin/index.js build');
     expect(shell.test('-d', 'dist')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should compile files into bundle.js', () => {
-    const output = execWithCache('node ../dist/src/bin/index.js build');
+    const output = smartExec('node ../dist/src/bin/index.js build');
     expect(shell.test('-f', 'dist/bundle.js')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should compile declaration typescript files for js/jsx/ts/tsx', () => {
-    const output = execWithCache('node ../dist/src/bin/index.js build');
+    const output = smartExec('node ../dist/src/bin/index.js build');
 
     expect(shell.test('-f', 'dist/publicApi.d.ts')).toBeTruthy();
     expect(shell.test('-f', 'dist/utils/capitalize.d.ts')).toBeTruthy();
@@ -47,7 +47,7 @@ describe('[bin.build.jsx]', () => {
   });
 
   it('should compile sourcemaps for bundle.js', () => {
-    const output = execWithCache('node ../dist/src/bin/index.js build');
+    const output = smartExec('node ../dist/src/bin/index.js build');
     expect(shell.test('-f', 'dist/bundle.js.map')).toBeTruthy();
     expect(output.code).toBe(0);
   });
