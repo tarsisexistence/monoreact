@@ -2,27 +2,22 @@ import * as shell from 'shelljs';
 
 shell.config.silent = true;
 
-const cache = {
-  command: '',
-  output: {} as shell.ShellReturnValue
-};
+const cache: Record<string, shell.ShellReturnValue> = {};
 
+// TODO: staging directory
+// TODO: rename
 export function execWithCache(
   command: string,
   { noCache = false } = {}
 ): shell.ShellReturnValue {
-  if (!noCache && cache.command === command) {
-    return cache.output;
+  if (!noCache && cache[command]) {
+    return cache[command];
   }
 
   const output = shell.exec(command);
 
-  if (noCache) {
-    cache.command = '';
-    cache.output = {} as shell.ShellReturnValue;
-  } else {
-    cache.command = command;
-    cache.output = output;
+  if (!noCache) {
+    cache[command] = output;
   }
 
   return output;
