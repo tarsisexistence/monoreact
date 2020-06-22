@@ -52,7 +52,8 @@ describe('[bin.app.install]', () => {
 
   it('should install few prod dependencies in the root', () => {
     const output = smartExec(
-      'node ../dist/src/bin/index.js install @re-space/cli routeshub'
+      'node ../../dist/src/bin/index.js install @re-space/cli routeshub --no-lockfile',
+      { noCache: true }
     );
     const rootPkg = fs.readJSONSync(
       path.resolve(process.cwd(), 'package.json')
@@ -65,7 +66,8 @@ describe('[bin.app.install]', () => {
 
   it('should install nothing but prod dependencies in the root', () => {
     const output = smartExec(
-      'node ../dist/src/bin/index.js install @re-space/cli routeshub'
+      'node ../../dist/src/bin/index.js install @re-space/cli routeshub --no-lockfile',
+      { noCache: true }
     );
     const rootPkg = fs.readJSONSync(
       path.resolve(process.cwd(), 'package.json')
@@ -88,7 +90,8 @@ describe('[bin.app.install]', () => {
 
   it('should install only dev dependencies in the root', () => {
     const output = smartExec(
-      'node ../dist/src/bin/index.js install @re-space/cli routeshub -D'
+      'node ../../dist/src/bin/index.js install @re-space/cli routeshub -D --no-lockfile',
+      { noCache: true }
     );
     const rootPkg = fs.readJSONSync(
       path.resolve(process.cwd(), 'package.json')
@@ -100,7 +103,8 @@ describe('[bin.app.install]', () => {
 
   it('should install nothing but dev dependencies in the root', () => {
     const output = smartExec(
-      'node ../dist/src/bin/index.js install @re-space/cli routeshub -D'
+      'node ../../dist/src/bin/index.js install @re-space/cli routeshub -D --no-lockfile',
+      { noCache: true }
     );
     const rootPkg = fs.readJSONSync(
       path.resolve(process.cwd(), 'package.json')
@@ -127,7 +131,8 @@ describe('[bin.app.install]', () => {
     const packageDir = path.resolve(cwd, 'packages', 'install-example');
     process.chdir(packageDir);
     const output = smartExec(
-      'node ../../../dist/src/bin/index.js install @re-space/cli routeshub'
+      'node ../../../../dist/src/bin/index.js install @re-space/cli routeshub --no-lockfile',
+      { noCache: true }
     );
     process.chdir(cwd);
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
@@ -147,7 +152,8 @@ describe('[bin.app.install]', () => {
     const packageDir = path.resolve(cwd, 'packages', 'install-example');
     process.chdir(packageDir);
     const output = smartExec(
-      'node ../../../dist/src/bin/index.js install @re-space/cli routeshub'
+      'node ../../../../dist/src/bin/index.js install @re-space/cli routeshub --no-lockfile',
+      { noCache: true }
     );
     process.chdir(cwd);
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
@@ -172,7 +178,8 @@ describe('[bin.app.install]', () => {
     const packageDir = path.resolve(cwd, 'packages', 'install-example');
     process.chdir(packageDir);
     const output = smartExec(
-      'node ../../../dist/src/bin/index.js install @re-space/cli routeshub -D'
+      'node ../../../../dist/src/bin/index.js install @re-space/cli routeshub -D --no-lockfile',
+      { noCache: true }
     );
     process.chdir(cwd);
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
@@ -192,7 +199,8 @@ describe('[bin.app.install]', () => {
     const packageDir = path.resolve(cwd, 'packages', 'install-example');
     process.chdir(packageDir);
     const output = smartExec(
-      'node ../../../dist/src/bin/index.js install @re-space/cli routeshub -D'
+      'node ../../../../dist/src/bin/index.js install @re-space/cli routeshub -D --no-lockfile',
+      { noCache: true }
     );
     process.chdir(cwd);
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
@@ -214,7 +222,8 @@ describe('[bin.app.install]', () => {
 
   it('should not have tilde and caret (~, ^) in the root', () => {
     const output = smartExec(
-      'node ../dist/src/bin/index.js install routeshub'
+      'node ../../dist/src/bin/index.js install routeshub --no-lockfile',
+      { noCache: true }
     );
     const rootPkg = fs.readJSONSync(
       path.resolve(process.cwd(), 'package.json')
@@ -230,7 +239,8 @@ describe('[bin.app.install]', () => {
     const packageDir = path.resolve(cwd, 'packages', 'install-example');
     process.chdir(packageDir);
     const output = smartExec(
-      'node ../../../dist/src/bin/index.js install routeshub'
+      'node ../../../../dist/src/bin/index.js install routeshub --no-lockfile',
+      { noCache: true }
     );
     process.chdir(cwd);
     const packagePkg = fs.readJSONSync(

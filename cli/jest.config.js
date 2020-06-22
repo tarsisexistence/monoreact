@@ -6,7 +6,7 @@ module.exports = {
     '/node_modules/',
     '<rootDir>/templates/',
     '<rootDir>/test/.*/fixtures/',
-    '<rootDir>/stage-.*/'
+    '<rootDir>/staging/*'
   ],
   moduleFileExtensions: ['ts', 'js', 'json', 'jsx', 'node']
 };

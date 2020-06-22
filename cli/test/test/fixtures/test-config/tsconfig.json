@@ -16,8 +16,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "types": ["jest", "@re-space/cli"],
-    "typeRoots": ["../../node_modules/@types"]
+    "types": ["jest", "@re-space/cli"]
   },
   "include": ["**/*.ts"]
 }

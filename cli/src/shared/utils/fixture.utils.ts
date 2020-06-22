@@ -8,7 +8,7 @@ const rootDir = process.cwd();
 const getStageName = (fixtureName: string): string => `stage-${fixtureName}`;
 
 export function setupStage(testDir: string, fixtureName: string): void {
-  const stagePath = path.join(rootDir, getStageName(fixtureName));
+  const stagePath = path.join(rootDir, 'staging', getStageName(fixtureName));
   shell.mkdir(stagePath);
   shell.exec(
     `cp -a ${rootDir}/test/${testDir}/fixtures/${fixtureName}/. ${stagePath}/`
@@ -23,5 +23,5 @@ export function setupStage(testDir: string, fixtureName: string): void {
 
 export function teardownStage(fixtureName: string): void {
   shell.cd(rootDir);
-  shell.rm('-rf', path.join(rootDir, getStageName(fixtureName)));
+  shell.rm('-rf', path.join(rootDir, 'staging', getStageName(fixtureName)));
 }

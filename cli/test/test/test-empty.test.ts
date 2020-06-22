@@ -22,12 +22,12 @@ describe('[bin.test.empty]', () => {
   });
 
   it('should fail with exit code 1', () => {
-    const output = smartExec('node ../dist/src/bin/index.js test');
+    const output = smartExec('node ../../dist/src/bin/index.js test');
     expect(output.code).toBe(1);
   });
 
   it('should fail with exit code 0 with --passWithNoTests', () => {
-    const output = smartExec('node ../dist/src/bin/index.js test --passWithNoTests');
+    const output = smartExec('node ../../dist/src/bin/index.js test --passWithNoTests');
     expect(output.code).toBe(0);
   });
 });

@@ -4,8 +4,6 @@ shell.config.silent = true;
 
 const cache: Record<string, shell.ShellReturnValue> = {};
 
-// TODO: staging directory
-// TODO: rename
 export function smartExec(
   command: string,
   { noCache = false } = {}
