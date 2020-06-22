@@ -1,0 +1,12 @@
+{
+  "name": "app-install-example",
+  "version": "0.1.0",
+  "private": false,
+  "module": "dist/bundle.js",
+  "source": "src/publicApi.ts",
+  "types": "dist/publicApi.d.ts",
+  "workspace": true,
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {}
+}

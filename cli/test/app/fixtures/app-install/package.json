@@ -1,0 +1,11 @@
+{
+  "name": "app-install",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "packages/install-example"
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {}
+}
