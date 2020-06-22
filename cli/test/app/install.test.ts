@@ -14,241 +14,264 @@ const testDir = 'app';
 const fixtureName = 'app-install';
 
 describe('[bin.app.install]', () => {
-  const emptyDependencies = {
-    dependencies: {},
-    devDependencies: {},
-    peerDependencies: {}
-  };
+  let rootPkgPath = '';
+  let packagePkgPath = '';
+  let rootPkg = {};
+  let packagePkg = {};
 
   beforeAll(() => {
     teardownStage(fixtureName);
     setupStage(testDir, fixtureName);
+    rootPkgPath = path.resolve(process.cwd(), 'package.json');
+    packagePkgPath = path.resolve(
+      process.cwd(),
+      'packages',
+      'install-example',
+      'package.json'
+    );
+    rootPkg = fs.readJSONSync(rootPkgPath);
+    packagePkg = fs.readJSONSync(packagePkgPath);
   });
 
   afterAll(() => {
     teardownStage(fixtureName);
   });
 
-  afterEach(() => {
-    const rootPkgPath = path.resolve(process.cwd(), 'package.json');
-    const rootPkg = fs.readJSONSync(rootPkgPath);
-    const packagePkgPath = path.resolve(
-      process.cwd(),
-      'packages',
-      'install-example',
-      'package.json'
-    );
-    const packagePkg = fs.readJSONSync(packagePkgPath);
-
-    fs.writeFileSync(
-      rootPkgPath,
-      JSON.stringify({ ...rootPkg, ...emptyDependencies })
-    );
-    fs.writeFileSync(
-      packagePkgPath,
-      JSON.stringify({ ...packagePkg, ...emptyDependencies })
-    );
-  });
-
-  it('should install few prod dependencies in the root', () => {
-    const output = smartExec(
-      'node ../../dist/src/bin/index.js install @re-space/cli routeshub --no-lockfile',
-      { noCache: true }
-    );
-    const rootPkg = fs.readJSONSync(
-      path.resolve(process.cwd(), 'package.json')
-    );
-
-    expect(rootPkg.dependencies).toHaveProperty('@re-space/cli');
-    expect(rootPkg.dependencies).toHaveProperty('routeshub');
-    expect(output.code).toBe(0);
-  });
-
-  it('should install nothing but prod dependencies in the root', () => {
-    const output = smartExec(
-      'node ../../dist/src/bin/index.js install @re-space/cli routeshub --no-lockfile',
-      { noCache: true }
-    );
-    const rootPkg = fs.readJSONSync(
-      path.resolve(process.cwd(), 'package.json')
-    );
-    const packagePkg = fs.readJSONSync(
-      path.resolve(process.cwd(), 'packages', 'install-example', 'package.json')
-    );
-    Object.keys({
-      ...rootPkg.devDependencies,
-      ...rootPkg.peerDependencies,
-      ...packagePkg.dependencies,
-      ...packagePkg.devDependencies,
-      ...packagePkg.peerDependencies
-    }).forEach(dep => {
-      expect(dep).not.toBe('@re-space/cli');
-      expect(dep).not.toBe('routeshub');
+  /**
+   * @reminder: call this fn into all next-level describe chunks that grouped by exec commands
+   *
+   * this "hack" increases the speed of test running
+   * because each test mutates our single stage for "install" testing
+   * and we don't want to build the stage for each test because it's very expensive
+   * the decision is using exec caching for grouped describe-chunk by exec command
+   * when describe-chunk has finished its job, this function restores the original state of the stage
+   */
+  const addAfter = () => {
+    afterAll(() => {
+      fs.writeFileSync(rootPkgPath, JSON.stringify(rootPkg));
+      fs.writeFileSync(packagePkgPath, JSON.stringify(packagePkg));
     });
-    expect(output.code).toBe(0);
-  });
+  };
 
-  it('should install only dev dependencies in the root', () => {
-    const output = smartExec(
-      'node ../../dist/src/bin/index.js install @re-space/cli routeshub -D --no-lockfile',
-      { noCache: true }
-    );
-    const rootPkg = fs.readJSONSync(
-      path.resolve(process.cwd(), 'package.json')
-    );
-    expect(rootPkg.devDependencies).toHaveProperty('@re-space/cli');
-    expect(rootPkg.devDependencies).toHaveProperty('routeshub');
-    expect(output.code).toBe(0);
-  });
+  describe('when run in root: install @re-space/cli routeshub', () => {
+    addAfter();
 
-  it('should install nothing but dev dependencies in the root', () => {
-    const output = smartExec(
-      'node ../../dist/src/bin/index.js install @re-space/cli routeshub -D --no-lockfile',
-      { noCache: true }
-    );
-    const rootPkg = fs.readJSONSync(
-      path.resolve(process.cwd(), 'package.json')
-    );
-    const packagePkg = fs.readJSONSync(
-      path.resolve(process.cwd(), 'packages', 'install-example', 'package.json')
-    );
+    it('should install few prod dependencies in the root', () => {
+      const output = smartExec(
+        'node ../../dist/src/bin/index.js install @re-space/cli routeshub'
+      );
+      const rootPkg = fs.readJSONSync(
+        path.resolve(process.cwd(), 'package.json')
+      );
 
-    Object.keys({
-      ...rootPkg.dependencies,
-      ...rootPkg.peerDependencies,
-      ...packagePkg.dependencies,
-      ...packagePkg.devDependencies,
-      ...packagePkg.peerDependencies
-    }).forEach(dep => {
-      expect(dep).not.toBe('@re-space/cli');
-      expect(dep).not.toBe('routeshub');
+      expect(rootPkg.dependencies).toHaveProperty('@re-space/cli');
+      expect(rootPkg.dependencies).toHaveProperty('routeshub');
+      expect(output.code).toBe(0);
     });
-    expect(output.code).toBe(0);
-  });
 
-  it('should install peer dependencies in the package and prod in the root', () => {
-    const cwd = process.cwd();
-    const packageDir = path.resolve(cwd, 'packages', 'install-example');
-    process.chdir(packageDir);
-    const output = smartExec(
-      'node ../../../../dist/src/bin/index.js install @re-space/cli routeshub --no-lockfile',
-      { noCache: true }
-    );
-    process.chdir(cwd);
-    const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
-    const packagePkg = fs.readJSONSync(
-      path.resolve(packageDir, 'package.json')
-    );
-
-    expect(rootPkg.dependencies).toHaveProperty('@re-space/cli');
-    expect(rootPkg.dependencies).toHaveProperty('routeshub');
-    expect(packagePkg.peerDependencies).toHaveProperty('@re-space/cli');
-    expect(packagePkg.peerDependencies).toHaveProperty('routeshub');
-    expect(output.code).toBe(0);
-  });
-
-  it('should install nothing but peer dependencies in the package and prod in the root', () => {
-    const cwd = process.cwd();
-    const packageDir = path.resolve(cwd, 'packages', 'install-example');
-    process.chdir(packageDir);
-    const output = smartExec(
-      'node ../../../../dist/src/bin/index.js install @re-space/cli routeshub --no-lockfile',
-      { noCache: true }
-    );
-    process.chdir(cwd);
-    const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
-    const packagePkg = fs.readJSONSync(
-      path.resolve(packageDir, 'package.json')
-    );
-
-    Object.keys({
-      ...rootPkg.devDependencies,
-      ...rootPkg.peerDependencies,
-      ...packagePkg.dependencies,
-      ...packagePkg.devDependencies
-    }).forEach(dep => {
-      expect(dep).not.toBe('@re-space/cli');
-      expect(dep).not.toBe('routeshub');
+    it('should install nothing but prod dependencies in the root', () => {
+      const output = smartExec(
+        'node ../../dist/src/bin/index.js install @re-space/cli routeshub'
+      );
+      const rootPkg = fs.readJSONSync(
+        path.resolve(process.cwd(), 'package.json')
+      );
+      const packagePkg = fs.readJSONSync(
+        path.resolve(
+          process.cwd(),
+          'packages',
+          'install-example',
+          'package.json'
+        )
+      );
+      Object.keys({
+        ...rootPkg.devDependencies,
+        ...rootPkg.peerDependencies,
+        ...packagePkg.dependencies,
+        ...packagePkg.devDependencies,
+        ...packagePkg.peerDependencies
+      }).forEach(dep => {
+        expect(dep).not.toBe('@re-space/cli');
+        expect(dep).not.toBe('routeshub');
+      });
+      expect(output.code).toBe(0);
     });
-    expect(output.code).toBe(0);
-  });
 
-  it('should install dev dependencies for package and root', () => {
-    const cwd = process.cwd();
-    const packageDir = path.resolve(cwd, 'packages', 'install-example');
-    process.chdir(packageDir);
-    const output = smartExec(
-      'node ../../../../dist/src/bin/index.js install @re-space/cli routeshub -D --no-lockfile',
-      { noCache: true }
-    );
-    process.chdir(cwd);
-    const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
-    const packagePkg = fs.readJSONSync(
-      path.resolve(packageDir, 'package.json')
-    );
+    it('should not have tilde and caret (~, ^) in the root', () => {
+      const output = smartExec(
+        'node ../../dist/src/bin/index.js install @re-space/cli routeshub'
+      );
+      const rootPkg = fs.readJSONSync(
+        path.resolve(process.cwd(), 'package.json')
+      );
 
-    expect(rootPkg.devDependencies).toHaveProperty('@re-space/cli');
-    expect(rootPkg.devDependencies).toHaveProperty('routeshub');
-    expect(packagePkg.devDependencies).toHaveProperty('@re-space/cli');
-    expect(packagePkg.devDependencies).toHaveProperty('routeshub');
-    expect(output.code).toBe(0);
-  });
-
-  it('should install nothing but dev dependencies for package and root', () => {
-    const cwd = process.cwd();
-    const packageDir = path.resolve(cwd, 'packages', 'install-example');
-    process.chdir(packageDir);
-    const output = smartExec(
-      'node ../../../../dist/src/bin/index.js install @re-space/cli routeshub -D --no-lockfile',
-      { noCache: true }
-    );
-    process.chdir(cwd);
-    const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
-    const packagePkg = fs.readJSONSync(
-      path.resolve(packageDir, 'package.json')
-    );
-
-    Object.keys({
-      ...rootPkg.dependencies,
-      ...rootPkg.peerDependencies,
-      ...packagePkg.dependencies,
-      ...packagePkg.peerDependencies
-    }).forEach(dep => {
-      expect(dep).not.toBe('@re-space/cli');
-      expect(dep).not.toBe('routeshub');
+      expect(rootPkg.dependencies.routeshub[0]).not.toBe('^');
+      expect(rootPkg.dependencies.routeshub[0]).not.toBe('~');
+      expect(rootPkg.dependencies['@re-space/cli'][0]).not.toBe('^');
+      expect(rootPkg.dependencies['@re-space/cli'][0]).not.toBe('~');
+      expect(output.code).toBe(0);
     });
-    expect(output.code).toBe(0);
   });
 
-  it('should not have tilde and caret (~, ^) in the root', () => {
-    const output = smartExec(
-      'node ../../dist/src/bin/index.js install routeshub --no-lockfile',
-      { noCache: true }
-    );
-    const rootPkg = fs.readJSONSync(
-      path.resolve(process.cwd(), 'package.json')
-    );
+  describe('when run in root: install @re-space/cli routeshub -D', () => {
+    addAfter();
 
-    expect(rootPkg.dependencies.routeshub[0]).not.toBe('^');
-    expect(rootPkg.dependencies.routeshub[0]).not.toBe('~');
-    expect(output.code).toBe(0);
+    it('should install only dev dependencies in the root', () => {
+      const output = smartExec(
+        'node ../../dist/src/bin/index.js install @re-space/cli routeshub -D'
+      );
+      const rootPkg = fs.readJSONSync(
+        path.resolve(process.cwd(), 'package.json')
+      );
+      expect(rootPkg.devDependencies).toHaveProperty('@re-space/cli');
+      expect(rootPkg.devDependencies).toHaveProperty('routeshub');
+      expect(output.code).toBe(0);
+    });
+
+    it('should install nothing but dev dependencies in the root', () => {
+      const output = smartExec(
+        'node ../../dist/src/bin/index.js install @re-space/cli routeshub -D'
+      );
+      const rootPkg = fs.readJSONSync(
+        path.resolve(process.cwd(), 'package.json')
+      );
+      const packagePkg = fs.readJSONSync(
+        path.resolve(
+          process.cwd(),
+          'packages',
+          'install-example',
+          'package.json'
+        )
+      );
+
+      Object.keys({
+        ...rootPkg.dependencies,
+        ...rootPkg.peerDependencies,
+        ...packagePkg.dependencies,
+        ...packagePkg.devDependencies,
+        ...packagePkg.peerDependencies
+      }).forEach(dep => {
+        expect(dep).not.toBe('@re-space/cli');
+        expect(dep).not.toBe('routeshub');
+      });
+      expect(output.code).toBe(0);
+    });
   });
 
-  it('should have caret (^) in the package', () => {
-    const cwd = process.cwd();
-    const packageDir = path.resolve(cwd, 'packages', 'install-example');
-    process.chdir(packageDir);
-    const output = smartExec(
-      'node ../../../../dist/src/bin/index.js install routeshub --no-lockfile',
-      { noCache: true }
-    );
-    process.chdir(cwd);
-    const packagePkg = fs.readJSONSync(
-      path.resolve(packageDir, 'package.json')
-    );
+  describe('when run in package: install @re-space/cli routeshub', () => {
+    addAfter();
 
-    expect(packagePkg.peerDependencies.routeshub[0]).toBe('^');
-    expect(packagePkg.peerDependencies.routeshub[0]).not.toBe('~');
-    expect(output.code).toBe(0);
+    it('should install peer dependencies in the package and prod in the root', () => {
+      const cwd = process.cwd();
+      const packageDir = path.resolve(cwd, 'packages', 'install-example');
+      process.chdir(packageDir);
+      const output = smartExec(
+        'node ../../../../dist/src/bin/index.js install @re-space/cli routeshub'
+      );
+      process.chdir(cwd);
+      const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
+      const packagePkg = fs.readJSONSync(
+        path.resolve(packageDir, 'package.json')
+      );
+
+      expect(rootPkg.dependencies).toHaveProperty('@re-space/cli');
+      expect(rootPkg.dependencies).toHaveProperty('routeshub');
+      expect(packagePkg.peerDependencies).toHaveProperty('@re-space/cli');
+      expect(packagePkg.peerDependencies).toHaveProperty('routeshub');
+      expect(output.code).toBe(0);
+    });
+
+    it('should install nothing but peer dependencies in the package and prod in the root', () => {
+      const cwd = process.cwd();
+      const packageDir = path.resolve(cwd, 'packages', 'install-example');
+      process.chdir(packageDir);
+      const output = smartExec(
+        'node ../../../../dist/src/bin/index.js install @re-space/cli routeshub'
+      );
+      process.chdir(cwd);
+      const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
+      const packagePkg = fs.readJSONSync(
+        path.resolve(packageDir, 'package.json')
+      );
+
+      Object.keys({
+        ...rootPkg.devDependencies,
+        ...rootPkg.peerDependencies,
+        ...packagePkg.dependencies,
+        ...packagePkg.devDependencies
+      }).forEach(dep => {
+        expect(dep).not.toBe('@re-space/cli');
+        expect(dep).not.toBe('routeshub');
+      });
+      expect(output.code).toBe(0);
+    });
+
+    it('should have caret (^) in the package', () => {
+      const cwd = process.cwd();
+      const packageDir = path.resolve(cwd, 'packages', 'install-example');
+      process.chdir(packageDir);
+      const output = smartExec(
+        'node ../../../../dist/src/bin/index.js install @re-space/cli routeshub'
+      );
+      process.chdir(cwd);
+      const packagePkg = fs.readJSONSync(
+        path.resolve(packageDir, 'package.json')
+      );
+
+      expect(packagePkg.peerDependencies.routeshub[0]).toBe('^');
+      expect(packagePkg.peerDependencies.routeshub[0]).not.toBe('~');
+      expect(packagePkg.peerDependencies['@re-space/cli'][0]).toBe('^');
+      expect(packagePkg.peerDependencies['@re-space/cli'][0]).not.toBe('~');
+      expect(output.code).toBe(0);
+    });
+  });
+
+  describe('when run in package: install @re-space/cli routeshub -D', () => {
+    addAfter();
+
+    it('should install dev dependencies for package and root', () => {
+      const cwd = process.cwd();
+      const packageDir = path.resolve(cwd, 'packages', 'install-example');
+      process.chdir(packageDir);
+      const output = smartExec(
+        'node ../../../../dist/src/bin/index.js install @re-space/cli routeshub -D'
+      );
+      process.chdir(cwd);
+      const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
+      const packagePkg = fs.readJSONSync(
+        path.resolve(packageDir, 'package.json')
+      );
+
+      expect(rootPkg.devDependencies).toHaveProperty('@re-space/cli');
+      expect(rootPkg.devDependencies).toHaveProperty('routeshub');
+      expect(packagePkg.devDependencies).toHaveProperty('@re-space/cli');
+      expect(packagePkg.devDependencies).toHaveProperty('routeshub');
+      expect(output.code).toBe(0);
+    });
+
+    it('should install nothing but dev dependencies for package and root', () => {
+      const cwd = process.cwd();
+      const packageDir = path.resolve(cwd, 'packages', 'install-example');
+      process.chdir(packageDir);
+      const output = smartExec(
+        'node ../../../../dist/src/bin/index.js install @re-space/cli routeshub -D'
+      );
+      process.chdir(cwd);
+      const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
+      const packagePkg = fs.readJSONSync(
+        path.resolve(packageDir, 'package.json')
+      );
+
+      Object.keys({
+        ...rootPkg.dependencies,
+        ...rootPkg.peerDependencies,
+        ...packagePkg.dependencies,
+        ...packagePkg.peerDependencies
+      }).forEach(dep => {
+        expect(dep).not.toBe('@re-space/cli');
+        expect(dep).not.toBe('routeshub');
+      });
+      expect(output.code).toBe(0);
+    });
   });
 });
