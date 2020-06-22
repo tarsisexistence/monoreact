@@ -5,8 +5,8 @@ module.exports = {
   testPathIgnorePatterns: [
     '/node_modules/',
     '<rootDir>/templates/',
-    '<rootDir>/test/.*/fixtures/',
-    '<rootDir>/staging/*'
+    '<rootDir>/test/.staging/*',
+    '<rootDir>/test/.*/fixtures/'
   ],
-  moduleFileExtensions: ['ts', 'js', 'json', 'jsx', 'node']
+  moduleFileExtensions: ['ts', 'js', 'json', 'jsx', 'tsx', 'node']
 };

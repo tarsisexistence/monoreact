@@ -21,8 +21,8 @@ describe('[bin.build.invalid]', () => {
     teardownStage(fixtureName);
   });
 
-  it('should not compile with exit code 1 when build failed', () => {
-    const output = smartExec('node ../../dist/src/bin/index.js build');
+  it('should not compile when build failed', () => {
+    const output = smartExec('node ../../../dist/src/bin/index.js build');
     expect(output.code).toBe(1);
   });
 });
