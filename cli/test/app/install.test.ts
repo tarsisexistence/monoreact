@@ -14,6 +14,7 @@ const testDir = 'app';
 const fixtureName = 'app-install';
 
 describe('[bin.app.install]', () => {
+  let stagingCwd = '';
   let rootPkgPath = '';
   let packagePkgPath = '';
   let rootPkg = {};
@@ -22,9 +23,10 @@ describe('[bin.app.install]', () => {
   beforeAll(() => {
     teardownStage(fixtureName);
     setupStage(testDir, fixtureName);
-    rootPkgPath = path.resolve(process.cwd(), 'package.json');
+    stagingCwd = process.cwd();
+    rootPkgPath = path.resolve(stagingCwd, 'package.json');
     packagePkgPath = path.resolve(
-      process.cwd(),
+      stagingCwd,
       'packages',
       'install-example',
       'package.json'
@@ -60,10 +62,7 @@ describe('[bin.app.install]', () => {
       const output = smartExec(
         'node ../../../dist/src/bin/index.js install @re-space/cli routeshub'
       );
-      const rootPkg = fs.readJSONSync(
-        path.resolve(process.cwd(), 'package.json')
-      );
-
+      const rootPkg = fs.readJSONSync(rootPkgPath);
       expect(rootPkg.dependencies).toHaveProperty('@re-space/cli');
       expect(rootPkg.dependencies).toHaveProperty('routeshub');
       expect(output.code).toBe(0);
@@ -73,17 +72,8 @@ describe('[bin.app.install]', () => {
       const output = smartExec(
         'node ../../../dist/src/bin/index.js install @re-space/cli routeshub'
       );
-      const rootPkg = fs.readJSONSync(
-        path.resolve(process.cwd(), 'package.json')
-      );
-      const packagePkg = fs.readJSONSync(
-        path.resolve(
-          process.cwd(),
-          'packages',
-          'install-example',
-          'package.json'
-        )
-      );
+      const rootPkg = fs.readJSONSync(rootPkgPath);
+      const packagePkg = fs.readJSONSync(packagePkgPath);
       Object.keys({
         ...rootPkg.devDependencies,
         ...rootPkg.peerDependencies,
@@ -101,10 +91,7 @@ describe('[bin.app.install]', () => {
       const output = smartExec(
         'node ../../../dist/src/bin/index.js install @re-space/cli routeshub'
       );
-      const rootPkg = fs.readJSONSync(
-        path.resolve(process.cwd(), 'package.json')
-      );
-
+      const rootPkg = fs.readJSONSync(rootPkgPath);
       expect(rootPkg.dependencies.routeshub[0]).not.toBe('^');
       expect(rootPkg.dependencies.routeshub[0]).not.toBe('~');
       expect(rootPkg.dependencies['@re-space/cli'][0]).not.toBe('^');
@@ -120,9 +107,7 @@ describe('[bin.app.install]', () => {
       const output = smartExec(
         'node ../../../dist/src/bin/index.js install @re-space/cli routeshub -D'
       );
-      const rootPkg = fs.readJSONSync(
-        path.resolve(process.cwd(), 'package.json')
-      );
+      const rootPkg = fs.readJSONSync(rootPkgPath);
       expect(rootPkg.devDependencies).toHaveProperty('@re-space/cli');
       expect(rootPkg.devDependencies).toHaveProperty('routeshub');
       expect(output.code).toBe(0);
@@ -132,18 +117,8 @@ describe('[bin.app.install]', () => {
       const output = smartExec(
         'node ../../../dist/src/bin/index.js install @re-space/cli routeshub -D'
       );
-      const rootPkg = fs.readJSONSync(
-        path.resolve(process.cwd(), 'package.json')
-      );
-      const packagePkg = fs.readJSONSync(
-        path.resolve(
-          process.cwd(),
-          'packages',
-          'install-example',
-          'package.json'
-        )
-      );
-
+      const rootPkg = fs.readJSONSync(rootPkgPath);
+      const packagePkg = fs.readJSONSync(packagePkgPath);
       Object.keys({
         ...rootPkg.dependencies,
         ...rootPkg.peerDependencies,
@@ -162,17 +137,18 @@ describe('[bin.app.install]', () => {
     addAfter();
 
     it('should install peer dependencies in the package and prod in the root', () => {
-      const cwd = process.cwd();
-      const packageDir = path.resolve(cwd, 'packages', 'install-example');
-      process.chdir(packageDir);
+      const packageDir = path.resolve(
+        stagingCwd,
+        'packages',
+        'install-example'
+      );
+      shell.cd(packageDir);
       const output = smartExec(
         'node ../../../../../dist/src/bin/index.js install @re-space/cli routeshub'
       );
-      process.chdir(cwd);
-      const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
-      const packagePkg = fs.readJSONSync(
-        path.resolve(packageDir, 'package.json')
-      );
+      shell.cd(stagingCwd);
+      const rootPkg = fs.readJSONSync(rootPkgPath);
+      const packagePkg = fs.readJSONSync(packagePkgPath);
 
       expect(rootPkg.dependencies).toHaveProperty('@re-space/cli');
       expect(rootPkg.dependencies).toHaveProperty('routeshub');
@@ -182,17 +158,18 @@ describe('[bin.app.install]', () => {
     });
 
     it('should install nothing but peer dependencies in the package and prod in the root', () => {
-      const cwd = process.cwd();
-      const packageDir = path.resolve(cwd, 'packages', 'install-example');
-      process.chdir(packageDir);
+      const packageDir = path.resolve(
+        stagingCwd,
+        'packages',
+        'install-example'
+      );
+      shell.cd(packageDir);
       const output = smartExec(
         'node ../../../../../dist/src/bin/index.js install @re-space/cli routeshub'
       );
-      process.chdir(cwd);
-      const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
-      const packagePkg = fs.readJSONSync(
-        path.resolve(packageDir, 'package.json')
-      );
+      shell.cd(stagingCwd);
+      const rootPkg = fs.readJSONSync(rootPkgPath);
+      const packagePkg = fs.readJSONSync(packagePkgPath);
 
       Object.keys({
         ...rootPkg.devDependencies,
@@ -207,16 +184,17 @@ describe('[bin.app.install]', () => {
     });
 
     it('should have caret (^) in the package', () => {
-      const cwd = process.cwd();
-      const packageDir = path.resolve(cwd, 'packages', 'install-example');
-      process.chdir(packageDir);
+      const packageDir = path.resolve(
+        stagingCwd,
+        'packages',
+        'install-example'
+      );
+      shell.cd(packageDir);
       const output = smartExec(
         'node ../../../../../dist/src/bin/index.js install @re-space/cli routeshub'
       );
-      process.chdir(cwd);
-      const packagePkg = fs.readJSONSync(
-        path.resolve(packageDir, 'package.json')
-      );
+      shell.cd(stagingCwd);
+      const packagePkg = fs.readJSONSync(packagePkgPath);
 
       expect(packagePkg.peerDependencies.routeshub[0]).toBe('^');
       expect(packagePkg.peerDependencies.routeshub[0]).not.toBe('~');
@@ -230,18 +208,18 @@ describe('[bin.app.install]', () => {
     addAfter();
 
     it('should install dev dependencies for package and root', () => {
-      const cwd = process.cwd();
-      const packageDir = path.resolve(cwd, 'packages', 'install-example');
-      process.chdir(packageDir);
+      const packageDir = path.resolve(
+        stagingCwd,
+        'packages',
+        'install-example'
+      );
+      shell.cd(packageDir);
       const output = smartExec(
         'node ../../../../../dist/src/bin/index.js install @re-space/cli routeshub -D'
       );
-      process.chdir(cwd);
-      const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
-      const packagePkg = fs.readJSONSync(
-        path.resolve(packageDir, 'package.json')
-      );
-
+      shell.cd(stagingCwd);
+      const rootPkg = fs.readJSONSync(rootPkgPath);
+      const packagePkg = fs.readJSONSync(packagePkgPath);
       expect(rootPkg.devDependencies).toHaveProperty('@re-space/cli');
       expect(rootPkg.devDependencies).toHaveProperty('routeshub');
       expect(packagePkg.devDependencies).toHaveProperty('@re-space/cli');
@@ -250,17 +228,18 @@ describe('[bin.app.install]', () => {
     });
 
     it('should install nothing but dev dependencies for package and root', () => {
-      const cwd = process.cwd();
-      const packageDir = path.resolve(cwd, 'packages', 'install-example');
-      process.chdir(packageDir);
+      const packageDir = path.resolve(
+        stagingCwd,
+        'packages',
+        'install-example'
+      );
+      shell.cd(packageDir);
       const output = smartExec(
         'node ../../../../../dist/src/bin/index.js install @re-space/cli routeshub -D'
       );
-      process.chdir(cwd);
-      const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
-      const packagePkg = fs.readJSONSync(
-        path.resolve(packageDir, 'package.json')
-      );
+      shell.cd(stagingCwd);
+      const rootPkg = fs.readJSONSync(rootPkgPath);
+      const packagePkg = fs.readJSONSync(packagePkgPath);
 
       Object.keys({
         ...rootPkg.dependencies,
