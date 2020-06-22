@@ -9,6 +9,11 @@ import {
 import { logError } from './error.utils';
 import { PACKAGE_JSON } from '../constants/package.const';
 
+const isWorkspaceRoot = (pkg: CLI.Package.WorkspaceRootPackageJSON) =>
+  pkg.workspaces !== undefined && pkg.private;
+const isWorkspacePackage = (pkg: CLI.Package.WorkspacePackageJSON) =>
+  pkg.workspace && !pkg.private;
+
 export const getWorkspacePackageDirs = (
   workspaces: YarnWorkspaces.Workspaces
 ): YarnWorkspaces.Packages => {
@@ -34,6 +39,26 @@ export const getWorkspacePackageSetupPath = (
   );
   return packageSetupPath === rootPath ? 'packages' : packageSetupPath;
 };
+
+export async function getWorkspacesInfo(): Promise<CLI.Package.PackageInfo[]> {
+  const rootDir = await findWorkspaceRootDir();
+  const yarnWorkspacesJsonInfo = exec('yarn workspaces --json info', {
+    cwd: rootDir,
+    silent: true
+  }).stdout.trim();
+  const yarnWorkspaces = JSON.parse(JSON.parse(yarnWorkspacesJsonInfo).data);
+
+  return Object.keys(yarnWorkspaces).reduce(
+    (packages: CLI.Package.PackageInfo[], name: string) => [
+      ...packages,
+      {
+        name,
+        location: path.resolve(rootDir, yarnWorkspaces[name].location)
+      }
+    ],
+    []
+  );
+}
 
 export const includePackageIntoWorkspaces = ({
   packages,
@@ -72,82 +97,78 @@ export const updateYarnWorkspacesDeclaration = (
   return workspaces;
 };
 
-async function findWorkspaceDir<TPackageJson>(
-  possiblePath: string,
-  conditionCallback: (pkg: TPackageJson) => boolean
-): Promise<string | null> {
-  // the path is too small
-  if (possiblePath.length < 10) {
-    return null;
-  }
-
-  const packageJsonPath = path.resolve(possiblePath, PACKAGE_JSON);
-  return fs.existsSync(packageJsonPath) &&
-    conditionCallback((await fs.readJSON(packageJsonPath)) as TPackageJson)
-    ? possiblePath
-    : findWorkspaceDir(path.resolve(possiblePath, '..'), conditionCallback);
-}
-
 export const findWorkspaceRootDir = async (
   intercept = false
 ): Promise<string> => {
-  const dir = await findWorkspaceDir<CLI.Package.WorkspaceRootPackageJSON>(
-    await fs.realpath(process.cwd()),
-    pkg => pkg.workspaces !== undefined && pkg.private
-  );
+  const dir = await find(await fs.realpath(process.cwd()));
 
-  if (dir === null) {
-    const workspaceError = new NotFoundWorkspaceRootError();
-
-    if (intercept) {
-      throw workspaceError;
-    } else {
-      logError(workspaceError);
-      process.exit(1);
-    }
+  if (dir !== null) {
+    return dir;
   }
 
-  return dir;
+  const workspaceError = new NotFoundWorkspaceRootError();
+
+  if (intercept) {
+    throw workspaceError;
+  } else {
+    logError(workspaceError);
+    process.exit(1);
+  }
+
+  async function find(possiblePath: string): Promise<string | null> {
+    const isPathTooSmall = possiblePath.length < 10;
+    const packageJsonPath = path.resolve(possiblePath, PACKAGE_JSON);
+
+    if (isPathTooSmall) {
+      return null;
+    }
+
+    return fs.existsSync(packageJsonPath) &&
+      isWorkspaceRoot(await fs.readJSON(packageJsonPath))
+      ? possiblePath
+      : find(path.resolve(possiblePath, '..'));
+  }
 };
 
 export const findWorkspacePackageDir = async (
   intercept = false
 ): Promise<string> => {
-  const dir = await findWorkspaceDir<CLI.Package.WorkspacePackageJSON>(
-    await fs.realpath(process.cwd()),
-    pkg => pkg.workspace && !pkg.private
-  );
+  const dir = await find(await fs.realpath(process.cwd()));
 
-  if (dir === null) {
-    const workspaceError = new NotFoundPackageWorkspaceError();
-
-    if (intercept) {
-      throw workspaceError;
-    } else {
-      logError(workspaceError);
-      process.exit(1);
-    }
+  if (dir !== null) {
+    return dir;
   }
 
-  return dir;
+  const workspaceError = new NotFoundPackageWorkspaceError();
+
+  if (intercept) {
+    throw workspaceError;
+  } else {
+    logError(workspaceError);
+    process.exit(1);
+  }
+
+  async function find(possiblePath: string): Promise<string | null> {
+    const packageJsonPath = path.resolve(possiblePath, PACKAGE_JSON);
+    let pkg: CLI.Package.AnyPackageJson = {} as CLI.Package.AnyPackageJson;
+
+    if (fs.existsSync(packageJsonPath)) {
+      pkg = await fs.readJSON(packageJsonPath);
+    }
+
+    const isPathTooSmall = possiblePath.length < 10;
+    const isRoot = isWorkspaceRoot(pkg);
+    const isPackage = isWorkspacePackage(pkg);
+
+    switch (true) {
+      case isPathTooSmall || isRoot:
+        return null;
+
+      case isPackage:
+        return possiblePath;
+
+      default:
+        return find(path.resolve(possiblePath, '..'));
+    }
+  }
 };
-
-export async function getWorkspacesInfo(): Promise<CLI.Package.PackageInfo[]> {
-  const rootDir = await findWorkspaceRootDir();
-  const yarnWorkspacesJsonInfo = exec('yarn workspaces --json info', {
-    cwd: rootDir,
-    silent: true
-  }).stdout.trim();
-  const yarnWorkspaces = JSON.parse(JSON.parse(yarnWorkspacesJsonInfo).data);
-
-  return Object.keys(yarnWorkspaces).reduce(
-    (packages: CLI.Package.PackageInfo[], name: string) => [
-      ...packages,
-      {
-        name,
-        location: path.resolve(rootDir, yarnWorkspaces[name].location)
-      }
-    ],
-    []
-  );
-}

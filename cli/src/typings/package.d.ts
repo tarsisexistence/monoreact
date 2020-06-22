@@ -34,6 +34,10 @@ declare namespace CLI.Package {
     peerDependencies?: Dependencies;
   }
 
+  type AnyPackageJson = CLI.Package.BasePackageJSON &
+    CLI.Package.WorkspaceRootPackageJSON &
+    CLI.Package.WorkspacePackageJSON;
+
   type Author =
     | string
     | {
