@@ -11,7 +11,7 @@ shell.config.silent = false;
 const testDir = 'execution';
 const fixtureName = 'build-jsx';
 
-describe('[bin.build.jsx]', () => {
+describe('[bin.execution.build.jsx]', () => {
   beforeAll(() => {
     teardownStage(fixtureName);
     setupStage(testDir, fixtureName);

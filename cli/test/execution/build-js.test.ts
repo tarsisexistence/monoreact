@@ -11,7 +11,7 @@ shell.config.silent = false;
 const testDir = 'execution';
 const fixtureName = 'build-js';
 
-describe('[bin.build.js]', () => {
+describe('[bin.execution.build.js]', () => {
   beforeAll(() => {
     teardownStage(fixtureName);
     setupStage(testDir, fixtureName);

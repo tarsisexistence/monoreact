@@ -11,7 +11,7 @@ shell.config.silent = false;
 const testDir = 'execution';
 const fixtureName = 'test-default';
 
-describe('[bin.test.default]', () => {
+describe('[bin.execution.test.default]', () => {
   beforeAll(() => {
     teardownStage(fixtureName);
     setupStage(testDir, fixtureName);

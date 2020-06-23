@@ -11,7 +11,7 @@ shell.config.silent = false;
 const testDir = 'execution';
 const fixtureName = 'build-invalid';
 
-describe('[bin.build.invalid]', () => {
+describe('[bin.execution.build.invalid]', () => {
   beforeAll(() => {
     teardownStage(fixtureName);
     setupStage(testDir, fixtureName);

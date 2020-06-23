@@ -12,7 +12,7 @@ shell.config.silent = false;
 const testDir = 'execution';
 const fixtureName = 'build-custom';
 
-describe('[bin.build.custom]', () => {
+describe('[bin.execution.build.custom]', () => {
   beforeAll(() => {
     teardownStage(fixtureName);
     setupStage(testDir, fixtureName);

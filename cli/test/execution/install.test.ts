@@ -13,7 +13,7 @@ shell.config.silent = false;
 const testDir = 'execution';
 const fixtureName = 'app-install';
 
-describe('[bin.app.install]', () => {
+describe('[bin.execution.install]', () => {
   let stagingCwd = '';
   let rootPkgPath = '';
   let packagePkgPath = '';
