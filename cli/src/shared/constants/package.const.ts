@@ -19,8 +19,7 @@ export const REACT_TEMPLATE_DEPENDENCIES: Pick<
   'peerDependencies'
 > = {
   peerDependencies: {
-    react: '*',
-    'react-dom': '*'
+    react: '*'
   }
 };
 
