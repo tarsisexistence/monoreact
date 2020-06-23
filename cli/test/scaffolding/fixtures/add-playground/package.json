@@ -1,0 +1,27 @@
+{
+  "name": "add-playground",
+  "version": "0.1.0",
+  "private": false,
+  "license": "MIT",
+  "author": "maktarsis",
+  "module": "dist/bundle.js",
+  "source": "src/publicApi.ts",
+  "types": "dist/publicApi.d.ts",
+  "scripts": {
+    "build": "re-space build",
+    "lint": "re-space lint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "prepublishOnly": "yarn build",
+    "start": "re-space serve",
+    "stylelint": "npx stylelint \"src/**/*.{css,sass,scss}\"",
+    "test": "re-space test --passWithNoTests"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "@re-space/example": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "workspace": true
+}
