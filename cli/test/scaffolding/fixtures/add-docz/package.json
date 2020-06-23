@@ -17,7 +17,6 @@
   },
   "peerDependencies": {
     "react": "*",
-    "react-dom": "*",
     "@re-space/example": "*"
   },
   "publishConfig": {

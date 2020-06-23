@@ -1,0 +1,16 @@
+{
+  "name": "scaffolding-generate",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "author": "maktarsis",
+  "workspaces": [],
+  "scripts": {
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "lint": "re-space lint",
+    "start": "react-scripts start",
+    "stylelint": "stylelint \"src/**/*.{css,sass,scss}\"",
+    "test": "react-scripts test"
+  }
+}
