@@ -26,7 +26,7 @@ export const installBinCommand = (prog: Sade): void => {
 
       try {
         const workspacePackage = await findWorkspacePackageDir(true);
-        const installPackageArgs = ['add', '--peer'];
+        const installPackageArgs = ['add'];
 
         if (dev) {
           installPackageArgs.push('--dev');
