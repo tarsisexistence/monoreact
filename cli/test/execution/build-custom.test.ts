@@ -6,7 +6,7 @@ import { smartExec } from '../../src/shared/utils/shell.utils';
 
 shell.config.silent = false;
 
-const testDir = 'build';
+const testDir = 'execution';
 const fixtureName = 'build-custom';
 
 describe('[bin.build.custom]', () => {

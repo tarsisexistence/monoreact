@@ -5,10 +5,10 @@ import { smartExec } from '../../src/shared/utils/shell.utils';
 
 shell.config.silent = false;
 
-const testDir = 'build';
-const fixtureName = 'build-js';
+const testDir = 'execution';
+const fixtureName = 'build-default';
 
-describe('[bin.build.js]', () => {
+describe('[bin.build.default]', () => {
   beforeAll(() => {
     teardownStage(fixtureName);
     setupStage(testDir, fixtureName);

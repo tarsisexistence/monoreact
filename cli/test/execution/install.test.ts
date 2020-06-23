@@ -10,7 +10,7 @@ import { smartExec } from '../../src/shared/utils/shell.utils';
 
 shell.config.silent = false;
 
-const testDir = 'app';
+const testDir = 'execution';
 const fixtureName = 'app-install';
 
 describe('[bin.app.install]', () => {

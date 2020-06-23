@@ -1,17 +1,14 @@
 import * as shell from 'shelljs';
 
-import {
-  setupStage,
-  teardownStage
-} from '../../src/shared/utils/fixture.utils';
+import { setupStage, teardownStage } from '../../src/shared/utils/fixture.utils';
 import { smartExec } from '../../src/shared/utils/shell.utils';
 
 shell.config.silent = false;
 
-const testDir = 'build';
-const fixtureName = 'build-jsx';
+const testDir = 'execution';
+const fixtureName = 'build-js';
 
-describe('[bin.build.jsx]', () => {
+describe('[bin.build.js]', () => {
   beforeAll(() => {
     teardownStage(fixtureName);
     setupStage(testDir, fixtureName);
@@ -33,16 +30,9 @@ describe('[bin.build.jsx]', () => {
     expect(output.code).toBe(0);
   });
 
-  it('should compile declaration typescript files for js/jsx/ts/tsx', () => {
+  it('should compile declaration typescript file for entry point', () => {
     const output = smartExec('node ../../../dist/src/bin/index.js build');
-
     expect(shell.test('-f', 'dist/publicApi.d.ts')).toBeTruthy();
-    expect(shell.test('-f', 'dist/utils/capitalize.d.ts')).toBeTruthy();
-    expect(shell.test('-f', 'dist/utils/noop.d.ts')).toBeTruthy();
-    expect(shell.test('-f', 'dist/utils/products.d.ts')).toBeTruthy();
-    expect(shell.test('-f', 'dist/components/BuyButton.d.ts')).toBeTruthy();
-    expect(shell.test('-f', 'dist/components/Products.d.ts')).toBeTruthy();
-
     expect(output.code).toBe(0);
   });
 

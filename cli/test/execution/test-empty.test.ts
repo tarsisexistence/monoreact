@@ -8,7 +8,7 @@ import { smartExec } from '../../src/shared/utils/shell.utils';
 
 shell.config.silent = false;
 
-const testDir = 'test';
+const testDir = 'execution';
 const fixtureName = 'test-empty';
 
 describe('[bin.test.empty]', () => {
