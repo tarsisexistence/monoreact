@@ -31,13 +31,17 @@ export const getWorkspacePackageDirs = (
 export const getWorkspacePackageSetupPath = (
   packages: YarnWorkspaces.Packages
 ): string => {
-  const rootPath = '/';
-  const packageSetupPath = packages.reduce(
-    (path, pkg) =>
-      pkg[pkg.length - 1] === '*' ? pkg.slice(0, pkg.length - 2) : path,
-    rootPath
-  );
-  return packageSetupPath === rootPath ? 'packages' : packageSetupPath;
+  if (packages.length === 0) {
+    return 'packages';
+  }
+
+  const wildcard = packages.find(pkg => pkg[pkg.length - 1] === '*');
+
+  if (wildcard !== undefined) {
+    return wildcard.slice(0, wildcard.length - 2);
+  }
+
+  return packages[0].split('/').filter(Boolean).slice(0, -1).join('/');
 };
 
 export async function getWorkspacesInfo(): Promise<CLI.Package.PackageInfo[]> {
@@ -69,8 +73,10 @@ export const includePackageIntoWorkspaces = ({
   packageName: string;
   setupPath: string;
 }): YarnWorkspaces.Packages => {
-  const packageWorkspacePath = `${setupPath}/${packageName}`;
-  const workspacesSetupWildcard = `${setupPath}/*`;
+  const packageWorkspacePath =
+    setupPath === '' ? packageName : `${setupPath}/${packageName}`;
+  const workspacesSetupWildcard = setupPath === '' ? '*' : `${setupPath}/*`;
+
   for (const pkg of packages) {
     if (pkg === workspacesSetupWildcard || pkg === packageWorkspacePath) {
       return packages;
