@@ -1,5 +1,5 @@
 {
-  "name": "app-install",
+  "name": "execution-install",
   "version": "0.1.0",
   "private": true,
   "workspaces": [

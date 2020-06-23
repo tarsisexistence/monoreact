@@ -1,5 +1,5 @@
 {
-  "name": "app-install-example",
+  "name": "install-example",
   "version": "0.1.0",
   "private": false,
   "module": "dist/bundle.js",
