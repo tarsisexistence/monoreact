@@ -19,7 +19,6 @@ export function workspacesTestBinCommand(prog: Sade): void {
     .option('exclude', 'Exclude specific workspaces', '')
     .example('workspaces test --exclude workspace1,workspace2,workspace3')
     .action(async ({ exclude }: CLI.Options.Workspaces) => {
-      // TODO: add flag to test in parallel
       const { chunks, packagesLocationMap } = await exposeWorkspacesInfo();
       const excluded = convertStringArrayIntoMap(exclude);
       excluded.set(packageJson.name, true);

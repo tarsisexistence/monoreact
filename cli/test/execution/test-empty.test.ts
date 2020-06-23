@@ -27,7 +27,9 @@ describe('[bin.test.empty]', () => {
   });
 
   it('should fail with exit code 0 with --passWithNoTests', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js test --passWithNoTests');
+    const output = smartExec(
+      'node ../../../dist/src/bin/index.js test --passWithNoTests'
+    );
     expect(output.code).toBe(0);
   });
 });
