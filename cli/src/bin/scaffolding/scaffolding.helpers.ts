@@ -21,9 +21,7 @@ export const createPackageJson = ({
     | CLI.Package.WorkspacePackageJSON
     | CLI.Package.WorkspaceRootPackageJSON;
 }): Promise<void> =>
-  fs.outputJSON(path.resolve(dir, PACKAGE_JSON), preset, {
-    spaces: 2
-  });
+  fs.outputJSON(path.resolve(dir, PACKAGE_JSON), preset, { spaces: 2 });
 
 function getNpmAuthorName(): CLI.Package.Author {
   let author = '';
@@ -83,9 +81,7 @@ export const copyTemplate = ({
   fs.copy(
     path.resolve(__dirname, `../../../../templates/${bin}/${template}`),
     dir,
-    {
-      overwrite: false
-    }
+    { overwrite: false }
   );
 
 export const getSafeName = async ({

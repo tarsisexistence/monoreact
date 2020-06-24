@@ -26,6 +26,7 @@ export function workspacesLintBinCommand(prog: Sade): void {
     .option('exclude', 'Exclude specific workspaces', '')
     .example('workspaces lint --exclude workspace1,workspace2,workspace3')
     .action(async ({ exclude, fix }: CLI.Options.Workspaces) => {
+      // TODO: check boolean
       const shouldFix = normalizeBoolCLI(fix);
       const { chunks, packagesLocationMap } = await exposeWorkspacesInfo();
       const excluded = convertStringArrayIntoMap(exclude);
