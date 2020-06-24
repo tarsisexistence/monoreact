@@ -18,7 +18,6 @@ describe('[bin.scaffolding.generate-react]', () => {
   beforeAll(() => {
     teardownStage(fixtureName);
     setupStage(testDir, fixtureName, template);
-    shell.exec('yarn install');
   });
 
   afterAll(() => {

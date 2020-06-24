@@ -17,7 +17,6 @@ describe('[bin.scaffolding.generate-wildcard-location]', () => {
   beforeAll(() => {
     teardownStage(fixtureName);
     setupStage(testDir, fixtureName);
-    shell.exec('yarn install');
   });
 
   afterAll(() => {
