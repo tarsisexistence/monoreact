@@ -1,7 +1,8 @@
 /* eslint-disable sonarjs/no-duplicate-string */
 import {
   getWorkspacePackageSetupPath,
-  getWorkspacesFromDeclaration
+  getWorkspacesFromDeclaration,
+  includePackageIntoWorkspaces
 } from './workspace.utils';
 
 describe('[utils.workspace]', () => {
@@ -92,6 +93,78 @@ describe('[utils.workspace]', () => {
           'b'
         ])
       ).toBe('otherPackages');
+    });
+  });
+
+  describe('includePackageIntoWorkspaces', () => {
+    test('should return the same input when it covers wildcard with empty "" path', () => {
+      expect(
+        includePackageIntoWorkspaces({
+          packages: ['*'],
+          packageName: 'components',
+          setupPath: ''
+        })
+      ).toEqual(['*']);
+    });
+
+    test('should return the same input when it covers wildcard with dot "." path', () => {
+      expect(
+        includePackageIntoWorkspaces({
+          packages: ['*'],
+          packageName: 'components',
+          setupPath: '.'
+        })
+      ).toEqual(['*']);
+    });
+
+    test('should add the package as new declaration', () => {
+      expect(
+        includePackageIntoWorkspaces({
+          packages: ['*', 'packages/*'],
+          packageName: 'components',
+          setupPath: 'workspaces'
+        })
+      ).toEqual(['*', 'packages/*', 'workspaces/components']);
+    });
+
+    test('should add the package as new declaration with "/" before setupPath', () => {
+      expect(
+        includePackageIntoWorkspaces({
+          packages: ['*', 'packages/*'],
+          packageName: 'components',
+          setupPath: '/workspaces'
+        })
+      ).toEqual(['*', 'packages/*', 'workspaces/components']);
+    });
+
+    test('should add the package as new declaration with "./" before setupPath', () => {
+      expect(
+        includePackageIntoWorkspaces({
+          packages: ['*', 'packages/*'],
+          packageName: 'components',
+          setupPath: '/workspaces'
+        })
+      ).toEqual(['*', 'packages/*', 'workspaces/components']);
+    });
+
+    test('should add the package as new declaration with "/" after setupPath', () => {
+      expect(
+        includePackageIntoWorkspaces({
+          packages: ['*', 'packages/*'],
+          packageName: 'components',
+          setupPath: 'workspaces/'
+        })
+      ).toEqual(['*', 'packages/*', 'workspaces/components']);
+    });
+
+    test('should add the package as new declaration with "/" before and after setupPath', () => {
+      expect(
+        includePackageIntoWorkspaces({
+          packages: ['*', 'packages/*'],
+          packageName: 'components',
+          setupPath: '/workspaces/'
+        })
+      ).toEqual(['*', 'packages/*', 'workspaces/components']);
     });
   });
 });
