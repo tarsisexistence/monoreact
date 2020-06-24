@@ -11,6 +11,7 @@ declare namespace CLI.Options {
 
   interface New extends BaseOptions {
     template: CLI.Setup.NewOptionType;
+    force: boolean;
   }
 
   interface Install extends BaseOptions {

@@ -1,6 +1,6 @@
 import { Sade } from 'sade';
 import ora from 'ora';
-import fs from 'fs-extra';
+import path from 'path';
 
 import { installDependencies, logError } from '../../shared/utils';
 import {
@@ -12,16 +12,21 @@ import {
 } from './scaffolding.helpers';
 import { newSetup } from './setup/new';
 import { newMessage } from '../../shared/messages';
-import { getProjectDir, getProjectName } from './new.helpers';
+import { resolveOptions } from './new.helpers';
 
 const templateOptions = Object.keys(newSetup);
 
 export const newBinCommand = (prog: Sade): void => {
   prog
-    .command('new <pkg> [dir]')
-    .describe('Create new project')
-    .alias('n')
+    .command('new <name> [dir]')
+    .describe(
+      `Create new project.
+    Project name is required.
+    Directory is optional. however, if you specify dir, then template files will be installed there, even if this folder already exists, but without overwriting.`
+    )
     .example('new projectName')
+    .example('new projectName .')
+    .example('new projectName projectDirectory')
     .option(
       't, template',
       `Specify a template.
@@ -31,33 +36,21 @@ export const newBinCommand = (prog: Sade): void => {
       'cra'
     )
     .example(`new projectName --template ${templateOptions[0]}`)
+    .option('f, force', 'Skip folder checks', false)
     .action(
       async (
         name: string,
         dir: string | undefined,
-        { template }: CLI.Options.New
+        { template, force }: CLI.Options.New
       ) => {
         const bootSpinner = ora();
-
-        const projectName = await getProjectName({
-          dir,
-          name,
-          onFailure: async (message: string) => {
-            bootSpinner.fail(message);
-          }
-        });
-        const projectDir = getProjectDir({
-          dir,
-          name: projectName
-        });
-
+        const initialDir = path.resolve(dir || name);
+        const { projectDir, projectName } = force
+          ? { projectDir: initialDir, projectName: name }
+          : await resolveOptions({ name, dir: initialDir });
         bootSpinner.start(newMessage.creating(projectDir));
 
         try {
-          if (fs.existsSync(projectDir)) {
-            throw new Error(newMessage.exists(projectDir));
-          }
-
           await copyTemplate({ dir: projectDir, bin: 'new', template });
           bootSpinner.stop();
           const author = await getAuthor();

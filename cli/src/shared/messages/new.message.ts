@@ -1,12 +1,16 @@
 import { bold, error, highlight, info, success } from '../utils';
 
+// TODO: get rid of Record<string, fn> because this is not reliable
 export const newMessage: CLI.Common.Messages = {
+  changeFolder: () => "Yes, let's choose another project name",
+  leaveCurrentFolder: () =>
+    'No, I want to create a project in this folder (without overwriting)',
+
   initial: (name: string) => name,
   existsPrompt: (dir: string) =>
     `The folder at ${error(dir)} already exists! ${bold(
       'Choose a different name'
     )}`,
-  exists: (dir: string) => `The folder already exists at ${error(dir)}`,
 
   failedPreparation: () => error('A preparation error has occurred'),
   preparing: () =>
