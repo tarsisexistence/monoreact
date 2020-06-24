@@ -15,7 +15,7 @@ const finishingTextByCommand: Record<CLI.Workspaces.Command, string> = {
   test: 'Tested'
 };
 
-export const workspacesMessage: CLI.Common.Messages = {
+export const workspacesMessage = {
   introduce: () => underline(`${packageJson.name} v${packageJson.version}`),
   running: (name: string) => details(`Running ${name}`),
 
@@ -27,4 +27,4 @@ ${info(`${startingTextByCommand[cmd]} modules...`)}`,
   failed: () => error(`Failed to compile workspaces`),
   successful: ([s, ms]: [number, number]) =>
     success('Done in ') + highlight(`${s}.${ms.toString().slice(0, 3)}s.`)
-};
+} as const;

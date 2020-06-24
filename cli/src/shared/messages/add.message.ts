@@ -1,6 +1,6 @@
 import { error, info, inverse, success } from '../utils';
 
-export const addMessage: CLI.Common.Messages = {
+export const addMessage = {
   exists: () =>
     error(`
     It seems like you already have this feature.
@@ -21,4 +21,4 @@ export const addMessage: CLI.Common.Messages = {
 
   failed: (featureName: string) =>
     `Failed to add ${error(featureName)} feature template`
-};
+} as const;

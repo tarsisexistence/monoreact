@@ -1,6 +1,6 @@
 import { bold, error, highlight, info, success } from '../utils';
 
-export const generateMessage: CLI.Common.Messages = {
+export const generateMessage = {
   copy: (name: string) => `${name}-copy`,
 
   successful: (name: string) => `Generated ${info(name)} package`,
@@ -60,4 +60,4 @@ ${pkgText}
   ${highlight('Happy coding :)')}
   `;
   }
-};
+} as const;

@@ -1,7 +1,7 @@
-export const independencyMessage: CLI.Common.Messages = {
+export const independencyMessage = {
   generating: () => 'Migrating...',
 
   successful: () => 'Migration completed successfully',
 
   failed: () => 'Failed independency migration'
-};
+} as const;

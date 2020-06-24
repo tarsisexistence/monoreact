@@ -1,7 +1,6 @@
 import { bold, error, highlight, info, success } from '../utils';
 
-// TODO: get rid of Record<string, fn> because this is not reliable
-export const newMessage: CLI.Common.Messages = {
+export const newMessage = {
   changeFolder: () => "Yes, let's choose another project name",
   leaveCurrentFolder: () =>
     'No, I want to create a project in this folder (without overwriting)',
@@ -48,4 +47,4 @@ export const newMessage: CLI.Common.Messages = {
     
   ${highlight('Happy coding :)')}
   `
-};
+} as const;
