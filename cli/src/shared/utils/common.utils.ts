@@ -18,10 +18,6 @@ export function clearConsole(): void {
 
 export const space = (): boolean => process.stdout.write('\n');
 
-export const normalizeBoolCLI = (
-  value: boolean | string | undefined
-): boolean => value === true || value === 'true';
-
 export const installDependencies = (): ShellString =>
   exec('yarn install', { silent: true });
 

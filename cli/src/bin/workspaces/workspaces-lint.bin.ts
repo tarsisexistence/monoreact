@@ -2,12 +2,7 @@ import { Sade } from 'sade';
 import execa from 'execa';
 
 import { workspacesMessage } from '../../shared/messages';
-import {
-  clearConsole,
-  logError,
-  normalizeBoolCLI,
-  space
-} from '../../shared/utils';
+import { clearConsole, logError, space } from '../../shared/utils';
 import { convertStringArrayIntoMap } from '../../shared/utils/dataStructures.utils';
 import {
   exposeWorkspacesInfo,
@@ -21,20 +16,18 @@ export function workspacesLintBinCommand(prog: Sade): void {
     .describe('Lint each workspace')
     .example('workspaces lint')
     .alias('wl')
-    .option('fix', 'Resolve fixable eslint errors')
+    .option('fix', 'Resolve fixable eslint errors', false)
     .example('workspaces lint --fix')
     .option('exclude', 'Exclude specific workspaces', '')
     .example('workspaces lint --exclude workspace1,workspace2,workspace3')
     .action(async ({ exclude, fix }: CLI.Options.Workspaces) => {
-      // TODO: check boolean
-      const shouldFix = normalizeBoolCLI(fix);
       const { chunks, packagesLocationMap } = await exposeWorkspacesInfo();
       const excluded = convertStringArrayIntoMap(exclude);
       excluded.set(packageJson.name, true);
 
       const args = ['lint', 'src/**/*.{js,jsx,ts,tsx}'];
 
-      if (shouldFix) {
+      if (fix) {
         args.push('--fix');
       }
 

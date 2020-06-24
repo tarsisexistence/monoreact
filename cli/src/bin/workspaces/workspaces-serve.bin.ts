@@ -3,12 +3,7 @@ import execa from 'execa';
 
 import { workspacesMessage } from '../../shared/messages';
 import { serveMessage } from '../../shared/messages';
-import {
-  clearConsole,
-  logError,
-  normalizeBoolCLI,
-  space
-} from '../../shared/utils';
+import { clearConsole, logError, space } from '../../shared/utils';
 import { convertStringArrayIntoMap } from '../../shared/utils/dataStructures.utils';
 import {
   exposeWorkspacesInfo,
@@ -22,15 +17,11 @@ export function workspacesServeBinCommand(prog: Sade): void {
     .describe('Serve each workspace')
     .example('workspaces serve')
     .alias('workspaces start', 'workspaces watch', 'ws')
-    .option(
-      'q, quiet',
-      'Do not print any information about builds that are in the process'
-    )
+    .option('q, quiet', 'Do not print logs', false)
     .example('workspaces serve --quiet')
     .option('exclude', 'Exclude specific workspaces')
     .example('workspaces serve --exclude  workspace1,workspace2,workspace3')
     .action(async ({ quiet, exclude }: CLI.Options.Workspaces) => {
-      const showExtraMessages = !normalizeBoolCLI(quiet);
       const { chunks, packagesLocationMap } = await exposeWorkspacesInfo();
       const excluded = convertStringArrayIntoMap(exclude);
       excluded.set(packageJson.name, true);
@@ -39,7 +30,7 @@ export function workspacesServeBinCommand(prog: Sade): void {
       console.log(workspacesMessage.introduce());
       console.log(workspacesMessage.started('serve'));
 
-      if (showExtraMessages) {
+      if (!quiet) {
         space();
       }
 
@@ -49,7 +40,7 @@ export function workspacesServeBinCommand(prog: Sade): void {
         for (const chunk of chunks) {
           await Promise.all(
             withExcludedWorkspaces(chunk, excluded).map(async name => {
-              if (showExtraMessages) {
+              if (!quiet) {
                 console.log(workspacesMessage.running(name));
               }
 
@@ -71,7 +62,7 @@ export function workspacesServeBinCommand(prog: Sade): void {
           );
         }
 
-        if (showExtraMessages) {
+        if (!quiet) {
           space();
         }
 
