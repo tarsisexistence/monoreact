@@ -45,7 +45,9 @@ describe('[bin.scaffolding.generate-basic]', () => {
     const output = smartExec(
       'node ../../../dist/src/bin/index.js generate myBasicPackage --template basic'
     );
-    expect(shell.test('-f', 'packages/myBasicPackage/src/utils.ts')).toBeTruthy();
+    expect(
+      shell.test('-f', 'packages/myBasicPackage/src/utils.ts')
+    ).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
@@ -54,7 +56,7 @@ describe('[bin.scaffolding.generate-basic]', () => {
       'node ../../../dist/src/bin/index.js generate myBasicPackage --template basic'
     );
     const packageJson = fs.readJSONSync(
-      path.resolve(process.cwd(), 'packages', 'myBasicPackage', 'package.json')
+      path.resolve('packages', 'myBasicPackage', 'package.json')
     );
     expect(packageJson).not.toHaveProperty('dependencies');
     expect(packageJson).not.toHaveProperty('devDependencies');

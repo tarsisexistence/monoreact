@@ -1,5 +1,5 @@
 import * as shell from 'shelljs';
-import { resolve } from 'path';
+import * as path from 'path';
 
 import {
   setupStage,
@@ -44,7 +44,7 @@ describe('[bin.execution.build.custom]', () => {
 
   it('should create the library correctly', () => {
     const output = smartExec('node ../../../dist/src/bin/index.js build');
-    const lib = require(resolve(process.cwd(), 'dist', 'output.js'));
+    const lib = require(path.resolve('dist', 'output.js'));
     expect(lib.foo()).toBe('bar');
     expect(lib.sum(1, 2)).toBe(3);
     expect(output.code).toBe(0);

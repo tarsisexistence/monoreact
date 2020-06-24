@@ -36,9 +36,7 @@ describe('[bin.scaffolding.generate-root-location]', () => {
     const output = smartExec(
       'node ../../../dist/src/bin/index.js generate myPackage --template basic'
     );
-    const rootPackageJson = fs.readJSONSync(
-      path.resolve(process.cwd(), 'package.json')
-    );
+    const rootPackageJson = fs.readJSONSync(path.resolve('package.json'));
     expect(rootPackageJson.workspaces).toContain('myPackage');
     expect(output.code).toBe(0);
   });

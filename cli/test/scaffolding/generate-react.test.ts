@@ -56,7 +56,7 @@ describe('[bin.scaffolding.generate-react]', () => {
       'node ../../../dist/src/bin/index.js generate myReactPackage --template react'
     );
     const packageJson = fs.readJSONSync(
-      path.resolve(process.cwd(), 'packages', 'myReactPackage', 'package.json')
+      path.resolve('packages', 'myReactPackage', 'package.json')
     );
     expect(packageJson.peerDependencies).toHaveProperty('react');
     expect(output.code).toBe(0);
@@ -67,7 +67,7 @@ describe('[bin.scaffolding.generate-react]', () => {
       'node ../../../dist/src/bin/index.js generate myReactPackage --template react'
     );
     const packageJson = fs.readJSONSync(
-      path.resolve(process.cwd(), 'packages', 'myReactPackage', 'package.json')
+      path.resolve('packages', 'myReactPackage', 'package.json')
     );
     const peerDepsWithoutReact = Object.keys(
       packageJson.peerDependencies

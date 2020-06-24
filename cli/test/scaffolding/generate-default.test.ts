@@ -9,7 +9,6 @@ import {
 import { smartExec } from '../../src/shared/utils/shell.utils';
 
 shell.config.silent = false;
-// TODO: dont forget to code the script to install fixtures node_modules
 const testDir = 'scaffolding';
 const fixtureName = 'generate-default';
 const template = 'generate';
@@ -85,9 +84,7 @@ describe('[bin.scaffolding.generate-default]', () => {
     const output = smartExec(
       'node ../../../dist/src/bin/index.js generate myPackage --template basic'
     );
-    const rootPackageJson = fs.readJSONSync(
-      path.resolve(process.cwd(), 'package.json')
-    );
+    const rootPackageJson = fs.readJSONSync(path.resolve('package.json'));
     expect(rootPackageJson.workspaces).toContain('packages/myPackage');
     expect(output.code).toBe(0);
   });
@@ -97,7 +94,7 @@ describe('[bin.scaffolding.generate-default]', () => {
       'node ../../../dist/src/bin/index.js generate myPackage --template basic'
     );
     const packageJson = fs.readJSONSync(
-      path.resolve(process.cwd(), 'packages', 'myPackage', 'package.json')
+      path.resolve('packages', 'myPackage', 'package.json')
     );
     expect(packageJson.name).toBe('@scaffolding-generate/mypackage');
     expect(output.code).toBe(0);
@@ -108,7 +105,7 @@ describe('[bin.scaffolding.generate-default]', () => {
       'node ../../../dist/src/bin/index.js generate myPackage --template basic'
     );
     const packageJson = fs.readJSONSync(
-      path.resolve(process.cwd(), 'packages', 'myPackage', 'package.json')
+      path.resolve('packages', 'myPackage', 'package.json')
     );
     expect(packageJson.private).toBeFalsy();
     expect(packageJson.workspace).toBeTruthy();
@@ -120,7 +117,7 @@ describe('[bin.scaffolding.generate-default]', () => {
       'node ../../../dist/src/bin/index.js generate myPackage --template basic'
     );
     const packageJson = fs.readJSONSync(
-      path.resolve(process.cwd(), 'packages', 'myPackage', 'package.json')
+      path.resolve('packages', 'myPackage', 'package.json')
     );
     expect(packageJson).toHaveProperty('author');
     expect(packageJson.author.length).toBeGreaterThan(0);
@@ -132,7 +129,7 @@ describe('[bin.scaffolding.generate-default]', () => {
       'node ../../../dist/src/bin/index.js generate myPackage --template basic'
     );
     const packageJson = fs.readJSONSync(
-      path.resolve(process.cwd(), 'packages', 'myPackage', 'package.json')
+      path.resolve('packages', 'myPackage', 'package.json')
     );
     expect(packageJson.module).toBe('dist/bundle.js');
     expect(packageJson.source).toBe('src/publicApi.ts');
@@ -145,7 +142,7 @@ describe('[bin.scaffolding.generate-default]', () => {
       'node ../../../dist/src/bin/index.js generate myPackage --template basic'
     );
     const packageJson = fs.readJSONSync(
-      path.resolve(process.cwd(), 'packages', 'myPackage', 'package.json')
+      path.resolve('packages', 'myPackage', 'package.json')
     );
     expect(packageJson.scripts).toHaveProperty('build');
     expect(packageJson.scripts).toHaveProperty('start');

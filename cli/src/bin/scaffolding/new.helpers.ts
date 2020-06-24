@@ -57,5 +57,3 @@ export const getProjectName = async (name: string): Promise<string> =>
     onPromptMessage: (unsafeName: string) =>
       newMessage.existsPrompt(path.resolve(unsafeName))
   });
-
-// TODO: path.resolve(process.cwd())

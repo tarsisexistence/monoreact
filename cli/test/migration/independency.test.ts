@@ -58,7 +58,7 @@ describe('[bin.migration.independency]', () => {
     const output = smartExec(
       'node ../../../dist/src/bin/index.js migration independency'
     );
-    const eslintConfig = require(path.resolve(process.cwd(), '.eslintrc.js'));
+    const eslintConfig = require(path.resolve('.eslintrc.js'));
     expect(eslintConfig).not.toHaveProperty('extends');
     expect(output.code).toBe(0);
   });

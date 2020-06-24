@@ -31,18 +31,14 @@ describe('[bin.scaffolding.add-docz]', () => {
 
   it('should have bootstrap script in the package.json', () => {
     const output = smartExec('node ../../../dist/src/bin/index.js add docz');
-    const packageJson = fs.readJSONSync(
-      path.resolve(process.cwd(), 'package.json')
-    );
+    const packageJson = fs.readJSONSync(path.resolve('package.json'));
     expect(packageJson.scripts).toHaveProperty('start:docz');
     expect(output.code).toBe(0);
   });
 
   it('should have correct bootstrap script value', () => {
     const output = smartExec('node ../../../dist/src/bin/index.js add docz');
-    const packageJson = fs.readJSONSync(
-      path.resolve(process.cwd(), 'package.json')
-    );
+    const packageJson = fs.readJSONSync(path.resolve('package.json'));
     expect(packageJson.scripts['start:docz']).toBe('docz dev -p 6010');
     expect(output.code).toBe(0);
   });
