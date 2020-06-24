@@ -73,9 +73,13 @@ export const includePackageIntoWorkspaces = ({
   packageName: string;
   setupPath: string;
 }): YarnWorkspaces.Packages => {
+  const dir = setupPath
+    .split('/')
+    .filter(segment => segment !== '.' && segment !== '')
+    .join('/');
   const packageWorkspacePath =
-    setupPath === '' ? packageName : `${setupPath}/${packageName}`;
-  const workspacesSetupWildcard = setupPath === '' ? '*' : `${setupPath}/*`;
+    dir === '' ? packageName : `${dir}/${packageName}`;
+  const workspacesSetupWildcard = dir === '' ? '*' : `${dir}/*`;
 
   for (const pkg of packages) {
     if (pkg === workspacesSetupWildcard || pkg === packageWorkspacePath) {

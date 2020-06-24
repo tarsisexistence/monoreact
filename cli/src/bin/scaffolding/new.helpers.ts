@@ -40,7 +40,6 @@ export const resolveOptions = async ({
     (await chooseDifferentPathConfirmation(dir)) === 'Yes';
 
   if (!shouldChooseDifferentPath) {
-    // TODO: should we notify the user about which files have the conflict? fs.existsSync(dir) + fs.readdirSync(dir)
     return { projectDir: dir, projectName: name };
   }
 
