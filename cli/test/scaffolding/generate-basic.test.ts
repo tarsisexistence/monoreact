@@ -18,6 +18,7 @@ describe('[bin.scaffolding.generate-basic]', () => {
   beforeAll(() => {
     teardownStage(fixtureName);
     setupStage(testDir, fixtureName, template);
+    shell.exec('yarn install');
   });
 
   afterAll(() => {

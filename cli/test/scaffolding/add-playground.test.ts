@@ -24,7 +24,9 @@ describe('[bin.scaffolding.add-playground]', () => {
   });
 
   it('should have playground folder', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js add playground');
+    const output = smartExec(
+      'node ../../../dist/src/bin/index.js add playground'
+    );
     expect(shell.test('-d', 'playground')).toBeTruthy();
     expect(output.code).toBe(0);
   });

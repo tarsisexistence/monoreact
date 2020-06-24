@@ -17,6 +17,7 @@ describe('[bin.scaffolding.generate-root-location]', () => {
   beforeAll(() => {
     teardownStage(fixtureName);
     setupStage(testDir, fixtureName);
+    shell.exec('yarn install');
   });
 
   afterAll(() => {
