@@ -1440,10 +1440,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/sade@1.7.1":
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/@types/sade/-/sade-1.7.1.tgz#a095305f076af52de9918fb37960b413af8653fa"
-  integrity sha512-uP1d3Z/+Tvicwf0hQxBY1WW/faCHHxMsvPpIS5rKcu1A7GUXFsMbvPnPpiF+YpSk9CYhGUb85P6aoDdeOmadjg==
+"@types/sade@1.7.2":
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/@types/sade/-/sade-1.7.2.tgz#d997d77fe136af56b1da289427dca82dfed6709b"
+  integrity sha512-qVHZ70gLk2tCAqRanVOBVKM8og7eBhnWx1cdHMj8J3t4QF+PzIS9+pzZWZEx9ghsO1DDeGOTgyq5aQd5Bt/2dw==
   dependencies:
     "@types/mri" "*"
 
