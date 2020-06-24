@@ -1,35 +1,35 @@
 /* eslint-disable sonarjs/no-duplicate-string */
 import {
   getWorkspacePackageSetupPath,
-  getWorkspacePackageDirs
+  getWorkspacesFromDeclaration
 } from './workspace.utils';
 
 describe('[utils.workspace]', () => {
   describe('getWorkspacePackageDirs', () => {
     test('should return empty array when there is no workspaces property', () => {
-      expect(getWorkspacePackageDirs(undefined)).toEqual([]);
+      expect(getWorkspacesFromDeclaration(undefined)).toEqual([]);
     });
 
     test('should return empty array when there is no packages inside workspaces config', () => {
-      expect(getWorkspacePackageDirs({ packages: undefined } as any)).toEqual(
-        []
-      );
+      expect(
+        getWorkspacesFromDeclaration({ packages: undefined } as any)
+      ).toEqual([]);
     });
 
     test('should return empty array when workspaces property is empty array', () => {
-      expect(getWorkspacePackageDirs([])).toEqual([]);
+      expect(getWorkspacesFromDeclaration([])).toEqual([]);
     });
 
     test('should return empty array when workspaces packages property is empty array', () => {
-      expect(getWorkspacePackageDirs({ packages: [] })).toEqual([]);
+      expect(getWorkspacesFromDeclaration({ packages: [] })).toEqual([]);
     });
 
     test('should return packages when workspaces property has them', () => {
-      expect(getWorkspacePackageDirs(['a', 'b'])).toEqual(['a', 'b']);
+      expect(getWorkspacesFromDeclaration(['a', 'b'])).toEqual(['a', 'b']);
     });
 
     test('should return packages when workspaces packages property has them', () => {
-      expect(getWorkspacePackageDirs({ packages: ['a', 'b'] })).toEqual([
+      expect(getWorkspacesFromDeclaration({ packages: ['a', 'b'] })).toEqual([
         'a',
         'b'
       ]);

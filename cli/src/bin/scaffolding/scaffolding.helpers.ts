@@ -84,7 +84,7 @@ export const copyTemplate = ({
     { overwrite: false }
   );
 
-export const getSafeName = async ({
+export const preventFolderCollisions = async ({
   basePath,
   name,
   onPromptMessage,
@@ -108,7 +108,7 @@ export const getSafeName = async ({
   });
   const newProjectName = await namePrompt.run();
 
-  return getSafeName({
+  return preventFolderCollisions({
     basePath,
     name: newProjectName,
     onPromptMessage,

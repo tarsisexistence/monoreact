@@ -14,7 +14,7 @@ const isWorkspaceRoot = (pkg: CLI.Package.WorkspaceRootPackageJSON) =>
 const isWorkspacePackage = (pkg: CLI.Package.WorkspacePackageJSON) =>
   pkg.workspace && !pkg.private;
 
-export const getWorkspacePackageDirs = (
+export const getWorkspacesFromDeclaration = (
   workspaces: YarnWorkspaces.Workspaces
 ): YarnWorkspaces.Packages => {
   if (workspaces === undefined) {

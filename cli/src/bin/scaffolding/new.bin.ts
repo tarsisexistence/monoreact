@@ -20,9 +20,9 @@ export const newBinCommand = (prog: Sade): void => {
   prog
     .command('new <name> [dir]')
     .describe(
-      `Create new project.
+      `Create a new project.
     Project name is required.
-    Directory is optional. however, if you specify dir, then template files will be installed there, even if this folder already exists, but without overwriting.`
+    Directory is optional. However, if you specify dir, then template files will be installed there, even if this folder already exists, but without overwriting.`
     )
     .example('new projectName')
     .example('new projectName .')

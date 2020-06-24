@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs-extra';
 import { Select } from 'enquirer';
 
-import { getSafeName } from './scaffolding.helpers';
+import { preventFolderCollisions } from './scaffolding.helpers';
 import { newMessage } from '../../shared/messages';
 import { error, underline } from '../../shared/utils';
 
@@ -50,7 +50,7 @@ export const resolveOptions = async ({
 };
 
 export const getProjectName = async (name: string): Promise<string> =>
-  getSafeName({
+  preventFolderCollisions({
     basePath: process.cwd(),
     name,
     onPromptInitial: newMessage.initial,
