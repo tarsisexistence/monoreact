@@ -1,6 +1,6 @@
 import { RollupError } from 'rollup';
 
-import { error as red } from './color.utils';
+import { color } from './color.utils';
 import { space } from './common.utils';
 
 const stderr = console.error.bind(console);
@@ -15,7 +15,7 @@ export function logError(err: RollupError): void {
   const message = normalizeErrorMessage(error, description);
 
   space();
-  stderr(red(message));
+  stderr(color.error(message));
 
   if (error.loc) {
     stderr(`at ${error.loc.file}:${error.loc.line}:${error.loc.column}`);
@@ -24,10 +24,10 @@ export function logError(err: RollupError): void {
   space();
 
   if (error.frame) {
-    stderr(red(error.frame));
+    stderr(color.error(error.frame));
   } else if (err.stack) {
     const headlessStack = error.stack.replace(message, '');
-    stderr(red(headlessStack));
+    stderr(color.error(headlessStack));
   }
 
   space();

@@ -1,4 +1,4 @@
-import { bold, error, highlight, info, success } from '../utils';
+import { color } from '../utils';
 
 export const newMessage = {
   changeFolder: () => "Yes, let's choose another project name",
@@ -7,44 +7,46 @@ export const newMessage = {
 
   initial: (name: string) => name,
   existsPrompt: (dir: string) =>
-    `The folder at ${error(dir)} already exists! ${bold(
+    `The folder at ${color.error(dir)} already exists! ${color.bold(
       'Choose a different name'
     )}`,
 
-  failedPreparation: () => error('A preparation error has occurred'),
+  failedPreparation: () => color.error('A preparation error has occurred'),
   preparing: () =>
-    `${info(
+    `${color.info(
       'Preparation in progress'
     )}: file processing, dependency installation`,
-  prepared: () => success('Preparation completed successfully'),
+  prepared: () => color.success('Preparation completed successfully'),
 
-  creating: (dir: string) => `Creating React project at ${info(dir)}`,
-  failed: (name: string) => `Failed to create ${error(name)} project`,
+  creating: (dir: string) => `Creating React project at ${color.info(dir)}`,
+  failed: (name: string) => `Failed to create ${color.error(name)} project`,
   created: ({ name, dir }: { name: string; dir: string }) =>
-    `${success('Success!')} Created new ${info(name)} project at ${info(dir)}`,
+    `${color.success('Success!')} Created new ${color.info(
+      name
+    )} project at ${color.info(dir)}`,
 
   finish: (dir: string) => `
-  ${success('Awesome!')} You're now ready to start coding
+  ${color.success('Awesome!')} You're now ready to start coding
   
   You might begin with:
-  ${info('cd')} ${bold(dir)}
-  ${info('yarn start')}
+  ${color.info('cd')} ${color.bold(dir)}
+  ${color.info('yarn start')}
   
-  ${info('yarn start')}
+  ${color.info('yarn start')}
     Starts the development server
   
-  ${info('yarn build')}
+  ${color.info('yarn build')}
     Bundles the app into static files for production
     
-  ${info('yarn test')}
+  ${color.info('yarn test')}
     Starts the test runner
     
-  ${info('yarn eject')}
+  ${color.info('yarn eject')}
     Removes this tool and copies build dependencies, configuration files and scripts into the app directory
     
-  ${info('yarn lint')} / ${info('yarn stylelint')}
+  ${color.info('yarn lint')} / ${color.info('yarn stylelint')}
     Runs lint runners
     
-  ${highlight('Happy coding :)')}
+  ${color.highlight('Happy coding :)')}
   `
 } as const;

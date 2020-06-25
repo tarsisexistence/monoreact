@@ -1,28 +1,31 @@
-import { bold, error, highlight, info, success } from '../utils';
+import { color } from '../utils';
 
 export const generateMessage = {
   copy: (name: string) => `${name}-copy`,
 
-  successful: (name: string) => `Generated ${info(name)} package`,
+  successful: (name: string) => `Generated ${color.info(name)} package`,
 
-  generating: (name: string) => `Generating ${info(name)} package...`,
+  generating: (name: string) => `Generating ${color.info(name)} package...`,
 
-  failed: (name: string) => `Failed to generate ${error(name)} package`,
+  failed: (name: string) => `Failed to generate ${color.error(name)} package`,
 
   successfulConfigure: () => 'The package successfully configured',
 
   failedConfigure: () => `Failed to fully configure the package`,
 
-  invalidTemplate: (template: string) => `Invalid template ${error(template)}`,
+  invalidTemplate: (template: string) =>
+    `Invalid template ${color.error(template)}`,
 
   exists: (name: string) =>
-    `A folder named ${error(name)} already exists! ${bold(
+    `A folder named ${color.error(name)} already exists! ${color.bold(
       'Choose a different name'
     )}`,
 
   preparingPackage: (name: string, dependencies: string[]) => {
-    const pkgText = dependencies.map(pkg => `     ${info(pkg)}`).join('\n');
-    const requiredText = `Preparing ${info(name)} package`;
+    const pkgText = dependencies
+      .map(pkg => `     ${color.info(pkg)}`)
+      .join('\n');
+    const requiredText = `Preparing ${color.info(name)} package`;
     return dependencies.length > 0
       ? `${requiredText} with the following peer dependencies: 
 ${pkgText}
@@ -39,25 +42,25 @@ ${pkgText}
     };
 
     return `
-  ${success('Awesome!')} You're now ready to start coding.
+  ${color.success('Awesome!')} You're now ready to start coding.
   
-  There is no need to run ${info(
+  There is no need to run ${color.info(
     commands.install
   )}, since all peer dependencies are already in the workspace root
   
   So your next steps are:
-    ${info(`cd packages/${projectName}`)}
+    ${color.info(`cd packages/${projectName}`)}
   
   To start developing (rebuilds the bundle on changes):
-    ${info(commands.start)}
+    ${color.info(commands.start)}
   
   To build the bundle:
-    ${info(commands.build)}
+    ${color.info(commands.build)}
     
   To test the package:
-    ${info(commands.test)}
+    ${color.info(commands.test)}
     
-  ${highlight('Happy coding :)')}
+  ${color.highlight('Happy coding :)')}
   `;
   }
 } as const;

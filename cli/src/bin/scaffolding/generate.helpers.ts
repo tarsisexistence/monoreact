@@ -2,8 +2,8 @@ import { outputJSON } from 'fs-extra';
 import { Select } from 'enquirer';
 
 import {
+  color,
   includePackageIntoWorkspaces,
-  info,
   updateYarnWorkspacesDeclaration
 } from '../../shared/utils';
 import { generateSetup } from './setup/generate';
@@ -18,7 +18,7 @@ export const chooseTemplatePrompt = new Select({
   message: 'Choose a template',
   choices: Object.keys(generateSetup).map(option => ({
     name: option,
-    message: info(option)
+    message: color.info(option)
   }))
 });
 

@@ -1,22 +1,23 @@
-import { error, info, success, underline } from '../utils';
+import { color } from '../utils';
 import packageJson from '../../../package.json';
 
 export const serveMessage = {
-  introduce: () => underline(`${packageJson.name} v${packageJson.version}`),
+  introduce: () =>
+    color.underline(`${packageJson.name} v${packageJson.version}`),
 
   watching: () => `
 Watching for changes...`,
 
   compiling: () => `
-${info('Compiling modules...')}`,
+${color.info('Compiling modules...')}`,
 
-  failed: () => error(`Failed compilation`),
+  failed: () => color.error(`Failed compilation`),
 
   compiled: (isFirstChange: boolean) =>
-    success(`${isFirstChange ? 'Compiled' : 'Recompiled'} successfully.`),
+    color.success(`${isFirstChange ? 'Compiled' : 'Recompiled'} successfully.`),
 
   bundles: ({ source, module }: { source: string; module: string }) =>
-    info(`Bundles ${source} → ${module}`),
+    color.info(`Bundles ${source} → ${module}`),
 
   bundled: ({
     isFirstChange,
@@ -28,7 +29,7 @@ ${info('Compiling modules...')}`,
     module: string;
   }) => {
     const [s, ms] = (duration / 1000).toString().split('.');
-    return success(
+    return color.success(
       `${isFirstChange ? 'Created' : 'Updated'} ${module} in ${s}.${ms.slice(
         0,
         3

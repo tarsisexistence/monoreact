@@ -1,12 +1,12 @@
-import { error, info } from '../utils';
+import { color } from '../utils';
 
 export const installMessage = {
   successful: (dependencies: string) =>
-    `Successfully installed [${info(dependencies)}] dependencies`,
+    `Successfully installed [${color.info(dependencies)}] dependencies`,
 
   installing: (dependencies: string) =>
-    `Installing [${info(dependencies)}] dependencies...`,
+    `Installing [${color.info(dependencies)}] dependencies...`,
 
   failed: (dependencies: string) =>
-    `Failed to install [${error(dependencies)}] dependencies`
+    `Failed to install [${color.error(dependencies)}] dependencies`
 } as const;

@@ -2,7 +2,7 @@ import fs from 'fs-extra';
 import path from 'path';
 import { Select } from 'enquirer';
 
-import { info, noop } from '../../shared/utils';
+import { color, noop } from '../../shared/utils';
 import { featureSetup } from './setup/add';
 
 export const validateFeatureOption = (
@@ -20,7 +20,7 @@ export const validateFeatureOption = (
     message: 'Choose a feature',
     choices: options.map(option => ({
       name: option,
-      message: info(option)
+      message: color.info(option)
     }))
   });
   return featureNamePrompt.run();

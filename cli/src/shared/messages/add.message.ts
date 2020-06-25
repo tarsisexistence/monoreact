@@ -1,24 +1,25 @@
-import { error, info, inverse, success } from '../utils';
+import { color } from '../utils';
 
 export const addMessage = {
   exists: () =>
-    error(`
+    color.error(`
     It seems like you already have this feature.
         `),
 
   invalidFeatureName: (featureName: string) => {
-    const highlightedFeatureName = inverse(` ${featureName} `);
-    return error(`
+    const highlightedFeatureName = color.inverse(` ${featureName} `);
+    return color.error(`
   Invalid feature name
   Unfortunately, re-space doesn't provide ${highlightedFeatureName} feature
         `);
   },
 
-  adding: (featureName: string) => `Adding ${info(featureName)} feature...`,
+  adding: (featureName: string) =>
+    `Adding ${color.info(featureName)} feature...`,
 
   successful: (featureName: string) =>
-    `Added ${success(featureName)} feature template`,
+    `Added ${color.success(featureName)} feature template`,
 
   failed: (featureName: string) =>
-    `Failed to add ${error(featureName)} feature template`
+    `Failed to add ${color.error(featureName)} feature template`
 } as const;

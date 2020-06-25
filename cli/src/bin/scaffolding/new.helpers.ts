@@ -4,7 +4,7 @@ import { Select } from 'enquirer';
 
 import { preventFolderCollisions } from './scaffolding.helpers';
 import { newMessage } from '../../shared/messages';
-import { error, underline } from '../../shared/utils';
+import { color } from '../../shared/utils';
 
 type decision = 'Yes' | 'No';
 
@@ -17,8 +17,8 @@ export const chooseDifferentPathConfirmation = (
     No: newMessage.leaveCurrentFolder()
   };
   const select = new Select({
-    message: error(`Would you like to choose a different path? 
-  The specified path ${underline(`${dir}`)} is already taken.
+    message: color.error(`Would you like to choose a different path? 
+  The specified path ${color.underline(`${dir}`)} is already taken.
 `),
     choices: decisions.map((option: decision) => ({
       name: option,

@@ -1,4 +1,4 @@
-export * from './color.utils';
+export { color } from './color.utils';
 export * from './common.utils';
 export * from './dependency.utils';
 export * from './error.utils';

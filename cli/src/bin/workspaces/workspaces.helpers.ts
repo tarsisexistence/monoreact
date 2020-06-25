@@ -1,5 +1,5 @@
 import {
-  error,
+  color,
   getWorkspacesInfo,
   readWorkspacePackages,
   splitWorkspacesIntoDependencyGraph
@@ -14,7 +14,7 @@ const handleUnprocessedWorkspaces = (
   unprocessed: CLI.Workspaces.UnprocessedWorkspace[]
 ) => {
   console.log(
-    error(`Potentially circular dependency
+    color.error(`Potentially circular dependency
       Please check the following packages attentively:
       ${unprocessed.map(
         ([name, dependencies]) =>

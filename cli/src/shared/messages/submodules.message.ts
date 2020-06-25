@@ -1,9 +1,9 @@
-import { info, success } from '../utils';
+import { color } from '../utils';
 
 export const submodulesMessage = {
-  init: () => info('Initializing missing submodules'),
+  init: () => color.info('Initializing missing submodules'),
 
-  entering: (repo: string) => info(`Entering '${repo}'`),
+  entering: (repo: string) => color.info(`Entering '${repo}'`),
 
   finished: ({
     cmd,
@@ -13,5 +13,5 @@ export const submodulesMessage = {
     cmd: CLI.Submodules.Command;
     type: 'host' | 'submodules';
     code: number;
-  }) => success(`Finished ${cmd} '${type}' with code ${code}`)
+  }) => color.success(`Finished ${cmd} '${type}' with code ${code}`)
 } as const;

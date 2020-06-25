@@ -1,10 +1,21 @@
-import kleur from 'kleur';
+import {
+  cyan,
+  blue,
+  red,
+  green,
+  yellow,
+  bold,
+  inverse,
+  underline
+} from 'colorette';
 
-export const bold = (msg: string): string => kleur.bold(msg);
-export const info = (msg: string): string => kleur.bold().cyan(msg);
-export const details = (msg: string): string => kleur.bold().blue(msg);
-export const error = (msg: string): string => kleur.bold().red(msg);
-export const success = (msg: string): string => kleur.bold().green(msg);
-export const highlight = (msg: string): string => kleur.bold().yellow(msg);
-export const inverse = (msg: string): string => kleur.inverse(`${msg}`);
-export const underline = (msg: string): string => kleur.underline(msg);
+export const color = {
+  info: (msg: string): string => bold(cyan(msg)),
+  details: (msg: string): string => bold(blue(msg)),
+  error: (msg: string): string => bold(red(msg)),
+  success: (msg: string): string => bold(green(msg)),
+  highlight: (msg: string): string => bold(yellow(msg)),
+  bold: (msg: string): string => bold(msg),
+  inverse: (msg: string): string => inverse(msg),
+  underline: (msg: string): string => underline(msg)
+} as const;

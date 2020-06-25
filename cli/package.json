@@ -1,6 +1,6 @@
 {
   "name": "@re-space/cli",
-  "version": "0.21.2",
+  "version": "0.21.3",
   "main": "./dist/src/bin/index.js",
   "bin": {
     "re-space": "./dist/src/bin/index.js",
@@ -45,6 +45,7 @@
     "@typescript-eslint/parser": "3.4.0",
     "autoprefixer": "9.8.1",
     "babel-jest": "24.9.0",
+    "colorette": "1.2.0",
     "cssnano": "4.1.10",
     "enquirer": "2.3.5",
     "eslint": "7.2.0",
@@ -61,7 +62,6 @@
     "fs-extra": "9.0.1",
     "identity-obj-proxy": "3.0.0",
     "jest": "24.9.0",
-    "kleur": "4.0.2",
     "node-sass": "4.14.1",
     "ora": "4.0.4",
     "postcss-nested": "4.2.1",
