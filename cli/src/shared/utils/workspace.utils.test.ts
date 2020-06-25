@@ -114,7 +114,7 @@ describe('[utils.workspace]', () => {
         includePackageIntoWorkspaces({
           packages: ['*', 'packages/*'],
           packageName: 'components',
-          setupPath: '/workspaces'
+          setupPath: './workspaces'
         })
       ).toEqual(['*', 'packages/*', 'workspaces/components']);
     });
