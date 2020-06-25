@@ -1,6 +1,6 @@
 {
   "name": "@re-space/cli",
-  "version": "0.21.5",
+  "version": "0.21.6",
   "main": "./dist/src/bin/index.js",
   "bin": {
     "re-space": "./dist/src/bin/index.js",

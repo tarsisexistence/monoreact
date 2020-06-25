@@ -4,3 +4,4 @@ src
 .eslintrc.js
 jest.config.js
 src/**/*.test.*
+dist/tsconfig.tsbuildinfo
