@@ -2,10 +2,7 @@ import * as shell from 'shelljs';
 import * as fs from 'fs-extra';
 import * as path from 'path';
 
-import {
-  setupStage,
-  teardownStage
-} from '../../src/shared/utils/fixture.utils';
+import { setupStage, teardownStage } from '../../src/shared/utils/fixture.utils';
 import { smartExec } from '../../src/shared/utils/shell.utils';
 
 shell.config.silent = false;
@@ -28,14 +25,10 @@ describe('[bin.execution.install.package.dev]', () => {
     const cwd = process.cwd();
     const packageDir = path.resolve(cwd, 'packages', 'install-example');
     shell.cd(packageDir);
-    const output = smartExec(
-      'node ../../../../../dist/src/bin/index.js install @re-space/cli routeshub -D'
-    );
+    const output = smartExec('node ../../../../../dist/src/bin/index.js install @re-space/cli routeshub -D');
     shell.cd(cwd);
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
-    const packagePkg = fs.readJSONSync(
-      path.resolve(packageDir, 'package.json')
-    );
+    const packagePkg = fs.readJSONSync(path.resolve(packageDir, 'package.json'));
     expect(rootPkg.devDependencies).toHaveProperty('@re-space/cli');
     expect(rootPkg.devDependencies).toHaveProperty('routeshub');
     expect(packagePkg.devDependencies).toHaveProperty('@re-space/cli');
@@ -47,14 +40,10 @@ describe('[bin.execution.install.package.dev]', () => {
     const cwd = process.cwd();
     const packageDir = path.resolve(cwd, 'packages', 'install-example');
     shell.cd(packageDir);
-    const output = smartExec(
-      'node ../../../../../dist/src/bin/index.js install @re-space/cli routeshub -D'
-    );
+    const output = smartExec('node ../../../../../dist/src/bin/index.js install @re-space/cli routeshub -D');
     shell.cd(cwd);
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
-    const packagePkg = fs.readJSONSync(
-      path.resolve(packageDir, 'package.json')
-    );
+    const packagePkg = fs.readJSONSync(path.resolve(packageDir, 'package.json'));
     Object.keys({
       ...rootPkg.dependencies,
       ...rootPkg.peerDependencies,

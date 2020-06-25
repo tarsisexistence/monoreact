@@ -1,9 +1,6 @@
 import * as shell from 'shelljs';
 
-import {
-  setupStage,
-  teardownStage
-} from '../../src/shared/utils/fixture.utils';
+import { setupStage, teardownStage } from '../../src/shared/utils/fixture.utils';
 import { smartExec } from '../../src/shared/utils/shell.utils';
 
 shell.config.silent = false;
@@ -27,9 +24,7 @@ describe('[bin.execution.test.empty]', () => {
   });
 
   it('should fail with exit code 0 with --passWithNoTests', () => {
-    const output = smartExec(
-      'node ../../../dist/src/bin/index.js test --passWithNoTests'
-    );
+    const output = smartExec('node ../../../dist/src/bin/index.js test --passWithNoTests');
     expect(output.code).toBe(0);
   });
 });

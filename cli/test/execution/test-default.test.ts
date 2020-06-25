@@ -1,9 +1,6 @@
 import * as shell from 'shelljs';
 
-import {
-  setupStage,
-  teardownStage
-} from '../../src/shared/utils/fixture.utils';
+import { setupStage, teardownStage } from '../../src/shared/utils/fixture.utils';
 import { smartExec } from '../../src/shared/utils/shell.utils';
 
 shell.config.silent = false;
@@ -32,9 +29,7 @@ describe('[bin.execution.test.default]', () => {
   });
 
   it('should not find any test with pattern arg and passWithNoTests option and finish with code 0', () => {
-    const output = smartExec(
-      'node ../../../dist/src/bin/index.js test patternTest --passWithNoTests'
-    );
+    const output = smartExec('node ../../../dist/src/bin/index.js test patternTest --passWithNoTests');
     expect(output.code).toBe(0);
   });
 });

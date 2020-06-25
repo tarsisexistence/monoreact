@@ -2,10 +2,7 @@ import * as shell from 'shelljs';
 import * as fs from 'fs-extra';
 import * as path from 'path';
 
-import {
-  setupStage,
-  teardownStage
-} from '../../src/shared/utils/fixture.utils';
+import { setupStage, teardownStage } from '../../src/shared/utils/fixture.utils';
 import { smartExec } from '../../src/shared/utils/shell.utils';
 
 shell.config.silent = false;
@@ -24,9 +21,7 @@ describe('[bin.scaffolding.add-playground]', () => {
   });
 
   it('should have playground folder', () => {
-    const output = smartExec(
-      'node ../../../dist/src/bin/index.js add playground'
-    );
+    const output = smartExec('node ../../../dist/src/bin/index.js add playground');
     expect(shell.test('-d', 'playground')).toBeTruthy();
     expect(output.code).toBe(0);
   });

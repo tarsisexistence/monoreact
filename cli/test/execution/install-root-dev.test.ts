@@ -2,10 +2,7 @@ import * as shell from 'shelljs';
 import * as fs from 'fs-extra';
 import * as path from 'path';
 
-import {
-  setupStage,
-  teardownStage
-} from '../../src/shared/utils/fixture.utils';
+import { setupStage, teardownStage } from '../../src/shared/utils/fixture.utils';
 import { smartExec } from '../../src/shared/utils/shell.utils';
 
 shell.config.silent = false;
@@ -25,9 +22,7 @@ describe('[bin.execution.install.root.dev]', () => {
   });
 
   it('should install only dev dependencies in the root', () => {
-    const output = smartExec(
-      'node ../../../dist/src/bin/index.js install @re-space/cli routeshub -D'
-    );
+    const output = smartExec('node ../../../dist/src/bin/index.js install @re-space/cli routeshub -D');
     const cwd = process.cwd();
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
     expect(rootPkg.devDependencies).toHaveProperty('@re-space/cli');
@@ -36,14 +31,10 @@ describe('[bin.execution.install.root.dev]', () => {
   });
 
   it('should install nothing but dev dependencies in the root', () => {
-    const output = smartExec(
-      'node ../../../dist/src/bin/index.js install @re-space/cli routeshub -D'
-    );
+    const output = smartExec('node ../../../dist/src/bin/index.js install @re-space/cli routeshub -D');
     const cwd = process.cwd();
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
-    const packagePkg = fs.readJSONSync(
-      path.resolve(cwd, 'packages', 'install-example', 'package.json')
-    );
+    const packagePkg = fs.readJSONSync(path.resolve(cwd, 'packages', 'install-example', 'package.json'));
     Object.keys({
       ...rootPkg.dependencies,
       ...rootPkg.peerDependencies,
