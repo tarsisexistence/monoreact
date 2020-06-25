@@ -8,9 +8,7 @@ import { color } from '../../shared/utils';
 
 type decision = 'Yes' | 'No';
 
-export const chooseDifferentPathConfirmation = (
-  dir: string
-): Promise<decision> => {
+export const chooseDifferentPathConfirmation = (dir: string): Promise<decision> => {
   const decisions: decision[] = ['Yes', 'No'];
   const decisionMap: Record<decision, string> = {
     Yes: newMessage.changeFolder(),
@@ -35,9 +33,7 @@ export const resolveOptions = async ({
   name: string;
   dir: string;
 }): Promise<{ projectName: string; projectDir: string }> => {
-  const shouldChooseDifferentPath =
-    fs.existsSync(dir) &&
-    (await chooseDifferentPathConfirmation(dir)) === 'Yes';
+  const shouldChooseDifferentPath = fs.existsSync(dir) && (await chooseDifferentPathConfirmation(dir)) === 'Yes';
 
   if (!shouldChooseDifferentPath) {
     return { projectDir: dir, projectName: name };
@@ -53,6 +49,5 @@ export const getProjectName = async (name: string): Promise<string> =>
     basePath: process.cwd(),
     name,
     onPromptInitial: newMessage.initial,
-    onPromptMessage: (unsafeName: string) =>
-      newMessage.existsPrompt(path.resolve(unsafeName))
+    onPromptMessage: (unsafeName: string) => newMessage.existsPrompt(path.resolve(unsafeName))
   });

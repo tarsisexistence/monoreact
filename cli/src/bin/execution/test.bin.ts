@@ -18,10 +18,7 @@ export const testBinCommand = (prog: Sade): void => {
       setTestNodeVariables();
       const packageDir = await findWorkspacePackageDir();
       const packageJsonPath = path.resolve(packageDir, PACKAGE_JSON);
-      const jestConfigOptions = await getJestConfigOptions(
-        packageDir,
-        opts.config
-      );
+      const jestConfigOptions = await getJestConfigOptions(packageDir, opts.config);
       const { jest: jestPackageOptions } = await fs.readJSON(packageJsonPath);
       const testConfig = createTestConfig({
         rootDir: packageDir,

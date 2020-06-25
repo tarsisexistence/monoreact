@@ -2,28 +2,20 @@ import { color } from '../utils';
 
 export const newMessage = {
   changeFolder: () => "Yes, let's choose another project name",
-  leaveCurrentFolder: () =>
-    'No, I want to create a project in this folder (without overwriting)',
+  leaveCurrentFolder: () => 'No, I want to create a project in this folder (without overwriting)',
 
   initial: (name: string) => name,
   existsPrompt: (dir: string) =>
-    `The folder at ${color.error(dir)} already exists! ${color.bold(
-      'Choose a different name'
-    )}`,
+    `The folder at ${color.error(dir)} already exists! ${color.bold('Choose a different name')}`,
 
   failedPreparation: () => color.error('A preparation error has occurred'),
-  preparing: () =>
-    `${color.info(
-      'Preparation in progress'
-    )}: file processing, dependency installation`,
+  preparing: () => `${color.info('Preparation in progress')}: file processing, dependency installation`,
   prepared: () => color.success('Preparation completed successfully'),
 
   creating: (dir: string) => `Creating React project at ${color.info(dir)}`,
   failed: (name: string) => `Failed to create ${color.error(name)} project`,
   created: ({ name, dir }: { name: string; dir: string }) =>
-    `${color.success('Success!')} Created new ${color.info(
-      name
-    )} project at ${color.info(dir)}`,
+    `${color.success('Success!')} Created new ${color.info(name)} project at ${color.info(dir)}`,
 
   finish: (dir: string) => `
   ${color.success('Awesome!')} You're now ready to start coding

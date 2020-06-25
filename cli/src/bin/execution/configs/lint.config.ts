@@ -1,9 +1,7 @@
 import path from 'path';
 import { CLIEngine } from 'eslint';
 
-export const createLintConfig = (
-  dir: string
-): CLIEngine.Options['baseConfig'] => {
+export const createLintConfig = (dir: string): CLIEngine.Options['baseConfig'] => {
   const settings: Record<string, any> = {
     'import/resolver': {
       node: {

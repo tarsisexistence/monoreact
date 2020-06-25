@@ -1,8 +1,5 @@
 /* eslint-disable sonarjs/no-duplicate-string */
-import {
-  getExternalScreen,
-  splitWorkspacesIntoDependencyGraph
-} from './dependency.utils';
+import { getExternalScreen, splitWorkspacesIntoDependencyGraph } from './dependency.utils';
 
 describe('[utils.dependency]', () => {
   describe('splitWorkspacesIntoDependencyGraph', () => {
@@ -330,11 +327,7 @@ describe('[utils.dependency]', () => {
         }
       ];
       expect(splitWorkspacesIntoDependencyGraph(packageJsons)).toEqual({
-        chunks: [
-          ['components', 'store'],
-          ['profile', 'products', 'back-office', 'landing'],
-          ['host']
-        ],
+        chunks: [['components', 'store'], ['profile', 'products', 'back-office', 'landing'], ['host']],
         unprocessed: []
       });
     });

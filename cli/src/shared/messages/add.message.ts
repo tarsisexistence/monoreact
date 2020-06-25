@@ -14,12 +14,9 @@ export const addMessage = {
         `);
   },
 
-  adding: (featureName: string) =>
-    `Adding ${color.info(featureName)} feature...`,
+  adding: (featureName: string) => `Adding ${color.info(featureName)} feature...`,
 
-  successful: (featureName: string) =>
-    `Added ${color.success(featureName)} feature template`,
+  successful: (featureName: string) => `Added ${color.success(featureName)} feature template`,
 
-  failed: (featureName: string) =>
-    `Failed to add ${color.error(featureName)} feature template`
+  failed: (featureName: string) => `Failed to add ${color.error(featureName)} feature template`
 } as const;

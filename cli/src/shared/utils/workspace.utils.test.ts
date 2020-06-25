@@ -12,9 +12,7 @@ describe('[utils.workspace]', () => {
     });
 
     test('should return empty array when there is no packages inside workspaces config', () => {
-      expect(
-        getWorkspacesFromDeclaration({ packages: undefined } as any)
-      ).toEqual([]);
+      expect(getWorkspacesFromDeclaration({ packages: undefined } as any)).toEqual([]);
     });
 
     test('should return empty array when workspaces property is empty array', () => {
@@ -30,10 +28,7 @@ describe('[utils.workspace]', () => {
     });
 
     test('should return packages when workspaces packages property has them', () => {
-      expect(getWorkspacesFromDeclaration({ packages: ['a', 'b'] })).toEqual([
-        'a',
-        'b'
-      ]);
+      expect(getWorkspacesFromDeclaration({ packages: ['a', 'b'] })).toEqual(['a', 'b']);
     });
   });
 
@@ -47,30 +42,17 @@ describe('[utils.workspace]', () => {
     });
 
     test('should return path segments of the first package in list', () => {
-      expect(
-        getWorkspacePackageSetupPath([
-          '/workspaces/private/a',
-          'long/b',
-          'whatever/c/',
-          'folder/d/'
-        ])
-      ).toBe('workspaces/private');
+      expect(getWorkspacePackageSetupPath(['/workspaces/private/a', 'long/b', 'whatever/c/', 'folder/d/'])).toBe(
+        'workspaces/private'
+      );
     });
 
     test('should return the same path regardless of slashes', () => {
       const result = 'workspaces/private';
-      expect(getWorkspacePackageSetupPath(['/workspaces/private/a'])).toBe(
-        result
-      );
-      expect(getWorkspacePackageSetupPath(['workspaces/private/a'])).toBe(
-        result
-      );
-      expect(getWorkspacePackageSetupPath(['workspaces/private/a/'])).toBe(
-        result
-      );
-      expect(getWorkspacePackageSetupPath(['/workspaces/private/a/'])).toBe(
-        result
-      );
+      expect(getWorkspacePackageSetupPath(['/workspaces/private/a'])).toBe(result);
+      expect(getWorkspacePackageSetupPath(['workspaces/private/a'])).toBe(result);
+      expect(getWorkspacePackageSetupPath(['workspaces/private/a/'])).toBe(result);
+      expect(getWorkspacePackageSetupPath(['/workspaces/private/a/'])).toBe(result);
     });
 
     test('should return path when there is one wildcard', () => {
@@ -78,21 +60,11 @@ describe('[utils.workspace]', () => {
     });
 
     test('should return path when there is only one wildcard', () => {
-      expect(getWorkspacePackageSetupPath(['a', 'workspaces/*', 'b'])).toBe(
-        'workspaces'
-      );
+      expect(getWorkspacePackageSetupPath(['a', 'workspaces/*', 'b'])).toBe('workspaces');
     });
 
     test('should return path of the first wildcard match', () => {
-      expect(
-        getWorkspacePackageSetupPath([
-          'a',
-          'otherPackages/*',
-          'c',
-          'workspaces/*',
-          'b'
-        ])
-      ).toBe('otherPackages');
+      expect(getWorkspacePackageSetupPath(['a', 'otherPackages/*', 'c', 'workspaces/*', 'b'])).toBe('otherPackages');
     });
   });
 

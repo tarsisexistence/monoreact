@@ -21,9 +21,7 @@ describe('[utils.dataStructures]', () => {
     });
 
     test('should return map with empty chars on the sides', () => {
-      expect(convertStringArrayIntoMap('  first   ')).toEqual(
-        new Map([['first', true]])
-      );
+      expect(convertStringArrayIntoMap('  first   ')).toEqual(new Map([['first', true]]));
     });
 
     test('should return map with empty chars', () => {

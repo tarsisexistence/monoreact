@@ -14,19 +14,13 @@ export const REACT_PACKAGE_SCRIPTS: CLI.Package.Scripts = {
   stylelint: 'npx stylelint "src/**/*.{css,sass,scss}"'
 } as const;
 
-export const REACT_TEMPLATE_DEPENDENCIES: Pick<
-  CLI.Package.WorkspacePackageJSON,
-  'peerDependencies'
-> = {
+export const REACT_TEMPLATE_DEPENDENCIES: Pick<CLI.Package.WorkspacePackageJSON, 'peerDependencies'> = {
   peerDependencies: {
     react: '*'
   }
 };
 
-export const WORKSPACE_PACKAGE_JSON: Omit<
-  CLI.Package.WorkspacePackageJSON,
-  'scripts'
-> = {
+export const WORKSPACE_PACKAGE_JSON: Omit<CLI.Package.WorkspacePackageJSON, 'scripts'> = {
   name: (undefined as unknown) as string,
   author: (undefined as unknown) as string,
   workspace: true,
@@ -92,11 +86,7 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.WorkspaceRootPackageJSON =
   },
   browserslist: {
     production: ['>0.2%', 'not dead', 'not op_mini all'],
-    development: [
-      'last 1 chrome version',
-      'last 1 firefox version',
-      'last 1 safari version'
-    ]
+    development: ['last 1 chrome version', 'last 1 firefox version', 'last 1 safari version']
   },
   jest: {
     moduleNameMapper: {}

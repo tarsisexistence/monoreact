@@ -1,18 +1,12 @@
 import { outputJSON } from 'fs-extra';
 import { Select } from 'enquirer';
 
-import {
-  color,
-  includePackageIntoWorkspaces,
-  updateYarnWorkspacesDeclaration
-} from '../../shared/utils';
+import { color, includePackageIntoWorkspaces, updateYarnWorkspacesDeclaration } from '../../shared/utils';
 import { generateSetup } from './setup/generate';
 import { exec, ShellString } from 'shelljs';
 
 export const safePackageName = (name: string): string =>
-  name
-    .toLowerCase()
-    .replace(/(^@.*\/)|((^[^a-zA-Z]+)|[^\w.-])|([^a-zA-Z0-9]+$)/g, '');
+  name.toLowerCase().replace(/(^@.*\/)|((^[^a-zA-Z]+)|[^\w.-])|([^a-zA-Z0-9]+$)/g, '');
 
 export const chooseTemplatePrompt = new Select({
   message: 'Choose a template',
@@ -48,8 +42,7 @@ export const composePackageJson = ({
   template: CLI.Setup.GenerateOptions;
 }): CLI.Package.WorkspacePackageJSON => {
   const slashNameIndex = hostName.indexOf('/');
-  const namespace =
-    slashNameIndex === -1 ? `@${hostName}` : hostName.slice(0, slashNameIndex);
+  const namespace = slashNameIndex === -1 ? `@${hostName}` : hostName.slice(0, slashNameIndex);
   const safeName = safePackageName(name);
   const packageName = namespace ? `${namespace}/${safeName}` : safeName;
   const packageJson = {
@@ -65,8 +58,7 @@ export const composePackageJson = ({
   return packageJson;
 };
 
-export const buildPackage = (): ShellString =>
-  exec('yarn build', { silent: true });
+export const buildPackage = (): ShellString => exec('yarn build', { silent: true });
 
 export const updatePackageJsonWorkspacesDeclaration = async ({
   packageJson,
@@ -86,9 +78,6 @@ export const updatePackageJsonWorkspacesDeclaration = async ({
     setupPath,
     packageName
   });
-  packageJson.workspaces = updateYarnWorkspacesDeclaration(
-    packageJson.workspaces,
-    updatedWorkspaces
-  );
+  packageJson.workspaces = updateYarnWorkspacesDeclaration(packageJson.workspaces, updatedWorkspaces);
   await outputJSON(packageJsonPath, packageJson, { spaces: 2 });
 };

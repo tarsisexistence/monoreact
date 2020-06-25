@@ -4,10 +4,7 @@ shell.config.silent = true;
 
 const cache: Record<string, shell.ShellReturnValue> = {};
 
-export function smartExec(
-  command: string,
-  { noCache = false } = {}
-): shell.ShellReturnValue {
+export function smartExec(command: string, { noCache = false } = {}): shell.ShellReturnValue {
   if (!noCache && cache[command]) {
     return cache[command];
   }

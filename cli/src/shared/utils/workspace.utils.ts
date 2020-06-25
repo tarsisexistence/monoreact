@@ -2,21 +2,14 @@ import path from 'path';
 import fs from 'fs-extra';
 import { exec } from 'shelljs';
 
-import {
-  NotFoundPackageWorkspaceError,
-  NotFoundWorkspaceRootError
-} from '../models';
+import { NotFoundPackageWorkspaceError, NotFoundWorkspaceRootError } from '../models';
 import { logError } from './error.utils';
 import { PACKAGE_JSON } from '../constants/package.const';
 
-const isWorkspaceRoot = (pkg: CLI.Package.WorkspaceRootPackageJSON) =>
-  pkg.workspaces !== undefined && pkg.private;
-const isWorkspacePackage = (pkg: CLI.Package.WorkspacePackageJSON) =>
-  pkg.workspace && !pkg.private;
+const isWorkspaceRoot = (pkg: CLI.Package.WorkspaceRootPackageJSON) => pkg.workspaces !== undefined && pkg.private;
+const isWorkspacePackage = (pkg: CLI.Package.WorkspacePackageJSON) => pkg.workspace && !pkg.private;
 
-export const getWorkspacesFromDeclaration = (
-  workspaces: YarnWorkspaces.Workspaces
-): YarnWorkspaces.Packages => {
+export const getWorkspacesFromDeclaration = (workspaces: YarnWorkspaces.Workspaces): YarnWorkspaces.Packages => {
   if (workspaces === undefined) {
     return [];
   }
@@ -28,9 +21,7 @@ export const getWorkspacesFromDeclaration = (
   return workspaces;
 };
 
-export const getWorkspacePackageSetupPath = (
-  packages: YarnWorkspaces.Packages
-): string => {
+export const getWorkspacePackageSetupPath = (packages: YarnWorkspaces.Packages): string => {
   if (packages.length === 0) {
     return 'packages';
   }
@@ -77,8 +68,7 @@ export const includePackageIntoWorkspaces = ({
     .split('/')
     .filter(segment => segment !== '.' && segment !== '')
     .join('/');
-  const packageWorkspacePath =
-    dir === '' ? packageName : `${dir}/${packageName}`;
+  const packageWorkspacePath = dir === '' ? packageName : `${dir}/${packageName}`;
   const workspacesSetupWildcard = dir === '' ? '*' : `${dir}/*`;
 
   for (const pkg of packages) {
@@ -107,9 +97,7 @@ export const updateYarnWorkspacesDeclaration = (
   return workspaces;
 };
 
-export const findWorkspaceRootDir = async (
-  intercept = false
-): Promise<string> => {
+export const findWorkspaceRootDir = async (intercept = false): Promise<string> => {
   const dir = await find(await fs.realpath(process.cwd()));
 
   if (dir !== null) {
@@ -133,16 +121,13 @@ export const findWorkspaceRootDir = async (
       return null;
     }
 
-    return fs.existsSync(packageJsonPath) &&
-      isWorkspaceRoot(await fs.readJSON(packageJsonPath))
+    return fs.existsSync(packageJsonPath) && isWorkspaceRoot(await fs.readJSON(packageJsonPath))
       ? possiblePath
       : find(path.resolve(possiblePath, '..'));
   }
 };
 
-export const findWorkspacePackageDir = async (
-  intercept = false
-): Promise<string> => {
+export const findWorkspacePackageDir = async (intercept = false): Promise<string> => {
   const dir = await find(await fs.realpath(process.cwd()));
 
   if (dir !== null) {

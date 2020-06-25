@@ -2,21 +2,14 @@ import path from 'path';
 import fs from 'fs-extra';
 import { InitialOptions } from '@jest/types/build/Config';
 
-export const getJestConfigOptions = async (
-  packageDir: string,
-  config: string | undefined
-): Promise<InitialOptions> => {
+export const getJestConfigOptions = async (packageDir: string, config: string | undefined): Promise<InitialOptions> => {
   try {
     if (config) {
       const jestConfigPathOption = path.resolve(packageDir, config);
       process.argv.splice(process.argv.indexOf('--config'), 2);
       const filenameSegments = config.split('.');
-      const isJavaScript =
-        filenameSegments[filenameSegments.length - 1] === 'js';
-
-      return isJavaScript
-        ? require(jestConfigPathOption)
-        : await fs.readJSON(jestConfigPathOption);
+      const isJavaScript = filenameSegments[filenameSegments.length - 1] === 'js';
+      return isJavaScript ? require(jestConfigPathOption) : await fs.readJSON(jestConfigPathOption);
     }
 
     const jestConfigPathJS = path.resolve(packageDir, `jest.config.js`);

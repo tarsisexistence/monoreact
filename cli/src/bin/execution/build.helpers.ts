@@ -7,9 +7,7 @@ import { readPackageJson, readTsconfigJson } from '../../shared/utils/fs.utils';
 
 export const buildWorkspace = async (dir: string): Promise<void> => {
   const tsconfigJson = await readTsconfigJson(dir);
-  const packageJson = await readPackageJson<CLI.Package.WorkspacePackageJSON>(
-    dir
-  );
+  const packageJson = await readPackageJson<CLI.Package.WorkspacePackageJSON>(dir);
   await cleanDistFolder();
 
   const time = process.hrtime();

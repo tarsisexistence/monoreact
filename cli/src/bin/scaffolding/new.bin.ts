@@ -3,13 +3,7 @@ import ora from 'ora';
 import path from 'path';
 
 import { installDependencies, logError } from '../../shared/utils';
-import {
-  createPackageJson,
-  copyTemplate,
-  getAuthor,
-  sortPackageJson,
-  setNpmAuthorName
-} from './scaffolding.helpers';
+import { createPackageJson, copyTemplate, getAuthor, sortPackageJson, setNpmAuthorName } from './scaffolding.helpers';
 import { newSetup } from './setup/new';
 import { newMessage } from '../../shared/messages';
 import { resolveOptions } from './new.helpers';
@@ -37,60 +31,54 @@ export const newBinCommand = (prog: Sade): void => {
     )
     .example(`new projectName --template ${templateOptions[0]}`)
     .option('f, force', 'Skip folder checks', false)
-    .action(
-      async (
-        name: string,
-        dir: string | undefined,
-        { template, force }: CLI.Options.New
-      ) => {
-        const bootSpinner = ora();
-        const initialDir = path.resolve(dir || name);
-        const { projectDir, projectName } = force
-          ? { projectDir: initialDir, projectName: name }
-          : await resolveOptions({ name, dir: initialDir });
-        bootSpinner.start(newMessage.creating(projectDir));
+    .action(async (name: string, dir: string | undefined, { template, force }: CLI.Options.New) => {
+      const bootSpinner = ora();
+      const initialDir = path.resolve(dir || name);
+      const { projectDir, projectName } = force
+        ? { projectDir: initialDir, projectName: name }
+        : await resolveOptions({ name, dir: initialDir });
+      bootSpinner.start(newMessage.creating(projectDir));
 
-        try {
-          await copyTemplate({ dir: projectDir, bin: 'new', template });
-          bootSpinner.stop();
-          const author = await getAuthor();
-          setNpmAuthorName(author);
-          bootSpinner.start();
-          process.chdir(projectDir);
-          const templateConfig = newSetup[template];
-          const packageJsonPreset: CLI.Package.WorkspaceRootPackageJSON = {
-            ...templateConfig.packageJson,
-            name: projectName,
-            author: author
-          };
-          await createPackageJson({
+      try {
+        await copyTemplate({ dir: projectDir, bin: 'new', template });
+        bootSpinner.stop();
+        const author = await getAuthor();
+        setNpmAuthorName(author);
+        bootSpinner.start();
+        process.chdir(projectDir);
+        const templateConfig = newSetup[template];
+        const packageJsonPreset: CLI.Package.WorkspaceRootPackageJSON = {
+          ...templateConfig.packageJson,
+          name: projectName,
+          author: author
+        };
+        await createPackageJson({
+          dir: projectDir,
+          preset: packageJsonPreset
+        });
+        bootSpinner.succeed(
+          newMessage.created({
             dir: projectDir,
-            preset: packageJsonPreset
-          });
-          bootSpinner.succeed(
-            newMessage.created({
-              dir: projectDir,
-              name: projectName
-            })
-          );
-        } catch (err) {
-          bootSpinner.fail(newMessage.failed(projectName));
-          logError(err);
-          process.exit(1);
-        }
-
-        const preparingSpinner = ora(newMessage.preparing()).start();
-
-        try {
-          sortPackageJson();
-          installDependencies();
-          preparingSpinner.succeed(newMessage.prepared());
-        } catch (err) {
-          preparingSpinner.fail(newMessage.failedPreparation());
-          logError(err);
-        }
-
-        console.log(newMessage.finish(projectDir));
+            name: projectName
+          })
+        );
+      } catch (err) {
+        bootSpinner.fail(newMessage.failed(projectName));
+        logError(err);
+        process.exit(1);
       }
-    );
+
+      const preparingSpinner = ora(newMessage.preparing()).start();
+
+      try {
+        sortPackageJson();
+        installDependencies();
+        preparingSpinner.succeed(newMessage.prepared());
+      } catch (err) {
+        preparingSpinner.fail(newMessage.failedPreparation());
+        logError(err);
+      }
+
+      console.log(newMessage.finish(projectDir));
+    });
 };

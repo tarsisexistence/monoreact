@@ -5,13 +5,6 @@ export const submodulesMessage = {
 
   entering: (repo: string) => color.info(`Entering '${repo}'`),
 
-  finished: ({
-    cmd,
-    type,
-    code
-  }: {
-    cmd: CLI.Submodules.Command;
-    type: 'host' | 'submodules';
-    code: number;
-  }) => color.success(`Finished ${cmd} '${type}' with code ${code}`)
+  finished: ({ cmd, type, code }: { cmd: CLI.Submodules.Command; type: 'host' | 'submodules'; code: number }) =>
+    color.success(`Finished ${cmd} '${type}' with code ${code}`)
 } as const;

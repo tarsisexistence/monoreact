@@ -53,26 +53,14 @@ export const createBuildConfig = ({
       extract: false,
       modules: true,
       writeDefinitions: true,
-      plugins: [
-        simplevars({ variables: {} }),
-        nested(),
-        cssnano(),
-        autoprefixer()
-      ],
+      plugins: [simplevars({ variables: {} }), nested(), cssnano(), autoprefixer()],
       extensions: ['.css', '.scss', '.sass'],
       use: ['sass']
     }),
     typescript2({
       clean: true,
       tsconfigDefaults: {
-        exclude: [
-          '**/*.spec.ts',
-          '**/*.test.ts',
-          '**/*.spec.tsx',
-          '**/*.test.tsx',
-          'node_modules',
-          'dist'
-        ],
+        exclude: ['**/*.spec.ts', '**/*.test.ts', '**/*.spec.tsx', '**/*.test.tsx', 'node_modules', 'dist'],
         compilerOptions: {
           rootDir: './src',
           sourceMap: true,
@@ -106,10 +94,7 @@ export const createBuildConfig = ({
       babelrc: false,
       extensions: ['.js', 'jsx', '.ts', '.tsx'],
       presets: ['@babel/preset-env', '@babel/preset-react'],
-      plugins: [
-        '@babel/plugin-transform-runtime',
-        '@babel/proposal-class-properties'
-      ],
+      plugins: ['@babel/plugin-transform-runtime', '@babel/proposal-class-properties'],
       exclude: /\/node_modules\//
     }),
     stripCode({

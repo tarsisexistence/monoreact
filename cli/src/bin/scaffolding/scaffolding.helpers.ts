@@ -5,8 +5,7 @@ import { Input } from 'enquirer';
 
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
 
-export const sortPackageJson = (): ShellString =>
-  exec('npx sort-package-json', { silent: true });
+export const sortPackageJson = (): ShellString => exec('npx sort-package-json', { silent: true });
 
 export function setNpmAuthorName(author: CLI.Package.Author): void {
   exec(`npm config set init-author-name "${author}"`, { silent: true });
@@ -17,11 +16,8 @@ export const createPackageJson = ({
   preset
 }: {
   dir: string;
-  preset:
-    | CLI.Package.WorkspacePackageJSON
-    | CLI.Package.WorkspaceRootPackageJSON;
-}): Promise<void> =>
-  fs.outputJSON(path.resolve(dir, PACKAGE_JSON), preset, { spaces: 2 });
+  preset: CLI.Package.WorkspacePackageJSON | CLI.Package.WorkspaceRootPackageJSON;
+}): Promise<void> => fs.outputJSON(path.resolve(dir, PACKAGE_JSON), preset, { spaces: 2 });
 
 function getNpmAuthorName(): CLI.Package.Author {
   let author = '';
@@ -78,11 +74,7 @@ export const copyTemplate = ({
   template: CLI.Setup.GenerateOptionType | CLI.Setup.NewOptionType;
   bin: 'generate' | 'new';
 }): Promise<void> =>
-  fs.copy(
-    path.resolve(__dirname, `../../../../templates/${bin}/${template}`),
-    dir,
-    { overwrite: false }
-  );
+  fs.copy(path.resolve(__dirname, `../../../../templates/${bin}/${template}`), dir, { overwrite: false });
 
 export const preventFolderCollisions = async ({
   basePath,

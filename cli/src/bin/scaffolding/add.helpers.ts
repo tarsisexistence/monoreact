@@ -26,10 +26,7 @@ export const validateFeatureOption = (
   return featureNamePrompt.run();
 };
 
-export const copyFeatureTemplate = (
-  packageDir: string,
-  option: CLI.Setup.AddOptionType
-): Promise<void> =>
+export const copyFeatureTemplate = (packageDir: string, option: CLI.Setup.AddOptionType): Promise<void> =>
   fs.copy(
     path.resolve(__dirname, `../../../../templates/add/${option}`),
     path.resolve(packageDir, featureSetup[option].path),

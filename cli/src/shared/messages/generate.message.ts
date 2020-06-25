@@ -13,18 +13,13 @@ export const generateMessage = {
 
   failedConfigure: () => `Failed to fully configure the package`,
 
-  invalidTemplate: (template: string) =>
-    `Invalid template ${color.error(template)}`,
+  invalidTemplate: (template: string) => `Invalid template ${color.error(template)}`,
 
   exists: (name: string) =>
-    `A folder named ${color.error(name)} already exists! ${color.bold(
-      'Choose a different name'
-    )}`,
+    `A folder named ${color.error(name)} already exists! ${color.bold('Choose a different name')}`,
 
   preparingPackage: (name: string, dependencies: string[]) => {
-    const pkgText = dependencies
-      .map(pkg => `     ${color.info(pkg)}`)
-      .join('\n');
+    const pkgText = dependencies.map(pkg => `     ${color.info(pkg)}`).join('\n');
     const requiredText = `Preparing ${color.info(name)} package`;
     return dependencies.length > 0
       ? `${requiredText} with the following peer dependencies: 
@@ -44,9 +39,7 @@ ${pkgText}
     return `
   ${color.success('Awesome!')} You're now ready to start coding.
   
-  There is no need to run ${color.info(
-    commands.install
-  )}, since all peer dependencies are already in the workspace root
+  There is no need to run ${color.info(commands.install)}, since all peer dependencies are already in the workspace root
   
   So your next steps are:
     ${color.info(`cd packages/${projectName}`)}

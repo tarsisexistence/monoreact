@@ -11,7 +11,7 @@
 
 ### What is it
 
-This is an advanced workspace implementation for react applications. 
+This is an advanced workspace implementation for react applications.
 
 **Re-space** includes the following features:
 

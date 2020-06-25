@@ -1,13 +1,4 @@
-import {
-  cyan,
-  blue,
-  red,
-  green,
-  yellow,
-  bold,
-  inverse,
-  underline
-} from 'colorette';
+import { cyan, blue, red, green, yellow, bold, inverse, underline } from 'colorette';
 
 export const color = {
   info: (msg: string): string => bold(cyan(msg)),

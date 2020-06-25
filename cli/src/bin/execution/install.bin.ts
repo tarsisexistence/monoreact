@@ -3,11 +3,7 @@ import { Sade } from 'sade';
 import ora from 'ora';
 
 import { installMessage } from '../../shared/messages';
-import {
-  findWorkspacePackageDir,
-  findWorkspaceRootDir,
-  logError
-} from '../../shared/utils';
+import { findWorkspacePackageDir, findWorkspaceRootDir, logError } from '../../shared/utils';
 
 export const installBinCommand = (prog: Sade): void => {
   prog

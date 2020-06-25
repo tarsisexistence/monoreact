@@ -1,9 +1,6 @@
 import path from 'path';
 
-import {
-  findWorkspacePackageDir,
-  findWorkspaceRootDir
-} from '../../shared/utils';
+import { findWorkspacePackageDir, findWorkspaceRootDir } from '../../shared/utils';
 import { TSCONFIG_JSON } from '../../shared/constants/package.const';
 
 export const getPackageLintInfo = async (): Promise<{

@@ -6,7 +6,5 @@ export const convertStringArrayIntoMap = (input = ''): Map<string, true> => {
       str += input[i];
     }
   }
-  return str === ''
-    ? new Map()
-    : new Map(str.split(',').map(name => [name, true]));
+  return str === '' ? new Map() : new Map(str.split(',').map(name => [name, true]));
 };

@@ -33,15 +33,10 @@ export function logError(err: RollupError): void {
   space();
 }
 
-function normalizeErrorMessage(
-  error: RollupError,
-  description: string
-): string {
+function normalizeErrorMessage(error: RollupError, description: string): string {
   if (!error.plugin) {
     return description;
   }
 
-  return error.plugin === 'rpt2'
-    ? `(typescript) ${description}`
-    : `(${error.plugin} plugin) ${description}`;
+  return error.plugin === 'rpt2' ? `(typescript) ${description}` : `(${error.plugin} plugin) ${description}`;
 }
