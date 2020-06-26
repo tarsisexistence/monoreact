@@ -59,6 +59,7 @@ export function workspacesLintBinCommand(prog: Sade): void {
       } catch (error) {
         console.log(workspacesMessage.failed());
         logError(error);
+        process.exit(1);
       }
     });
 }
