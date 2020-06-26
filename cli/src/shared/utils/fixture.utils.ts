@@ -12,7 +12,7 @@ export function setupStage(testDir: string, fixtureName: string, templateName?: 
   const stagePath = path.join(STAGING_PATH, getStageName(fixtureName));
   shell.mkdir(stagePath);
   shell.exec(`cp -a ${ROOT_DIR}/test/${testDir}/fixtures/${templateName || fixtureName}/. ${stagePath}/`);
-  shell.ln('-s', path.join(ROOT_DIR, 'node_modules'), path.join(stagePath, 'node_modules'));
+  shell.ln('', path.join(ROOT_DIR, 'node_modules'), path.join(stagePath, 'node_modules'));
   shell.cd(stagePath);
 }
 
