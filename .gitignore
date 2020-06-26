@@ -3,7 +3,7 @@
 **/.docz
 **/dist
 **/.cache
-
+**/.staging
 # reporters
 /report
 
