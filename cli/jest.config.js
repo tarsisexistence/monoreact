@@ -4,6 +4,7 @@ module.exports = {
   testEnvironment: 'node',
   testPathIgnorePatterns: [
     '/node_modules/',
+    '<rootDir>/dist/',
     '<rootDir>/templates/',
     '<rootDir>/test/.staging/*',
     '<rootDir>/test/.*/fixtures/'
