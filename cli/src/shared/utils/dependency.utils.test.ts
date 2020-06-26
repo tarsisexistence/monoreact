@@ -400,6 +400,52 @@ describe('[utils.dependency]', () => {
         ]
       });
     });
+
+    test('should handle real-world example of subsequent package entities', async () => {
+      const packageJsons = [
+        {
+          name: 'example-1',
+          dependencies: {}
+        },
+        {
+          name: 'example-2',
+          dependencies: {}
+        },
+        {
+          name: 'example-3',
+          dependencies: {
+            'example-1': '*'
+          }
+        },
+        {
+          name: 'example-4',
+          dependencies: {
+            'example-2': '*'
+          }
+        },
+        {
+          name: 'example-5',
+          dependencies: {
+            'example-3': '*'
+          }
+        },
+        {
+          name: 'example-6',
+          dependencies: {
+            'example-1': '*',
+            'example-4': '*'
+          }
+        }
+      ];
+      expect(splitWorkspacesIntoDependencyGraph(packageJsons)).toEqual({
+        chunks: [
+          ['example-1', 'example-2'],
+          ['example-3', 'example-4'],
+          ['example-5', 'example-6']
+        ],
+        unprocessed: []
+      });
+    });
   });
 
   describe('getExternalScreen', () => {
