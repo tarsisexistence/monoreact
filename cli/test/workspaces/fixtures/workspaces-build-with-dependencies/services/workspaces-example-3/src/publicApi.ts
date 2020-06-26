@@ -1,1 +1,1 @@
-export { noop } from './utils';
+export { sum } from './utils';
