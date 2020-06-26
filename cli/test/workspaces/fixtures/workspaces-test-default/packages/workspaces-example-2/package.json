@@ -1,0 +1,11 @@
+{
+  "name": "@workspaces-test-default/workspaces-example-2",
+  "version": "0.1.0",
+  "private": false,
+  "license": "MIT",
+  "author": "maktarsis",
+  "module": "dist/bundle.js",
+  "source": "src/publicApi.ts",
+  "types": "dist/publicApi.d.ts",
+  "workspace": true
+}
