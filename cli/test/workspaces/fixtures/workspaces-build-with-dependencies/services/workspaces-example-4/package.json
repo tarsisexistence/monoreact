@@ -1,0 +1,14 @@
+{
+  "name": "@workspaces-build-with-dependencies/workspaces-example-4",
+  "version": "0.1.0",
+  "private": false,
+  "license": "MIT",
+  "author": "maktarsis",
+  "module": "dist/bundle.js",
+  "source": "src/publicApi.ts",
+  "types": "dist/publicApi.d.ts",
+  "dependencies": {
+    "@workspaces-build-with-dependencies/workspaces-example-2": "*"
+  },
+  "workspace": true
+}
