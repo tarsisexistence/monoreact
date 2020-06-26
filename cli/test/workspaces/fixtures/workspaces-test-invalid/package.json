@@ -1,0 +1,22 @@
+{
+  "name": "workspaces-test-invalid",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "workspaces": [
+    "packages/workspaces-example-1",
+    "packages/workspaces-example-2"
+  ],
+  "dependencies": {
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
+  },
+  "devDependencies": {
+    "@types/node": "13.13.6",
+    "@types/react": "16.9.35",
+    "@types/react-dom": "16.9.8",
+    "@types/jest": "25.2.1",
+    "tslib": "2.0.0",
+    "typescript": "3.9.5"
+  }
+}
