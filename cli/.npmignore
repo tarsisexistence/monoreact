@@ -3,6 +3,5 @@ test
 src
 .eslintrc.js
 jest.config.js
-src/**/*.test.*
 dist/**/*.test.*
 dist/tsconfig.tsbuildinfo
