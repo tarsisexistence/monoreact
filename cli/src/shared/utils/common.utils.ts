@@ -16,6 +16,7 @@ export function clearConsole(): void {
 
 export const space = (): boolean => process.stdout.write('\n');
 
+// TODO: find more suitable place
 export const installDependencies = (): ShellString => exec('yarn install', { silent: true });
 
 /* eslint-disable no-empty-function, @typescript-eslint/no-empty-function */

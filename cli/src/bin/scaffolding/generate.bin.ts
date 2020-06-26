@@ -4,10 +4,10 @@ import ora from 'ora';
 import fs from 'fs-extra';
 
 import {
+  findWorkspaceRootDir,
   getWorkspacePackageSetupPath,
   getWorkspacesFromDeclaration,
-  logError,
-  findWorkspaceRootDir
+  logError
 } from '../../shared/utils';
 import { generateSetup } from './setup';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
@@ -21,9 +21,9 @@ import {
   sortPackageJson
 } from './scaffolding.helpers';
 import {
+  buildPackage,
   composePackageJson,
   getPackageTemplateType,
-  buildPackage,
   updatePackageJsonWorkspacesDeclaration
 } from './generate.helpers';
 

@@ -3,7 +3,7 @@ import ora from 'ora';
 import path from 'path';
 
 import { installDependencies, logError } from '../../shared/utils';
-import { createPackageJson, copyTemplate, getAuthor, sortPackageJson, setNpmAuthorName } from './scaffolding.helpers';
+import { copyTemplate, createPackageJson, getAuthor, setNpmAuthorName, sortPackageJson } from './scaffolding.helpers';
 import { newSetup } from './setup/new';
 import { newMessage } from '../../shared/messages';
 import { resolveOptions } from './new.helpers';

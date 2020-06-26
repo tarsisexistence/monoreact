@@ -1,8 +1,7 @@
 import { Sade } from 'sade';
 import execa from 'execa';
 
-import { workspacesMessage } from '../../shared/messages';
-import { serveMessage } from '../../shared/messages';
+import { serveMessage, workspacesMessage } from '../../shared/messages';
 import { clearConsole, logError, space } from '../../shared/utils';
 import { convertStringArrayIntoMap } from '../../shared/utils/dataStructures.utils';
 import { exposeWorkspacesInfo, withExcludedWorkspaces } from './workspaces.helpers';
