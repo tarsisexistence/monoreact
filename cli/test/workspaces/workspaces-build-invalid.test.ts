@@ -29,7 +29,6 @@ describe('[bin.execution.workspaces-build-invalid]', () => {
     expect(shell.test('-d', 'shared/workspaces-example-2/dist')).toBeTruthy();
   });
 
-
   it('should not compile failed build in services', () => {
     smartExec('node ../../../dist/src/bin/index.js workspaces build');
     expect(shell.test('-d', 'services/workspaces-example-4/dist')).toBeFalsy();
