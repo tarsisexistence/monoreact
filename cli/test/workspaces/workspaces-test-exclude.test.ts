@@ -21,6 +21,6 @@ describe('[bin.execution.workspaces-test-exclude]', () => {
 
   it('should exclude failed test and exit with 0', () => {
     const output = smartExec('node ../../../dist/src/bin/index.js workspaces test --exclude workspaces-example-2');
-    expect(output.code).toBe(1);
+    expect(output.code).toBe(0);
   });
 });
