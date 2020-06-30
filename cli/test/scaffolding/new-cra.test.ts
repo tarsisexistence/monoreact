@@ -11,7 +11,7 @@ const template = 'new';
 describe('[bin.scaffolding.new-cra]', () => {
   beforeAll(() => {
     teardownStage(fixtureName);
-    setupStage(testDir, fixtureName, template);
+    setupStage(testDir, fixtureName, { template });
   });
 
   afterAll(() => {

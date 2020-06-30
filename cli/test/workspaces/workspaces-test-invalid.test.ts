@@ -11,7 +11,7 @@ const fixtureName = 'workspaces-test-invalid';
 describe('[bin.execution.workspaces-test-invalid]', () => {
   beforeAll(() => {
     teardownStage(fixtureName);
-    setupStage(testDir, fixtureName);
+    setupStage(testDir, fixtureName, { install: true });
   });
 
   afterAll(() => {

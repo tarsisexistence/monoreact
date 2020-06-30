@@ -14,7 +14,7 @@ const template = 'install';
 describe('[bin.execution.install.root.prod]', () => {
   beforeAll(() => {
     teardownStage(fixtureName);
-    setupStage(testDir, fixtureName, template);
+    setupStage(testDir, fixtureName, { template });
   });
 
   afterAll(() => {

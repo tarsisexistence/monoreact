@@ -13,7 +13,7 @@ const template = 'generate';
 describe('[bin.scaffolding.generate-default]', () => {
   beforeAll(() => {
     teardownStage(fixtureName);
-    setupStage(testDir, fixtureName, template);
+    setupStage(testDir, fixtureName, { template });
   });
 
   afterAll(() => {
