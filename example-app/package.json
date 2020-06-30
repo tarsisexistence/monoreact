@@ -21,7 +21,7 @@
     "stylelint": "stylelint \"src/**/*.{css,sass,scss}\""
   },
   "dependencies": {
-    "@monoreact/example": "*",
+    "@monoreact/package-example": "*",
     "@tarsis/datepicker": "*",
     "classnames": "2.2.6",
     "dayjs": "1.8.26",
@@ -83,8 +83,8 @@
   },
   "jest": {
     "moduleNameMapper": {
-      "@monoreact/datepicker": "<rootDir>/packages/datepicker/src/publicApi.ts",
-      "@monoreact/example": "<rootDir>/packages/example/src/publicApi.ts"
+      "@tarsis/datepicker": "<rootDir>/packages/datepicker/src/publicApi.ts",
+      "@monoreact/package-example": "<rootDir>/packages/example/src/publicApi.ts"
     }
   }
 }

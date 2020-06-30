@@ -17,7 +17,7 @@
   },
   "peerDependencies": {
     "react": "*",
-    "@monoreact/example": "*"
+    "@monoreact/package-example": "*"
   },
   "publishConfig": {
     "access": "public"

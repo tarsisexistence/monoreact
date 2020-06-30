@@ -1,5 +1,5 @@
 import React from 'react';
-import { Products } from '@monoreact/example';
+import { Products } from '@monoreact/package-example';
 import { DatePicker } from '@tarsis/datepicker';
 
 import styles from './App.module.css';
