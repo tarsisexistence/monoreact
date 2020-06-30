@@ -3,7 +3,7 @@ This package meant for developing React components (not applications) that can b
 ## Commands
 
 ### Serve
-**re-space** scaffolds your new library inside `/src`, (bonus: sets up a [Parcel-based](https://parceljs.org) playground for that package inside `/playground` to test your components inside separate index.html).
+**Monoreact** scaffolds your new library inside `/src`, (bonus: sets up a [Parcel-based](https://parceljs.org) playground for that package inside `/playground` to test your components inside separate index.html).
 
 ```
 yarn start
@@ -26,7 +26,7 @@ The output will be available inside `/dist`
 
 ### Lint
 
-**re-space** provides predefined `eslint` configuration (available only workspace project at the moment):
+**Monoreact** provides predefined `eslint` configuration (available only workspace project at the moment):
 
 ```
 yarn lint
@@ -56,7 +56,7 @@ This loads the component documentation of `*.mdx` extension.
 
 ### Using the Playground
 
-You can generate playground via `re-space add playground`
+You can generate playground via `monoreact add playground`
 
 ```
 cd playground

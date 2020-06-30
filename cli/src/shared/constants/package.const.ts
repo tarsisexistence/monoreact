@@ -2,10 +2,10 @@ export const PACKAGE_JSON = 'package.json';
 export const TSCONFIG_JSON = 'tsconfig.json';
 
 export const BASE_PACKAGE_SCRIPTS: CLI.Package.Scripts = {
-  start: 're-space serve',
-  build: 're-space build',
-  test: 're-space test --passWithNoTests',
-  lint: 're-space lint "src/**/*.{js,jsx,ts,tsx}"',
+  start: 'monoreact serve',
+  build: 'monoreact build',
+  test: 'monoreact test --passWithNoTests',
+  lint: 'monoreact lint "src/**/*.{js,jsx,ts,tsx}"',
   prepublishOnly: 'yarn build'
 } as const;
 
@@ -46,7 +46,7 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.WorkspaceRootPackageJSON =
     build: 'react-scripts build',
     test: 'react-scripts test',
     eject: 'react-scripts eject',
-    lint: 're-space lint',
+    lint: 'monoreact lint',
     stylelint: 'stylelint "src/**/*.{css,sass,scss}"'
   },
   dependencies: {
@@ -55,7 +55,7 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.WorkspaceRootPackageJSON =
     'react-scripts': '3.4.1'
   },
   devDependencies: {
-    '@re-space/cli': 'latest',
+    'monoreact': 'latest',
     '@testing-library/dom': '6.12.2',
     '@testing-library/jest-dom': '4.2.4',
     '@testing-library/react': '9.4.0',

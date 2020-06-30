@@ -11,7 +11,7 @@ const fixtureName = 'workspaces-test-default';
 describe('[bin.execution.workspaces-test-default]', () => {
   beforeAll(() => {
     teardownStage(fixtureName);
-    setupStage(testDir, fixtureName);
+    setupStage(testDir, fixtureName, { install: true });
   });
 
   afterAll(() => {

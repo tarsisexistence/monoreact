@@ -39,7 +39,7 @@ export function workspacesBuildBinCommand(prog: Sade): void {
                 console.log(workspacesMessage.running(name));
               }
 
-              const { stderr } = await execa('re-space', ['build'], {
+              const { stderr } = await execa('monoreact', ['build'], {
                 cwd: packagesLocationMap[name]
               });
 
@@ -63,7 +63,7 @@ export function workspacesBuildBinCommand(prog: Sade): void {
         console.log(workspacesMessage.successful(duration));
         space();
       } catch (error) {
-        console.log(workspacesMessage.failed());
+        console.log(workspacesMessage.failed('build'));
         logError(error);
         process.exit(1);
       }

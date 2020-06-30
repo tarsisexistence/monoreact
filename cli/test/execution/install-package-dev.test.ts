@@ -14,7 +14,7 @@ const template = 'install';
 describe('[bin.execution.install.package.dev]', () => {
   beforeAll(() => {
     teardownStage(fixtureName);
-    setupStage(testDir, fixtureName, template);
+    setupStage(testDir, fixtureName, { template });
   });
 
   afterAll(() => {
@@ -25,13 +25,13 @@ describe('[bin.execution.install.package.dev]', () => {
     const cwd = process.cwd();
     const packageDir = path.resolve(cwd, 'packages', 'install-example');
     shell.cd(packageDir);
-    const output = smartExec('node ../../../../../dist/src/bin/index.js install @re-space/cli routeshub -D');
+    const output = smartExec('node ../../../../../dist/src/bin/index.js install monoreact routeshub -D');
     shell.cd(cwd);
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
     const packagePkg = fs.readJSONSync(path.resolve(packageDir, 'package.json'));
-    expect(rootPkg.devDependencies).toHaveProperty('@re-space/cli');
+    expect(rootPkg.devDependencies).toHaveProperty('monoreact');
     expect(rootPkg.devDependencies).toHaveProperty('routeshub');
-    expect(packagePkg.devDependencies).toHaveProperty('@re-space/cli');
+    expect(packagePkg.devDependencies).toHaveProperty('monoreact');
     expect(packagePkg.devDependencies).toHaveProperty('routeshub');
     expect(output.code).toBe(0);
   });
@@ -40,7 +40,7 @@ describe('[bin.execution.install.package.dev]', () => {
     const cwd = process.cwd();
     const packageDir = path.resolve(cwd, 'packages', 'install-example');
     shell.cd(packageDir);
-    const output = smartExec('node ../../../../../dist/src/bin/index.js install @re-space/cli routeshub -D');
+    const output = smartExec('node ../../../../../dist/src/bin/index.js install monoreact routeshub -D');
     shell.cd(cwd);
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
     const packagePkg = fs.readJSONSync(path.resolve(packageDir, 'package.json'));
@@ -50,7 +50,7 @@ describe('[bin.execution.install.package.dev]', () => {
       ...packagePkg.dependencies,
       ...packagePkg.peerDependencies
     }).forEach(dep => {
-      expect(dep).not.toBe('@re-space/cli');
+      expect(dep).not.toBe('monoreact');
       expect(dep).not.toBe('routeshub');
     });
     expect(output.code).toBe(0);

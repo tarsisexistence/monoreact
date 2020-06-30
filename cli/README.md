@@ -13,7 +13,7 @@
 
 This is an advanced workspace implementation for react applications.
 
-**Re-space** includes the following features:
+**Monoreact** includes the following features:
 
 - develop regular react apps
 - scaffold React projects
@@ -45,11 +45,11 @@ Nevertheless, I recommend considering alternative solutions:
 
 ### What can it do now
 
-Even in its raw form, it is already ready for use, and here is what exactly you can do with **re-space**:
+Even in its raw form, it is already ready for use, and here is what exactly you can do with **monoreact**:
 
 - scaffold project and build React applications with [create-react-app](https://create-react-app.dev/)
 - bundle your packages with [rollup](https://rollupjs.org/guide/en/)
-- use advanced CLI [re-space/cli](https://github.com/maktarsis/re-space/tree/master/cli)
+- use advanced CLI [monoreact](https://github.com/maktarsis/monoreact/tree/master/cli)
 - save your time with [typescript](https://www.typescriptlang.org/) (with the option not to use it)
 - symlinking [yarn workspaces](https://classic.yarnpkg.com/en/docs/workspaces)
 - enjoy configured testing([jest](https://jestjs.io/)), formatting([prettier](https://prettier.io/)), linting ([eslint](https://eslint.org/) + [stylelint](https://stylelint.io/)), git hooks([husky](https://github.com/typicode/husky) + [lint-staged](https://github.com/okonet/lint-staged)))
@@ -58,15 +58,15 @@ Even in its raw form, it is already ready for use, and here is what exactly you 
 
 ### Powerful CLI
 
-This CLI has the built-in documentation. Type in the console `re-space --help` to see all possible scripts and their description.
+This CLI has the built-in documentation. Type in the console `monoreact --help` to see all possible scripts and their description.
 
 The following options are now available:
 
 #### Scaffolding
 
 - **new**. Creates a host/shell application. This is the initial scaffolding of the entire application.
-- **generate** a new package (submodule): basic, react. Re-space creates a distribution of responsibility. Not all packages must deal with react components. Sometimes you want to build plain JavaScript/TypeScript libraries.
-- **add** a new feature (available options: docz, playground(run packages locally inside the package workspace)). Re-space allows you to not generate components with all the things that may not necessarily need in each package.
+- **generate** a new package (submodule): basic, react. Monoreact creates a distribution of responsibility. Not all packages must deal with react components. Sometimes you want to build plain JavaScript/TypeScript libraries.
+- **add** a new feature (available options: docz, playground(run packages locally inside the package workspace)). Monoreact allows you to not generate components with all the things that may not necessarily need in each package.
 
 #### Execution
 
@@ -76,7 +76,7 @@ The following options are now available:
 
 #### Submodules
 
-It is quite challenging for managing git submodules. You have to perform many actions to make a simple task happen, and this is what scares people off from using submodules. In turn, Re-space offers user-friendly control through commands, which increases understanding and speed of interaction with git submodules.
+It is quite challenging for managing git submodules. You have to perform many actions to make a simple task happen, and this is what scares people off from using submodules. In turn, Monoreact offers user-friendly control through commands, which increases understanding and speed of interaction with git submodules.
 
 - **checkout**
 - **fetch**
@@ -85,7 +85,7 @@ It is quite challenging for managing git submodules. You have to perform many ac
 
 #### Workspaces
 
-Re-space offers a much efficient alternative to the "yarn workspaces". It analyzes your dependencies between workspaces and runs them in the desired sequence and in parallel, when necessary and appropriate.
+Monoreact offers a much efficient alternative to the "yarn workspaces". It analyzes your dependencies between workspaces and runs them in the desired sequence and in parallel, when necessary and appropriate.
 
 - **serve** (parallel)
 - **build** (parallel)
@@ -105,7 +105,7 @@ This section is responsible for scripts that will help to adapt the basic state 
 > Project uses git submodules
 > If you are not familiar with git submodules, please follow the instructions to bootstrap the project
 
-1. git clone --recursive https://github.com/maktarsis/re-space.git
+1. git clone --recursive https://github.com/maktarsis/monoreact.git
 2. npx yarn install (**you can omit "npx" if you have installed yarn globally**)
 3. cd example-app
 4. yarn workspaces run build
@@ -115,7 +115,7 @@ This section is responsible for scripts that will help to adapt the basic state 
 
 ### Bootstrap CLI
 
-1. git clone --recursive https://github.com/maktarsis/re-space.git
+1. git clone --recursive https://github.com/maktarsis/monoreact.git
 2. npx yarn install (**you can omit "npx" if you have installed yarn globally**)
 3. cd cli
 4. yarn start

@@ -1,6 +1,6 @@
 import fs from 'fs-extra';
 import path from 'path';
-import jest from 'jest';
+import { run } from 'jest';
 import { Sade } from 'sade';
 
 import { findWorkspacePackageDir } from '../../shared/utils';
@@ -25,7 +25,7 @@ export const testBinCommand = (prog: Sade): void => {
         jestPackageOptions,
         jestConfigOptions
       });
-      jest.run([
+      run([
         ...process.argv.slice(3),
         '--config',
         JSON.stringify({

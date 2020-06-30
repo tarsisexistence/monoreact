@@ -2,7 +2,6 @@ import * as shell from 'shelljs';
 
 import { setupStage, teardownStage } from '../../src/shared/utils/fixture.utils';
 import { smartExec } from '../../src/shared/utils/shell.utils';
-import { installDependencies } from '../../src/shared/utils';
 
 shell.config.silent = false;
 
@@ -13,8 +12,7 @@ const template = 'workspaces-build-with-dependencies';
 describe('[bin.execution.workspaces-build-with-exclude-dependencies]', () => {
   beforeAll(() => {
     teardownStage(fixtureName);
-    setupStage(testDir, fixtureName, template);
-    installDependencies();
+    setupStage(testDir, fixtureName, { template, install: true });
   });
 
   afterAll(() => {

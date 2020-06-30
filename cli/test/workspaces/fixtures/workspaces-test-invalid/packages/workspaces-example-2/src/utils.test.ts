@@ -6,6 +6,6 @@ describe('workspaces-test-default concat', () => {
   });
 
   it('should fail when type is not correct', () => {
-    expect(concat('1', '2')).not.toBe(12);
+    expect(concat('1', '2')).toBe(12);
   });
 });

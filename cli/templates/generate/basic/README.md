@@ -3,7 +3,7 @@ This package meant for developing React components (not applications) that can b
 ## Commands
 
 ### Serve
-**re-space** scaffolds your new library inside `/src`:
+**Monoreact** scaffolds your new library inside `/src`:
 
 ```
 yarn start
@@ -23,7 +23,7 @@ The output will be available inside `/dist`
 
 ### Lint
 
-**re-space** provides predefined `eslint` configuration (available only workspace project at the moment):
+**Monoreact** provides predefined `eslint` configuration (available only workspace project at the moment):
 
 ```
 yarn lint

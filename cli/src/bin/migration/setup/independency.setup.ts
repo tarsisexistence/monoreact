@@ -4,7 +4,7 @@ export const independencySetup: CLI.Setup.MigrationOptions = {
     'react-dom': '^16.13.1'
   },
   devDependencies: {
-    '@re-space/cli': 'latest',
+    'monoreact': 'latest',
     '@typescript-eslint/parser': '^2.31.0',
     '@types/react': '^16.9.34',
     '@types/react-dom': '^16.9.7',

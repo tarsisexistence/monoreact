@@ -6,7 +6,7 @@
 
 ## Commands
 
-Re-space scaffolds your new library inside `/src`, and also sets up a [Parcel-based](https://parceljs.org) playground for it inside `/example`.
+Monoreact scaffolds your new library inside `/src`, and also sets up a [Parcel-based](https://parceljs.org) playground for it inside `/example`.
 
 ```
 yarn start

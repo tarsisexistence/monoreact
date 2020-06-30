@@ -8,11 +8,11 @@
   "source": "src/publicApi.ts",
   "typings": "dist/publicApi.d.ts",
   "scripts": {
-    "build": "re-space build",
-    "lint": "re-space lint \"src/**/*.{js,jsx,ts,tsx}\"",
-    "start": "re-space serve",
+    "build": "monoreact build",
+    "lint": "monoreact lint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "start": "monoreact serve",
     "stylelint": "npx stylelint \"src/**/*.{css,sass,scss}\"",
-    "test": "re-space test --passWithNoTests",
+    "test": "monoreact test --passWithNoTests",
     "start:playground": "yarn build & npx concurrently --kill-others \"yarn start\" \"cd playground & yarn start\""
   },
   "peerDependencies": {

@@ -44,7 +44,7 @@ export function workspacesLintBinCommand(prog: Sade): void {
 
             try {
               const cwd = packagesLocationMap[name];
-              await execa('re-space', args, { cwd, stdio: 'inherit' });
+              await execa('monoreact', args, { cwd, stdio: 'inherit' });
             } catch (error) {
               logError(error);
             }
@@ -57,7 +57,7 @@ export function workspacesLintBinCommand(prog: Sade): void {
         console.log(workspacesMessage.successful(duration));
         space();
       } catch (error) {
-        console.log(workspacesMessage.failed());
+        console.log(workspacesMessage.failed('lint'));
         logError(error);
         process.exit(1);
       }
