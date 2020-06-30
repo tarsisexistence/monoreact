@@ -67,7 +67,7 @@ export function workspacesServeBinCommand(prog: Sade): void {
         console.log(workspacesMessage.successful(duration));
         space();
       } catch (error) {
-        console.log(workspacesMessage.failed());
+        console.log(workspacesMessage.failed('serve'));
         logError(error);
       }
     });
