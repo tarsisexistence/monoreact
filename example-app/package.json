@@ -1,5 +1,5 @@
 {
-  "name": "@re-space/host",
+  "name": "@monoreact-example/host",
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
@@ -17,11 +17,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "re-space lint",
+    "lint": "monoreact lint",
     "stylelint": "stylelint \"src/**/*.{css,sass,scss}\""
   },
   "dependencies": {
-    "@re-space/example": "*",
+    "@monoreact/example": "*",
     "@tarsis/datepicker": "*",
     "classnames": "2.2.6",
     "dayjs": "1.8.26",
@@ -35,7 +35,7 @@
     "styled-components": "5.1.0"
   },
   "devDependencies": {
-    "@re-space/cli": "*",
+    "monoreact": "*",
     "@testing-library/dom": "6.12.2",
     "@testing-library/jest-dom": "4.2.4",
     "@testing-library/react": "9.4.0",
@@ -83,8 +83,8 @@
   },
   "jest": {
     "moduleNameMapper": {
-      "@re-space/datepicker": "<rootDir>/packages/datepicker/src/publicApi.ts",
-      "@re-space/example": "<rootDir>/packages/example/src/publicApi.ts"
+      "@monoreact/datepicker": "<rootDir>/packages/datepicker/src/publicApi.ts",
+      "@monoreact/example": "<rootDir>/packages/example/src/publicApi.ts"
     }
   }
 }

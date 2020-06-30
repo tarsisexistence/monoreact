@@ -10,7 +10,7 @@ import { executionBins } from './execution/execution.bins';
 import { TITLE_CLI } from '../shared/messages';
 import pkg from '../../package.json';
 
-const prog = sade('re-space');
+const prog = sade('monoreact');
 
 console.log(TITLE_CLI);
 

@@ -8,6 +8,6 @@
   "source": "src/publicApi.js",
   "types": "dist/publicApi.d.ts",
   "scripts": {
-    "build": "re-space build"
+    "build": "monoreact build"
   }
 }

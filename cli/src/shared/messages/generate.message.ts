@@ -30,10 +30,10 @@ ${pkgText}
 
   preparedPackage: (projectName: string) => {
     const commands = {
-      install: 're-space install',
-      start: 're-space serve',
-      build: 're-space build',
-      test: 're-space test'
+      install: 'monoreact install',
+      start: 'monoreact serve',
+      build: 'monoreact build',
+      test: 'monoreact test'
     };
 
     return `

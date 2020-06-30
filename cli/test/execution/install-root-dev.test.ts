@@ -22,16 +22,16 @@ describe('[bin.execution.install.root.dev]', () => {
   });
 
   it('should install only dev dependencies in the root', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js install @re-space/cli routeshub -D');
+    const output = smartExec('node ../../../dist/src/bin/index.js install monoreact routeshub -D');
     const cwd = process.cwd();
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
-    expect(rootPkg.devDependencies).toHaveProperty('@re-space/cli');
+    expect(rootPkg.devDependencies).toHaveProperty('monoreact');
     expect(rootPkg.devDependencies).toHaveProperty('routeshub');
     expect(output.code).toBe(0);
   });
 
   it('should install nothing but dev dependencies in the root', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js install @re-space/cli routeshub -D');
+    const output = smartExec('node ../../../dist/src/bin/index.js install monoreact routeshub -D');
     const cwd = process.cwd();
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
     const packagePkg = fs.readJSONSync(path.resolve(cwd, 'packages', 'install-example', 'package.json'));
@@ -42,7 +42,7 @@ describe('[bin.execution.install.root.dev]', () => {
       ...packagePkg.devDependencies,
       ...packagePkg.peerDependencies
     }).forEach(dep => {
-      expect(dep).not.toBe('@re-space/cli');
+      expect(dep).not.toBe('monoreact');
       expect(dep).not.toBe('routeshub');
     });
     expect(output.code).toBe(0);

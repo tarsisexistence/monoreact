@@ -40,7 +40,7 @@ export function workspacesServeBinCommand(prog: Sade): void {
                 console.log(workspacesMessage.running(name));
               }
 
-              const proc = execa('re-space', ['serve', '--color'], {
+              const proc = execa('monoreact', ['serve', '--color'], {
                 cwd: packagesLocationMap[name],
                 stderr: process.stderr
               });

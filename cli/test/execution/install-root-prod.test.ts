@@ -22,16 +22,16 @@ describe('[bin.execution.install.root.prod]', () => {
   });
 
   it('should install few prod dependencies in the root', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js install @re-space/cli routeshub');
+    const output = smartExec('node ../../../dist/src/bin/index.js install monoreact routeshub');
     const cwd = process.cwd();
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
-    expect(rootPkg.dependencies).toHaveProperty('@re-space/cli');
+    expect(rootPkg.dependencies).toHaveProperty('monoreact');
     expect(rootPkg.dependencies).toHaveProperty('routeshub');
     expect(output.code).toBe(0);
   });
 
   it('should install nothing but prod dependencies in the root', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js install @re-space/cli routeshub');
+    const output = smartExec('node ../../../dist/src/bin/index.js install monoreact routeshub');
     const cwd = process.cwd();
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
     const packagePkg = fs.readJSONSync(path.resolve(cwd, 'packages', 'install-example', 'package.json'));
@@ -42,20 +42,20 @@ describe('[bin.execution.install.root.prod]', () => {
       ...packagePkg.devDependencies,
       ...packagePkg.peerDependencies
     }).forEach(dep => {
-      expect(dep).not.toBe('@re-space/cli');
+      expect(dep).not.toBe('monoreact');
       expect(dep).not.toBe('routeshub');
     });
     expect(output.code).toBe(0);
   });
 
   it('should not have tilde and caret (~, ^) in the root', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js install @re-space/cli routeshub');
+    const output = smartExec('node ../../../dist/src/bin/index.js install monoreact routeshub');
     const cwd = process.cwd();
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
     expect(rootPkg.dependencies.routeshub[0]).not.toBe('^');
     expect(rootPkg.dependencies.routeshub[0]).not.toBe('~');
-    expect(rootPkg.dependencies['@re-space/cli'][0]).not.toBe('^');
-    expect(rootPkg.dependencies['@re-space/cli'][0]).not.toBe('~');
+    expect(rootPkg.dependencies['monoreact'][0]).not.toBe('^');
+    expect(rootPkg.dependencies['monoreact'][0]).not.toBe('~');
     expect(output.code).toBe(0);
   });
 });

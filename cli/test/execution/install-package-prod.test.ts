@@ -25,14 +25,14 @@ describe('[bin.execution.install.package.prod]', () => {
     const cwd = process.cwd();
     const packageDir = path.resolve(cwd, 'packages', 'install-example');
     shell.cd(packageDir);
-    const output = smartExec('node ../../../../../dist/src/bin/index.js install @re-space/cli routeshub');
+    const output = smartExec('node ../../../../../dist/src/bin/index.js install monoreact routeshub');
     shell.cd(cwd);
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
     const packagePkg = fs.readJSONSync(path.resolve(packageDir, 'package.json'));
 
-    expect(rootPkg.dependencies).toHaveProperty('@re-space/cli');
+    expect(rootPkg.dependencies).toHaveProperty('monoreact');
     expect(rootPkg.dependencies).toHaveProperty('routeshub');
-    expect(packagePkg.peerDependencies).toHaveProperty('@re-space/cli');
+    expect(packagePkg.peerDependencies).toHaveProperty('monoreact');
     expect(packagePkg.peerDependencies).toHaveProperty('routeshub');
     expect(output.code).toBe(0);
   });
@@ -41,7 +41,7 @@ describe('[bin.execution.install.package.prod]', () => {
     const cwd = process.cwd();
     const packageDir = path.resolve(cwd, 'packages', 'install-example');
     shell.cd(packageDir);
-    const output = smartExec('node ../../../../../dist/src/bin/index.js install @re-space/cli routeshub');
+    const output = smartExec('node ../../../../../dist/src/bin/index.js install monoreact routeshub');
     shell.cd(cwd);
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
     const packagePkg = fs.readJSONSync(path.resolve(cwd, 'packages', 'install-example', 'package.json'));
@@ -51,7 +51,7 @@ describe('[bin.execution.install.package.prod]', () => {
       ...packagePkg.dependencies,
       ...packagePkg.devDependencies
     }).forEach(dep => {
-      expect(dep).not.toBe('@re-space/cli');
+      expect(dep).not.toBe('monoreact');
       expect(dep).not.toBe('routeshub');
     });
     expect(output.code).toBe(0);
@@ -61,13 +61,13 @@ describe('[bin.execution.install.package.prod]', () => {
     const cwd = process.cwd();
     const packageDir = path.resolve(cwd, 'packages', 'install-example');
     shell.cd(packageDir);
-    const output = smartExec('node ../../../../../dist/src/bin/index.js install @re-space/cli routeshub');
+    const output = smartExec('node ../../../../../dist/src/bin/index.js install monoreact routeshub');
     shell.cd(cwd);
     const packagePkg = fs.readJSONSync(path.resolve(cwd, 'packages', 'install-example', 'package.json'));
     expect(packagePkg.peerDependencies.routeshub[0]).toBe('^');
     expect(packagePkg.peerDependencies.routeshub[0]).not.toBe('~');
-    expect(packagePkg.peerDependencies['@re-space/cli'][0]).toBe('^');
-    expect(packagePkg.peerDependencies['@re-space/cli'][0]).not.toBe('~');
+    expect(packagePkg.peerDependencies['monoreact'][0]).toBe('^');
+    expect(packagePkg.peerDependencies['monoreact'][0]).not.toBe('~');
     expect(output.code).toBe(0);
   });
 });

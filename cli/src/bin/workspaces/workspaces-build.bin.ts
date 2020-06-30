@@ -39,7 +39,7 @@ export function workspacesBuildBinCommand(prog: Sade): void {
                 console.log(workspacesMessage.running(name));
               }
 
-              const { stderr } = await execa('re-space', ['build'], {
+              const { stderr } = await execa('monoreact', ['build'], {
                 cwd: packagesLocationMap[name]
               });
 

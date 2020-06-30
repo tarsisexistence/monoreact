@@ -76,7 +76,7 @@ describe('[bin.scaffolding.generate-default]', () => {
     expect(output.code).toBe(0);
   });
 
-  it('should have necessary package.json re-space information', () => {
+  it('should have necessary package.json monoreact information', () => {
     const output = smartExec('node ../../../dist/src/bin/index.js generate myPackage --template basic');
     const packageJson = fs.readJSONSync(path.resolve('packages', 'myPackage', 'package.json'));
     expect(packageJson.private).toBeFalsy();

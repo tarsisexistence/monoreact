@@ -1,5 +1,5 @@
 import React from 'react';
-import { Products } from '@re-space/example';
+import { Products } from '@monoreact/example';
 import { DatePicker } from '@tarsis/datepicker';
 
 import styles from './App.module.css';
@@ -7,7 +7,7 @@ import styles from './App.module.css';
 export const App: React.FC = () => (
   <div className={styles.container}>
     <Products />
-    Re-space: react workspace groundwork
+    Monoreact: react workspace groundwork
     <DatePicker />
   </div>
 );

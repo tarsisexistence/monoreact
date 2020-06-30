@@ -16,7 +16,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "types": ["jest", "@re-space/cli"]
+    "types": ["jest", "monoreact"]
   },
   "include": ["**/*.ts"]
 }

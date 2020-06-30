@@ -34,7 +34,7 @@ export function workspacesTestBinCommand(prog: Sade): void {
             space();
             console.log(workspacesMessage.running(name));
 
-            await execa('re-space', ['test', '--passWithNoTests'], {
+            await execa('monoreact', ['test', '--passWithNoTests'], {
               cwd: packagesLocationMap[name],
               stdio: 'inherit'
             });

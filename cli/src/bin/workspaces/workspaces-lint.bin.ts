@@ -44,7 +44,7 @@ export function workspacesLintBinCommand(prog: Sade): void {
 
             try {
               const cwd = packagesLocationMap[name];
-              await execa('re-space', args, { cwd, stdio: 'inherit' });
+              await execa('monoreact', args, { cwd, stdio: 'inherit' });
             } catch (error) {
               logError(error);
             }

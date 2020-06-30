@@ -10,7 +10,7 @@ export const addMessage = {
     const highlightedFeatureName = color.inverse(` ${featureName} `);
     return color.error(`
   Invalid feature name
-  Unfortunately, re-space doesn't provide ${highlightedFeatureName} feature
+  Unfortunately, monoreact doesn't provide ${highlightedFeatureName} feature
         `);
   },
 

@@ -8,16 +8,16 @@
   "source": "src/publicApi.ts",
   "types": "dist/publicApi.d.ts",
   "scripts": {
-    "build": "re-space build",
-    "lint": "re-space lint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "build": "monoreact build",
+    "lint": "monoreact lint \"src/**/*.{js,jsx,ts,tsx}\"",
     "prepublishOnly": "yarn build",
-    "start": "re-space serve",
+    "start": "monoreact serve",
     "stylelint": "npx stylelint \"src/**/*.{css,sass,scss}\"",
-    "test": "re-space test --passWithNoTests"
+    "test": "monoreact test --passWithNoTests"
   },
   "peerDependencies": {
     "react": "*",
-    "@re-space/example": "*"
+    "@monoreact/example": "*"
   },
   "publishConfig": {
     "access": "public"

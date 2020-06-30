@@ -1,4 +1,4 @@
-This project bootstrapped with re-space/cli + [Create React App](https://github.com/facebook/create-react-app).
+This project bootstrapped with Monoreact + [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
