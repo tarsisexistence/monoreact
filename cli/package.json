@@ -1,11 +1,11 @@
 {
   "name": "monoreact",
-  "version": "0.23.0",
+  "version": "0.23.1",
   "description": "React workspaces implementation",
   "main": "./dist/src/bin/index.js",
   "bin": {
     "monoreact": "./dist/src/bin/index.js",
-    "mono": "./dist/src/bin/index.js"
+    "more": "./dist/src/bin/index.js"
   },
   "author": {
     "email": "tarsis.maksym@gmail.com",
