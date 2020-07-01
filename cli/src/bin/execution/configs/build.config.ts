@@ -30,7 +30,7 @@ export const createBuildConfig = ({
   displayFilesize: boolean;
   useClosure: boolean;
   runEslint: boolean;
-  packageJson: CLI.Package.WorkspacePackageJSON;
+  packageJson: CLI.Package.PackagePackageJSON;
   tsconfigJson: TsconfigJSON;
 }): InputOptions & { output: OutputOptions } => ({
   input: packageJson.source,

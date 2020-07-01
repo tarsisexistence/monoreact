@@ -3,7 +3,7 @@ import { Sade } from 'sade';
 import ora from 'ora';
 
 import { installMessage } from '../../shared/messages';
-import { findWorkspacePackageDir, findWorkspaceRootDir, logError } from '../../shared/utils';
+import { findPackageDirectory, findHostDirectory, logError } from '../../shared/utils';
 
 export const installBinCommand = (prog: Sade): void => {
   prog
@@ -16,12 +16,13 @@ export const installBinCommand = (prog: Sade): void => {
     .option('dev, D', 'Install development dependencies')
     .example(`install libraryName --dev`)
     .action(async ({ _: dependenciesList, dev }: CLI.Options.Install) => {
+      // TODO: add possibility to add args to others packages
       const dependencies = dependenciesList.join(' ');
       const installSpinner = ora(installMessage.installing(dependencies));
       installSpinner.start();
 
       try {
-        const workspacePackage = await findWorkspacePackageDir(true);
+        const packageDir = await findPackageDirectory(true);
         const installPackageArgs = ['add'];
 
         if (dev) {
@@ -33,16 +34,16 @@ export const installBinCommand = (prog: Sade): void => {
         for (const dependency of dependenciesList) {
           installPackageArgs.push(dependency);
         }
-        await execa('yarn', installPackageArgs, { cwd: workspacePackage });
+        await execa('yarn', installPackageArgs, { cwd: packageDir });
 
-        /** it is ok if findWorkspacePackageDir will throw an error
+        /** it is ok if findPackageDir will throw an error
          * it just means that we are not in the package dir
          **/
         // eslint-disable-next-line no-empty
       } catch {}
 
       try {
-        const workspaceRoot = await findWorkspaceRootDir(true);
+        const rootDir = await findHostDirectory(true);
         const installRootArgs = ['add', '--exact', '-W'];
 
         if (dev) {
@@ -57,7 +58,7 @@ export const installBinCommand = (prog: Sade): void => {
           installRootArgs.push(dependency);
         }
 
-        await execa('yarn', installRootArgs, { cwd: workspaceRoot });
+        await execa('yarn', installRootArgs, { cwd: rootDir });
         installSpinner.succeed(installMessage.successful(dependencies));
       } catch (err) {
         installSpinner.fail(installMessage.failed(dependencies));

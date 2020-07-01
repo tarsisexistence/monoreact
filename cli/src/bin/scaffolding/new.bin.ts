@@ -48,7 +48,7 @@ export const newBinCommand = (prog: Sade): void => {
         bootSpinner.start();
         process.chdir(projectDir);
         const templateConfig = newSetup[template];
-        const packageJsonPreset: CLI.Package.WorkspaceRootPackageJSON = {
+        const packageJsonPreset: CLI.Package.HostPackageJSON = {
           ...templateConfig.packageJson,
           name: projectName,
           author: author

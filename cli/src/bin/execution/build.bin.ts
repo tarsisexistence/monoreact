@@ -1,6 +1,6 @@
 import { Sade } from 'sade';
 
-import { findWorkspacePackageDir } from '../../shared/utils';
+import { findPackageDirectory } from '../../shared/utils';
 import { buildWorkspace } from './build.helpers';
 
 export const buildBinCommand = (prog: Sade): void => {
@@ -11,7 +11,7 @@ export const buildBinCommand = (prog: Sade): void => {
     .example('build')
     .action(
       async (): Promise<void> => {
-        const packageDir = await findWorkspacePackageDir();
+        const packageDir = await findPackageDirectory();
         await buildWorkspace(packageDir);
       }
     );

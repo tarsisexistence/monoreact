@@ -6,7 +6,7 @@ import fs from 'fs-extra';
 import { featureSetup } from './setup/add';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
 import { addMessage } from '../../shared/messages';
-import { findWorkspacePackageDir, logError } from '../../shared/utils';
+import { findPackageDirectory, logError } from '../../shared/utils';
 import { addFeatureScriptsToPackageJson, copyFeatureTemplate, validateFeatureOption } from './add.helpers';
 
 const featureOptions = Object.keys(featureSetup);
@@ -21,9 +21,9 @@ export const addBinCommand = (prog: Sade): void => {
       const featureOption: CLI.Setup.AddOptionType = await validateFeatureOption(featureName, featureOptions, () =>
         console.log(addMessage.invalidFeatureName(featureOption))
       );
-      const packageDir = await findWorkspacePackageDir();
+      const packageDir = await findPackageDirectory();
       const packageJsonPath = path.resolve(packageDir, PACKAGE_JSON);
-      const packageJson = (await fs.readJSON(packageJsonPath)) as CLI.Package.WorkspacePackageJSON;
+      const packageJson = (await fs.readJSON(packageJsonPath)) as CLI.Package.PackagePackageJSON;
 
       const bootSpinner = ora(addMessage.adding(featureOption));
       bootSpinner.start();

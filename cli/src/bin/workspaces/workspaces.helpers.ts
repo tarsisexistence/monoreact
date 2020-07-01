@@ -1,14 +1,9 @@
-import {
-  color,
-  getWorkspacesInfo,
-  readWorkspacePackages,
-  splitWorkspacesIntoDependencyGraph
-} from '../../shared/utils';
+import { color, getWorkspaceInfo, readWorkspacePackages, splitWorkspaceIntoDependencyGraph } from '../../shared/utils';
 
-export const withExcludedWorkspaces = (chunk: string[], excluded: Map<string, boolean>): string[] =>
+export const withExcludedPackages = (chunk: string[], excluded: Map<string, boolean>): string[] =>
   chunk.filter(name => !excluded.has(name));
 
-const handleUnprocessedWorkspaces = (unprocessed: CLI.Workspaces.UnprocessedWorkspace[]) => {
+const handleUnprocessedPackages = (unprocessed: CLI.Workspaces.UnprocessedWorkspace[]) => {
   console.log(
     color.error(`Potentially circular dependency
       Please check the following packages attentively:
@@ -18,21 +13,21 @@ const handleUnprocessedWorkspaces = (unprocessed: CLI.Workspaces.UnprocessedWork
   );
 };
 
-export const exposeWorkspacesInfo = async (): Promise<{
+export const exposeWorkspaceInfo = async (): Promise<{
   chunks: string[][];
   packagesLocationMap: Record<string, string>;
 }> => {
-  const packagesInfo = await getWorkspacesInfo();
+  const packagesInfo = await getWorkspaceInfo();
   const entries = packagesInfo.map(({ name, location }) => [name, location]);
   const packagesJsons = await readWorkspacePackages(packagesInfo);
-  const { chunks, unprocessed } = splitWorkspacesIntoDependencyGraph(packagesJsons);
+  const { chunks, unprocessed } = splitWorkspaceIntoDependencyGraph(packagesJsons);
   const info = {
     chunks,
     packagesLocationMap: Object.fromEntries(entries)
   };
 
   if (unprocessed.length > 0) {
-    handleUnprocessedWorkspaces(unprocessed);
+    handleUnprocessedPackages(unprocessed);
   }
 
   return info;

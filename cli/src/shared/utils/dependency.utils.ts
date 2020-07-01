@@ -12,8 +12,8 @@ export const readWorkspacePackages = async (
   return settledPackageJsons.map(settledPackageJson => settledPackageJson.value);
 };
 
-export const splitWorkspacesIntoDependencyGraph = (
-  workspaces: Pick<CLI.Package.WorkspacePackageJSON, 'name' | 'dependencies' | 'devDependencies' | 'peerDependencies'>[]
+export const splitWorkspaceIntoDependencyGraph = (
+  workspaces: Pick<CLI.Package.PackagePackageJSON, 'name' | 'dependencies' | 'devDependencies' | 'peerDependencies'>[]
 ): {
   chunks: CLI.Workspaces.WorkspaceChunk[];
   unprocessed: CLI.Workspaces.UnprocessedWorkspace[];

@@ -2,14 +2,14 @@ import path from 'path';
 import fs from 'fs-extra';
 import { exec } from 'shelljs';
 
-import { NotFoundPackageWorkspaceError, NotFoundWorkspaceRootError } from '../models';
+import { NotFoundPackageError, NotFoundHostError } from '../models';
 import { logError } from './error.utils';
 import { PACKAGE_JSON } from '../constants/package.const';
 
-const isWorkspaceRoot = (pkg: CLI.Package.WorkspaceRootPackageJSON) => pkg.workspaces !== undefined && pkg.private;
-const isWorkspacePackage = (pkg: CLI.Package.WorkspacePackageJSON) => pkg.workspace && !pkg.private;
+const isHostScope = (pkg: CLI.Package.HostPackageJSON) => pkg.workspaces !== undefined && pkg.private;
+const isPackageScope = (pkg: CLI.Package.PackagePackageJSON) => pkg.workspace && !pkg.private;
 
-export const getWorkspacesFromDeclaration = (workspaces: YarnWorkspaces.Workspaces): YarnWorkspaces.Packages => {
+export const getPackagesFromDeclaration = (workspaces: YarnWorkspaces.Workspaces): YarnWorkspaces.Packages => {
   if (workspaces === undefined) {
     return [];
   }
@@ -21,7 +21,7 @@ export const getWorkspacesFromDeclaration = (workspaces: YarnWorkspaces.Workspac
   return workspaces;
 };
 
-export const getWorkspacePackageSetupPath = (packages: YarnWorkspaces.Packages): string => {
+export const getNextPackageSetupPath = (packages: YarnWorkspaces.Packages): string => {
   if (packages.length === 0) {
     return 'packages';
   }
@@ -35,8 +35,8 @@ export const getWorkspacePackageSetupPath = (packages: YarnWorkspaces.Packages):
   return packages[0].split('/').filter(Boolean).slice(0, -1).join('/');
 };
 
-export async function getWorkspacesInfo(): Promise<CLI.Package.PackageInfo[]> {
-  const rootDir = await findWorkspaceRootDir();
+export async function getWorkspaceInfo(): Promise<CLI.Package.PackageInfo[]> {
+  const rootDir = await findHostDirectory();
   const yarnWorkspacesJsonInfo = exec('yarn workspaces --json info', {
     cwd: rootDir,
     silent: true
@@ -55,7 +55,7 @@ export async function getWorkspacesInfo(): Promise<CLI.Package.PackageInfo[]> {
   );
 }
 
-export const includePackageIntoWorkspaces = ({
+export const includePackageIntoDeclaration = ({
   packages,
   packageName,
   setupPath
@@ -69,10 +69,10 @@ export const includePackageIntoWorkspaces = ({
     .filter(segment => segment !== '.' && segment !== '')
     .join('/');
   const packageWorkspacePath = dir === '' ? packageName : `${dir}/${packageName}`;
-  const workspacesSetupWildcard = dir === '' ? '*' : `${dir}/*`;
+  const setupWildcard = dir === '' ? '*' : `${dir}/*`;
 
   for (const pkg of packages) {
-    if (pkg === workspacesSetupWildcard || pkg === packageWorkspacePath) {
+    if (pkg === setupWildcard || pkg === packageWorkspacePath) {
       return packages;
     }
   }
@@ -97,14 +97,14 @@ export const updateYarnWorkspacesDeclaration = (
   return workspaces;
 };
 
-export const findWorkspaceRootDir = async (intercept = false): Promise<string> => {
+export const findHostDirectory = async (intercept = false): Promise<string> => {
   const dir = await find(await fs.realpath(process.cwd()));
 
   if (dir !== null) {
     return dir;
   }
 
-  const workspaceError = new NotFoundWorkspaceRootError();
+  const workspaceError = new NotFoundHostError();
 
   if (intercept) {
     throw workspaceError;
@@ -121,20 +121,20 @@ export const findWorkspaceRootDir = async (intercept = false): Promise<string> =
       return null;
     }
 
-    return fs.existsSync(packageJsonPath) && isWorkspaceRoot(await fs.readJSON(packageJsonPath))
+    return fs.existsSync(packageJsonPath) && isHostScope(await fs.readJSON(packageJsonPath))
       ? possiblePath
       : find(path.resolve(possiblePath, '..'));
   }
 };
 
-export const findWorkspacePackageDir = async (intercept = false): Promise<string> => {
+export const findPackageDirectory = async (intercept = false): Promise<string> => {
   const dir = await find(await fs.realpath(process.cwd()));
 
   if (dir !== null) {
     return dir;
   }
 
-  const workspaceError = new NotFoundPackageWorkspaceError();
+  const workspaceError = new NotFoundPackageError();
 
   if (intercept) {
     throw workspaceError;
@@ -152,8 +152,8 @@ export const findWorkspacePackageDir = async (intercept = false): Promise<string
     }
 
     const isPathTooSmall = possiblePath.length < 10;
-    const isRoot = isWorkspaceRoot(pkg);
-    const isPackage = isWorkspacePackage(pkg);
+    const isRoot = isHostScope(pkg);
+    const isPackage = isPackageScope(pkg);
 
     switch (true) {
       case isPathTooSmall || isRoot:

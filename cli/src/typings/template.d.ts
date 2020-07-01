@@ -11,11 +11,11 @@ declare namespace CLI.Setup {
 
   interface GenerateOptions {
     dependencies: string[];
-    packageJson: CLI.Package.WorkspacePackageJSON;
+    packageJson: CLI.Package.PackagePackageJSON;
   }
 
   interface NewOptions {
-    packageJson: CLI.Package.WorkspaceRootPackageJSON;
+    packageJson: CLI.Package.HostPackageJSON;
   }
 
   interface MigrationOptions {

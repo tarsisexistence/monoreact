@@ -16,7 +16,7 @@ declare namespace CLI.Package {
     devDependencies?: Dependencies;
   }
 
-  interface WorkspaceRootPackageJSON extends BasePackageJSON {
+  interface HostPackageJSON extends BasePackageJSON {
     workspaces: YarnWorkspaces.Workspaces;
     browserslist: {
       production: string[];
@@ -25,7 +25,7 @@ declare namespace CLI.Package {
     jest: Record<string, any>;
   }
 
-  interface WorkspacePackageJSON extends BasePackageJSON {
+  interface PackagePackageJSON extends BasePackageJSON {
     workspace: true;
     module: 'dist/bundle.js';
     types: 'dist/publicApi.d.ts';
@@ -34,9 +34,7 @@ declare namespace CLI.Package {
     peerDependencies?: Dependencies;
   }
 
-  type AnyPackageJson = CLI.Package.BasePackageJSON &
-    CLI.Package.WorkspaceRootPackageJSON &
-    CLI.Package.WorkspacePackageJSON;
+  type AnyPackageJson = CLI.Package.BasePackageJSON & CLI.Package.HostPackageJSON & CLI.Package.PackagePackageJSON;
 
   type Author =
     | string

@@ -16,7 +16,7 @@ export const createPackageJson = ({
   preset
 }: {
   dir: string;
-  preset: CLI.Package.WorkspacePackageJSON | CLI.Package.WorkspaceRootPackageJSON;
+  preset: CLI.Package.PackagePackageJSON | CLI.Package.HostPackageJSON;
 }): Promise<void> => fs.outputJSON(path.resolve(dir, PACKAGE_JSON), preset, { spaces: 2 });
 
 function getNpmAuthorName(): CLI.Package.Author {

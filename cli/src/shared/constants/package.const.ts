@@ -14,13 +14,13 @@ export const REACT_PACKAGE_SCRIPTS: CLI.Package.Scripts = {
   stylelint: 'npx stylelint "src/**/*.{css,sass,scss}"'
 } as const;
 
-export const REACT_TEMPLATE_DEPENDENCIES: Pick<CLI.Package.WorkspacePackageJSON, 'peerDependencies'> = {
+export const REACT_TEMPLATE_DEPENDENCIES: Pick<CLI.Package.PackagePackageJSON, 'peerDependencies'> = {
   peerDependencies: {
     react: '*'
   }
 };
 
-export const WORKSPACE_PACKAGE_JSON: Omit<CLI.Package.WorkspacePackageJSON, 'scripts'> = {
+export const WORKSPACE_PACKAGE_JSON: Omit<CLI.Package.PackagePackageJSON, 'scripts'> = {
   name: (undefined as unknown) as string,
   author: (undefined as unknown) as string,
   workspace: true,
@@ -34,7 +34,7 @@ export const WORKSPACE_PACKAGE_JSON: Omit<CLI.Package.WorkspacePackageJSON, 'scr
   }
 };
 
-export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.WorkspaceRootPackageJSON = {
+export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.HostPackageJSON = {
   name: (undefined as unknown) as string,
   author: (undefined as unknown) as string,
   version: '0.1.0',
@@ -55,11 +55,12 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.WorkspaceRootPackageJSON =
     'react-scripts': '3.4.1'
   },
   devDependencies: {
-    'monoreact': 'latest',
+    monoreact: 'latest',
     '@testing-library/dom': '6.12.2',
     '@testing-library/jest-dom': '4.2.4',
     '@testing-library/react': '9.4.0',
     '@testing-library/user-event': '7.2.1',
+    // TODO: set this from CLI  package.json
     '@types/node': '13.13.6',
     '@types/react': '16.9.35',
     '@types/react-dom': '16.9.8',

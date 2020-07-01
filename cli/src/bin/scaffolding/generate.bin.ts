@@ -3,12 +3,7 @@ import path from 'path';
 import ora from 'ora';
 import fs from 'fs-extra';
 
-import {
-  findWorkspaceRootDir,
-  getWorkspacePackageSetupPath,
-  getWorkspacesFromDeclaration,
-  logError
-} from '../../shared/utils';
+import { findHostDirectory, getNextPackageSetupPath, getPackagesFromDeclaration, logError } from '../../shared/utils';
 import { generateSetup } from './setup';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
 import { generateMessage } from '../../shared/messages';
@@ -52,22 +47,22 @@ export const generateBinCommand = (prog: Sade): void => {
     .action(async (pkgName: string, pathArg: string | undefined, { template }: CLI.Options.Generate) => {
       let packageName = pkgName;
       let packageTemplateType = template;
-      const workspaceRoot = await findWorkspaceRootDir();
-      const packageJsonPath = path.resolve(workspaceRoot, PACKAGE_JSON);
-      const packageJson = (await fs.readJSON(packageJsonPath)) as CLI.Package.WorkspaceRootPackageJSON;
+      const rootDir = await findHostDirectory();
+      const packageJsonPath = path.resolve(rootDir, PACKAGE_JSON);
+      const packageJson = (await fs.readJSON(packageJsonPath)) as CLI.Package.HostPackageJSON;
       const bootSpinner = ora(generateMessage.generating(pkgName));
 
       try {
-        const workspacesInDeclaration = getWorkspacesFromDeclaration(packageJson.workspaces);
-        const packageSetupPath = pathArg || getWorkspacePackageSetupPath(workspacesInDeclaration);
+        const workspacesInDeclaration = getPackagesFromDeclaration(packageJson.workspaces);
+        const packageSetupPath = pathArg || getNextPackageSetupPath(workspacesInDeclaration);
         // TODO: new algorithm of package name? get all names and prevent duplication
         packageName = await preventFolderCollisions({
-          basePath: path.resolve(workspaceRoot, packageSetupPath),
+          basePath: path.resolve(rootDir, packageSetupPath),
           name: pkgName,
           onPromptMessage: (name: string) => generateMessage.failed(name),
           onPromptInitial: (name: string) => generateMessage.copy(name)
         });
-        const packageDir = path.resolve(workspaceRoot, packageSetupPath, packageName);
+        const packageDir = path.resolve(rootDir, packageSetupPath, packageName);
 
         packageTemplateType = await getPackageTemplateType(template, () => {
           bootSpinner.fail(generateMessage.invalidTemplate(template));
@@ -84,7 +79,7 @@ export const generateBinCommand = (prog: Sade): void => {
 
         process.chdir(packageDir);
         const templateConfig = generateSetup[packageTemplateType];
-        const packageJsonPreset: CLI.Package.WorkspacePackageJSON = composePackageJson({
+        const packageJsonPreset: CLI.Package.PackagePackageJSON = composePackageJson({
           author,
           name: packageName,
           license: packageJson.license,

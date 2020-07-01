@@ -1,7 +1,7 @@
 import { outputJSON } from 'fs-extra';
 import { Select } from 'enquirer';
 
-import { color, includePackageIntoWorkspaces, updateYarnWorkspacesDeclaration } from '../../shared/utils';
+import { color, includePackageIntoDeclaration, updateYarnWorkspacesDeclaration } from '../../shared/utils';
 import { generateSetup } from './setup/generate';
 import { exec, ShellString } from 'shelljs';
 
@@ -37,10 +37,10 @@ export const composePackageJson = ({
   hostName,
   license,
   template
-}: Pick<CLI.Package.WorkspaceRootPackageJSON, 'name' | 'author' | 'license'> & {
+}: Pick<CLI.Package.HostPackageJSON, 'name' | 'author' | 'license'> & {
   hostName: string;
   template: CLI.Setup.GenerateOptions;
-}): CLI.Package.WorkspacePackageJSON => {
+}): CLI.Package.PackagePackageJSON => {
   const slashNameIndex = hostName.indexOf('/');
   const namespace = slashNameIndex === -1 ? `@${hostName}` : hostName.slice(0, slashNameIndex);
   const safeName = safePackageName(name);
@@ -67,13 +67,13 @@ export const updatePackageJsonWorkspacesDeclaration = async ({
   setupPath,
   packageName
 }: {
-  packageJson: CLI.Package.WorkspaceRootPackageJSON;
+  packageJson: CLI.Package.HostPackageJSON;
   packageJsonPath: string;
   packages: string[];
   setupPath: string;
   packageName: string;
 }): Promise<void> => {
-  const updatedWorkspaces = includePackageIntoWorkspaces({
+  const updatedWorkspaces = includePackageIntoDeclaration({
     packages,
     setupPath,
     packageName

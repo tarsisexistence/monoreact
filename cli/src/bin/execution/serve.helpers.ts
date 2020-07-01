@@ -6,7 +6,7 @@ import { createBuildConfig } from './configs/build.config';
 import { readPackageJson, readTsconfigJson } from '../../shared/utils/fs.utils';
 
 export const serveWorkspace = async (dir: string): Promise<any> => {
-  const packageJson = await readPackageJson<CLI.Package.WorkspacePackageJSON>(dir);
+  const packageJson = await readPackageJson<CLI.Package.PackagePackageJSON>(dir);
   const tsconfigJson = await readTsconfigJson(dir);
 
   const buildConfig = createBuildConfig({

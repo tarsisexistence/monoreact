@@ -1,6 +1,6 @@
 import { Sade } from 'sade';
 
-import { findWorkspaceRootDir, space } from '../../shared/utils';
+import { findHostDirectory, space } from '../../shared/utils';
 import { submodulesMessage } from '../../shared/messages';
 import { getSubmodulesLocations } from '../../shared/utils/submodules.utils';
 import { gitFetch } from './submodules-fetch.helpers';
@@ -14,7 +14,7 @@ export function submodulesFetchBinCommand(prog: Sade): void {
     .option('s, self', 'Apply fetch for the host workspace')
     .example('submodules fetch --self')
     .action(async ({ self }: CLI.Options.Submodules) => {
-      const rootDir = await findWorkspaceRootDir();
+      const rootDir = await findHostDirectory();
       const locations = await getSubmodulesLocations();
 
       for (const location of locations) {

@@ -39,7 +39,7 @@ export const addFeatureScriptsToPackageJson = ({
   option
 }: {
   dir: string;
-  packageJson: CLI.Package.WorkspacePackageJSON;
+  packageJson: CLI.Package.PackagePackageJSON;
   option: CLI.Setup.AddOptionType;
 }): Promise<void> =>
   fs.outputJSON(

@@ -1,77 +1,73 @@
 /* eslint-disable sonarjs/no-duplicate-string */
-import {
-  getWorkspacePackageSetupPath,
-  getWorkspacesFromDeclaration,
-  includePackageIntoWorkspaces
-} from './workspace.utils';
+import { getNextPackageSetupPath, getPackagesFromDeclaration, includePackageIntoDeclaration } from './workspace.utils';
 
 describe('[utils.workspace]', () => {
-  describe('getWorkspacePackageDirs', () => {
+  describe('getPackagesFromDeclaration', () => {
     test('should return empty array when there is no workspaces property', () => {
-      expect(getWorkspacesFromDeclaration(undefined)).toEqual([]);
+      expect(getPackagesFromDeclaration(undefined)).toEqual([]);
     });
 
     test('should return empty array when there is no packages inside workspaces config', () => {
-      expect(getWorkspacesFromDeclaration({ packages: undefined } as any)).toEqual([]);
+      expect(getPackagesFromDeclaration({ packages: undefined } as any)).toEqual([]);
     });
 
     test('should return empty array when workspaces property is empty array', () => {
-      expect(getWorkspacesFromDeclaration([])).toEqual([]);
+      expect(getPackagesFromDeclaration([])).toEqual([]);
     });
 
     test('should return empty array when workspaces packages property is empty array', () => {
-      expect(getWorkspacesFromDeclaration({ packages: [] })).toEqual([]);
+      expect(getPackagesFromDeclaration({ packages: [] })).toEqual([]);
     });
 
     test('should return packages when workspaces property has them', () => {
-      expect(getWorkspacesFromDeclaration(['a', 'b'])).toEqual(['a', 'b']);
+      expect(getPackagesFromDeclaration(['a', 'b'])).toEqual(['a', 'b']);
     });
 
     test('should return packages when workspaces packages property has them', () => {
-      expect(getWorkspacesFromDeclaration({ packages: ['a', 'b'] })).toEqual(['a', 'b']);
+      expect(getPackagesFromDeclaration({ packages: ['a', 'b'] })).toEqual(['a', 'b']);
     });
   });
 
-  describe('getWorkspacePackageSetupPath', () => {
+  describe('getNextPackageSetupPath', () => {
     test('should return default path with input of empty packages', () => {
-      expect(getWorkspacePackageSetupPath([])).toBe('packages');
+      expect(getNextPackageSetupPath([])).toBe('packages');
     });
 
     test('should return path segment of the first package in list', () => {
-      expect(getWorkspacePackageSetupPath(['/a', 'b', 'c/', '/d/'])).toBe('');
+      expect(getNextPackageSetupPath(['/a', 'b', 'c/', '/d/'])).toBe('');
     });
 
     test('should return path segments of the first package in list', () => {
-      expect(getWorkspacePackageSetupPath(['/workspaces/private/a', 'long/b', 'whatever/c/', 'folder/d/'])).toBe(
+      expect(getNextPackageSetupPath(['/workspaces/private/a', 'long/b', 'whatever/c/', 'folder/d/'])).toBe(
         'workspaces/private'
       );
     });
 
     test('should return the same path regardless of slashes', () => {
       const result = 'workspaces/private';
-      expect(getWorkspacePackageSetupPath(['/workspaces/private/a'])).toBe(result);
-      expect(getWorkspacePackageSetupPath(['workspaces/private/a'])).toBe(result);
-      expect(getWorkspacePackageSetupPath(['workspaces/private/a/'])).toBe(result);
-      expect(getWorkspacePackageSetupPath(['/workspaces/private/a/'])).toBe(result);
+      expect(getNextPackageSetupPath(['/workspaces/private/a'])).toBe(result);
+      expect(getNextPackageSetupPath(['workspaces/private/a'])).toBe(result);
+      expect(getNextPackageSetupPath(['workspaces/private/a/'])).toBe(result);
+      expect(getNextPackageSetupPath(['/workspaces/private/a/'])).toBe(result);
     });
 
     test('should return path when there is one wildcard', () => {
-      expect(getWorkspacePackageSetupPath(['workspaces/*'])).toBe('workspaces');
+      expect(getNextPackageSetupPath(['workspaces/*'])).toBe('workspaces');
     });
 
     test('should return path when there is only one wildcard', () => {
-      expect(getWorkspacePackageSetupPath(['a', 'workspaces/*', 'b'])).toBe('workspaces');
+      expect(getNextPackageSetupPath(['a', 'workspaces/*', 'b'])).toBe('workspaces');
     });
 
     test('should return path of the first wildcard match', () => {
-      expect(getWorkspacePackageSetupPath(['a', 'otherPackages/*', 'c', 'workspaces/*', 'b'])).toBe('otherPackages');
+      expect(getNextPackageSetupPath(['a', 'otherPackages/*', 'c', 'workspaces/*', 'b'])).toBe('otherPackages');
     });
   });
 
-  describe('includePackageIntoWorkspaces', () => {
+  describe('includePackageIntoDeclaration', () => {
     test('should return the same input when it covers wildcard with empty "" path', () => {
       expect(
-        includePackageIntoWorkspaces({
+        includePackageIntoDeclaration({
           packages: ['*'],
           packageName: 'components',
           setupPath: ''
@@ -81,7 +77,7 @@ describe('[utils.workspace]', () => {
 
     test('should return the same input when it covers wildcard with dot "." path', () => {
       expect(
-        includePackageIntoWorkspaces({
+        includePackageIntoDeclaration({
           packages: ['*'],
           packageName: 'components',
           setupPath: '.'
@@ -91,7 +87,7 @@ describe('[utils.workspace]', () => {
 
     test('should add the package as new declaration', () => {
       expect(
-        includePackageIntoWorkspaces({
+        includePackageIntoDeclaration({
           packages: ['*', 'packages/*'],
           packageName: 'components',
           setupPath: 'workspaces'
@@ -101,7 +97,7 @@ describe('[utils.workspace]', () => {
 
     test('should add the package as new declaration with "/" before setupPath', () => {
       expect(
-        includePackageIntoWorkspaces({
+        includePackageIntoDeclaration({
           packages: ['*', 'packages/*'],
           packageName: 'components',
           setupPath: '/workspaces'
@@ -111,7 +107,7 @@ describe('[utils.workspace]', () => {
 
     test('should add the package as new declaration with "./" before setupPath', () => {
       expect(
-        includePackageIntoWorkspaces({
+        includePackageIntoDeclaration({
           packages: ['*', 'packages/*'],
           packageName: 'components',
           setupPath: './workspaces'
@@ -121,7 +117,7 @@ describe('[utils.workspace]', () => {
 
     test('should add the package as new declaration with "/" after setupPath', () => {
       expect(
-        includePackageIntoWorkspaces({
+        includePackageIntoDeclaration({
           packages: ['*', 'packages/*'],
           packageName: 'components',
           setupPath: 'workspaces/'
@@ -131,7 +127,7 @@ describe('[utils.workspace]', () => {
 
     test('should add the package as new declaration with "/" before and after setupPath', () => {
       expect(
-        includePackageIntoWorkspaces({
+        includePackageIntoDeclaration({
           packages: ['*', 'packages/*'],
           packageName: 'components',
           setupPath: '/workspaces/'

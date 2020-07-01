@@ -1,6 +1,6 @@
 import path from 'path';
 
-import { findWorkspacePackageDir, findWorkspaceRootDir } from '../../shared/utils';
+import { findPackageDirectory, findHostDirectory } from '../../shared/utils';
 import { TSCONFIG_JSON } from '../../shared/constants/package.const';
 
 export const getPackageLintInfo = async (): Promise<{
@@ -11,14 +11,14 @@ export const getPackageLintInfo = async (): Promise<{
   let dir = '';
 
   try {
-    dir = await findWorkspacePackageDir(true);
+    dir = await findPackageDirectory(true);
     project.push(path.resolve(dir, TSCONFIG_JSON));
     /* eslint-disable-next-line no-empty */
   } catch {}
 
   try {
     const hasPackageDir = dir !== '';
-    const rootDir = await findWorkspaceRootDir(hasPackageDir);
+    const rootDir = await findHostDirectory(hasPackageDir);
 
     if (!hasPackageDir) {
       dir = rootDir;

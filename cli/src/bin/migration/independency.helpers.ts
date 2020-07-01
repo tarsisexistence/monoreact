@@ -31,7 +31,7 @@ export const makeTsconfigJsonIndependent = async (dir: string): Promise<void> =>
 
 export const makePackageJsonIndependent = async (dir: string): Promise<void> => {
   const packageJsonPath = path.resolve(dir, PACKAGE_JSON);
-  const packageJson = await readPackageJson<CLI.Package.WorkspacePackageJSON>(dir);
+  const packageJson = await readPackageJson<CLI.Package.PackagePackageJSON>(dir);
 
   await fs.outputJSON(
     packageJsonPath,

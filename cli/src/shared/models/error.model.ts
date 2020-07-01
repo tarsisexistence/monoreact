@@ -1,7 +1,7 @@
 import { PACKAGE_JSON } from '../constants/package.const';
 
-export class NotFoundWorkspaceRootError extends Error {
-  public isNotFoundWorkspaceRootError = true;
+export class NotFoundHostError extends Error {
+  public isNotFoundHostError = true;
 
   constructor() {
     super(`
@@ -13,8 +13,8 @@ export class NotFoundWorkspaceRootError extends Error {
   }
 }
 
-export class NotFoundPackageWorkspaceError extends Error {
-  public isNotFoundPackageWorkspaceError = true;
+export class NotFoundPackageError extends Error {
+  public isNotFoundPackageError = true;
 
   constructor() {
     super(`

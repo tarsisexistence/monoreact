@@ -1,11 +1,11 @@
 /* eslint-disable sonarjs/no-duplicate-string */
-import { getExternalScreen, splitWorkspacesIntoDependencyGraph } from './dependency.utils';
+import { getExternalScreen, splitWorkspaceIntoDependencyGraph } from './dependency.utils';
 
 describe('[utils.dependency]', () => {
   describe('splitWorkspacesIntoDependencyGraph', () => {
     test('should return chunks when there is no package jsons', () => {
       const packageJsons: CLI.Package.BasePackageJSON[] = [];
-      expect(splitWorkspacesIntoDependencyGraph(packageJsons)).toEqual({
+      expect(splitWorkspaceIntoDependencyGraph(packageJsons)).toEqual({
         chunks: [],
         unprocessed: []
       });
@@ -18,7 +18,7 @@ describe('[utils.dependency]', () => {
           dependencies: {}
         }
       ];
-      expect(splitWorkspacesIntoDependencyGraph(packageJsons)).toEqual({
+      expect(splitWorkspaceIntoDependencyGraph(packageJsons)).toEqual({
         chunks: [['example-1']],
         unprocessed: []
       });
@@ -39,7 +39,7 @@ describe('[utils.dependency]', () => {
           dependencies: {}
         }
       ];
-      expect(splitWorkspacesIntoDependencyGraph(packageJsons)).toEqual({
+      expect(splitWorkspaceIntoDependencyGraph(packageJsons)).toEqual({
         chunks: [['example-1', 'example-2', 'example-3']],
         unprocessed: []
       });
@@ -54,7 +54,7 @@ describe('[utils.dependency]', () => {
           name: 'example-2'
         }
       ];
-      expect(splitWorkspacesIntoDependencyGraph(packageJsons)).toEqual({
+      expect(splitWorkspaceIntoDependencyGraph(packageJsons)).toEqual({
         chunks: [['example-1', 'example-2']],
         unprocessed: []
       });
@@ -71,7 +71,7 @@ describe('[utils.dependency]', () => {
           dependencies: {}
         }
       ];
-      expect(splitWorkspacesIntoDependencyGraph(packageJsons)).toEqual({
+      expect(splitWorkspaceIntoDependencyGraph(packageJsons)).toEqual({
         chunks: [['example-1', 'example-2']],
         unprocessed: []
       });
@@ -87,7 +87,7 @@ describe('[utils.dependency]', () => {
           dependencies: {}
         }
       ];
-      expect(splitWorkspacesIntoDependencyGraph(packageJsons)).toEqual({
+      expect(splitWorkspaceIntoDependencyGraph(packageJsons)).toEqual({
         chunks: [['example-1', 'example-2']],
         unprocessed: []
       });
@@ -106,7 +106,7 @@ describe('[utils.dependency]', () => {
           }
         }
       ];
-      expect(splitWorkspacesIntoDependencyGraph(packageJsons)).toEqual({
+      expect(splitWorkspaceIntoDependencyGraph(packageJsons)).toEqual({
         chunks: [['example-1'], ['example-2']],
         unprocessed: []
       });
@@ -128,7 +128,7 @@ describe('[utils.dependency]', () => {
           }
         }
       ];
-      expect(splitWorkspacesIntoDependencyGraph(packageJsons)).toEqual({
+      expect(splitWorkspaceIntoDependencyGraph(packageJsons)).toEqual({
         chunks: [['example-1', 'example-2'], ['example-3']],
         unprocessed: []
       });
@@ -149,7 +149,7 @@ describe('[utils.dependency]', () => {
           }
         }
       ];
-      expect(splitWorkspacesIntoDependencyGraph(packageJsons)).toEqual({
+      expect(splitWorkspaceIntoDependencyGraph(packageJsons)).toEqual({
         chunks: [['example-1', 'example-2'], ['example-3']],
         unprocessed: []
       });
@@ -170,7 +170,7 @@ describe('[utils.dependency]', () => {
           }
         }
       ];
-      expect(splitWorkspacesIntoDependencyGraph(packageJsons)).toEqual({
+      expect(splitWorkspaceIntoDependencyGraph(packageJsons)).toEqual({
         chunks: [],
         unprocessed: [
           ['example-1', ['example-2']],
@@ -200,7 +200,7 @@ describe('[utils.dependency]', () => {
           }
         }
       ];
-      expect(splitWorkspacesIntoDependencyGraph(packageJsons)).toEqual({
+      expect(splitWorkspaceIntoDependencyGraph(packageJsons)).toEqual({
         chunks: [],
         unprocessed: [
           ['example-1', ['example-2']],
@@ -230,7 +230,7 @@ describe('[utils.dependency]', () => {
           }
         }
       ];
-      expect(splitWorkspacesIntoDependencyGraph(packageJsons)).toEqual({
+      expect(splitWorkspaceIntoDependencyGraph(packageJsons)).toEqual({
         chunks: [['example-1']],
         unprocessed: [
           ['example-2', ['example-3']],
@@ -271,7 +271,7 @@ describe('[utils.dependency]', () => {
           }
         }
       ];
-      expect(splitWorkspacesIntoDependencyGraph(packageJsons)).toEqual({
+      expect(splitWorkspaceIntoDependencyGraph(packageJsons)).toEqual({
         chunks: [['example-1'], ['example-4'], ['example-5']],
         unprocessed: [
           ['example-2', ['example-3']],
@@ -326,7 +326,7 @@ describe('[utils.dependency]', () => {
           }
         }
       ];
-      expect(splitWorkspacesIntoDependencyGraph(packageJsons)).toEqual({
+      expect(splitWorkspaceIntoDependencyGraph(packageJsons)).toEqual({
         chunks: [['components', 'store'], ['profile', 'products', 'back-office', 'landing'], ['host']],
         unprocessed: []
       });
@@ -388,7 +388,7 @@ describe('[utils.dependency]', () => {
           }
         }
       ];
-      expect(splitWorkspacesIntoDependencyGraph(packageJsons)).toEqual({
+      expect(splitWorkspaceIntoDependencyGraph(packageJsons)).toEqual({
         chunks: [
           ['components', 'store'],
           ['profile', 'products', 'back-office']
@@ -437,7 +437,7 @@ describe('[utils.dependency]', () => {
           }
         }
       ];
-      expect(splitWorkspacesIntoDependencyGraph(packageJsons)).toEqual({
+      expect(splitWorkspaceIntoDependencyGraph(packageJsons)).toEqual({
         chunks: [
           ['example-1', 'example-2'],
           ['example-3', 'example-4'],

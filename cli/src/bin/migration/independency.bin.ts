@@ -1,7 +1,7 @@
 import { Sade } from 'sade';
 import ora from 'ora';
 
-import { findWorkspacePackageDir, installDependencies, logError } from '../../shared/utils';
+import { findPackageDirectory, installDependencies, logError } from '../../shared/utils';
 import { independencyMessage } from '../../shared/messages';
 import {
   copyIndependencyTemplate,
@@ -17,7 +17,7 @@ export const independencyBinCommand = (prog: Sade): void => {
     .example('migration independency')
     .action(async () => {
       const bootSpinner = ora(independencyMessage.generating());
-      const packageDir = await findWorkspacePackageDir();
+      const packageDir = await findPackageDirectory();
       bootSpinner.start();
 
       try {
