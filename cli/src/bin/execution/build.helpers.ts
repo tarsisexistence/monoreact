@@ -1,33 +1,46 @@
 import { rollup } from 'rollup';
+import { forkJoin, from, Observable, of } from 'rxjs';
+import { catchError, map, mapTo, switchMap, tap } from 'rxjs/operators';
 
 import { createBuildConfig } from './configs/build.config';
-import { cleanDistFolder, logError } from '../../shared/utils';
+import { cleanDistFolder$, logError, readPackageJson$, readTsconfigJson$ } from '../../shared/utils';
 import { buildMessage } from '../../shared/messages';
-import { readPackageJson, readTsconfigJson } from '../../shared/utils/fs.utils';
 
-export const buildWorkspace = async (dir: string): Promise<void> => {
-  const tsconfigJson = await readTsconfigJson(dir);
-  const packageJson = await readPackageJson<CLI.Package.PackagePackageJSON>(dir);
-  await cleanDistFolder();
+const withDuration$ = <T>(input: Observable<T>): Observable<void> =>
+  of(process.hrtime()).pipe(
+    switchMap(time => input.pipe(mapTo(time))),
+    map(process.hrtime),
+    tap(duration => console.log(buildMessage.successful(duration))),
+    mapTo(undefined)
+  );
 
-  const time = process.hrtime();
-  const buildConfig = createBuildConfig({
-    tsconfigJson,
-    packageJson,
-    displayFilesize: true,
-    runEslint: false,
-    useClosure: false
-  });
+const getBuildConfig = (dir: string): Observable<ReturnType<typeof createBuildConfig>> =>
+  of(dir).pipe(
+    switchMap(dir =>
+      forkJoin([readPackageJson$<CLI.Package.PackagePackageJSON>(dir), readTsconfigJson$(dir), cleanDistFolder$()])
+    ),
+    map(([packageJson, tsconfigJson]) =>
+      createBuildConfig({
+        tsconfigJson,
+        packageJson,
+        displayFilesize: true,
+        runEslint: false,
+        useClosure: false
+      })
+    )
+  );
 
-  console.log(buildMessage.bundling(packageJson));
+export const buildPackage = (dir: string) => {
+  const build$ = getBuildConfig(dir).pipe(
+    tap(config =>
+      console.log(buildMessage.bundling({ source: config.input as string, module: config.output.file as string }))
+    ),
+    switchMap(config => from(rollup(config)).pipe(switchMap(bundle => from(bundle.write(config.output))))),
+    catchError(error => {
+      logError(error);
+      process.exit(1);
+    })
+  );
 
-  try {
-    const bundle = await rollup(buildConfig);
-    await bundle.write(buildConfig.output);
-    const duration = process.hrtime(time);
-    console.log(buildMessage.successful(duration));
-  } catch (error) {
-    logError(error);
-    process.exit(1);
-  }
+  return withDuration$(build$);
 };

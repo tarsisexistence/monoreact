@@ -3,3 +3,8 @@ export * from './common.utils';
 export * from './dependency.utils';
 export * from './error.utils';
 export * from './workspace.utils';
+export * from './fs.utils';
+export * from './shell.utils';
+export * from './fixture.utils';
+export * from './submodules.utils';
+export * from './dataStructures.utils';
