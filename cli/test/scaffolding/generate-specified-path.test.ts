@@ -7,17 +7,17 @@ import { smartExec } from '../../src/shared/utils/shell.utils';
 
 shell.config.silent = false;
 const testDir = 'scaffolding';
-const fixtureName = 'generate-specified-path';
+const fixture = 'generate-specified-path';
 const template = 'generate';
 
 describe('[bin.scaffolding.generate-specified-path]', () => {
   beforeAll(() => {
-    teardownStage(fixtureName);
-    setupStage(testDir, fixtureName, { template });
+    teardownStage(fixture);
+    setupStage({ testDir, fixture, template });
   });
 
   afterAll(() => {
-    teardownStage(fixtureName);
+    teardownStage(fixture);
   });
 
   it('should have generated package by the specified path + package name', () => {

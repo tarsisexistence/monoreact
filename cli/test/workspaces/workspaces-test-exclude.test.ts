@@ -6,17 +6,17 @@ import { smartExec } from '../../src/shared/utils/shell.utils';
 shell.config.silent = false;
 
 const testDir = 'workspaces';
-const fixtureName = 'workspaces-test-exclude';
+const fixture = 'workspaces-test-exclude';
 const template = 'workspaces-test-invalid';
 
 describe('[bin.execution.workspaces-test-exclude]', () => {
   beforeAll(() => {
-    teardownStage(fixtureName);
-    setupStage(testDir, fixtureName, { template, install: true });
+    teardownStage(fixture);
+    setupStage({ testDir, fixture, template });
   });
 
   afterAll(() => {
-    teardownStage(fixtureName);
+    teardownStage(fixture);
   });
 
   it('should exclude failed test and exit with 0', () => {

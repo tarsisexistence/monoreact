@@ -6,16 +6,16 @@ import { smartExec } from '../../src/shared/utils/shell.utils';
 shell.config.silent = false;
 
 const testDir = 'workspaces';
-const fixtureName = 'workspaces-build-with-dependencies';
+const fixture = 'workspaces-build-with-dependencies';
 
 describe('[bin.execution.workspaces-build-with-dependencies]', () => {
   beforeAll(() => {
-    teardownStage(fixtureName);
-    setupStage(testDir, fixtureName, { install: true });
+    teardownStage(fixture);
+    setupStage({ testDir, fixture });
   });
 
   afterAll(() => {
-    teardownStage(fixtureName);
+    teardownStage(fixture);
   });
 
   it('should compile packages', () => {

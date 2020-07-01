@@ -6,16 +6,16 @@ import { smartExec } from '../../src/shared/utils/shell.utils';
 shell.config.silent = false;
 
 const testDir = 'execution';
-const fixtureName = 'test-config';
+const fixture = 'test-config';
 
 describe('[bin.execution.test.config]', () => {
   beforeAll(() => {
-    teardownStage(fixtureName);
-    setupStage(testDir, fixtureName);
+    teardownStage(fixture);
+    setupStage({ testDir, fixture });
   });
 
   afterAll(() => {
-    teardownStage(fixtureName);
+    teardownStage(fixture);
   });
 
   it('should test one test in src dir by default', () => {

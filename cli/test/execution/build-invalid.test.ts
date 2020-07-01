@@ -6,16 +6,16 @@ import { smartExec } from '../../src/shared/utils/shell.utils';
 shell.config.silent = false;
 
 const testDir = 'execution';
-const fixtureName = 'build-invalid';
+const fixture = 'build-invalid';
 
 describe('[bin.execution.build.invalid]', () => {
   beforeAll(() => {
-    teardownStage(fixtureName);
-    setupStage(testDir, fixtureName);
+    teardownStage(fixture);
+    setupStage({ testDir, fixture });
   });
 
   afterAll(() => {
-    teardownStage(fixtureName);
+    teardownStage(fixture);
   });
 
   it('should not compile when build failed', () => {

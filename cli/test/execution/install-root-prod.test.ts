@@ -8,17 +8,17 @@ import { smartExec } from '../../src/shared/utils/shell.utils';
 shell.config.silent = false;
 
 const testDir = 'execution';
-const fixtureName = 'install-root-prod';
+const fixture = 'install-root-prod';
 const template = 'install';
 
 describe('[bin.execution.install.root.prod]', () => {
   beforeAll(() => {
-    teardownStage(fixtureName);
-    setupStage(testDir, fixtureName, { template });
+    teardownStage(fixture);
+    setupStage({ testDir, fixture, template });
   });
 
   afterAll(() => {
-    teardownStage(fixtureName);
+    teardownStage(fixture);
   });
 
   it('should install few prod dependencies in the root', () => {

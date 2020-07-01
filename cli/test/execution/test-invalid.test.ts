@@ -6,16 +6,16 @@ import { smartExec } from '../../src/shared/utils/shell.utils';
 shell.config.silent = false;
 
 const testDir = 'execution';
-const fixtureName = 'test-invalid';
+const fixture = 'test-invalid';
 
 describe('[bin.execution.test.invalid]', () => {
   beforeAll(() => {
-    teardownStage(fixtureName);
-    setupStage(testDir, fixtureName);
+    teardownStage(fixture);
+    setupStage({ testDir, fixture });
   });
 
   afterAll(() => {
-    teardownStage(fixtureName);
+    teardownStage(fixture);
   });
 
   it('should fail tests with exit code 1', () => {

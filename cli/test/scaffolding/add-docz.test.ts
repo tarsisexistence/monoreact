@@ -8,16 +8,16 @@ import { smartExec } from '../../src/shared/utils/shell.utils';
 shell.config.silent = false;
 
 const testDir = 'scaffolding';
-const fixtureName = 'add-docz';
+const fixture = 'add-docz';
 
 describe('[bin.scaffolding.add-docz]', () => {
   beforeAll(() => {
-    teardownStage(fixtureName);
-    setupStage(testDir, fixtureName);
+    teardownStage(fixture);
+    setupStage({ testDir, fixture });
   });
 
   afterAll(() => {
-    teardownStage(fixtureName);
+    teardownStage(fixture);
   });
 
   it('should have doczrc.js', () => {

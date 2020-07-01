@@ -8,16 +8,16 @@ import { smartExec } from '../../src/shared/utils/shell.utils';
 shell.config.silent = false;
 
 const testDir = 'scaffolding';
-const fixtureName = 'generate-root-location';
+const fixture = 'generate-root-location';
 
 describe('[bin.scaffolding.generate-root-location]', () => {
   beforeAll(() => {
-    teardownStage(fixtureName);
-    setupStage(testDir, fixtureName);
+    teardownStage(fixture);
+    setupStage({ testDir, fixture });
   });
 
   afterAll(() => {
-    teardownStage(fixtureName);
+    teardownStage(fixture);
   });
 
   it('should be generated in the root', () => {

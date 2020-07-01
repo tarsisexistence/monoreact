@@ -40,6 +40,7 @@ export const newBinCommand = (prog: Sade): void => {
       bootSpinner.start(newMessage.creating(projectDir));
 
       try {
+        // TODO: check if user chose the available option -> Error  ENOENT: no such file or directory, stat '/Users/xx/personal/monoreact/cli/templates/new/asd'
         await copyTemplate({ dir: projectDir, bin: 'new', template });
         bootSpinner.stop();
         const author = await getAuthor();

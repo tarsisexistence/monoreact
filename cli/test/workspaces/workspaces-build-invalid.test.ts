@@ -6,16 +6,16 @@ import { smartExec } from '../../src/shared/utils/shell.utils';
 shell.config.silent = false;
 
 const testDir = 'workspaces';
-const fixtureName = 'workspaces-build-invalid';
+const fixture = 'workspaces-build-invalid';
 
 describe('[bin.execution.workspaces-build-invalid]', () => {
   beforeAll(() => {
-    teardownStage(fixtureName);
-    setupStage(testDir, fixtureName, { install: true });
+    teardownStage(fixture);
+    setupStage({ testDir, fixture });
   });
 
   afterAll(() => {
-    teardownStage(fixtureName);
+    teardownStage(fixture);
   });
 
   it('should not compile packages', () => {

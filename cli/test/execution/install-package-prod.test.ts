@@ -8,17 +8,17 @@ import { smartExec } from '../../src/shared/utils/shell.utils';
 shell.config.silent = false;
 
 const testDir = 'execution';
-const fixtureName = 'install-package-prod';
+const fixture = 'install-package-prod';
 const template = 'install';
 
 describe('[bin.execution.install.package.prod]', () => {
   beforeAll(() => {
-    teardownStage(fixtureName);
-    setupStage(testDir, fixtureName, { template });
+    teardownStage(fixture);
+    setupStage({ testDir, fixture, template });
   });
 
   afterAll(() => {
-    teardownStage(fixtureName);
+    teardownStage(fixture);
   });
 
   it('should install peer dependencies in the package and prod in the root', () => {

@@ -5,17 +5,17 @@ import { smartExec } from '../../src/shared/utils/shell.utils';
 
 shell.config.silent = false;
 const testDir = 'scaffolding';
-const fixtureName = 'new-invalid-template';
+const fixture = 'new-invalid-template';
 const template = 'new';
 
 describe('[bin.scaffolding.new-invalid-template]', () => {
   beforeAll(() => {
-    teardownStage(fixtureName);
-    setupStage(testDir, fixtureName, { template });
+    teardownStage(fixture);
+    setupStage({ testDir, fixture, template });
   });
 
   afterAll(() => {
-    teardownStage(fixtureName);
+    teardownStage(fixture);
   });
 
   // TODO: provide select with available templates instead exit 1

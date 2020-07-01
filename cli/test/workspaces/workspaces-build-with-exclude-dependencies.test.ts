@@ -6,17 +6,17 @@ import { smartExec } from '../../src/shared/utils/shell.utils';
 shell.config.silent = false;
 
 const testDir = 'workspaces';
-const fixtureName = 'workspaces-build-with-exclude-dependencies';
+const fixture = 'workspaces-build-with-exclude-dependencies';
 const template = 'workspaces-build-with-dependencies';
 
 describe('[bin.execution.workspaces-build-with-exclude-dependencies]', () => {
   beforeAll(() => {
-    teardownStage(fixtureName);
-    setupStage(testDir, fixtureName, { template, install: true });
+    teardownStage(fixture);
+    setupStage({ testDir, fixture, template });
   });
 
   afterAll(() => {
-    teardownStage(fixtureName);
+    teardownStage(fixture);
   });
 
   it('should compile packages as usual', () => {

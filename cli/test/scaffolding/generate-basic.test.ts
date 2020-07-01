@@ -8,17 +8,17 @@ import { smartExec } from '../../src/shared/utils/shell.utils';
 shell.config.silent = false;
 
 const testDir = 'scaffolding';
-const fixtureName = 'generate-basic';
+const fixture = 'generate-basic';
 const template = 'generate';
 
 describe('[bin.scaffolding.generate-basic]', () => {
   beforeAll(() => {
-    teardownStage(fixtureName);
-    setupStage(testDir, fixtureName, { template });
+    teardownStage(fixture);
+    setupStage({ testDir, fixture, template });
   });
 
   afterAll(() => {
-    teardownStage(fixtureName);
+    teardownStage(fixture);
   });
 
   it('should generate package dir', () => {

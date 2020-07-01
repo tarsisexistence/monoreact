@@ -5,17 +5,17 @@ import { smartExec } from '../../src/shared/utils/shell.utils';
 
 shell.config.silent = false;
 const testDir = 'scaffolding';
-const fixtureName = 'new-cra';
+const fixture = 'new-cra';
 const template = 'new';
 
 describe('[bin.scaffolding.new-cra]', () => {
   beforeAll(() => {
-    teardownStage(fixtureName);
-    setupStage(testDir, fixtureName, { template });
+    teardownStage(fixture);
+    setupStage({ testDir, fixture, template });
   });
 
   afterAll(() => {
-    teardownStage(fixtureName);
+    teardownStage(fixture);
   });
 
   it('should create new project', () => {
