@@ -1,8 +1,7 @@
 import { Sade } from 'sade';
 
-import { findHostDirectory, space } from '../../shared/utils';
+import { getSubmodulesLocations, findHostDirectory, space } from '../../shared/utils';
 import { submodulesMessage } from '../../shared/messages';
-import { getSubmodulesLocations } from '../../shared/utils/submodules.utils';
 import { gitPull } from './submodules-pull.helpers';
 
 export function submodulesPullBinCommand(prog: Sade): void {

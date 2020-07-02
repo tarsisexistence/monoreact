@@ -1,8 +1,7 @@
 import * as shell from 'shelljs';
 import * as path from 'path';
 
-import { setupStage, teardownStage } from '../../src/shared/utils/fixture.utils';
-import { smartExec } from '../../src/shared/utils/shell.utils';
+import { smartExec, setupStage, teardownStage } from '../../src/shared/utils';
 
 shell.config.silent = false;
 

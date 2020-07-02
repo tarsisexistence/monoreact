@@ -5,7 +5,7 @@ import { cleanDistFolder, logError } from '../../shared/utils';
 import { buildMessage } from '../../shared/messages';
 import { readPackageJson, readTsconfigJson } from '../../shared/utils/fs.utils';
 
-export const buildWorkspace = async (dir: string): Promise<void> => {
+export const buildPackages = async (dir: string): Promise<void> => {
   const tsconfigJson = await readTsconfigJson(dir);
   const packageJson = await readPackageJson<CLI.Package.PackagePackageJSON>(dir);
   await cleanDistFolder();

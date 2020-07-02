@@ -1,7 +1,7 @@
 import { Sade } from 'sade';
 
 import { findPackageDirectory } from '../../shared/utils';
-import { serveWorkspace } from './serve.helpers';
+import { servePackages } from './serve.helpers';
 
 export const serveBinCommand = (prog: Sade): void => {
   prog
@@ -11,6 +11,6 @@ export const serveBinCommand = (prog: Sade): void => {
     .example('serve')
     .action(async () => {
       const packageDir = await findPackageDirectory();
-      await serveWorkspace(packageDir);
+      await servePackages(packageDir);
     });
 };

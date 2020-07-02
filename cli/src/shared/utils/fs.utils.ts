@@ -8,3 +8,9 @@ export const readTsconfigJson = (dir: string): Promise<TsconfigJSON> => fs.readJ
 
 export const readPackageJson = <T = CLI.Package.BasePackageJSON>(dir: string): Promise<T> =>
   fs.readJSON(path.resolve(dir, PACKAGE_JSON));
+
+export const cleanDistFolder = async (): Promise<void> => {
+  const cwd = process.cwd();
+  const distPath = path.resolve(cwd, 'dist');
+  await fs.remove(distPath);
+};

@@ -2,8 +2,7 @@ import { Sade } from 'sade';
 import execa from 'execa';
 
 import { workspacesMessage } from '../../shared/messages';
-import { clearConsole, logError, space } from '../../shared/utils';
-import { convertStringArrayIntoMap } from '../../shared/utils/dataStructures.utils';
+import { convertStringArrayIntoMap, clearConsole, logError, space } from '../../shared/utils';
 import { exposeWorkspaceInfo, withExcludedPackages } from './workspaces.helpers';
 import packageJson from '../../../package.json';
 

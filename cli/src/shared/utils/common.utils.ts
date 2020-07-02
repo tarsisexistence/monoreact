@@ -1,12 +1,4 @@
-import fs from 'fs-extra';
-import path from 'path';
 import { exec, ShellString } from 'shelljs';
-
-export const cleanDistFolder = async (): Promise<void> => {
-  const cwd = process.cwd();
-  const distPath = path.resolve(cwd, 'dist');
-  await fs.remove(distPath);
-};
 
 // Taken from Create React App, react-dev-utils/clearConsole
 // @see https://github.com/facebook/create-react-app/blob/master/packages/react-dev-utils/clearConsole.js
