@@ -14,7 +14,12 @@
   ],
   "scripts": {
     "cpd": "jscpd **/src",
-    "postinstall": "cd example-app && yarn install"
+    "postinstall": "cd example-app && yarn install && cd ../ && yarn build:all",
+    "build:all": "cd cli && yarn build && cd ../example-app && monoreact workspaces build",
+    "build": "cd cli && yarn build",
+    "start": "cd cli && yarn start",
+    "lint": "cd cli && yarn lint",
+    "test": "cd cli && yarn test"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "3.5.0",

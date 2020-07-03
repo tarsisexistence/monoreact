@@ -2,6 +2,7 @@
   "name": "monoreact",
   "version": "0.23.1",
   "description": "React workspaces implementation",
+  "license": "MIT",
   "main": "./dist/src/bin/index.js",
   "bin": {
     "monoreact": "./dist/src/bin/index.js"
@@ -17,13 +18,12 @@
   },
   "homepage": "https://github.com/maktarsis/monoreact#readme",
   "bugs": "https://github.com/maktarsis/monoreact/issues",
-  "license": "MIT",
   "scripts": {
     "start": "yarn build --watch",
     "build": "tsc -p tsconfig.json",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "test": "jest",
-    "prepublishOnly": "yarn link && yarn build"
+    "prepublishOnly": "yarn build && yarn test"
   },
   "dependencies": {
     "@ampproject/rollup-plugin-closure-compiler": "0.26.0",
