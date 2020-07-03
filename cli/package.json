@@ -82,7 +82,7 @@
     "shelljs": "0.8.4",
     "ts-jest": "24.3.0",
     "tslib": "2.0.0",
-    "typescript": "3.9.5"
+    "typescript": "3.9.6"
   },
   "devDependencies": {
     "@types/eslint": "6.8.0",
