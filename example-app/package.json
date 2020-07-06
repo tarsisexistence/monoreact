@@ -24,7 +24,7 @@
     "@monoreact/package-example": "*",
     "@tarsis/datepicker": "*",
     "classnames": "2.2.6",
-    "dayjs": "1.8.26",
+    "dayjs": "1.8.29",
     "grommet": "2.14.0",
     "grommet-icons": "4.4.0",
     "lodash.times": "4.3.2",
