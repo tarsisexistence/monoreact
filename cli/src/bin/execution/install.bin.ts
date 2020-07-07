@@ -9,7 +9,8 @@ export const installBinCommand = (prog: Sade): void => {
   prog
     .command('install')
     .describe(
-      'Install one or more dependencies to the workspace root. Run this script inside any package and Monoreact will add peer dependencies as well'
+      `Install one or more dependencies to the workspace (host). 
+      If you run this command inside some package, then it will be added to the package (as dev or peer dependency)`
     )
     .alias('i')
     .example('install libraryName')
@@ -17,6 +18,7 @@ export const installBinCommand = (prog: Sade): void => {
     .example(`install libraryName --dev`)
     .action(async ({ _: dependenciesList, dev }: CLI.Options.Install) => {
       // TODO: add possibility to add args to others packages
+      // TODO: add option all,include,exclude
       const dependencies = dependenciesList.join(' ');
       const installSpinner = ora(installMessage.installing(dependencies));
       installSpinner.start();
