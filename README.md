@@ -100,33 +100,9 @@ This section is responsible for scripts that will help to adapt the basic state 
 
 <br/>
 
-### Bootstrap example-app
-
-> Project uses git submodules
-> If you are not familiar with git submodules, please follow the instructions to bootstrap the project
-
-1. git clone --recursive https://github.com/maktarsis/monoreact.git
-2. npx yarn install (**you can omit "npx" if you have installed yarn globally**)
-3. cd example-app
-4. yarn workspaces run build
-5. yarn start
-
-<br/>
-
-### Bootstrap CLI
-
-1. git clone --recursive https://github.com/maktarsis/monoreact.git
-2. npx yarn install (**you can omit "npx" if you have installed yarn globally**)
-3. cd cli
-4. yarn start
-
-<br/>
-
 ### Contributing
 
-Contributions are welcome. For significant changes, please open an issue first to discuss what you would like to change.
-
-If you made a PR, make sure to update tests as appropriate and keep the examples consistent.
+Check out [contributing guideline](https://github.com/maktarsis/monoreact/blob/master/CONTRIBUTING.md) to familiarize yourself with the general rules of the project, as well as to figure out how to bootstrap the project and make changes correctly.
 
 <br/>
 
