@@ -68,7 +68,7 @@
     "postcss-simple-vars": "5.0.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "rollup": "2.19.0",
+    "rollup": "2.20.0",
     "rollup-plugin-analyzer": "3.2.3",
     "rollup-plugin-eslint": "7.0.0",
     "rollup-plugin-filesize": "9.0.2",
