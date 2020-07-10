@@ -64,7 +64,7 @@
     "jest": "24.9.0",
     "node-sass": "4.14.1",
     "ora": "4.0.4",
-    "postcss-nested": "4.2.2",
+    "postcss-nested": "4.2.3",
     "postcss-simple-vars": "5.0.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
