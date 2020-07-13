@@ -25,12 +25,6 @@ This is an advanced workspace implementation for react applications.
 
 <br/>
 
-### Why is this an advanced implementation
-
-It uses CLI, which does what you exactly need to build react applications.
-
-<br/>
-
 ### Motivation
 
 The primary motivation was not to be tied to existing solutions of vendors, so as not to get into vendor lock.
