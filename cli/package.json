@@ -36,7 +36,7 @@
     "@babel/runtime": "7.10.4",
     "@rollup/plugin-babel": "5.1.0",
     "@rollup/plugin-beep": "0.2.0",
-    "@rollup/plugin-commonjs": "13.0.1",
+    "@rollup/plugin-commonjs": "13.0.2",
     "@rollup/plugin-image": "2.0.5",
     "@rollup/plugin-json": "4.1.0",
     "@rollup/plugin-node-resolve": "8.4.0",
