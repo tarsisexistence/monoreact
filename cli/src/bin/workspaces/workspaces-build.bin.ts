@@ -5,6 +5,7 @@ import { workspacesMessage } from '../../shared/messages';
 import { convertStringArrayIntoMap, clearConsole, logError, space } from '../../shared/utils';
 import { exposeWorkspaceInfo, withExcludedPackages } from './workspaces.helpers';
 import packageJson from '../../../package.json';
+import path from 'path';
 
 export function workspacesBuildBinCommand(prog: Sade): void {
   prog
@@ -38,7 +39,7 @@ export function workspacesBuildBinCommand(prog: Sade): void {
                 console.log(workspacesMessage.running(name));
               }
 
-              const { stderr } = await execa('monoreact', ['build'], {
+              const { stderr } = await execa('node', [path.resolve(__dirname, '..'), 'build'], {
                 cwd: packagesLocationMap[name]
               });
 

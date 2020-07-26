@@ -25,7 +25,7 @@ describe('[bin.scaffolding.generate-default]', () => {
     expect(output.code).toBe(0);
   });
 
-  it('should have build folder', () => {
+  it('should have dist folder', () => {
     const output = smartExec('node ../../../dist/src/bin/index.js generate myPackage --template basic');
     expect(shell.test('-d', 'packages/myPackage/dist')).toBeTruthy();
     expect(output.code).toBe(0);

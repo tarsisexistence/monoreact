@@ -26,7 +26,7 @@ describe('[bin.scaffolding.generate-react]', () => {
     expect(output.code).toBe(0);
   });
 
-  it('should have build react package', () => {
+  it('should have build of react package', () => {
     const output = smartExec('node ../../../dist/src/bin/index.js generate myReactPackage --template react');
     expect(shell.test('-d', 'packages/myReactPackage/dist')).toBeTruthy();
     expect(output.code).toBe(0);
