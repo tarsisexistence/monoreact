@@ -1,4 +1,4 @@
-import { getNpmAuthorName, setNpmAuthorName } from '../src/shared/utils';
+import { getNpmAuthorName, setNpmAuthorName } from "../src/shared/utils";
 
 module.exports = async () => {
   const author = getNpmAuthorName();
