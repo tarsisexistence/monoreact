@@ -1,0 +1,19 @@
+name: 'default'
+on:
+  push:
+  pull-request:
+jobs:
+  test-job:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        name: 'setup node'
+        with:
+          node-version: '13.x'
+
+      - name: 'install'
+        run: yarn i
+
+      - name: 'test'
+        run: yarn test
