@@ -5,7 +5,7 @@ import { smartExec, setupStage, teardownStage } from '../../src/shared/utils';
 shell.config.silent = false;
 
 const testDir = 'workspaces';
-const fixture = 'workspaces-build-with-exclude-dependencies';
+const fixture = 'workspaces-build-with-invalid-exclude-dependencies';
 const template = 'workspaces-build-with-dependencies';
 
 describe('[bin.execution.workspaces-build-with-exclude-dependencies]', () => {
