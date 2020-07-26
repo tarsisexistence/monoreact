@@ -14,8 +14,7 @@
   ],
   "scripts": {
     "cpd": "jscpd **/src",
-    "postinstall": "cd example-app && yarn install && cd ../ && yarn build:all",
-    "build:all": "cd cli && yarn build && cd ../example-app && monoreact workspaces build",
+    "postinstall": "cd example-app && yarn install && cd ../ && yarn build",
     "build": "cd cli && yarn build",
     "start": "cd cli && yarn start",
     "lint": "cd cli && yarn lint",
