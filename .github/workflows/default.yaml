@@ -1,9 +1,13 @@
 name: 'default'
+
 on:
   push:
-  pull-request:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
 jobs:
-  test-job:
+  readiness:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
