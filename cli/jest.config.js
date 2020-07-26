@@ -9,5 +9,7 @@ module.exports = {
     '<rootDir>/test/.staging/*',
     '<rootDir>/test/.*/fixtures/'
   ],
-  moduleFileExtensions: ['ts', 'js', 'json', 'jsx', 'tsx', 'node']
+  moduleFileExtensions: ['ts', 'js', 'json', 'jsx', 'tsx', 'node'],
+  globalSetup: './test/setup.ts',
+  globalTeardown: './test/teardown.ts',
 };
