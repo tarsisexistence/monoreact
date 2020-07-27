@@ -10,7 +10,7 @@ const testDir = 'execution';
 const fixture = 'install-root-dev';
 const template = 'install';
 
-describe('[bin.execution.install.root.dev]', () => {
+describe.skip('[bin.execution.install.root.dev]', () => {
   beforeAll(() => {
     teardownStage(fixture);
     setupStage({ testDir, fixture, template });
