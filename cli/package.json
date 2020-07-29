@@ -10,14 +10,14 @@
   "author": {
     "email": "tarsis.maksym@gmail.com",
     "name": "Maksym Tarsis",
-    "url": "https://github.com/maktarsis"
+    "url": "https://github.com/retarsis"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/maktarsis/monoreact.git"
+    "url": "https://github.com/retarsis/monoreact.git"
   },
-  "homepage": "https://github.com/maktarsis/monoreact#readme",
-  "bugs": "https://github.com/maktarsis/monoreact/issues",
+  "homepage": "https://github.com/retarsis/monoreact#readme",
+  "bugs": "https://github.com/retarsis/monoreact/issues",
   "scripts": {
     "start": "yarn build --watch",
     "build": "tsc -p tsconfig.json",

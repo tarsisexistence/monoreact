@@ -16,7 +16,7 @@ Contributions are welcome. For significant changes, please open an issue first t
 >
 > Otherwise, if you already cloned the project without --recursive, type "git submodule update --remote --init"
 
-1. git clone --recursive https://github.com/maktarsis/monoreact.git
+1. git clone --recursive https://github.com/retarsis/monoreact.git
 2. yarn
 
 <br/>
@@ -51,7 +51,7 @@ yarn start
 - Run the `Setup` command to make sure your development dependencies are up-to-date.
 - Please ensure the test suite passes before submitting a PR.
 - If you've added new functionality, **please** include tests which validate its behavior.
-- Make reference to possible [issues](https://github.com/maktarsis/monoreact/issues) on PR comment.
+- Make reference to possible [issues](https://github.com/retarsis/monoreact/issues) on PR comment.
 
 <br/>
 
