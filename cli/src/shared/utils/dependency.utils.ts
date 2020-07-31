@@ -1,4 +1,5 @@
 import { readPackageJson } from './fs.utils';
+import { exec, ShellString } from 'shelljs';
 
 export const readWorkspacePackages = async (
   packagesInfo: CLI.Package.PackageInfo[]
@@ -79,3 +80,5 @@ export const getExternalScreen = ({
 
   return (id: string) => externalsMap.has(id) || Boolean(externals.find(key => id.startsWith(`${key}/`)));
 };
+
+export const installDependencies = (): ShellString => exec('yarn install', { silent: true });
