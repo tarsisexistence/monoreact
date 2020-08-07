@@ -1258,10 +1258,10 @@
   dependencies:
     eventemitter3 "^4.0.4"
 
-"@jscpd/finder@^3.3.1":
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/@jscpd/finder/-/finder-3.3.1.tgz#0206342a4d6f5dc4a80db6c84c7b1952c58e025f"
-  integrity sha512-8whqvmne+e0+guMmzkVR03Jn4tmVXixdiTScw1q37m3OCVda7n6cNPn7QIl/1pd1d7KHdGvsaFRF4xrEPKipdA==
+"@jscpd/finder@^3.3.3":
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/@jscpd/finder/-/finder-3.3.3.tgz#3e2500d5cf626b5bab1f3cd39c534dead7af087c"
+  integrity sha512-PS98HCM+tGLGssoSnibkadAN0AWD3G/GqaHsB84vPh3lSToZqf6yirElZVBCIhp736ogyynxXTe8NNFMO3SCiQ==
   dependencies:
     "@jscpd/core" "^3.3.1"
     "@jscpd/tokenizer" "^3.3.1"
@@ -2977,7 +2977,7 @@ chalk@^3.0.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
-chalk@^4.0.0:
+chalk@^4.0.0, chalk@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-4.1.0.tgz#4e14870a618d9e2edd97dd8345fd9d9dc315646a"
   integrity sha512-qwx12AxXe2Q5xQ43Ac//I6v5aXTipYrSESdOgzrN+9XjgEpyjpKuvSGaN4qE93f7TQTlerQQ8S+EQ0EyDoVL1A==
@@ -3095,10 +3095,10 @@ cli-cursor@^3.1.0:
   dependencies:
     restore-cursor "^3.1.0"
 
-cli-spinners@^2.2.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/cli-spinners/-/cli-spinners-2.3.0.tgz#0632239a4b5aa4c958610142c34bb7a651fc8df5"
-  integrity sha512-Xs2Hf2nzrvJMFKimOR7YR0QwZ8fc0u98kdtwN1eNAZzNQgH3vK2pXzff6GJtKh7S5hoJ87ECiAiZFS2fb5Ii2w==
+cli-spinners@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/cli-spinners/-/cli-spinners-2.4.0.tgz#c6256db216b878cfba4720e719cec7cf72685d7f"
+  integrity sha512-sJAofoarcm76ZGpuooaO0eDy8saEy+YoZBLjC4h8srt4jeBnkYeOgqxgsJQTpyt2LjI5PTfLJHSL+41Yu4fEJA==
 
 cli-table3@^0.6.0:
   version "0.6.0"
@@ -4744,10 +4744,10 @@ form-data@~2.3.2:
     combined-stream "^1.0.6"
     mime-types "^2.1.12"
 
-fp-ts@2.7.1:
-  version "2.7.1"
-  resolved "https://registry.yarnpkg.com/fp-ts/-/fp-ts-2.7.1.tgz#7bd754f3362f4b9bc4d272a97c0658e9a1bc16bc"
-  integrity sha512-rYy41jF1gVhBNYbPwup50dtyT686OKOoa86PXwh8aKpBRfmvPhnBh2zUkOYj84GIMSCsgY+oJ/RVhVKRvWNPTA==
+fp-ts@2.8.1:
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/fp-ts/-/fp-ts-2.8.1.tgz#b1812171469a7c0fcbc0b770ac2568f8356d1993"
+  integrity sha512-HuA/6roEliHoBgEOLCKmGRcM90e2trW/ITZZ9d9P/ra7PreqQagC3Jg6OzqWkai13KUbG90b8QO9rHPBGK/ckw==
 
 fragment-cache@^0.2.1:
   version "0.2.1"
@@ -6271,13 +6271,13 @@ jscpd-badge-reporter@1.1.3:
     badgen "^2.5.0"
     fs-extra "^7.0.1"
 
-jscpd@3.3.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/jscpd/-/jscpd-3.3.1.tgz#9dbd82ebab5d95a1dce06dbe0ec9c63aec964d1e"
-  integrity sha512-lJrIgNJVHMmu7S7RIbJE+5CGndRbqeXiVHV0JWBr84j0U0wtTLe/jXKCRTZYP3wjdD3b8QymFHWLj5b6ANO1WA==
+jscpd@3.3.3:
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/jscpd/-/jscpd-3.3.3.tgz#0fec5290a81a41549d9f96d92cd167bf53eb9e35"
+  integrity sha512-FgNWA1ZdQ9Z5efuTpYLcaSzYTFHL5pVIHHSF9SsnwR1m9wNH0E1YZX2Mvo0vnJxA6xnVktJcX7gMYyJT9ucOBg==
   dependencies:
     "@jscpd/core" "^3.3.1"
-    "@jscpd/finder" "^3.3.1"
+    "@jscpd/finder" "^3.3.3"
     "@jscpd/tokenizer" "^3.3.1"
     colors "^1.4.0"
     commander "^5.0.0"
@@ -6628,13 +6628,6 @@ lodash@^4.0.0, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.1
   version "4.17.19"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
   integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
-
-log-symbols@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/log-symbols/-/log-symbols-3.0.0.tgz#f3a08516a5dea893336a7dee14d18a1cfdab77c4"
-  integrity sha512-dSkNGuI7iG3mfvDzUuYZyvk5dD9ocYCYzNU6CYDE6+Xqd+gwme6Z00NS3dUh8mq/73HaEtT7m6W+yUPtU6BZnQ==
-  dependencies:
-    chalk "^2.4.2"
 
 log-symbols@^4.0.0:
   version "4.0.0"
@@ -7513,16 +7506,16 @@ optionator@^0.9.1:
     type-check "^0.4.0"
     word-wrap "^1.2.3"
 
-ora@4.0.5:
-  version "4.0.5"
-  resolved "https://registry.yarnpkg.com/ora/-/ora-4.0.5.tgz#7410b5cc2d99fa637fd5099bbb9f02bfbb5a361e"
-  integrity sha512-jCDgm9DqvRcNIAEv2wZPrh7E5PcQiDUnbnWbAfu4NGAE2ZNqPFbDixmWldy1YG2QfLeQhuiu6/h5VRrk6cG50w==
+ora@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/ora/-/ora-4.1.0.tgz#1fa5b17d2952ec9651be79ba32a328684870fc5d"
+  integrity sha512-PhDvXi7I+dLVyFekgqXt0iBDdo5ARzOxJNoj72TysoXkW4/oi1lRaeakr4skciyWgPpk6JPPGwO1V4zPr6YRZA==
   dependencies:
-    chalk "^3.0.0"
+    chalk "^4.1.0"
     cli-cursor "^3.1.0"
-    cli-spinners "^2.2.0"
+    cli-spinners "^2.4.0"
     is-interactive "^1.0.0"
-    log-symbols "^3.0.0"
+    log-symbols "^4.0.0"
     mute-stream "0.0.8"
     strip-ansi "^6.0.0"
     wcwidth "^1.0.1"
@@ -9059,10 +9052,10 @@ rollup-plugin-filesize@9.0.2:
     pacote "^11.1.10"
     terser "^4.8.0"
 
-rollup-plugin-postcss@3.1.3:
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-postcss/-/rollup-plugin-postcss-3.1.3.tgz#b11f69a907cc497311f44da12030439545a7bd80"
-  integrity sha512-5Zm70/HkuYaQuhFbiGSO3U0bVj0magAPo09sd4sRE7I434Iwe4p7xF43pYfW0BcDvY0ZxzD3Fh2vRJzsm4OEiQ==
+rollup-plugin-postcss@3.1.4:
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-postcss/-/rollup-plugin-postcss-3.1.4.tgz#b672dd6849d013f4b0c1ccff80ef54ff03817444"
+  integrity sha512-nLefjTDau8dpfEq1VSag1jjRizQc9/Io26mlC+/zkJVnvgKEz9xt3nvYW6vlOM0LffGFVapZNyr23Led1VN9Lw==
   dependencies:
     chalk "^4.0.0"
     concat-with-sourcemaps "^1.1.0"
@@ -10174,10 +10167,10 @@ tslib@1.11.2:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.2.tgz#9c79d83272c9a7aaf166f73915c9667ecdde3cc9"
   integrity sha512-tTSkux6IGPnUGUd1XAZHcpu85MOkIl5zX49pO+jfsie3eP0B6pyhOlLXm3cAC6T7s+euSDDUUV+Acop5WmtkVg==
 
-tslib@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.0.tgz#18d13fc2dce04051e20f074cc8387fd8089ce4f3"
-  integrity sha512-lTqkx847PI7xEDYJntxZH89L2/aXInsyF2luSafe/+0fHOMjlBNXdH6th7f70qxLDhul7KZK0zC8V5ZIyHl0/g==
+tslib@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.1.tgz#410eb0d113e5b6356490eec749603725b021b43e"
+  integrity sha512-SgIkNheinmEBgx1IUNirK0TUD4X9yjjBRTqqjggWCU3pUEqIk3/Uwl3yRixYKT6WjQuGiwDv4NomL3wqRCj+CQ==
 
 tslib@^1.8.1, tslib@^1.9.0:
   version "1.13.0"
