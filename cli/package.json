@@ -83,7 +83,7 @@
     "sade": "1.7.3",
     "shelljs": "0.8.4",
     "ts-jest": "24.3.0",
-    "tslib": "2.0.0",
+    "tslib": "2.0.1",
     "typescript": "3.9.7"
   },
   "devDependencies": {
