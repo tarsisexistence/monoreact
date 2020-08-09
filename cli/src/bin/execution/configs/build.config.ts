@@ -32,13 +32,13 @@ export const createBuildConfig = ({
   runEslint: boolean;
   packageJson: CLI.Package.PackagePackageJSON;
   tsconfigJson: TsconfigJSON;
-}): InputOptions & { output: OutputOptions } => ({
+}): InputOptions & { output: OutputOptions[] } => ({
   input: packageJson.source,
-  output: {
-    file: packageJson.module,
-    format: 'es',
-    sourcemap: true
-  },
+  // TODO: add tests for cjs; improve DX
+  output: [
+    { file: packageJson.module, format: 'es', sourcemap: true },
+    { file: packageJson.main, format: 'cjs', sourcemap: true }
+  ],
   external: getExternalScreen(packageJson),
   plugins: [
     beep(),

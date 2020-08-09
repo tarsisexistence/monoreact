@@ -28,6 +28,7 @@ export const WORKSPACE_PACKAGE_JSON: Omit<CLI.Package.PackagePackageJSON, 'scrip
   workspace: true,
   private: false,
   version: '0.1.0',
+  main: 'dist/bundle.cjs.js',
   module: 'dist/bundle.js',
   types: 'dist/publicApi.d.ts',
   source: 'src/publicApi.ts',

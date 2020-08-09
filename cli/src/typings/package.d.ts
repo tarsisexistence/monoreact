@@ -27,6 +27,7 @@ declare namespace CLI.Package {
 
   interface PackagePackageJSON extends BasePackageJSON {
     workspace: true;
+    main: 'dist/bundle.cjs.js';
     module: 'dist/bundle.js';
     types: 'dist/publicApi.d.ts';
     source: string;

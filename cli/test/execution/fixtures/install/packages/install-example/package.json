@@ -2,6 +2,7 @@
   "name": "install-example",
   "version": "0.1.0",
   "private": false,
+  "main": "dist/bundle.cjs.js",
   "module": "dist/bundle.js",
   "source": "src/publicApi.ts",
   "types": "dist/publicApi.d.ts",
