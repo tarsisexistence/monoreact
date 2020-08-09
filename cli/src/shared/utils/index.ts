@@ -1,10 +1,9 @@
-export { color } from './color.utils';
 export * from './common.utils';
+export * from './console.utils';
 export * from './dataStructures.utils';
 export * from './dependency.utils';
 export * from './error.utils';
-export * from './fixture.utils';
 export * from './fs.utils';
-export * from './shell.utils';
 export * from './submodules.utils';
+export * from './test.utils';
 export * from './workspace.utils';

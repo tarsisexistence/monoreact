@@ -1,9 +1,26 @@
 import path from 'path';
 import shell from 'shelljs';
 import fs from 'fs-extra';
-import { installDependencies } from './common.utils';
+
+import { installDependencies } from './dependency.utils';
 
 shell.config.silent = true;
+
+const cache: Record<string, shell.ShellReturnValue> = {};
+
+export function smartExec(command: string, { noCache = false } = {}): shell.ShellReturnValue {
+  if (!noCache && cache[command]) {
+    return cache[command];
+  }
+
+  const output = shell.exec(command);
+
+  if (!noCache) {
+    cache[command] = output;
+  }
+
+  return output;
+}
 
 const ROOT_DIR = process.cwd();
 const STAGING_PATH = path.join(ROOT_DIR, 'test', '.staging');

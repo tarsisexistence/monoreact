@@ -1,7 +1,6 @@
 import { RollupError } from 'rollup';
 
-import { color } from './color.utils';
-import { space } from './common.utils';
+import { color, space } from './console.utils';
 
 const stderr = console.error.bind(console);
 

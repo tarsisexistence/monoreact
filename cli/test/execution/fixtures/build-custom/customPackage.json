@@ -4,6 +4,7 @@
   "private": false,
   "workspace": true,
   "license": "MIT",
+  "main": "dist/outputCustom.cjs.js",
   "module": "dist/outputCustom.js",
   "source": "src/index.ts",
   "types": "dist/index.d.ts",

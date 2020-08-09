@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
-  "author": "maktarsis",
+  "author": "retarsis",
   "workspaces": [],
   "scripts": {
     "build": "react-scripts build",
