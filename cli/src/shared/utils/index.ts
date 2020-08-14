@@ -1,3 +1,4 @@
+export * from './author.utils';
 export * from './common.utils';
 export * from './console.utils';
 export * from './dataStructures.utils';
