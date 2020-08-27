@@ -67,7 +67,7 @@
     "stylelint-config-recommended": "3.0.0",
     "tslib": "2.0.1",
     "typescript": "3.9.7",
-    "yarn": "1.22.4"
+    "yarn": "1.22.5"
   },
   "browserslist": {
     "production": [
