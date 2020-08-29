@@ -61,7 +61,7 @@
     "jscpd": "3.3.16",
     "jscpd-badge-reporter": "1.1.3",
     "lint-staged": "10.2.11",
-    "prettier": "2.0.5",
+    "prettier": "2.1.1",
     "prop-types": "15.7.2",
     "stylelint": "13.6.1",
     "stylelint-config-recommended": "3.0.0",
