@@ -63,7 +63,7 @@
     "lint-staged": "10.2.11",
     "prettier": "2.0.5",
     "prop-types": "15.7.2",
-    "stylelint": "13.6.1",
+    "stylelint": "13.7.0",
     "stylelint-config-recommended": "3.0.0",
     "tslib": "2.0.1",
     "typescript": "3.9.7",
