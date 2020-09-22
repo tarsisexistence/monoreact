@@ -45,19 +45,19 @@ describe('[bin.scaffolding.generate-default]', () => {
 
   it('should have tsconfig.json', () => {
     const output = smartExec('node ../../../dist/src/bin/index.js generate myPackage --template basic');
-    expect(shell.test('-f', 'packages/myPackage/README.md')).toBeTruthy();
+    expect(shell.test('-f', 'packages/myPackage/tsconfig.json')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should have .gitignore', () => {
     const output = smartExec('node ../../../dist/src/bin/index.js generate myPackage --template basic');
-    expect(shell.test('-f', 'packages/myPackage/README.md')).toBeTruthy();
+    expect(shell.test('-f', 'packages/myPackage/.gitignore')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should have .eslintrc.json', () => {
     const output = smartExec('node ../../../dist/src/bin/index.js generate myPackage --template basic');
-    expect(shell.test('-f', 'packages/myPackage/README.md')).toBeTruthy();
+    expect(shell.test('-f', 'packages/myPackage/.eslintrc.js')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
