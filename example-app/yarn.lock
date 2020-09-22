@@ -1692,11 +1692,6 @@
     reprism "^0.0.11"
     spark-md5 "^3.0.1"
 
-"@monoreact/package-example@*":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@monoreact/package-example/-/package-example-0.1.0.tgz#dd4c3325daacc7a8c6932bd5ffa82b2f84b3f59c"
-  integrity sha512-Q1tLkbxnYDvcWtLx1Uu2p5Yq0jaG/3JP2hIJLqC1IPbC1YwoP6/q8R5Voa8pfXXsSi6Bxygc29Amt6EyaEbU1A==
-
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -11133,12 +11128,11 @@ postcss-modules@^2.0.0:
     postcss "^7.0.1"
     string-hash "^1.1.1"
 
-postcss-nested@4.2.3:
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/postcss-nested/-/postcss-nested-4.2.3.tgz#c6f255b0a720549776d220d00c4b70cd244136f6"
-  integrity sha512-rOv0W1HquRCamWy2kFl3QazJMMe1ku6rCFoAAH+9AcxdbpDeBr6k968MLWuLjvjMcGEip01ak09hKOEgpK9hvw==
+postcss-nested@5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/postcss-nested/-/postcss-nested-5.0.0.tgz#0d05bb93578ec42919bdbda7d4eb419d5f58fe07"
+  integrity sha512-jQVUwMOkDJPHyY1o3bxLErHnxIFsO3yDgdDsL/rjSkUHrWNdtNGhP50O0P+vUjEwPo+ekCRhLXTe8TziARoS0w==
   dependencies:
-    postcss "^7.0.32"
     postcss-selector-parser "^6.0.2"
 
 postcss-nesting@^7.0.0:
