@@ -5865,6 +5865,23 @@ eslint-plugin-react@7.19.0:
     string.prototype.matchall "^4.0.2"
     xregexp "^4.3.0"
 
+eslint-plugin-react@7.20.5:
+  version "7.20.5"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.20.5.tgz#29480f3071f64a04b2c3d99d9b460ce0f76fb857"
+  integrity sha512-ajbJfHuFnpVNJjhyrfq+pH1C0gLc2y94OiCbAXT5O0J0YCKaFEHDV8+3+mDOr+w8WguRX+vSs1bM2BDG0VLvCw==
+  dependencies:
+    array-includes "^3.1.1"
+    array.prototype.flatmap "^1.2.3"
+    doctrine "^2.1.0"
+    has "^1.0.3"
+    jsx-ast-utils "^2.4.1"
+    object.entries "^1.1.2"
+    object.fromentries "^2.0.2"
+    object.values "^1.1.1"
+    prop-types "^15.7.2"
+    resolve "^1.17.0"
+    string.prototype.matchall "^4.0.2"
+
 eslint-plugin-react@7.21.2:
   version "7.21.2"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.21.2.tgz#3bd5d2c4c36d5a0428d0d6dda301ac9a84d681b2"
@@ -11430,10 +11447,10 @@ postcss-selector-parser@^6.0.4:
     uniq "^1.0.1"
     util-deprecate "^1.0.2"
 
-postcss-simple-vars@6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/postcss-simple-vars/-/postcss-simple-vars-6.0.0.tgz#7f9c556151753f7b3c0caca2e892b740089e62e8"
-  integrity sha512-zpgSAJfxCXCFkbf0VUJTSFtoOiSor+a/dp+a+hg5q/jbf2vyOGeb69QYzxD1G/HHuFWoBgjiwYg3tzkJFVDuAA==
+postcss-simple-vars@6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/postcss-simple-vars/-/postcss-simple-vars-6.0.1.tgz#7733415a7b57f5cb9b5a15cdd6b0546c505e7ad6"
+  integrity sha512-P1M+APrquBXOPKtk/LlWptuPBwTCjMgxZxv1lkpjG9RdOx8ewi8USOclPCt75xG7UT7viDUB3p3qy2ffPBefjQ==
 
 postcss-svgo@^4.0.2:
   version "4.0.2"
