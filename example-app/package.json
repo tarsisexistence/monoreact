@@ -56,7 +56,7 @@
     "eslint-plugin-react-hooks": "4.2.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-sonarjs": "0.5.0",
-    "eslint-plugin-jsx-a11y": "6.3.1",
+    "eslint-plugin-jsx-a11y": "6.4.1",
     "husky": "4.3.0",
     "jscpd": "3.3.19",
     "jscpd-badge-reporter": "1.1.3",
