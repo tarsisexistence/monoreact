@@ -39,7 +39,7 @@
     "@rollup/plugin-commonjs": "15.1.0",
     "@rollup/plugin-image": "2.0.5",
     "@rollup/plugin-json": "4.1.0",
-    "@rollup/plugin-node-resolve": "9.0.0",
+    "@rollup/plugin-node-resolve": "10.0.0",
     "@rollup/plugin-url": "5.0.1",
     "@typescript-eslint/eslint-plugin": "3.10.1",
     "@typescript-eslint/parser": "3.10.1",
