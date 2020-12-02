@@ -54,7 +54,6 @@ The package uses [Rollup v1.x](https://rollupjs.org) as a bundler and generates 
 
 `tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`. Adjust according to your needs.
 
-
 ## Using the Playground
 
 ```
