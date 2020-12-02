@@ -1,6 +1,6 @@
 {
   "name": "monoreact",
-  "version": "0.24.0",
+  "version": "0.24.1",
   "description": "React workspaces implementation",
   "license": "MIT",
   "main": "./dist/src/bin/index.js",
@@ -43,7 +43,7 @@
     "@rollup/plugin-url": "5.0.1",
     "@typescript-eslint/eslint-plugin": "3.10.1",
     "@typescript-eslint/parser": "3.10.1",
-    "autoprefixer": "10.0.4",
+    "autoprefixer": "9.8.6",
     "babel-jest": "24.9.0",
     "colorette": "1.2.1",
     "cssnano": "4.1.10",
