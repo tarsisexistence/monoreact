@@ -115,12 +115,12 @@ export const findHostDirectory = async (intercept = false): Promise<string> => {
 
   async function find(possiblePath: string): Promise<string | null> {
     const isPathTooSmall = possiblePath.length < 10;
-    const packageJsonPath = path.resolve(possiblePath, PACKAGE_JSON);
 
     if (isPathTooSmall) {
       return null;
     }
 
+    const packageJsonPath = path.resolve(possiblePath, PACKAGE_JSON);
     return fs.existsSync(packageJsonPath) && isHostScope(await fs.readJSON(packageJsonPath))
       ? possiblePath
       : find(path.resolve(possiblePath, '..'));
