@@ -3,6 +3,7 @@ This package meant for developing React components (not applications) that can b
 ## Commands
 
 ### Serve
+
 **Monoreact** scaffolds your new library inside `/src`, (bonus: sets up a [Parcel-based](https://parceljs.org) playground for that package inside `/playground` to test your components inside separate index.html).
 
 ```
@@ -12,7 +13,6 @@ yarn start
 This builds to `/dist` and runs the project in watch mode so any edits you save inside `src` causes a rebuild to `/dist`.
 
 Then run either example playground or docz.
-
 
 ### Build
 

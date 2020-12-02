@@ -5,9 +5,9 @@ import { Component } from '..';
 const App = () => {
   return (
     <div>
-      <Component/>
+      <Component />
     </div>
   );
 };
 
-ReactDOM.render(<App/>, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
