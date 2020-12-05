@@ -80,11 +80,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "jest": {
-    "moduleNameMapper": {
-      "@tarsis/datepicker": "<rootDir>/packages/datepicker/src/publicApi.ts",
-      "@monoreact/package-example": "<rootDir>/packages/example/src/publicApi.ts"
-    }
   }
 }
