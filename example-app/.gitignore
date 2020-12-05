@@ -3,6 +3,7 @@
 **/.docz
 **/dist
 **/.cache
+**/.eslintcache
 
 # reporters
 /report
