@@ -12,7 +12,7 @@
     "build": "monoreact build"
   },
   "peerDependencies": {
-    "react": "^16.13.1"
+    "react": "^16.14.0"
   },
   "devDependencies": {
     "@types/react": "^16.14.2"
