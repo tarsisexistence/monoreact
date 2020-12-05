@@ -46,7 +46,7 @@ export function workspacesServeBinCommand(prog: Sade): void {
 
               proc.stdout?.pipe(process.stdout);
 
-              await new Promise(resolve => {
+              await new Promise<void>(resolve => {
                 proc.stdout?.on('data', data => {
                   if (data.toString().includes(serveMessage.compiled(true))) {
                     resolve();

@@ -19,7 +19,7 @@ export const servePackages = async (dir: string): Promise<any> => {
   let isFirstChange = true;
 
   await cleanDistFolder();
-  return new Promise(resolve => {
+  return new Promise<void>(resolve => {
     watch(buildConfig).on('event', async event => {
       if (event.code === 'BUNDLE_START') {
         clearConsole();
