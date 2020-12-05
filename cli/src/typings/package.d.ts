@@ -22,7 +22,6 @@ declare namespace CLI.Package {
       production: string[];
       development: string[];
     };
-    jest: Record<string, any>;
   }
 
   interface PackagePackageJSON extends BasePackageJSON {
