@@ -58,7 +58,7 @@
     "eslint-plugin-prettier": "3.2.0",
     "eslint-plugin-react": "7.21.5",
     "eslint-plugin-react-hooks": "4.2.0",
-    "execa": "4.1.0",
+    "execa": "5.0.0",
     "fp-ts": "2.9.0",
     "fs-extra": "9.0.1",
     "identity-obj-proxy": "3.0.0",
