@@ -59,7 +59,7 @@
     "husky": "4.3.0",
     "jscpd": "3.3.21",
     "jscpd-badge-reporter": "1.1.3",
-    "lint-staged": "10.5.2",
+    "lint-staged": "10.5.3",
     "monoreact": "*",
     "prettier": "2.2.1",
     "prop-types": "15.7.2",
