@@ -54,8 +54,8 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.HostPackageJSON = {
   },
   dependencies: {
     react: packageJson.dependencies.react,
-    'react-dom': '16.13.1',
-    'react-scripts': '3.4.1'
+    'react-dom': '17.0.1',
+    'react-scripts': '4.0.1'
   },
   devDependencies: {
     monoreact: 'latest',
@@ -65,7 +65,7 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.HostPackageJSON = {
     '@testing-library/user-event': '7.2.1',
     '@types/node': packageJson.devDependencies['@types/node'],
     '@types/react': packageJson.devDependencies['@types/react'],
-    '@types/react-dom': '16.9.10',
+    '@types/react-dom': '17.0.0',
     '@typescript-eslint/eslint-plugin': '4.9.0',
     '@typescript-eslint/parser': '4.9.0',
     'eslint-config-prettier': packageJson.dependencies['eslint-config-prettier'],
