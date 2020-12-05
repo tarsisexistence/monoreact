@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "importHelpers": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
