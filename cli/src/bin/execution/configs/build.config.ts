@@ -53,12 +53,7 @@ export const createBuildConfig = ({
       extract: false,
       modules: true,
       writeDefinitions: true,
-      plugins: [
-        // simplevars({ variables: {} }),
-        // nested(),
-        cssnano(),
-        autoprefixer()
-      ],
+      plugins: [autoprefixer(), cssnano(), simplevars({ variables: {} }), nested()],
       extensions: ['.css', '.scss', '.sass'],
       use: ['sass']
     }),
