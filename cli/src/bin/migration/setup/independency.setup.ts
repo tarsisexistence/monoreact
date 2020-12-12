@@ -13,6 +13,6 @@ export const independencySetup: CLI.Setup.MigrationOptions = {
     'lint-staged': '10.5.3',
     prettier: '2.2.1',
     tslib: '^2.0.3',
-    typescript: '^4.1.2'
+    typescript: '^4.1.3'
   }
 };
