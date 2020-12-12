@@ -9,7 +9,7 @@ export const independencySetup: CLI.Setup.MigrationOptions = {
     '@types/react': '^17.0.0',
     '@types/react-dom': '^17.0.0',
     'eslint-config-react-app': '^6.0.0',
-    husky: '^4.3.4',
+    husky: '^4.3.5',
     'lint-staged': '10.5.3',
     prettier: '2.2.1',
     tslib: '^2.0.3',

@@ -77,7 +77,7 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.HostPackageJSON = {
     'eslint-plugin-import': packageJson.dependencies['eslint-plugin-import'],
     'eslint-plugin-sonarjs': '0.5.0',
     'eslint-plugin-jsx-a11y': packageJson.dependencies['eslint-plugin-jsx-a11y'],
-    husky: '4.3.4',
+    husky: '4.3.5',
     'lint-staged': '10.5.3',
     prettier: '2.2.1',
     stylelint: '13.8.0',
