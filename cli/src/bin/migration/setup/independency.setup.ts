@@ -1,18 +1,18 @@
 export const independencySetup: CLI.Setup.MigrationOptions = {
   dependencies: {
-    react: '^16.13.1',
-    'react-dom': '^16.13.1'
+    react: '^17.0.1',
+    'react-dom': '^17.0.1'
   },
   devDependencies: {
     monoreact: 'latest',
-    '@typescript-eslint/parser': '^2.31.0',
-    '@types/react': '^16.9.34',
-    '@types/react-dom': '^16.9.7',
-    'eslint-config-react-app': '^5.2.1',
-    husky: '^4.2.5',
-    'lint-staged': '10.2.0',
-    prettier: '2.0.5',
-    tslib: '^1.11.2',
-    typescript: '^3.8.3'
+    '@typescript-eslint/parser': '^4.9.0',
+    '@types/react': '^17.0.0',
+    '@types/react-dom': '^17.0.0',
+    'eslint-config-react-app': '^6.0.0',
+    husky: '^4.3.5',
+    'lint-staged': '10.5.3',
+    prettier: '2.2.1',
+    tslib: '^2.0.3',
+    typescript: '^4.1.3'
   }
 };

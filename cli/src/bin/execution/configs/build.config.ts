@@ -34,7 +34,7 @@ export const createBuildConfig = ({
   tsconfigJson: TsconfigJSON;
 }): InputOptions & { output: OutputOptions[] } => ({
   input: packageJson.source,
-  // TODO: add tests for cjs; improve DX
+  // TODO: add tests for cjs;
   output: [
     { file: packageJson.module, format: 'es', sourcemap: true },
     { file: packageJson.main, format: 'cjs', sourcemap: true }
@@ -53,7 +53,7 @@ export const createBuildConfig = ({
       extract: false,
       modules: true,
       writeDefinitions: true,
-      plugins: [simplevars({ variables: {} }), nested(), cssnano(), autoprefixer()],
+      plugins: [autoprefixer(), cssnano(), simplevars({ variables: {} }), nested()],
       extensions: ['.css', '.scss', '.sass'],
       use: ['sass']
     }),

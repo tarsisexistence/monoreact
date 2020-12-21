@@ -54,8 +54,8 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.HostPackageJSON = {
   },
   dependencies: {
     react: packageJson.dependencies.react,
-    'react-dom': '16.13.1',
-    'react-scripts': '3.4.1'
+    'react-dom': '17.0.1',
+    'react-scripts': '4.0.1'
   },
   devDependencies: {
     monoreact: 'latest',
@@ -65,9 +65,9 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.HostPackageJSON = {
     '@testing-library/user-event': '7.2.1',
     '@types/node': packageJson.devDependencies['@types/node'],
     '@types/react': packageJson.devDependencies['@types/react'],
-    '@types/react-dom': '16.9.8',
-    '@typescript-eslint/eslint-plugin': '3.1.0',
-    '@typescript-eslint/parser': '3.2.0',
+    '@types/react-dom': '17.0.0',
+    '@typescript-eslint/eslint-plugin': '4.9.0',
+    '@typescript-eslint/parser': '4.9.0',
     'eslint-config-prettier': packageJson.dependencies['eslint-config-prettier'],
     'eslint-config-react-app': packageJson.dependencies['eslint-config-react-app'],
     'eslint-plugin-prettier': packageJson.dependencies['eslint-plugin-prettier'],
@@ -77,10 +77,10 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.HostPackageJSON = {
     'eslint-plugin-import': packageJson.dependencies['eslint-plugin-import'],
     'eslint-plugin-sonarjs': '0.5.0',
     'eslint-plugin-jsx-a11y': packageJson.dependencies['eslint-plugin-jsx-a11y'],
-    husky: '4.2.5',
-    'lint-staged': '10.2.9',
-    prettier: '2.0.5',
-    stylelint: '13.6.0',
+    husky: '4.3.5',
+    'lint-staged': '10.5.3',
+    prettier: '2.2.1',
+    stylelint: '13.8.0',
     'stylelint-config-recommended': '3.0.0',
     tslib: packageJson.dependencies.tslib,
     typescript: packageJson.dependencies.typescript,
@@ -89,8 +89,5 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.HostPackageJSON = {
   browserslist: {
     production: ['>0.2%', 'not dead', 'not op_mini all'],
     development: ['last 1 chrome version', 'last 1 firefox version', 'last 1 safari version']
-  },
-  jest: {
-    moduleNameMapper: {}
   }
 };

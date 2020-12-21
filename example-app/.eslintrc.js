@@ -128,6 +128,7 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 0,
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/no-namespace': 0,
+    '@typescript-eslint/no-redeclare': 0,
     '@typescript-eslint/no-unused-expressions': 0
   },
   env: {

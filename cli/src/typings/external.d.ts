@@ -13,6 +13,7 @@ declare module 'rollup-plugin-analyzer';
 declare module 'rollup-plugin-visualizer';
 declare module 'rollup-plugin-size-snapshot';
 declare module 'postcss-simple-vars';
+declare module 'postcss-nested';
 declare module 'cssnano';
 declare module 'autoprefixer';
 declare module 'enquirer';

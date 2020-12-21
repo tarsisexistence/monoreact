@@ -114,6 +114,7 @@ export const generateBinCommand = (prog: Sade): void => {
 
       try {
         await sortPackageJson();
+        // TODO: doesn't log anything on error
         await buildPackage();
         preparingSpinner.succeed(generateMessage.successfulConfigure());
         console.log(generateMessage.preparedPackage(packageName));

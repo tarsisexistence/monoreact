@@ -3,6 +3,7 @@ This package meant for developing React components (not applications) that can b
 ## Commands
 
 ### Serve
+
 **Monoreact** scaffolds your new library inside `/src`:
 
 ```
@@ -42,7 +43,6 @@ The package uses [Rollup v2.x](https://rollupjs.org) as a bundler and generates 
 `tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`. Adjust according to your needs.
 
 <br/>
-
 
 ## User Guide
 

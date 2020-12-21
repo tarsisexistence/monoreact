@@ -103,7 +103,7 @@ export const DatePicker = props => {
 };
 
 DatePicker.propTypes = {
-  date: PropTypes.date
+  date: PropTypes.any
 };
 
 /**
