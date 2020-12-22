@@ -20,4 +20,4 @@ jobs:
         run: yarn install
 
       - name: 'Test CLI'
-        run: yarn test
+        run: yarn cli:test
