@@ -1,11 +1,11 @@
 import { Sade } from 'sade';
 import execa from 'execa';
+import path from 'path';
 
 import { workspacesMessage } from '../../shared/messages';
 import { convertStringArrayIntoMap, clearConsole, logError, space } from '../../shared/utils';
 import { exposeWorkspaceInfo, withExcludedPackages } from './workspaces.helpers';
 import packageJson from '../../../package.json';
-import path from 'path';
 
 export function workspacesTestBinCommand(prog: Sade): void {
   prog
