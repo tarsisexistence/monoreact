@@ -19,7 +19,8 @@
     "cli:build": "cd cli && yarn build",
     "cli:start": "cd cli && yarn start",
     "cli:lint": "cd cli && yarn lint",
-    "cli:test": "cd cli && yarn test"
+    "cli:test": "cd cli && yarn test",
+    "ci": "yarn install && yarn add ./cli --D -W && yarn cli:test"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "4.11.0",
