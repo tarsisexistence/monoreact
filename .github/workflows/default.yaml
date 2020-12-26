@@ -19,5 +19,8 @@ jobs:
       - name: 'Install npm dependencies'
         run: yarn install
 
+      - name: 'Refresh monoreact root dependency'
+        run: yarn add ./cli -D -W
+
       - name: 'Test CLI'
         run: yarn cli:test
