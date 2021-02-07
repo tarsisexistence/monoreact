@@ -10885,7 +10885,7 @@ mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@^0.5.3, mkdirp@^0.5.5, mkdirp@~0.5.1:
     ora "5.3.0"
     postcss "8.2.5"
     postcss-nested "5.0.3"
-    postcss-simple-vars "6.0.2"
+    postcss-simple-vars "6.0.3"
     ramda "0.27.1"
     react "17.0.1"
     react-dom "17.0.1"
@@ -12736,10 +12736,10 @@ postcss-selector-parser@^6.0.4:
     uniq "^1.0.1"
     util-deprecate "^1.0.2"
 
-postcss-simple-vars@6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/postcss-simple-vars/-/postcss-simple-vars-6.0.2.tgz#cc0cc7745fb53c83245df99aaf4452475b454eda"
-  integrity sha512-tABK0OVtCa88TgJjgosa/1aLgiF4hTJBJxUjVE5idTGA0597OVdzWZvbySAF+HKo/sZidxSSpnWhUycDrxO8LA==
+postcss-simple-vars@6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/postcss-simple-vars/-/postcss-simple-vars-6.0.3.tgz#e66516c7fe980da3498f4a8ad400b9c53861806c"
+  integrity sha512-fkNn4Zio8vN4vIig9IFdb8lVlxWnYR769RgvxCM6YWlFKie/nQaOcaMMMFz/s4gsfHW4/5bJW+i57zD67mQU7g==
 
 postcss-svgo@^4.0.2:
   version "4.0.2"
