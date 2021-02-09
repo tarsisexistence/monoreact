@@ -82,7 +82,7 @@
     "postcss": "8.2.5",
     "sade": "1.7.4",
     "shelljs": "0.8.4",
-    "ts-jest": "26.5.0",
+    "ts-jest": "26.5.1",
     "tslib": "2.1.0",
     "typescript": "4.1.3"
   },
