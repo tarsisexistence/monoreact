@@ -22,9 +22,6 @@ export const createLintConfig = (dir: string): CLIEngine.Options['baseConfig'] =
   const extendsConfig = [
     'eslint:recommended',
     'react-app',
-    'prettier',
-    'prettier/react',
-    'prettier/@typescript-eslint',
     'plugin:prettier/recommended',
     'plugin:react/recommended',
     'plugin:import/errors',
