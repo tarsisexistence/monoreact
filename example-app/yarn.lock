@@ -3627,10 +3627,10 @@
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.4.tgz#15925414e0ad2cd765bfef58842f7e26a7accb24"
   integrity sha512-1HcDas8SEj4z1Wc696tH56G8OlRaH/sqZOynNNB+HF0WOeXPaxTtbYzJY2oEfiUxjSKjhCKr+MvR7dCHcEelug==
 
-"@types/ramda@0.27.32":
-  version "0.27.32"
-  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.27.32.tgz#4f62ff4fc3a41dc32dd9df3cde53861b6ee69e6f"
-  integrity sha512-vdwZcWC+hlTxB//LZQLS1+VEdArImGI4yVKUpeqB8b9mBXgDFXCuQoOt8spQbi8fTyNLOdqRv6liSm2ckxWLog==
+"@types/ramda@0.27.38":
+  version "0.27.38"
+  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.27.38.tgz#797d5cdc9e00482e665dfea28142bb6c3c5f11e7"
+  integrity sha512-tZoQ0lv1WKkrpBHemL8yCkI9p8kUk/1PSMwhl0eeyqMQjD+2ePUtVLV8PpNS9Kq3OktObwOx9I3k+HumxTviRg==
   dependencies:
     ts-toolbelt "^6.15.1"
 
@@ -7251,10 +7251,10 @@ eslint-plugin-compat@3.9.0:
     lodash.memoize "4.1.2"
     semver "7.3.2"
 
-eslint-plugin-flowtype@5.2.2:
-  version "5.2.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-flowtype/-/eslint-plugin-flowtype-5.2.2.tgz#c6e5dd2fad4e757a1c63e652da6cff597659554f"
-  integrity sha512-C4PlPYpszr9h1cBfUbTNRI1IdxUCF0qrXAHkXS2+bESp7WUUCnvb3UBBnYlaQLvJYJ2lRz+2SPQQ/WyV7p/Tow==
+eslint-plugin-flowtype@5.3.1:
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-flowtype/-/eslint-plugin-flowtype-5.3.1.tgz#df6227e28c61d967b825c1327a27818bbb2ad325"
+  integrity sha512-mziJD+zw+VTwLtF9qLIxYac0GJCbSEDyqMLP5ENzQeNY5EOxbAfitMFLo+UItjYOISQdh1BCobwE2d4i1o+9Rw==
   dependencies:
     lodash "^4.17.15"
     string-natural-compare "^3.0.1"
@@ -11244,7 +11244,7 @@ mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@^0.5.3, mkdirp@^0.5.5, mkdirp@~0.5.1:
     eslint-config-prettier "8.1.0"
     eslint-config-react-app "6.0.0"
     eslint-import-resolver-typescript "2.4.0"
-    eslint-plugin-flowtype "5.2.2"
+    eslint-plugin-flowtype "5.3.1"
     eslint-plugin-import "2.22.1"
     eslint-plugin-jsx-a11y "6.4.1"
     eslint-plugin-prettier "3.3.1"
