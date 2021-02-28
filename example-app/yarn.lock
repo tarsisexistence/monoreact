@@ -2650,13 +2650,13 @@
   dependencies:
     eventemitter3 "^4.0.4"
 
-"@jscpd/finder@^3.3.23":
-  version "3.3.23"
-  resolved "https://registry.yarnpkg.com/@jscpd/finder/-/finder-3.3.23.tgz#23db2916ae87a676937be9275b1bce45f3b7b9a1"
-  integrity sha512-5VcfTWXK5GOIbfKXFN3C1q6/JLVzodfTtrPRrhBzLyJio+/zbBUVBzGchCOfxTrpEcWeK3N8EwRR/XkqVgOMpQ==
+"@jscpd/finder@^3.3.24":
+  version "3.3.24"
+  resolved "https://registry.yarnpkg.com/@jscpd/finder/-/finder-3.3.24.tgz#93a2096806a76c7314da810f406b389f7491dc79"
+  integrity sha512-TNuiSAUIYlVPMVnZGCWKIiBHX6cAcChixUt+1sqbzaPtVUCKEkI8QZq/90auq8iqCQwZU2PTQ4WYrDdtGIyTjw==
   dependencies:
     "@jscpd/core" "^3.3.17"
-    "@jscpd/tokenizer" "^3.3.23"
+    "@jscpd/tokenizer" "^3.3.24"
     blamer "^1.0.1"
     bytes "^3.1.0"
     cli-table3 "^0.6.0"
@@ -2674,10 +2674,10 @@
     colors "^1.4.0"
     fs-extra "^9.0.1"
 
-"@jscpd/tokenizer@^3.3.23":
-  version "3.3.23"
-  resolved "https://registry.yarnpkg.com/@jscpd/tokenizer/-/tokenizer-3.3.23.tgz#218146a0a7e8a848138f725158235ab6b11c47d9"
-  integrity sha512-p3IHuOLUOLpgj8hCcrr6MCaeSarPyLXq7dHKeneO6dNr39p2GKo1MU//2nQ4G/yU/YbVbUU6Te93q4FcnFTESA==
+"@jscpd/tokenizer@^3.3.24":
+  version "3.3.24"
+  resolved "https://registry.yarnpkg.com/@jscpd/tokenizer/-/tokenizer-3.3.24.tgz#2548c78f13987725716c919c66e0e3342e563c35"
+  integrity sha512-YzD4RSimSCe/BdC6EQemWBnnb71R474FPlAzsQvuN5bfq7arakm81ihc7tApofWi323gZNc/Pw11e3zslD+mFQ==
   dependencies:
     "@jscpd/core" "^3.3.17"
     reprism "^0.0.11"
@@ -9888,15 +9888,15 @@ jscpd-badge-reporter@1.1.3:
     badgen "^2.5.0"
     fs-extra "^7.0.1"
 
-jscpd@3.3.23:
-  version "3.3.23"
-  resolved "https://registry.yarnpkg.com/jscpd/-/jscpd-3.3.23.tgz#23806d99d7ddfd23599390fe902fd220b2c09e21"
-  integrity sha512-mGHfjwSb/gnWzFZOD3B/lA6XC2SBVdlYXJO2JAMHnT1MGhC/71KU4pEdmOqoGCux9b9uvUCSSTNLMZIHbjk1Bw==
+jscpd@3.3.24:
+  version "3.3.24"
+  resolved "https://registry.yarnpkg.com/jscpd/-/jscpd-3.3.24.tgz#8cb2a76a9eb2a3405a8f73bb3130c1fd22c08b69"
+  integrity sha512-1gG8r744BeRWgh2SuR5vIe28EIYsBHCPgVsXIfA0TPTXpUFBAHIEPROx9jWvuJahPtEpIHTX3Wc5C7HCUOlx0Q==
   dependencies:
     "@jscpd/core" "^3.3.17"
-    "@jscpd/finder" "^3.3.23"
+    "@jscpd/finder" "^3.3.24"
     "@jscpd/html-reporter" "^3.3.22"
-    "@jscpd/tokenizer" "^3.3.23"
+    "@jscpd/tokenizer" "^3.3.24"
     colors "^1.4.0"
     commander "^5.0.0"
     fs-extra "^9.0.0"
