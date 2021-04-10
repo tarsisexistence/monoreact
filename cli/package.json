@@ -95,7 +95,8 @@
     "@types/react": "17.0.3",
     "@types/sade": "1.7.2",
     "@types/shelljs": "0.8.8",
-    "yarn": "1.22.10"
+    "yarn": "1.22.10",
+    "monoreact": "file:./"
   },
   "publishConfig": {
     "access": "public"
