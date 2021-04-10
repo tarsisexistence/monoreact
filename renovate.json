@@ -1,3 +1,7 @@
 {
-  "extends": ["config:base"]
+  "extends": ["config:base"],
+  "baseBranches": ["master"],
+  "branchPrefix": "bump/",
+  "branchConcurrentLimit": 0,
+  "enabled": true
 }
