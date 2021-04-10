@@ -1,5 +1,6 @@
 import { Sade } from 'sade';
 import execa from 'execa';
+import path from 'path';
 
 import { workspacesMessage } from '../../shared/messages';
 import { convertStringArrayIntoMap, clearConsole, logError, space } from '../../shared/utils';
@@ -33,7 +34,7 @@ export function workspacesTestBinCommand(prog: Sade): void {
             space();
             console.log(workspacesMessage.running(name));
 
-            await execa('monoreact', ['test', '--passWithNoTests'], {
+            await execa('node', [path.resolve(__dirname, '..'), 'test', '--passWithNoTests'], {
               cwd: packagesLocationMap[name],
               stdio: 'inherit'
             });

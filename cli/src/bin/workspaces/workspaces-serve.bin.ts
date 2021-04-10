@@ -1,5 +1,6 @@
 import { Sade } from 'sade';
 import execa from 'execa';
+import path from 'path';
 
 import { serveMessage, workspacesMessage } from '../../shared/messages';
 import { convertStringArrayIntoMap, clearConsole, logError, space } from '../../shared/utils';
@@ -39,7 +40,7 @@ export function workspacesServeBinCommand(prog: Sade): void {
                 console.log(workspacesMessage.running(name));
               }
 
-              const proc = execa('monoreact', ['serve', '--color'], {
+              const proc = execa('node', [path.resolve(__dirname, '..'), 'serve', '--color'], {
                 cwd: packagesLocationMap[name],
                 stderr: process.stderr
               });

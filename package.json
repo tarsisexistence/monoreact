@@ -14,11 +14,13 @@
   ],
   "scripts": {
     "cpd": "jscpd **/src",
-    "postinstall": "cd example-app && yarn install && cd ../ && yarn build",
-    "build": "cd cli && yarn build",
-    "start": "cd cli && yarn start",
-    "lint": "cd cli && yarn lint",
-    "test": "cd cli && yarn test"
+    "postinstall": "yarn example:install && yarn cli:build",
+    "example:install": "cd example-app && yarn install",
+    "cli:build": "cd cli && yarn build",
+    "cli:start": "cd cli && yarn start",
+    "cli:lint": "cd cli && yarn lint",
+    "cli:test": "cd cli && yarn test",
+    "ci": "yarn install && yarn add ./cli --D -W && yarn cli:test"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "4.18.0",

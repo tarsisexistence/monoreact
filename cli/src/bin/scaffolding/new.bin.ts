@@ -2,8 +2,8 @@ import { Sade } from 'sade';
 import ora from 'ora';
 import path from 'path';
 
-import { installDependencies, logError } from '../../shared/utils';
-import { copyTemplate, createPackageJson, getAuthor, setNpmAuthorName, sortPackageJson } from './scaffolding.helpers';
+import { installDependencies, logError, setNpmAuthorName } from '../../shared/utils';
+import { copyTemplate, createPackageJson, getAuthor, sortPackageJson } from './scaffolding.helpers';
 import { newSetup } from './setup/new';
 import { newMessage } from '../../shared/messages';
 import { resolveOptions } from './new.helpers';

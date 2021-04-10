@@ -1,4 +1,5 @@
 import { Sade } from 'sade';
+import path from 'path';
 import execa from 'execa';
 
 import { workspacesMessage } from '../../shared/messages';
@@ -38,7 +39,7 @@ export function workspacesBuildBinCommand(prog: Sade): void {
                 console.log(workspacesMessage.running(name));
               }
 
-              const { stderr } = await execa('monoreact', ['build'], {
+              const { stderr } = await execa('node', [path.resolve(__dirname, '..'), 'build'], {
                 cwd: packagesLocationMap[name]
               });
 
