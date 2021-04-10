@@ -1,5 +1,6 @@
 import { Sade } from 'sade';
 import execa from 'execa';
+import path from 'path';
 
 import { workspacesMessage } from '../../shared/messages';
 import { convertStringArrayIntoMap, clearConsole, logError, space } from '../../shared/utils';
@@ -21,7 +22,7 @@ export function workspacesLintBinCommand(prog: Sade): void {
       const excluded = convertStringArrayIntoMap(exclude);
       excluded.set(packageJson.name, true);
 
-      const args = ['lint', 'src/**/*.{js,jsx,ts,tsx}'];
+      const args = [path.resolve(__dirname, '..'), 'lint', 'src/**/*.{js,jsx,ts,tsx}'];
 
       if (fix) {
         args.push('--fix');
@@ -43,7 +44,8 @@ export function workspacesLintBinCommand(prog: Sade): void {
 
             try {
               const cwd = packagesLocationMap[name];
-              await execa('monoreact', args, { cwd, stdio: 'inherit' });
+
+              await execa('node', args, { cwd, stdio: 'inherit' });
             } catch (error) {
               logError(error);
             }

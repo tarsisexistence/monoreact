@@ -26,7 +26,7 @@ describe('[bin.scaffolding.generate-basic]', () => {
     expect(output.code).toBe(0);
   });
 
-  it('should have build basic package', () => {
+  it('should have build of basic package', () => {
     const output = smartExec('node ../../../dist/src/bin/index.js generate myBasicPackage --template basic');
     expect(shell.test('-d', 'packages/myBasicPackage/dist')).toBeTruthy();
     expect(output.code).toBe(0);

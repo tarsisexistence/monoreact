@@ -4,12 +4,9 @@ import { exec, ShellString } from 'shelljs';
 import { Input } from 'enquirer';
 
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
+import { getNpmAuthorName } from '../../shared/utils';
 
 export const sortPackageJson = (): ShellString => exec('npx sort-package-json', { silent: true });
-
-export function setNpmAuthorName(author: CLI.Package.Author): void {
-  exec(`npm config set init-author-name "${author}"`, { silent: true });
-}
 
 export const createPackageJson = ({
   dir,
@@ -19,42 +16,10 @@ export const createPackageJson = ({
   preset: CLI.Package.PackagePackageJSON | CLI.Package.HostPackageJSON;
 }): Promise<void> => fs.outputJSON(path.resolve(dir, PACKAGE_JSON), preset, { spaces: 2 });
 
-function getNpmAuthorName(): CLI.Package.Author {
-  let author = '';
-
-  author = exec('npm config get init-author-name', {
-    silent: true
-  }).stdout.trim();
-
-  if (author) {
-    return author;
-  }
-
-  author = exec('git config user.name', { silent: true }).stdout.trim();
-  if (author) {
-    setNpmAuthorName(author);
-    return author;
-  }
-
-  author = exec('npm config get init-author-email', {
-    silent: true
-  }).stdout.trim();
-  if (author) {
-    return author;
-  }
-
-  author = exec('git config user.email', { silent: true }).stdout.trim();
-  if (author) {
-    return author;
-  }
-
-  return author;
-}
-
 export const getAuthor = async (): Promise<CLI.Package.Author> => {
   const author = getNpmAuthorName();
 
-  if (author) {
+  if (author !== null) {
     return author;
   }
 

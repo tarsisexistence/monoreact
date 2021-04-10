@@ -10,7 +10,7 @@ const testDir = 'execution';
 const fixture = 'install-package-prod';
 const template = 'install';
 
-describe('[bin.execution.install.package.prod]', () => {
+describe.skip('[bin.execution.install.package.prod]', () => {
   beforeAll(() => {
     teardownStage(fixture);
     setupStage({ testDir, fixture, template });

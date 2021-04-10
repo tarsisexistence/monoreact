@@ -3,7 +3,13 @@ import path from 'path';
 import ora from 'ora';
 import fs from 'fs-extra';
 
-import { findHostDirectory, getNextPackageSetupPath, getPackagesFromDeclaration, logError } from '../../shared/utils';
+import {
+  findHostDirectory,
+  getNextPackageSetupPath,
+  getPackagesFromDeclaration,
+  logError,
+  setNpmAuthorName
+} from '../../shared/utils';
 import { generateSetup } from './setup';
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
 import { generateMessage } from '../../shared/messages';
@@ -12,7 +18,6 @@ import {
   createPackageJson,
   getAuthor,
   preventFolderCollisions,
-  setNpmAuthorName,
   sortPackageJson
 } from './scaffolding.helpers';
 import {
