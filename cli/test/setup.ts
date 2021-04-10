@@ -1,4 +1,4 @@
-import { getNpmAuthorName, setNpmAuthorName } from "../src/shared/utils";
+import { getNpmAuthorName, setNpmAuthorName } from '../src/shared/utils';
 
 module.exports = async () => {
   const author = getNpmAuthorName();
@@ -7,6 +7,7 @@ module.exports = async () => {
   if (!hasAuthorToken) {
     setNpmAuthorName('test');
   }
+
   // @ts-ignore
   global.HAS_AUTHOR_TOKEN = hasAuthorToken;
 };
