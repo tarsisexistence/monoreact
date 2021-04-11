@@ -21,32 +21,32 @@ describe('[bin.scaffolding.generate-react]', () => {
   });
 
   it('should generate package dir', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js generate myReactPackage --template react');
+    const output = smartExec('monoreact generate myReactPackage --template react');
     expect(shell.test('-d', 'packages/myReactPackage')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should have build of react package', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js generate myReactPackage --template react');
+    const output = smartExec('monoreact generate myReactPackage --template react');
     expect(shell.test('-d', 'packages/myReactPackage/dist')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should have example tsx component', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js generate myReactPackage --template react');
+    const output = smartExec('monoreact generate myReactPackage --template react');
     expect(shell.test('-f', 'packages/myReactPackage/src/Component.tsx')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should have react as peer dependency', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js generate myReactPackage --template react');
+    const output = smartExec('monoreact generate myReactPackage --template react');
     const packageJson = fs.readJSONSync(path.resolve('packages', 'myReactPackage', 'package.json'));
     expect(packageJson.peerDependencies).toHaveProperty('react');
     expect(output.code).toBe(0);
   });
 
   it('should not have other default dependencies', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js generate myReactPackage --template react');
+    const output = smartExec('monoreact generate myReactPackage --template react');
     const packageJson = fs.readJSONSync(path.resolve('packages', 'myReactPackage', 'package.json'));
     const peerDepsWithoutReact = Object.keys(packageJson.peerDependencies).filter(dep => dep !== 'react');
     expect(peerDepsWithoutReact.length).toBe(0);

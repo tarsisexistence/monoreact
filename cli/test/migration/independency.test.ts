@@ -19,31 +19,31 @@ describe('[bin.migration.independency]', () => {
   });
 
   it('should have .huskyrc.json', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js migration independency');
+    const output = smartExec('monoreact migration independency');
     expect(shell.test('-f', '.huskyrc.json')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should have .lintstagedrc.json', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js migration independency');
+    const output = smartExec('monoreact migration independency');
     expect(shell.test('-f', '.lintstagedrc.json')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should have .prettierrc.json', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js migration independency');
+    const output = smartExec('monoreact migration independency');
     expect(shell.test('-f', '.prettierrc.json')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should have .prettierrc.json', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js migration independency');
+    const output = smartExec('monoreact migration independency');
     expect(shell.test('-f', '.prettierrc.json')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should not have extends property inside .eslintrc.js', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js migration independency');
+    const output = smartExec('monoreact migration independency');
     const eslintConfig = require(path.resolve('.eslintrc.js'));
     expect(eslintConfig).not.toHaveProperty('extends');
     expect(output.code).toBe(0);

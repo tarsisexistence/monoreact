@@ -18,7 +18,7 @@ describe('[bin.execution.workspaces-test-invalid]', () => {
   });
 
   it('should test packages with exit 1 when one of the packages has failed tests', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js workspaces test');
+    const output = smartExec('monoreact workspaces test');
     expect(output.code).toBe(1);
   });
 });

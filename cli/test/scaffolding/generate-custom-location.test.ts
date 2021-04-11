@@ -20,13 +20,13 @@ describe('[bin.scaffolding.generate-custom-location]', () => {
   });
 
   it('should have not default packages location', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js generate myPackage --template basic');
+    const output = smartExec('monoreact generate myPackage --template basic');
     expect(shell.test('-d', 'workspace-packages/myPackage')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should update workspaces declaration', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js generate myPackage --template basic');
+    const output = smartExec('monoreact generate myPackage --template basic');
     const rootPackageJson = fs.readJSONSync(path.resolve('package.json'));
     expect(rootPackageJson.workspaces).toContain('workspace-packages/myPackage');
     expect(output.code).toBe(0);

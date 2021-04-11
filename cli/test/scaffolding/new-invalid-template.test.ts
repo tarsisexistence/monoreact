@@ -19,12 +19,12 @@ describe('[bin.scaffolding.new-invalid-template]', () => {
 
   // TODO: provide select with available templates instead exit 1
   it('should fail with exit code 1', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js new myProject --template someInvalidTemplateName');
+    const output = smartExec('monoreact new myProject --template someInvalidTemplateName');
     expect(output.code).toBe(1);
   });
 
   it('should not create new project', () => {
-    smartExec('node ../../../dist/src/bin/index.js new myProject --template someInvalidTemplateName');
+    smartExec('monoreact new myProject --template someInvalidTemplateName');
     expect(shell.test('-d', 'myProject')).toBeFalsy();
   });
 });
