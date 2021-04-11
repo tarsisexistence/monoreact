@@ -36,16 +36,20 @@ export const setupStage = ({
   fixture: string;
   template?: string;
 }): void => {
+  shell.exec('yarn link', { silent: true });
+
   const stagePath = path.join(STAGING_PATH, getStageName(fixture));
   shell.mkdir(stagePath);
   shell.exec(`cp -a ${ROOT_DIR}/test/${testDir}/fixtures/${template}/. ${stagePath}/`);
   shell.cd(stagePath);
 
-  const shouldInstallDependencies = fs.existsSync(path.resolve(stagePath, 'yarn.lock'));
+  // const shouldInstallDependencies = fs.existsSync(path.resolve(stagePath, 'yarn.lock'));
 
-  if (shouldInstallDependencies) {
-    installDependencies();
-  }
+  // if (shouldInstallDependencies) {
+  installDependencies();
+  // }
+
+  shell.exec('yarn link monoreact', { silent: true });
 };
 
 export const teardownStage = (fixtureName: string): void => {
