@@ -3,5 +3,16 @@
   "baseBranches": ["master"],
   "branchPrefix": "bump/",
   "branchConcurrentLimit": 0,
-  "enabled": true
+  "enabled": true,
+
+  "assignees": ["retarsis"],
+  "packageRules": [
+    {
+      "matchPackageNames": ["react", "react-dom", "@types/react", "@types/react-dom"],
+      "groupName": "React monorepo"
+    },
+    {
+      "excludePackagePrefixes": ["@testing-library"]
+    }
+  ]
 }
