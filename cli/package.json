@@ -90,7 +90,7 @@
     "@types/eslint": "7.2.10",
     "@types/fs-extra": "9.0.11",
     "@types/jest": "26.0.23",
-    "@types/node": "14.14.37",
+    "@types/node": "14.14.44",
     "@types/ramda": "0.27.40",
     "@types/react": "17.0.4",
     "@types/sade": "1.7.2",
