@@ -39,14 +39,17 @@ export function workspacesBuildBinCommand(prog: Sade): void {
                 console.log(workspacesMessage.running(name));
               }
 
-              const { stderr } = await execa('node', [path.resolve(__dirname, '..'), 'build'], {
+              const { stderr, exitCode, failed } = await execa('node', [path.resolve(__dirname, '../'), 'build'], {
                 cwd: packagesLocationMap[name]
               });
 
               if (!quiet) {
                 // TODO: refactor when build/serveWorkspace ready
-                if (stderr !== '' && stderr !== undefined) {
-                  throw new Error(stderr);
+                const isError = exitCode !== 0 || failed;
+                const errorText = stderr !== '' && stderr !== undefined ? stderr : 'Unknown error';
+
+                if (isError) {
+                  throw new Error(errorText);
                 }
 
                 console.log(workspacesMessage.finished('build', name));
