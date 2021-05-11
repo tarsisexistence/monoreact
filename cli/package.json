@@ -79,7 +79,7 @@
     "rollup-plugin-strip-code": "0.2.7",
     "rollup-plugin-typescript2": "0.30.0",
     "rollup-plugin-visualizer": "5.5.0",
-    "postcss": "8.2.15",
+    "postcss": "8.2.10",
     "sade": "1.7.4",
     "shelljs": "0.8.4",
     "ts-jest": "26.5.1",
