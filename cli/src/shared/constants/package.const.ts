@@ -23,8 +23,8 @@ export const REACT_TEMPLATE_DEPENDENCIES: Pick<CLI.Package.PackagePackageJSON, '
 };
 
 export const WORKSPACE_PACKAGE_JSON: Omit<CLI.Package.PackagePackageJSON, 'scripts'> = {
-  name: (undefined as unknown) as string,
-  author: (undefined as unknown) as string,
+  name: undefined as unknown as string,
+  author: undefined as unknown as string,
   workspace: true,
   private: false,
   version: '0.1.0',
@@ -38,8 +38,8 @@ export const WORKSPACE_PACKAGE_JSON: Omit<CLI.Package.PackagePackageJSON, 'scrip
 };
 
 export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.HostPackageJSON = {
-  name: (undefined as unknown) as string,
-  author: (undefined as unknown) as string,
+  name: undefined as unknown as string,
+  author: undefined as unknown as string,
   version: '0.1.0',
   private: true,
   license: 'MIT',
@@ -65,9 +65,9 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.HostPackageJSON = {
     '@testing-library/user-event': '7.2.1',
     '@types/node': packageJson.devDependencies['@types/node'],
     '@types/react': packageJson.devDependencies['@types/react'],
-    '@types/react-dom': '17.0.0',
-    '@typescript-eslint/eslint-plugin': '4.9.0',
-    '@typescript-eslint/parser': '4.9.0',
+    '@types/react-dom': '17.0.5',
+    '@typescript-eslint/eslint-plugin': '4.23.0',
+    '@typescript-eslint/parser': '4.23.0',
     'eslint-config-prettier': packageJson.dependencies['eslint-config-prettier'],
     'eslint-config-react-app': packageJson.dependencies['eslint-config-react-app'],
     'eslint-plugin-prettier': packageJson.dependencies['eslint-plugin-prettier'],

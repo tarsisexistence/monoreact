@@ -5,9 +5,9 @@ export const independencySetup: CLI.Setup.MigrationOptions = {
   },
   devDependencies: {
     monoreact: 'latest',
-    '@typescript-eslint/parser': '^4.9.0',
-    '@types/react': '^17.0.3',
-    '@types/react-dom': '^17.0.3',
+    '@typescript-eslint/parser': '^4.23.0',
+    '@types/react': '^17.0.5',
+    '@types/react-dom': '^17.0.5',
     'eslint-config-react-app': '^6.0.0',
     husky: '^4.3.5',
     'lint-staged': '10.5.3',
