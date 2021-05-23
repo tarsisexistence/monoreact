@@ -1982,10 +1982,10 @@
   dependencies:
     eventemitter3 "^4.0.4"
 
-"@jscpd/finder@^3.3.25":
-  version "3.3.25"
-  resolved "https://registry.yarnpkg.com/@jscpd/finder/-/finder-3.3.25.tgz#d827bf257d4c7f39b5b36e252002e2d154214c4b"
-  integrity sha512-Q7OFmLxzA7K6e4wcFj1kWTsofFeLUkPiNwA8CcSscwrsuWPyBwyAui/jEYvGQyIG06b4oCrrVF/V2iwQWx1sUw==
+"@jscpd/finder@^3.3.26":
+  version "3.3.26"
+  resolved "https://registry.yarnpkg.com/@jscpd/finder/-/finder-3.3.26.tgz#92441904824b6b62fc9ef85d797e1b930efc782d"
+  integrity sha512-FGWIIhLELpeD2tkVjn+8QKnzX3nLAXkkcGTo+qWzEaqxvHsIGgeaP+TT3gHZM1Xm5eg6pb4j23nLY0h4UwEw0w==
   dependencies:
     "@jscpd/core" "^3.3.17"
     "@jscpd/tokenizer" "^3.3.24"
@@ -1998,10 +1998,10 @@
     markdown-table "^2.0.0"
     pug "^3.0.1"
 
-"@jscpd/html-reporter@^3.3.22":
-  version "3.3.22"
-  resolved "https://registry.yarnpkg.com/@jscpd/html-reporter/-/html-reporter-3.3.22.tgz#2c0f3f29bdd6ad5d019f08816b010958ba727699"
-  integrity sha512-hn92VSK26XM+83FMhUSw9NLeruUK92S/DEJl/HFA/kkWleElk2HvSxOCtiyet0vsTdVPdp6cQBF+jVaxWsMvcg==
+"@jscpd/html-reporter@^3.3.26":
+  version "3.3.26"
+  resolved "https://registry.yarnpkg.com/@jscpd/html-reporter/-/html-reporter-3.3.26.tgz#e662ddb250ca480e837a80828871a87ced04d14e"
+  integrity sha512-Ijpy6aW951P5NKZUYM+PTcNcqJGQx1+D+TU3HPRaOEGQfiD9i3pz/0VFs6oOVTuQBwWJSp4ojhaWfHo9GS45dg==
   dependencies:
     colors "^1.4.0"
     fs-extra "^9.0.1"
@@ -9065,14 +9065,14 @@ jscpd-badge-reporter@1.1.3:
     badgen "^2.5.0"
     fs-extra "^7.0.1"
 
-jscpd@3.3.25:
-  version "3.3.25"
-  resolved "https://registry.yarnpkg.com/jscpd/-/jscpd-3.3.25.tgz#652204eab5e5db45eec366f132a1422afb23923f"
-  integrity sha512-xg+gGgmvx7gPnZjmcYqraQnk845AdvSJvHx3qrgKDjFfiY2e6dYzosPpSh6zuDEk2XT9cqHMrOliGbkuts/YEQ==
+jscpd@3.3.26:
+  version "3.3.26"
+  resolved "https://registry.yarnpkg.com/jscpd/-/jscpd-3.3.26.tgz#45d6b17cb8a8046c844587e24974575ebc56a09a"
+  integrity sha512-Til3rI11zsNHdHhlzfk3PDVdAgDTf3KVOF2Qw9Z+6u8vnTOdF9fHY0SrUFYWqCpEjbOOO0ToJAUgWPwkG/YYeg==
   dependencies:
     "@jscpd/core" "^3.3.17"
-    "@jscpd/finder" "^3.3.25"
-    "@jscpd/html-reporter" "^3.3.22"
+    "@jscpd/finder" "^3.3.26"
+    "@jscpd/html-reporter" "^3.3.26"
     "@jscpd/tokenizer" "^3.3.24"
     colors "^1.4.0"
     commander "^5.0.0"
@@ -13363,10 +13363,10 @@ rollup-pluginutils@^2.7.1, rollup-pluginutils@^2.8.1, rollup-pluginutils@^2.8.2:
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@2.48.0:
-  version "2.48.0"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.48.0.tgz#fceb01ed771f991f29f7bd2ff7838146e55acb74"
-  integrity sha512-wl9ZSSSsi5579oscSDYSzGn092tCS076YB+TQrzsGuSfYyJeep8eEWj0eaRjuC5McuMNmcnR8icBqiE/FWNB1A==
+rollup@2.49.0:
+  version "2.49.0"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.49.0.tgz#f0e5bb2b770ddf1be8cc30d4cce3457574c8c871"
+  integrity sha512-UnrCjMXICx9q0jF8L7OYs7LPk95dW0U5UYp/VANnWqfuhyr66FWi/YVlI34Oy8Tp4ZGLcaUDt4APJm80b9oPWQ==
   optionalDependencies:
     fsevents "~2.3.1"
 
