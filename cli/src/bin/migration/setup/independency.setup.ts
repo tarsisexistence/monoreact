@@ -12,7 +12,7 @@ export const independencySetup: CLI.Setup.MigrationOptions = {
     husky: '^4.3.5',
     'lint-staged': '11.0.0',
     prettier: '2.3.0',
-    tslib: '^2.0.3',
+    tslib: '^2.2.0',
     typescript: '^4.1.3'
   }
 };

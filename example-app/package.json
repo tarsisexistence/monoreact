@@ -65,7 +65,7 @@
     "prop-types": "15.7.2",
     "stylelint": "13.13.1",
     "stylelint-config-recommended": "5.0.0",
-    "tslib": "2.1.0",
+    "tslib": "2.2.0",
     "typescript": "4.1.3",
     "yarn": "1.22.10"
   },
