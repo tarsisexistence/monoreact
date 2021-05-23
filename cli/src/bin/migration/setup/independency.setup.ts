@@ -5,13 +5,13 @@ export const independencySetup: CLI.Setup.MigrationOptions = {
   },
   devDependencies: {
     monoreact: 'latest',
-    '@typescript-eslint/parser': '^4.23.0',
-    '@types/react': '^17.0.5',
+    '@typescript-eslint/parser': '^4.24.0',
+    '@types/react': '^17.0.6',
     '@types/react-dom': '^17.0.5',
     'eslint-config-react-app': '^6.0.0',
     husky: '^4.3.5',
-    'lint-staged': '10.5.3',
-    prettier: '2.2.1',
+    'lint-staged': '11.0.0',
+    prettier: '2.3.0',
     tslib: '^2.0.3',
     typescript: '^4.1.3'
   }
