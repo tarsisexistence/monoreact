@@ -33,18 +33,26 @@ export const makePackageJsonIndependent = async (dir: string): Promise<void> => 
   const packageJsonPath = path.resolve(dir, PACKAGE_JSON);
   const packageJson = await readPackageJson<CLI.Package.PackagePackageJSON>(dir);
 
+  const mixedIndependencyJson: CLI.Setup.MigrationOptions = {
+    dependencies: {
+      ...(packageJson?.dependencies ?? {}),
+      ...migrationSetup.independency.dependencies
+    },
+    devDependencies: {
+      ...(packageJson?.devDependencies ?? {}),
+      ...migrationSetup.independency.devDependencies
+    },
+    hooks: {
+      ...(packageJson?.hooks ?? {}),
+      ...migrationSetup.independency.hooks
+    }
+  };
+
   await fs.outputJSON(
     packageJsonPath,
     {
       ...packageJson,
-      dependencies: {
-        ...(packageJson?.dependencies ?? {}),
-        ...migrationSetup.independency.dependencies
-      },
-      devDependencies: {
-        ...(packageJson?.devDependencies ?? {}),
-        ...migrationSetup.independency.devDependencies
-      }
+      ...mixedIndependencyJson
     },
     { spaces: 2 }
   );

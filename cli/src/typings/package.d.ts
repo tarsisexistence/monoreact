@@ -32,6 +32,7 @@ declare namespace CLI.Package {
     source: string;
     publishConfig: { access: 'public' };
     peerDependencies?: Dependencies;
+    hooks?: Hooks;
   }
 
   type AnyPackageJson = CLI.Package.BasePackageJSON & CLI.Package.HostPackageJSON & CLI.Package.PackagePackageJSON;
@@ -46,4 +47,7 @@ declare namespace CLI.Package {
 
   type Dependencies = { [name: string]: string } | Record<string, unknown>;
   type Scripts = { [script: string]: string };
+  type Hooks = {
+    'pre-commit': string;
+  };
 }
