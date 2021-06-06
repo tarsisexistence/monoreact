@@ -40,6 +40,9 @@
     "yarn": "1.22.10",
     "monoreact": "*"
   },
+  "resolutions": {
+    "tslib": "2.2.0"
+  },
   "keywords": [
     "cli",
     "microfrontend",
