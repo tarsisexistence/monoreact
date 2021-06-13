@@ -1,6 +1,6 @@
 ---
 name: '❔ Question'
-about: Ask about everything related to _monoreact_
+about: Ask a question about monoreact
 title: ''
 labels: question
 assignees: ''
