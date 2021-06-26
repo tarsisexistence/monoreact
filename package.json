@@ -35,7 +35,7 @@
     "jscpd": "3.3.26",
     "jscpd-badge-reporter": "1.1.3",
     "lint-staged": "11.0.0",
-    "prettier": "2.3.1",
+    "prettier": "2.3.2",
     "webpack": "4.44.2",
     "yarn": "1.22.10",
     "monoreact": "*"
