@@ -30,7 +30,7 @@
     "eslint-config-react-app": "6.0.0",
     "eslint-plugin-prettier": "3.4.0",
     "eslint-plugin-promise": "5.1.0",
-    "eslint-plugin-sonarjs": "0.7.0",
+    "eslint-plugin-sonarjs": "0.9.0",
     "husky": "4.3.8",
     "jscpd": "3.3.26",
     "jscpd-badge-reporter": "1.1.3",
