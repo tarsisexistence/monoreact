@@ -10,7 +10,7 @@ import packageJson from '../../../package.json';
 export function workspacesBuildBinCommand(prog: Sade): void {
   prog
     .command('workspaces build')
-    .describe('Build all packages in the workspace.')
+    .describe('Build all workspaces.')
     .example('workspaces build')
     .alias('wb')
     .option('q, quiet', 'Do not print logs', false)
