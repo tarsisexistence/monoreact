@@ -7,7 +7,7 @@ import { gitFetch } from './submodules-fetch.helpers';
 export function submodulesFetchBinCommand(prog: Sade): void {
   prog
     .command('submodules fetch')
-    .describe('Fetch each submodule.')
+    .describe('Fetch all submodules.')
     .example('submodules fetch')
     .alias('sf')
     .option('s, self', 'Apply fetch for the host workspace')
