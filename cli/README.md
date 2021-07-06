@@ -90,7 +90,7 @@ Monoreact offers a much efficient alternative to the "yarn workspaces". It analy
 
 This section is responsible for scripts that will help to adapt the basic state of the package to the desired one.
 
-- **independency**. Just in case you plan to use the package as a submodule and want it to run independently outside the host workspace
+- **detach**. Detach your package from the workspace. Just in case you plan to use the package as a submodule to run it independently outside the host workspace.
 
 <br/>
 

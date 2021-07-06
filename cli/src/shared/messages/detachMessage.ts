@@ -1,7 +1,7 @@
-export const independencyMessage = {
+export const detachMessage = {
   generating: () => 'Migrating...',
 
   successful: () => 'Migration completed successfully',
 
-  failed: () => 'Failed independency migration'
+  failed: () => 'Failed migration detach'
 } as const;

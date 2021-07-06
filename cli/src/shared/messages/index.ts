@@ -2,7 +2,7 @@ export * from './common.message';
 export { addMessage } from './add.message';
 export { buildMessage } from './build.message';
 export { generateMessage } from './generate.message';
-export { independencyMessage } from './independency.message';
+export { detachMessage } from './detachMessage';
 export { installMessage } from './install.message';
 export { lintMessage } from './lint.message';
 export { newMessage } from './new.message';

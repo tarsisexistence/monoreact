@@ -2,7 +2,7 @@ declare namespace CLI.Setup {
   type AddOptionType = 'docz' | 'playground';
   type GenerateOptionType = 'basic' | 'react';
   type NewOptionType = 'cra';
-  type MigrationOptionType = 'independency';
+  type MigrationOptionType = 'detach';
 
   interface AddOptions {
     path: string;

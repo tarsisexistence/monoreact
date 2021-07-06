@@ -1,4 +1,4 @@
-export const independencySetup: CLI.Setup.MigrationOptions = {
+export const detachSetup: CLI.Setup.MigrationOptions = {
   dependencies: {
     react: '^17.0.1',
     'react-dom': '^17.0.1'

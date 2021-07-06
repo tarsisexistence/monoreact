@@ -134,7 +134,7 @@ describe('[utils.dependency]', () => {
       });
     });
 
-    test('should decompose package in chunk separately even when independent of all packages from the previous chunk', async () => {
+    test('should decompose package in chunk separately even when if it is independent of all packages from the previous chunk', async () => {
       const packageJsons = [
         {
           name: 'example-1'

@@ -1,7 +1,7 @@
 import { Sade } from 'sade';
 
-import { independencyBinCommand } from './independency.bin';
+import { detachBinCommand } from './detach.bin';
 
 export const migrationBins = (prog: Sade): void => {
-  independencyBinCommand(prog);
+  detachBinCommand(prog);
 };

@@ -16,7 +16,7 @@ const removeNestedNodeModulesTypes = (typeRoots: string[] | undefined): string[]
   return updatedTypeRoots;
 };
 
-export const makeTsconfigJsonIndependent = async (dir: string): Promise<void> => {
+export const detachTsconfigJsonFromWorkspace = async (dir: string): Promise<void> => {
   const tsconfigJson = await readTsconfigJson(dir);
   const updatedTsconfigJson = { ...tsconfigJson };
   const tsconfigPath = path.resolve(dir, TSCONFIG_JSON);
@@ -29,7 +29,7 @@ export const makeTsconfigJsonIndependent = async (dir: string): Promise<void> =>
   return fs.outputJSON(tsconfigPath, updatedTsconfigJson, { spaces: 2 });
 };
 
-export const makePackageJsonIndependent = async (dir: string): Promise<void> => {
+export const detachPackageJsonFromWorkspace = async (dir: string): Promise<void> => {
   const packageJsonPath = path.resolve(dir, PACKAGE_JSON);
   const packageJson = await readPackageJson<CLI.Package.PackagePackageJSON>(dir);
 
@@ -39,19 +39,19 @@ export const makePackageJsonIndependent = async (dir: string): Promise<void> => 
       ...packageJson,
       dependencies: {
         ...(packageJson?.dependencies ?? {}),
-        ...migrationSetup.independency.dependencies
+        ...migrationSetup.detach.dependencies
       },
       devDependencies: {
         ...(packageJson?.devDependencies ?? {}),
-        ...migrationSetup.independency.devDependencies
+        ...migrationSetup.detach.devDependencies
       }
     },
     { spaces: 2 }
   );
 };
 
-export const copyIndependencyTemplate = (dir: string): Promise<void> =>
-  fs.copy(path.resolve(__dirname, '../../../../templates/migration/independency'), dir, {
+export const copyDetachTemplate = (dir: string): Promise<void> =>
+  fs.copy(path.resolve(__dirname, '../../../../templates/migration/detach'), dir, {
     overwrite: true,
     errorOnExist: false
   });
