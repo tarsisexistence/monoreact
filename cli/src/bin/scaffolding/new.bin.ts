@@ -14,7 +14,7 @@ export const newBinCommand = (prog: Sade): void => {
   prog
     .command('new <name> [dir]')
     .describe(
-      `Create a new project.
+      `Create a new React project (scaffolding).
     Project name is required.
     Directory is optional. However, if you specify dir, then template files will be installed there, even if this folder already exists, but without overwriting.`
     )

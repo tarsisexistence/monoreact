@@ -7,7 +7,7 @@ import { smartGitCheckout } from './submodules-checkout.helpers';
 export function submodulesCheckoutBinCommand(prog: Sade): void {
   prog
     .command('submodules checkout <branch>')
-    .describe('Checkout each submodule on the specific branch')
+    .describe('Checkout all submodules on the specific branch.')
     .example('submodules checkout branch-name')
     .alias('sc')
     .option('s, self', 'Apply checkout for the host workspace')

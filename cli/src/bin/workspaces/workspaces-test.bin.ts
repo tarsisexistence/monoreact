@@ -10,7 +10,7 @@ import packageJson from '../../../package.json';
 export function workspacesTestBinCommand(prog: Sade): void {
   prog
     .command('workspaces test')
-    .describe('Test each workspace')
+    .describe('Run all tests in the workspace.')
     .example('workspaces test')
     .alias('wt')
     .option('exclude', 'Exclude specific workspaces', '')

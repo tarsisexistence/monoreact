@@ -10,7 +10,7 @@ import packageJson from '../../../package.json';
 export function workspacesLintBinCommand(prog: Sade): void {
   prog
     .command('workspaces lint')
-    .describe('Lint each workspace')
+    .describe('Lint all packages in the workspace.')
     .example('workspaces lint')
     .alias('wl')
     .option('fix', 'Resolve fixable eslint errors', false)
