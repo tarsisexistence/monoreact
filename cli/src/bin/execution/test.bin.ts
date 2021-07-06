@@ -11,7 +11,7 @@ import { getJestConfigOptions, setTestNodeVariables } from './test.helpers';
 export const testBinCommand = (prog: Sade): void => {
   prog
     .command('test')
-    .describe('Test a package')
+    .describe('Test a package.')
     .alias('t')
     .option('config', 'Specify a path to the jest config')
     .action(async (opts: CLI.Options.Test) => {

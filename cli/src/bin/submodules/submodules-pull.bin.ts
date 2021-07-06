@@ -7,7 +7,7 @@ import { gitPull } from './submodules-pull.helpers';
 export function submodulesPullBinCommand(prog: Sade): void {
   prog
     .command('submodules pull [branch]')
-    .describe('Pull each submodule (default master)')
+    .describe('Pull each submodule (default master).')
     .example('submodules pull')
     .example('submodules pull develop')
     .alias('sp')

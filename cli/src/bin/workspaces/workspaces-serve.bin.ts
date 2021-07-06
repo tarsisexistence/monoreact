@@ -10,7 +10,7 @@ import packageJson from '../../../package.json';
 export function workspacesServeBinCommand(prog: Sade): void {
   prog
     .command('workspaces serve')
-    .describe('Serve each workspace')
+    .describe('Serve each workspace.')
     .example('workspaces serve')
     .alias('workspaces start', 'workspaces watch', 'ws')
     .option('q, quiet', 'Do not print logs', false)
