@@ -13,6 +13,6 @@ export const detachSetup: CLI.Setup.MigrationOptions = {
     'lint-staged': '11.0.0',
     prettier: '2.3.0',
     tslib: '^2.2.0',
-    typescript: '^4.3.2'
+    typescript: '^4.3.5'
   }
 };
