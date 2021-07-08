@@ -7,10 +7,10 @@ This is an advanced workspace implementation for React projects.
 - develop regular react apps
 - scaffold React projects
 - build JavaScript, TypeScript, React libraries
-- implement monorepo, workspaces, submodules
+- implement monorepos, workspaces, submodules
 - workspace, submodules management
 - efficient bundling (rollup)
-- workspace dependency awareness (connectivity)
+- workspace dependency awareness (topological sorting)
 
 <br/>
 
@@ -29,36 +29,34 @@ The primary motivation was not to be tied to existing solutions of vendors, so a
 
 Nevertheless, I recommend considering alternative solutions:
 
-- [nx/react](https://nx.dev/react) - a super powerful tool that can do everything, but turned out to be redundant for me.
-- [lerna](https://github.com/lerna/lerna) - completely threw this idea away with existing yarn workspaces, yarn, and git submodules scripts.
-- [tsdx](https://github.com/jaredpalmer/tsdx) - an interesting idea, where I had to learn a lot; however, it also does and does not do what my project precisely needed.
+- [nx/react](https://nx.dev/react) - a super powerful tool that can do everything, but turned out to be redundant for me because of vendor lock.
+- [lerna](https://github.com/lerna/lerna) - completely threw this idea away with existing yarn workspaces and git submodules scripts.
+- [tsdx](https://github.com/jaredpalmer/tsdx) - a great solution but for narrow tasks.
 
 <br/>
 
 ### What can it do now
 
-Even in its raw form, it is already ready for use, and here is what exactly you can do with **monoreact**:
-
-- scaffold project and build React applications with [create-react-app](https://create-react-app.dev/)
-- bundle your packages with [rollup](https://rollupjs.org/guide/en/)
+- scaffold and build React applications with [create-react-app](https://create-react-app.dev/)
+- bundle packages with [rollup](https://rollupjs.org/guide/en/)
 - use advanced CLI [monoreact](https://github.com/retarsis/monoreact/tree/master/cli)
 - save your time with [typescript](https://www.typescriptlang.org/) (with the option not to use it)
 - symlinking [yarn workspaces](https://classic.yarnpkg.com/en/docs/workspaces)
-- enjoy configured testing([jest](https://jestjs.io/)), formatting([prettier](https://prettier.io/)), linting ([eslint](https://eslint.org/) + [stylelint](https://stylelint.io/)), git hooks([husky](https://github.com/typicode/husky) + [lint-staged](https://github.com/okonet/lint-staged)))
+- enjoy configured testing ([jest](https://jestjs.io/)), formatting ([prettier](https://prettier.io/)), linting ([eslint](https://eslint.org/) + [stylelint](https://stylelint.io/)), git hooks ([husky](https://github.com/typicode/husky) + [lint-staged](https://github.com/okonet/lint-staged))
 
 <br/>
 
 ### Powerful CLI
 
-This CLI has the built-in documentation. Type in the console `monoreact --help` to see all possible scripts and their description.
+Built-in documentation. Type in the console `monoreact --help` to see information about all possible commands and `monoreact [command] --help` their description.
 
 The following options are now available:
 
 #### Scaffolding
 
-- **new**. Creates a host/shell application. This is the initial scaffolding of the entire application.
+- **new**. Creates a container/host/shell application. This is the initial scaffolding of the entire application.
 - **generate** a new package (submodule): basic, react. Monoreact creates a distribution of responsibility. Not all packages must deal with react components. Sometimes you want to build plain JavaScript/TypeScript libraries.
-- **add** a new feature (available options: docz, playground(run packages locally inside the package workspace)). Monoreact allows you to not generate components with all the things that may not necessarily need in each package.
+- **add** a new feature (available options: docz, playground (run packages locally inside the package workspace)). Monoreact allows you to not generate components with all the things that may not necessarily need in each package.
 
 #### Execution
 
