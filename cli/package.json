@@ -78,7 +78,7 @@
     "rollup-plugin-size-snapshot": "0.12.0",
     "rollup-plugin-strip-code": "0.2.7",
     "rollup-plugin-typescript2": "0.30.0",
-    "rollup-plugin-visualizer": "5.5.1",
+    "rollup-plugin-visualizer": "5.5.2",
     "postcss": "8.3.5",
     "sade": "1.7.4",
     "shelljs": "0.8.4",
