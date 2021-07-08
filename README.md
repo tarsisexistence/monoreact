@@ -1,17 +1,6 @@
-## The project is under active development. The documentation updated iteratively.
-
-### What problems does it solve
-
-- [microfrontend](https://martinfowler.com/articles/micro-frontends.html)
-- [monolithic repository, monorepo](https://www.perforce.com/blog/vcs/what-monorepo)
-- [workspaces](https://www.smashingmagazine.com/2019/07/yarn-workspaces-organize-project-codebase-pro/)
-- [submodules](https://chrisjean.com/git-submodules-adding-using-removing-and-updating/)
-
-<br/>
-
 ### What is it
 
-This is an advanced workspace implementation for react applications.
+This is an advanced workspace implementation for React projects.
 
 **Monoreact** includes the following features:
 
@@ -22,6 +11,15 @@ This is an advanced workspace implementation for react applications.
 - workspace, submodules management
 - efficient bundling (rollup)
 - workspace dependency awareness (connectivity)
+
+<br/>
+
+### What problems does it solve
+
+- [microfrontend](https://martinfowler.com/articles/micro-frontends.html)
+- [monolithic repository, monorepo](https://www.perforce.com/blog/vcs/what-monorepo)
+- [workspaces](https://www.smashingmagazine.com/2019/07/yarn-workspaces-organize-project-codebase-pro/)
+- [submodules](https://chrisjean.com/git-submodules-adding-using-removing-and-updating/)
 
 <br/>
 
