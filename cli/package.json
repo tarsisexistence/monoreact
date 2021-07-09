@@ -79,7 +79,7 @@
     "rollup-plugin-size-snapshot": "0.12.0",
     "rollup-plugin-strip-code": "0.2.7",
     "rollup-plugin-typescript2": "0.30.0",
-    "rollup-plugin-visualizer": "5.5.1",
+    "rollup-plugin-visualizer": "5.5.2",
     "postcss": "8.3.5",
     "sade": "1.7.4",
     "shelljs": "0.8.4",
@@ -88,13 +88,13 @@
     "typescript": "4.3.5"
   },
   "devDependencies": {
-    "@types/eslint": "7.2.13",
+    "@types/eslint": "7.2.14",
     "@types/fs-extra": "9.0.11",
-    "@types/jest": "26.0.23",
+    "@types/jest": "26.0.24",
     "@types/node": "14.14.44",
-    "@types/ramda": "0.27.42",
+    "@types/ramda": "0.27.44",
     "@types/react": "17.0.14",
-    "@types/sade": "1.7.2",
+    "@types/sade": "1.7.3",
     "@types/shelljs": "0.8.8",
     "yarn": "1.22.10"
   },
