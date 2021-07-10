@@ -71,8 +71,6 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.HostPackageJSON = {
     'eslint-config-prettier': packageJson.dependencies['eslint-config-prettier'],
     'eslint-config-react-app': packageJson.dependencies['eslint-config-react-app'],
     'eslint-plugin-prettier': packageJson.dependencies['eslint-plugin-prettier'],
-    // TODO: check
-    'eslint-plugin-compat': '3.9.0',
     'eslint-plugin-promise': '4.2.1',
     'eslint-plugin-react': packageJson.dependencies['eslint-plugin-react'],
     'eslint-plugin-react-hooks': packageJson.dependencies['eslint-plugin-react-hooks'],
