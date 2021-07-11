@@ -4,20 +4,20 @@ import packageJson from '../../../package.json';
 const startingTextByCommand: Record<CLI.Workspaces.Command, string> = {
   build: 'Compiling',
   lint: 'Linting',
-  serve: 'Start watching',
+  watch: 'Start watching',
   test: 'Testing'
 };
 
 const finishingTextByCommand: Record<CLI.Workspaces.Command, string> = {
   build: 'Compiled',
   lint: 'Linted',
-  serve: 'Finished watching',
+  watch: 'Finished watching',
   test: 'Tested'
 };
 
 const testTextByCommand: Record<CLI.Workspaces.Command, string> = {
   build: 'build',
-  serve: 'build',
+  watch: 'build',
   lint: 'lint',
   test: 'test'
 };

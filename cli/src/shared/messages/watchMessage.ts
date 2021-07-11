@@ -1,7 +1,7 @@
 import { color } from '../utils';
 import packageJson from '../../../package.json';
 
-export const serveMessage = {
+export const watchMessage = {
   introduce: () => color.underline(`${packageJson.name} v${packageJson.version}`),
 
   watching: () => `

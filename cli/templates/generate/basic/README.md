@@ -2,7 +2,7 @@ This package meant for developing React components (not applications) that can b
 
 ## Commands
 
-### Serve
+### Watch
 
 **Monoreact** scaffolds your new library inside `/src`:
 

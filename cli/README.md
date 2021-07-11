@@ -60,7 +60,7 @@ The following options are now available:
 
 #### Execution
 
-- **build** and **serve** your package with a modern rollup module bundler. Rollup is the best choice for building independent libraries due to efficient tree-shaking and fast compilation.
+- **build** and **watch** your package with a modern rollup module bundler. Rollup is the best choice for building independent libraries due to efficient tree-shaking and fast compilation.
 - **test** and **lint** your package with Jest and eslint. These built-in packages are crucial for increasing and maintaining the quality of built libraries.
 - **install** dependencies. This option provides workspace dependency management. If you are running **install** inside some package, it'll add these dependencies as "peer" and add them to the root.
 
@@ -77,7 +77,7 @@ It is quite challenging for managing git submodules. You have to perform many ac
 
 Monoreact offers a much efficient alternative to the "yarn workspaces". It analyzes your dependencies between workspaces and runs them in the desired sequence and in parallel, when necessary and appropriate.
 
-- **serve** (parallel)
+- **watch** (parallel)
 - **build** (parallel)
 - **test**
 - **lint**

@@ -11,7 +11,7 @@
   "scripts": {
     "build": "monoreact build",
     "lint": "monoreact lint \"src/**/*.{js,jsx,ts,tsx}\"",
-    "start": "monoreact serve",
+    "start": "monoreact watch",
     "stylelint": "npx stylelint \"src/**/*.{css,sass,scss}\"",
     "test": "monoreact test --passWithNoTests",
     "start:playground": "yarn build & npx concurrently --kill-others \"yarn start\" \"cd playground & yarn start\""

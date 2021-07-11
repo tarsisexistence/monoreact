@@ -1,5 +1,5 @@
 declare namespace CLI.Workspaces {
-  type Command = 'build' | 'lint' | 'serve' | 'test';
+  type Command = 'build' | 'watch' | 'test' | 'lint';
 
   type WorkspaceChunk = string[];
 

@@ -2,21 +2,21 @@ import { Sade } from 'sade';
 import execa from 'execa';
 import path from 'path';
 
-import { serveMessage, workspacesMessage } from '../../shared/messages';
+import { watchMessage, workspacesMessage } from '../../shared/messages';
 import { convertStringArrayIntoMap, clearConsole, logError, space } from '../../shared/utils';
 import { exposeWorkspaceInfo, withExcludedPackages } from './workspaces.helpers';
 import packageJson from '../../../package.json';
 
-export function workspacesServeBinCommand(prog: Sade): void {
+export function workspacesWatchBinCommand(prog: Sade): void {
   prog
-    .command('workspaces serve')
-    .describe('Serve all workspaces.')
-    .example('workspaces serve')
-    .alias('workspaces start', 'workspaces watch', 'ws')
+    .command('workspaces watch')
+    .describe('Watch all workspaces.')
+    .example('workspaces watch')
+    .alias('workspaces start', 'ws')
     .option('q, quiet', 'Do not print logs', false)
-    .example('workspaces serve --quiet')
+    .example('workspaces watch --quiet')
     .option('exclude', 'Exclude specific workspaces')
-    .example('workspaces serve --exclude  workspace1,workspace2,workspace3')
+    .example('workspaces watch --exclude  workspace1,workspace2,workspace3')
     .action(async ({ quiet, exclude }: CLI.Options.Workspaces) => {
       const { chunks, packagesLocationMap } = await exposeWorkspaceInfo();
       const excluded = convertStringArrayIntoMap(exclude);
@@ -24,7 +24,7 @@ export function workspacesServeBinCommand(prog: Sade): void {
 
       clearConsole();
       console.log(workspacesMessage.introduce());
-      console.log(workspacesMessage.started('serve'));
+      console.log(workspacesMessage.started('watch'));
 
       if (!quiet) {
         space();
@@ -40,7 +40,7 @@ export function workspacesServeBinCommand(prog: Sade): void {
                 console.log(workspacesMessage.running(name));
               }
 
-              const proc = execa('node', [path.resolve(__dirname, '..'), 'serve', '--color'], {
+              const proc = execa('node', [path.resolve(__dirname, '..'), 'watch', '--color'], {
                 cwd: packagesLocationMap[name],
                 stderr: process.stderr
               });
@@ -49,7 +49,7 @@ export function workspacesServeBinCommand(prog: Sade): void {
 
               await new Promise<void>(resolve => {
                 proc.stdout?.on('data', data => {
-                  if (data.toString().includes(serveMessage.compiled(true))) {
+                  if (data.toString().includes(watchMessage.compiled(true))) {
                     resolve();
                   }
                 });
@@ -67,7 +67,7 @@ export function workspacesServeBinCommand(prog: Sade): void {
         console.log(workspacesMessage.successful(duration));
         space();
       } catch (error) {
-        console.log(workspacesMessage.failed('serve'));
+        console.log(workspacesMessage.failed('watch'));
         logError(error);
       }
     });

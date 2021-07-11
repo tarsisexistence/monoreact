@@ -31,7 +31,7 @@ ${pkgText}
   preparedPackage: (projectName: string) => {
     const commands = {
       install: 'monoreact install',
-      start: 'monoreact serve',
+      start: 'monoreact watch',
       build: 'monoreact build',
       test: 'monoreact test'
     };

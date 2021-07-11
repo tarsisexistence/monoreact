@@ -12,7 +12,7 @@
     "build": "monoreact build",
     "lint": "monoreact lint \"src/**/*.{js,jsx,ts,tsx}\"",
     "prepublishOnly": "yarn build",
-    "start": "monoreact serve",
+    "start": "monoreact watch",
     "stylelint": "npx stylelint \"src/**/*.{css,sass,scss}\"",
     "test": "monoreact test --passWithNoTests"
   },

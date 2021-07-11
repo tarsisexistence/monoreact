@@ -6,6 +6,6 @@ export { detachMessage } from './detachMessage';
 export { installMessage } from './install.message';
 export { lintMessage } from './lint.message';
 export { newMessage } from './new.message';
-export { serveMessage } from './serve.message';
+export { watchMessage } from './watchMessage';
 export { submodulesMessage } from './submodules.message';
 export { workspacesMessage } from './workspaces.message';

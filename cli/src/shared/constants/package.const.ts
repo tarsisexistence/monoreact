@@ -4,7 +4,7 @@ export const PACKAGE_JSON = 'package.json';
 export const TSCONFIG_JSON = 'tsconfig.json';
 
 export const BASE_PACKAGE_SCRIPTS: CLI.Package.Scripts = {
-  start: 'monoreact serve',
+  start: 'monoreact watch',
   build: 'monoreact build',
   test: 'monoreact test --passWithNoTests',
   lint: 'monoreact lint "src/**/*.{js,jsx,ts,tsx}"',
