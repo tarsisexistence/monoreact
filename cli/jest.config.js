@@ -11,5 +11,5 @@ module.exports = {
   ],
   moduleFileExtensions: ['ts', 'js', 'json', 'jsx', 'tsx', 'node'],
   globalSetup: './test/setup.ts',
-  globalTeardown: './test/teardown.ts',
+  globalTeardown: './test/teardown.ts'
 };
