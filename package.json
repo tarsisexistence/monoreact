@@ -38,7 +38,7 @@
     "monoreact": "*",
     "prettier": "2.3.2",
     "webpack": "4.44.2",
-    "yarn": "1.22.10"
+    "yarn": "1.22.11"
   },
   "resolutions": {
     "tslib": "2.3.0"
