@@ -48,7 +48,7 @@
     "colorette": "1.2.2",
     "cssnano": "5.0.7",
     "enquirer": "2.3.6",
-    "eslint": "7.31.0",
+    "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-config-react-app": "6.0.0",
     "eslint-import-resolver-typescript": "2.4.0",
