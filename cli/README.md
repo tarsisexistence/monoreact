@@ -39,7 +39,7 @@ Nevertheless, I recommend considering alternative solutions:
 
 - scaffold and build React applications with [create-react-app](https://create-react-app.dev/)
 - bundle packages with [rollup](https://rollupjs.org/guide/en/)
-- use advanced CLI [monoreact](https://github.com/retarsis/monoreact/tree/master/cli)
+- use advanced CLI [monoreact](https://github.com/untaggable/monoreact/tree/master/cli)
 - save your time with [typescript](https://www.typescriptlang.org/) (with the option not to use it)
 - symlinking [yarn workspaces](https://classic.yarnpkg.com/en/docs/workspaces)
 - enjoy configured testing ([jest](https://jestjs.io/)), formatting ([prettier](https://prettier.io/)), linting ([eslint](https://eslint.org/) + [stylelint](https://stylelint.io/)), git hooks ([husky](https://github.com/typicode/husky) + [lint-staged](https://github.com/okonet/lint-staged))
@@ -92,7 +92,7 @@ This section is responsible for scripts that will help to adapt the basic state 
 
 ### Contributing
 
-Check out [contributing guideline](https://github.com/retarsis/monoreact/blob/master/CONTRIBUTING.md) to familiarize yourself with the general rules of the project, as well as to figure out how to bootstrap the project and make changes correctly.
+Check out [contributing guideline](https://github.com/untaggable/monoreact/blob/master/CONTRIBUTING.md) to familiarize yourself with the general rules of the project, as well as to figure out how to bootstrap the project and make changes correctly.
 
 <br/>
 

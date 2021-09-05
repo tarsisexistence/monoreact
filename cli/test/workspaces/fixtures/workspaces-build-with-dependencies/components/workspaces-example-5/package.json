@@ -3,7 +3,11 @@
   "version": "0.1.0",
   "private": false,
   "license": "MIT",
-  "author": "retarsis",
+  "author": {
+    "name": "Maksym Tarsis",
+    "email": "tarsis.maksym@gmail.com",
+    "url": "https://github.com/untaggable"
+  },
   "main": "dist/bundle.cjs.js",
   "module": "dist/bundle.js",
   "source": "src/publicApi.ts",

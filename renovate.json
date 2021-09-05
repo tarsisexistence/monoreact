@@ -5,7 +5,7 @@
   "branchConcurrentLimit": 0,
   "enabled": true,
 
-  "assignees": ["retarsis"],
+  "assignees": ["untaggable"],
   "packageRules": [
     {
       "matchPackageNames": ["react", "react-dom", "@types/react", "@types/react-dom"],
