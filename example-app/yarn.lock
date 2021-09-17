@@ -4806,10 +4806,10 @@ colord@^2.6:
   resolved "https://registry.yarnpkg.com/colord/-/colord-2.7.0.tgz#706ea36fe0cd651b585eb142fe64b6480185270e"
   integrity sha512-pZJBqsHz+pYyw3zpX6ZRXWoCHM1/cvFikY9TV8G3zcejCaKE0lhankoj8iScyrrePA8C7yJ5FStfA9zbcOnw7Q==
 
-colorette@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/colorette/-/colorette-1.4.0.tgz#5190fbb87276259a86ad700bff2c6d6faa3fca40"
-  integrity sha512-Y2oEozpomLn7Q3HFP7dpww7AtMJplbM9lGZP6RDfHqmbeRjiwRg4n6VM6j4KLmRke85uWEI7JqF17f3pqdRA0g==
+colorette@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/colorette/-/colorette-2.0.0.tgz#3d3f6be9891e66ae011338a34d95d9a7a02741a6"
+  integrity sha512-d9bi+jjWiz/9YkdIJjnoubyYXgWZ7Z0kA/KoFPBNSiQFnKtiqFZSwg7L6c+U+ju8yuy/M1AMkIIkdHcQnqWe6A==
 
 colorette@^1.2.1, colorette@^1.2.2:
   version "1.2.2"
