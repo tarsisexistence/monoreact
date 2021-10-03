@@ -2510,15 +2510,15 @@ atob@^2.1.2:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-autoprefixer@10.3.5:
-  version "10.3.5"
-  resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-10.3.5.tgz#762e6c13e30c5a0e650bf81d9ffd5713f1c8f344"
-  integrity sha512-2H5kQSsyoOMdIehTzIt/sC9ZDIgWqlkG/dbevm9B9xQZ1TDPBHpNUDW5ENqqQQzuaBWEo75JkV0LJe+o5Lnr5g==
+autoprefixer@10.3.6:
+  version "10.3.6"
+  resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-10.3.6.tgz#537c8a046e32ec46bfe528bcc9e2a5f2d87cd4c4"
+  integrity sha512-3bDjTfF0MfZntwVCSd18XAT2Zndufh3Mep+mafbzdIQEeWbncVRUVDjH8/EPANV9Hq40seJ24QcYAyhUsFz7gQ==
   dependencies:
     browserslist "^4.17.1"
-    caniuse-lite "^1.0.30001259"
+    caniuse-lite "^1.0.30001260"
     fraction.js "^4.1.1"
-    nanocolors "^0.1.5"
+    nanocolors "^0.2.8"
     normalize-range "^0.1.2"
     postcss-value-parser "^4.1.0"
 
@@ -3066,6 +3066,11 @@ caniuse-lite@^1.0.30001259:
   dependencies:
     nanocolors "^0.1.0"
 
+caniuse-lite@^1.0.30001260:
+  version "1.0.30001261"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001261.tgz#96d89813c076ea061209a4e040d8dcf0c66a1d01"
+  integrity sha512-vM8D9Uvp7bHIN0fZ2KQ4wnmYFpJo/Etb4Vwsuc+ka0tfGDHvOPrFm6S/7CCNLSOkAUjenT2HnUPESdOIL91FaA==
+
 capture-exit@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/capture-exit/-/capture-exit-2.0.0.tgz#fb953bfaebeb781f62898239dabb426d08a509a4"
@@ -3358,10 +3363,10 @@ colord@^2.6:
   resolved "https://registry.yarnpkg.com/colord/-/colord-2.7.0.tgz#706ea36fe0cd651b585eb142fe64b6480185270e"
   integrity sha512-pZJBqsHz+pYyw3zpX6ZRXWoCHM1/cvFikY9TV8G3zcejCaKE0lhankoj8iScyrrePA8C7yJ5FStfA9zbcOnw7Q==
 
-colorette@2.0.10:
-  version "2.0.10"
-  resolved "https://registry.yarnpkg.com/colorette/-/colorette-2.0.10.tgz#0cc871faead8b07227c9ad784f27a0d71f3794e2"
-  integrity sha512-tQ7Prvd+zU6EUsQVXJNqxJUZdZ4btI34jlp/W1N/bNyWsY55dxe2oSg+ss3COV4vKbWLVlwLJt5xMSCuZ3R4og==
+colorette@2.0.12:
+  version "2.0.12"
+  resolved "https://registry.yarnpkg.com/colorette/-/colorette-2.0.12.tgz#7938ab254e7bb1bba29b0fd1b4cc168889ca4d74"
+  integrity sha512-lHID0PU+NtFzeNCwTL6JzUKdb6kDpyEjrwTD1H0cDZswTbsjLh2wTV2Eo2sNZLc0oSg0a5W1AI4Nj7bX4iIdjA==
 
 colorette@^1.2.2:
   version "1.2.2"
@@ -7198,6 +7203,11 @@ nanocolors@^0.2.2:
   resolved "https://registry.yarnpkg.com/nanocolors/-/nanocolors-0.2.11.tgz#f2573e6872f1b70067423fc68bbc9d0de2f3bbee"
   integrity sha512-83ttyvfJj66dKMadWfBkEUOEDFfRc8FpzTJvh1MySR/pzWFmFikTQZGOV6kHZRz7yR/heiQ1y/MHBBN5P/e7WQ==
 
+nanocolors@^0.2.8:
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/nanocolors/-/nanocolors-0.2.12.tgz#4d05932e70116078673ea4cc6699a1c56cc77777"
+  integrity sha512-SFNdALvzW+rVlzqexid6epYdt8H9Zol7xDoQarioEFcFN0JHo4CYNztAxmtfgGTVRCmFlEOqqhBpoFGKqSAMug==
+
 nanoid@^3.1.22:
   version "3.1.23"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.23.tgz#f744086ce7c2bc47ee0a8472574d5c78e4183a81"
@@ -10760,10 +10770,10 @@ yargs@^16.2.0:
     y18n "^5.0.5"
     yargs-parser "^20.2.2"
 
-yarn@1.22.11:
-  version "1.22.11"
-  resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.22.11.tgz#d0104043e7349046e0e2aec977c24be106925ed6"
-  integrity sha512-AWje4bzqO9RUn3sdnM5N8n4ZJ0BqCc/kqFJvpOI5/EVkINXui0yuvU7NDCEF//+WaxHuNay2uOHxA4+tq1P3cg==
+yarn@1.22.15:
+  version "1.22.15"
+  resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.22.15.tgz#3431d5f134d3c752a57a9dd7f5e1167627ca3cc3"
+  integrity sha512-AzoEDxj256BOS/jqDXA3pjyhmi4FRBBUMgYoTHI4EIt2EhREkvH0soPVEtnD+DQIJfU5R9bKhcZ1H9l8zPWeoA==
 
 yocto-queue@^0.1.0:
   version "0.1.0"
