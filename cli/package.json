@@ -96,7 +96,7 @@
     "@types/react": "17.0.29",
     "@types/sade": "1.7.3",
     "@types/shelljs": "0.8.9",
-    "yarn": "1.22.15"
+    "yarn": "1.22.17"
   },
   "publishConfig": {
     "access": "public"
