@@ -9749,10 +9749,10 @@ jsbn@~0.1.0:
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"
   integrity sha1-peZUwuWi3rXyAdls77yoDA7y9RM=
 
-jscpd@3.4.1:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/jscpd/-/jscpd-3.4.1.tgz#c0ab7407eb0c4cd040191f19bbcd319156d521fc"
-  integrity sha512-QcEZw5G6MzWeNjUo6G7QAu3RTgd7Qf7NOYv20W6lUs1S6JWgleiNBzmSR0yPNkD3GHctcsB8Fvo7/wSjvplrGg==
+jscpd@3.4.2:
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/jscpd/-/jscpd-3.4.2.tgz#b69b96c1e5dacbe4dd67066d8d08351f0707ccdb"
+  integrity sha512-TzLPmRBb7iTf/kMwtiXdptUHJp2OaNOopT4i0YpDlF2sdTDbqGmLxGZmoumLwXz44K7jT6QhLh/ZbpDmKNx79g==
   dependencies:
     "@jscpd/core" "^3.4.1"
     "@jscpd/finder" "^3.4.1"
