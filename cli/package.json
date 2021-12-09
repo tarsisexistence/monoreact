@@ -101,9 +101,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "engines": {
-    "node": ">=8.0.0 <16.0.0"
-  },
   "workspace": true,
   "keywords": [
     "cli",
