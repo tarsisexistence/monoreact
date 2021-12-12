@@ -10,8 +10,8 @@ export const detachSetup: CLI.Setup.MigrationOptions = {
     '@types/react-dom': '^17.0.9',
     'eslint-config-react-app': '^6.0.0',
     husky: '^4.3.5',
-    'lint-staged': '11.0.0',
-    prettier: '2.3.2',
+    'lint-staged': '^12.1.2',
+    prettier: '^2.5.1',
     tslib: '^2.3.1',
     typescript: '^4.3.5'
   }
