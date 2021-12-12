@@ -1,7 +1,7 @@
 import fs from 'fs-extra';
 import path from 'path';
 import { Sade } from 'sade';
-import { CLIEngine } from 'eslint';
+import { ESLint } from 'eslint';
 
 import { createLintConfig } from './configs/lint.config';
 import { lintMessage } from '../../shared/messages';
@@ -23,35 +23,40 @@ export const lintBinCommand = (prog: Sade): void => {
       const { dir, project } = await getPackageLintInfo();
       const packageJsonPath = path.resolve(dir, PACKAGE_JSON);
       const { eslintConfig = {} } = await fs.readJSON(packageJsonPath);
-      const cli = new CLIEngine({
+      const cli = new ESLint({
         baseConfig: {
-          ...createLintConfig(dir),
+          // TODO: check later
+          ...createLintConfig(dir) as any,
           ...eslintConfig
         },
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
         fix: opts.fix,
-        ignorePattern: opts['ignore-pattern'],
-        parser: '@typescript-eslint/parser',
-        parserOptions: {
-          tsconfigRootDir: dir,
-          project
-        }
+        // TODO: check later
+        // ignorePattern: opts['ignore-pattern'],
+        // parser: '@typescript-eslint/parser',
+        // parserOptions: {
+        //   tsconfigRootDir: dir,
+        //   project
+        // }
       });
 
       console.log(lintMessage.linting(files));
-      const report = cli.executeOnFiles(files);
+      const results = await cli.lintFiles(files);
 
       if (opts.fix) {
-        CLIEngine.outputFixes(report);
+        await ESLint.outputFixes(results);
       }
 
-      console.log(cli.getFormatter()(report.results));
+      const formatter = await cli.loadFormatter()
+      console.log(formatter.format(results));
 
       const duration = process.hrtime(time);
       console.log(lintMessage.linted(duration));
 
-      if (report.errorCount) {
-        process.exit(1);
+      for (const result of results) {
+        if (result.errorCount) {
+          process.exit(1);
+        }
       }
     });
 };
