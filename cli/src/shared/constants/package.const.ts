@@ -80,7 +80,7 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.HostPackageJSON = {
     husky: '4.3.5',
     'lint-staged': '11.0.0',
     prettier: '2.3.0',
-    stylelint: '13.8.0',
+    stylelint: '14.1.0',
     'stylelint-config-recommended': '3.0.0',
     tslib: packageJson.dependencies.tslib,
     typescript: packageJson.dependencies.typescript,
