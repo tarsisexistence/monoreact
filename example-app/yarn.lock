@@ -2482,11 +2482,6 @@
   resolved "https://registry.yarnpkg.com/@mdn/browser-compat-data/-/browser-compat-data-3.3.14.tgz#b72a37c654e598f9ae6f8335faaee182bebc6b28"
   integrity sha512-n2RC9d6XatVbWFdHLimzzUJxJ1KY8LdjqrW6YvGPiRmsHkhOUx74/Ct10x5Yo7bC/Jvqx7cDEW8IMPv/+vwEzA==
 
-"@monoreact/package-example@*":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@monoreact/package-example/-/package-example-0.1.0.tgz#dd4c3325daacc7a8c6932bd5ffa82b2f84b3f59c"
-  integrity sha512-Q1tLkbxnYDvcWtLx1Uu2p5Yq0jaG/3JP2hIJLqC1IPbC1YwoP6/q8R5Voa8pfXXsSi6Bxygc29Amt6EyaEbU1A==
-
 "@nicolo-ribaudo/chokidar-2@2.1.8-no-fsevents.3":
   version "2.1.8-no-fsevents.3"
   resolved "https://registry.yarnpkg.com/@nicolo-ribaudo/chokidar-2/-/chokidar-2-2.1.8-no-fsevents.3.tgz#323d72dd25103d0c4fbdce89dadf574a787b1f9b"
