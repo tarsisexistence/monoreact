@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   plugins: ['@typescript-eslint', 'prettier', 'promise', 'sonarjs'],
   extends: [
     'eslint:recommended',
