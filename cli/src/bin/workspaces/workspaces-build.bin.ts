@@ -67,7 +67,7 @@ export function workspacesBuildBinCommand(prog: Sade): void {
         space();
       } catch (error) {
         console.log(workspacesMessage.failed('build'));
-        logError(error);
+        logError(error as Error);
         process.exit(1);
       }
     });

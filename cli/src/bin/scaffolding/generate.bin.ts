@@ -103,9 +103,9 @@ export const generateBinCommand = (prog: Sade): void => {
           setupPath: packageSetupPath
         });
         bootSpinner.succeed(generateMessage.successful(packageName));
-      } catch (err) {
+      } catch (error) {
         bootSpinner.fail(generateMessage.failed(packageName));
-        logError(err);
+        logError(error as Error);
         process.exit(1);
       }
 
@@ -118,9 +118,9 @@ export const generateBinCommand = (prog: Sade): void => {
         await buildPackage();
         preparingSpinner.succeed(generateMessage.successfulConfigure());
         console.log(generateMessage.preparedPackage(packageName));
-      } catch (err) {
+      } catch (error) {
         preparingSpinner.fail(generateMessage.failedConfigure());
-        logError(err);
+        logError(error as Error);
         process.exit(1);
       }
     });

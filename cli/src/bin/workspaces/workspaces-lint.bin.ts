@@ -47,7 +47,7 @@ export function workspacesLintBinCommand(prog: Sade): void {
 
               await execa('node', args, { cwd, stdio: 'inherit' });
             } catch (error) {
-              logError(error);
+              logError(error as Error);
             }
 
             console.log(workspacesMessage.finished('lint', name));
@@ -59,7 +59,7 @@ export function workspacesLintBinCommand(prog: Sade): void {
         space();
       } catch (error) {
         console.log(workspacesMessage.failed('lint'));
-        logError(error);
+        logError(error as Error);
         process.exit(1);
       }
     });

@@ -50,7 +50,7 @@ export function workspacesTestBinCommand(prog: Sade): void {
         space();
       } catch (error) {
         console.log(workspacesMessage.failed('test'));
-        logError(error);
+        logError(error as Error);
         process.exit(1);
       }
     });

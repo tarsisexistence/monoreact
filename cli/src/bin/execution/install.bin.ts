@@ -62,9 +62,9 @@ export const installBinCommand = (prog: Sade): void => {
 
         await execa('yarn', installRootArgs, { cwd: rootDir });
         installSpinner.succeed(installMessage.successful(dependencies));
-      } catch (err) {
+      } catch (error) {
         installSpinner.fail(installMessage.failed(dependencies));
-        logError(err);
+        logError(error as Error);
         process.exit(1);
       }
     });

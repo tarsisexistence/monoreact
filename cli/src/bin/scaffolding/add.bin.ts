@@ -36,14 +36,14 @@ export const addBinCommand = (prog: Sade): void => {
           option: featureOption
         });
         bootSpinner.succeed(addMessage.successful(featureOption));
-      } catch (err) {
+      } catch (error) {
         bootSpinner.fail(addMessage.failed(featureOption));
 
-        if (err.toString().includes('already exists')) {
+        if ((error as Error).toString().includes('already exists')) {
           console.log(addMessage.exists());
         }
 
-        logError(err);
+        logError(error as Error);
         process.exit(1);
       }
     });

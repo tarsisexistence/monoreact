@@ -68,7 +68,7 @@ export function workspacesWatchBinCommand(prog: Sade): void {
         space();
       } catch (error) {
         console.log(workspacesMessage.failed('watch'));
-        logError(error);
+        logError(error as Error);
       }
     });
 }

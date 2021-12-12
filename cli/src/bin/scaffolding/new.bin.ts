@@ -63,9 +63,9 @@ export const newBinCommand = (prog: Sade): void => {
             name: projectName
           })
         );
-      } catch (err) {
+      } catch (error) {
         bootSpinner.fail(newMessage.failed(projectName));
-        logError(err);
+        logError(error as Error);
         process.exit(1);
       }
 
@@ -75,9 +75,9 @@ export const newBinCommand = (prog: Sade): void => {
         sortPackageJson();
         installDependencies();
         preparingSpinner.succeed(newMessage.prepared());
-      } catch (err) {
+      } catch (error) {
         preparingSpinner.fail(newMessage.failedPreparation());
-        logError(err);
+        logError(error as Error);
       }
 
       console.log(newMessage.finish(projectDir));

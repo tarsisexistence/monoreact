@@ -27,7 +27,7 @@ export const buildPackages = async (dir: string): Promise<void> => {
     const duration = process.hrtime(time);
     console.log(buildMessage.successful(duration));
   } catch (error) {
-    logError(error);
+    logError(error as Error);
     process.exit(1);
   }
 };

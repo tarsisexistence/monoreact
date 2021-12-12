@@ -22,10 +22,10 @@ export const detachBinCommand = (prog: Sade): void => {
         await copyDetachTemplate(packageDir);
         await installDependencies();
         bootSpinner.succeed(detachMessage.successful());
-      } catch (err) {
+      } catch (error) {
         bootSpinner.fail(detachMessage.failed());
 
-        logError(err);
+        logError(error as Error);
         process.exit(1);
       }
     });
