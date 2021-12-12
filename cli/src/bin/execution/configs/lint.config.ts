@@ -1,8 +1,8 @@
 import path from 'path';
-import { CLIEngine } from 'eslint';
+import { ESLint } from 'eslint';
 
-export const createLintConfig = (dir: string): CLIEngine.Options['baseConfig'] => {
-  const settings: Record<string, any> = {
+export const createLintConfig = (dir: string, project: string[]): ESLint.Options['baseConfig'] => {
+  const settings: { [name: string]: any } = {
     'import/resolver': {
       node: {
         paths: [path.resolve(dir, 'src')],
@@ -30,14 +30,19 @@ export const createLintConfig = (dir: string): CLIEngine.Options['baseConfig'] =
     'plugin:@typescript-eslint/recommended'
   ];
 
-  const rules = {
+  const rules: { [name: string]: any } = {
     'import/no-unresolved': 0
   };
 
   return {
-    settings,
     ignorePatterns,
+    settings,
+    rules,
     extends: extendsConfig,
-    rules
+    parser: '@typescript-eslint/parser',
+    parserOptions: {
+      tsconfigRootDir: dir,
+      project
+    },
   };
 };

@@ -15,8 +15,8 @@ export const lintBinCommand = (prog: Sade): void => {
     .alias('l')
     .option('fix', 'Resolve fixable eslint errors')
     .example('lint --fix')
-    .option('ignore-pattern', 'Ignore a pattern')
-    .example('lint --ignore-pattern src/foo.ts')
+    .option('ignore-path', 'Ignore a path')
+    .example('lint --ignore-path src/foo.ts')
     .action(async (opts: CLI.Options.Lint) => {
       const time = process.hrtime();
       const files = opts._.length > 0 ? opts._ : ['src/**/*.{js,jsx,ts,tsx}'];
@@ -25,19 +25,12 @@ export const lintBinCommand = (prog: Sade): void => {
       const { eslintConfig = {} } = await fs.readJSON(packageJsonPath);
       const cli = new ESLint({
         baseConfig: {
-          // TODO: check later
-          ...createLintConfig(dir) as any,
+          ...createLintConfig(dir, project),
           ...eslintConfig
         },
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
         fix: opts.fix,
-        // TODO: check later
-        // ignorePattern: opts['ignore-pattern'],
-        // parser: '@typescript-eslint/parser',
-        // parserOptions: {
-        //   tsconfigRootDir: dir,
-        //   project
-        // }
+        ignorePath: opts['ignore-path'],
       });
 
       console.log(lintMessage.linting(files));

@@ -24,7 +24,7 @@ declare namespace CLI.Options {
 
   interface Lint extends BaseOptions {
     fix: boolean;
-    'ignore-pattern': string;
+    'ignore-path': string;
   }
 
   interface Submodules extends BaseOptions {
