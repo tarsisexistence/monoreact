@@ -5,9 +5,9 @@ export const detachSetup: CLI.Setup.MigrationOptions = {
   },
   devDependencies: {
     monoreact: 'latest',
-    '@typescript-eslint/parser': '^4.28.2',
-    '@types/react': '^17.0.14',
-    '@types/react-dom': '^17.0.9',
+    '@typescript-eslint/parser': '^5.6.0',
+    '@types/react': '^17.0.37',
+    '@types/react-dom': '^17.0.11',
     'eslint-config-react-app': '^6.0.0',
     husky: '^4.3.5',
     'lint-staged': '^12.1.2',
