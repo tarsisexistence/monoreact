@@ -55,7 +55,7 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.HostPackageJSON = {
   dependencies: {
     react: packageJson.dependencies.react,
     'react-dom': '17.0.1',
-    'react-scripts': '4.0.1'
+    'react-scripts': '5.0.0'
   },
   devDependencies: {
     monoreact: 'latest',
