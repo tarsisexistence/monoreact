@@ -53,21 +53,22 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.HostPackageJSON = {
     stylelint: 'stylelint "src/**/*.{css,sass,scss}"'
   },
   dependencies: {
-    react: packageJson.dependencies.react,
-    'react-dom': '17.0.1',
-    'react-scripts': '4.0.1'
+    react: '^17.0.2',
+    'react-dom': '^17.0.2',
+    'react-scripts': '5.0.0'
   },
   devDependencies: {
     monoreact: 'latest',
-    '@testing-library/dom': '6.12.2',
-    '@testing-library/jest-dom': '4.2.4',
-    '@testing-library/react': '9.4.0',
-    '@testing-library/user-event': '7.2.1',
+    '@testing-library/jest-dom': '^5.16.1',
+    '@testing-library/react': '^12.1.2',
+    '@testing-library/user-event': '^13.5.0',
+    'web-vitals': '^2.1.2',
+    '@types/jest': '^27.0.3',
+    '@types/react': '^17.0.37',
+    '@types/react-dom': '^17.0.11',
     '@types/node': packageJson.devDependencies['@types/node'],
-    '@types/react': packageJson.devDependencies['@types/react'],
-    '@types/react-dom': '17.0.11',
-    '@typescript-eslint/eslint-plugin': '5.6.0',
-    '@typescript-eslint/parser': '5.6.0',
+    '@typescript-eslint/eslint-plugin': '5.7.0',
+    '@typescript-eslint/parser': '5.7.0',
     'eslint-config-prettier': packageJson.dependencies['eslint-config-prettier'],
     'eslint-config-react-app': packageJson.dependencies['eslint-config-react-app'],
     'eslint-plugin-prettier': packageJson.dependencies['eslint-plugin-prettier'],

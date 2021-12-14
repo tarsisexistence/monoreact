@@ -9,7 +9,7 @@ export const newMessage = {
     `The folder at ${color.error(dir)} already exists! ${color.bold('Choose a different name')}`,
 
   failedPreparation: () => color.error('A preparation error has occurred'),
-  preparing: () => `${color.info('Preparation in progress')}: file processing, dependency installation`,
+  preparing: () => `${color.info('Preparation in progress')}: installing dependencies, processing files`,
   prepared: () => color.success('Preparation completed successfully'),
 
   creating: (dir: string) => `Creating React project at ${color.info(dir)}`,
