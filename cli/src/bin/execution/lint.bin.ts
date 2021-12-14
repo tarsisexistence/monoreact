@@ -30,7 +30,7 @@ export const lintBinCommand = (prog: Sade): void => {
         },
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
         fix: opts.fix,
-        ignorePath: opts['ignore-path'],
+        ignorePath: opts['ignore-path']
       });
 
       console.log(lintMessage.linting(files));
@@ -40,7 +40,7 @@ export const lintBinCommand = (prog: Sade): void => {
         await ESLint.outputFixes(results);
       }
 
-      const formatter = await cli.loadFormatter()
+      const formatter = await cli.loadFormatter();
       console.log(formatter.format(results));
 
       const duration = process.hrtime(time);

@@ -43,6 +43,6 @@ export const createLintConfig = (dir: string, project: string[]): ESLint.Options
     parserOptions: {
       tsconfigRootDir: dir,
       project
-    },
+    }
   };
 };
