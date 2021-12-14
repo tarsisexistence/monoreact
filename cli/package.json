@@ -1,6 +1,6 @@
 {
   "name": "monoreact",
-  "version": "0.30.2",
+  "version": "0.31.0",
   "description": "React workspaces implementation",
   "license": "MIT",
   "main": "./dist/src/bin/index.js",
