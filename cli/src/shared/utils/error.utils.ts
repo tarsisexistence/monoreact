@@ -14,19 +14,21 @@ export function logError(err: RollupError): void {
   const message = normalizeErrorMessage(error, description);
 
   space();
-  stderr(color.error(message));
 
-  if (error.loc) {
-    stderr(`at ${error.loc.file}:${error.loc.line}:${error.loc.column}`);
-  }
+  if (error.stack) {
+    stderr(color.error(error.stack));
+  } else {
+    stderr(color.error(message));
 
-  space();
+    if (error.loc) {
+      stderr(`at ${error.loc.file}:${error.loc.line}:${error.loc.column}`);
+    }
 
-  if (error.frame) {
-    stderr(color.error(error.frame));
-  } else if (err.stack) {
-    const headlessStack = error.stack.replace(message, '');
-    stderr(color.error(headlessStack));
+    space();
+
+    if (error.frame) {
+      stderr(color.error(error.frame));
+    }
   }
 
   space();
@@ -34,6 +36,7 @@ export function logError(err: RollupError): void {
 
 function normalizeErrorMessage(error: RollupError, description: string): string {
   if (!error.plugin) {
+    // the interesting part here is that error.stack has empty space instead of ":" i.e "Error:"
     return description;
   }
 
