@@ -114,13 +114,19 @@ export const generateBinCommand = (prog: Sade): void => {
 
       try {
         await sortPackageJson();
-        // TODO: doesn't log anything on error
-        await buildPackage();
+        const result = await buildPackage();
+
+        if (result.code > 0) {
+          throw new Error(result.stderr);
+        }
+
         preparingSpinner.succeed(generateMessage.successfulConfigure());
         console.log(generateMessage.preparedPackage(packageName));
       } catch (error) {
         preparingSpinner.fail(generateMessage.failedConfigure());
         logError(error as Error);
+
+        // TODO: think about process exit code
         process.exit(1);
       }
     });
