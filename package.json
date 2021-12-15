@@ -36,7 +36,6 @@
     "lint-staged": "12.1.2",
     "monoreact": "*",
     "prettier": "2.5.1",
-    "webpack": "4.44.2",
     "yarn": "1.22.17"
   },
   "resolutions": {
