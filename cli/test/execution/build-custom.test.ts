@@ -38,9 +38,9 @@ describe('[bin.execution.build.custom]', () => {
     expect(output.code).toBe(0);
   });
 
-  it('should create the library correctly', () => {
+  it('should create the library correctly', async () => {
     const output = smartExec('node ../../../dist/src/bin/index.js build');
-    const lib = require(path.resolve('dist', 'output.js'));
+    const lib = await import(path.resolve('dist', 'output.js'));
     expect(lib.foo()).toBe('bar');
     expect(lib.sum(1, 2)).toBe(3);
     expect(output.code).toBe(0);

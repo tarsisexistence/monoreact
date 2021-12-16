@@ -36,15 +36,9 @@ describe('[bin.migration.detach]', () => {
     expect(output.code).toBe(0);
   });
 
-  it('should have .prettierrc.json', () => {
+  it('should not have extends property inside .eslintrc.js', async () => {
     const output = smartExec('node ../../../dist/src/bin/index.js migration detach');
-    expect(shell.test('-f', '.prettierrc.json')).toBeTruthy();
-    expect(output.code).toBe(0);
-  });
-
-  it('should not have extends property inside .eslintrc.js', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js migration detach');
-    const eslintConfig = require(path.resolve('.eslintrc.js'));
+    const eslintConfig = await import(path.resolve('.eslintrc.js'));
     expect(eslintConfig).not.toHaveProperty('extends');
     expect(output.code).toBe(0);
   });
