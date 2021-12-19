@@ -18,7 +18,7 @@ describe('[bin.execution.build.invalid]', () => {
   });
 
   it('should not compile when build failed', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js build');
+    const output = smartExec('node ../../../dist/bundle.cjs build');
     expect(output.code).toBe(1);
   });
 });

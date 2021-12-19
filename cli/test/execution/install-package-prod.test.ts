@@ -24,7 +24,7 @@ describe.skip('[bin.execution.install.package.prod]', () => {
     const cwd = process.cwd();
     const packageDir = path.resolve(cwd, 'packages', 'install-example');
     shell.cd(packageDir);
-    const output = smartExec('node ../../../../../dist/src/bin/index.js install monoreact routeshub');
+    const output = smartExec('node ../../../../../dist/bundle.cjs install monoreact routeshub');
     shell.cd(cwd);
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
     const packagePkg = fs.readJSONSync(path.resolve(packageDir, 'package.json'));
@@ -40,7 +40,7 @@ describe.skip('[bin.execution.install.package.prod]', () => {
     const cwd = process.cwd();
     const packageDir = path.resolve(cwd, 'packages', 'install-example');
     shell.cd(packageDir);
-    const output = smartExec('node ../../../../../dist/src/bin/index.js install monoreact routeshub');
+    const output = smartExec('node ../../../../../dist/bundle.cjs install monoreact routeshub');
     shell.cd(cwd);
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
     const packagePkg = fs.readJSONSync(path.resolve(cwd, 'packages', 'install-example', 'package.json'));
@@ -60,7 +60,7 @@ describe.skip('[bin.execution.install.package.prod]', () => {
     const cwd = process.cwd();
     const packageDir = path.resolve(cwd, 'packages', 'install-example');
     shell.cd(packageDir);
-    const output = smartExec('node ../../../../../dist/src/bin/index.js install monoreact routeshub');
+    const output = smartExec('node ../../../../../dist/bundle.cjs install monoreact routeshub');
     shell.cd(cwd);
     const packagePkg = fs.readJSONSync(path.resolve(cwd, 'packages', 'install-example', 'package.json'));
     expect(packagePkg.peerDependencies.routeshub[0]).toBe('^');

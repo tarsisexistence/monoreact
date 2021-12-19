@@ -18,23 +18,23 @@ describe('[bin.execution.workspaces-build-invalid]', () => {
   });
 
   it('should not compile packages', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js workspaces build');
+    const output = smartExec('node ../../../dist/bundle.cjs workspaces build');
     expect(output.code).toBe(1);
   });
 
   it('should have compiled shared output', () => {
-    smartExec('node ../../../dist/src/bin/index.js workspaces build');
+    smartExec('node ../../../dist/bundle.cjs workspaces build');
     expect(shell.test('-d', 'shared/workspaces-example-1/dist')).toBeTruthy();
     expect(shell.test('-d', 'shared/workspaces-example-2/dist')).toBeTruthy();
   });
 
   it('should not compile failed build in services', () => {
-    smartExec('node ../../../dist/src/bin/index.js workspaces build');
+    smartExec('node ../../../dist/bundle.cjs workspaces build');
     expect(shell.test('-d', 'services/workspaces-example-4/dist')).toBeFalsy();
   });
 
   it('should not compile dependent packages on the failed one', () => {
-    smartExec('node ../../../dist/src/bin/index.js workspaces build');
+    smartExec('node ../../../dist/bundle.cjs workspaces build');
     expect(shell.test('-d', 'components/workspaces-example-5/dist')).toBeFalsy();
     expect(shell.test('-d', 'components/workspaces-example-6/dist')).toBeFalsy();
   });

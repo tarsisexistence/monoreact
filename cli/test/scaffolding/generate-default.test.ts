@@ -20,19 +20,19 @@ describe('[bin.scaffolding.generate-default]', () => {
   });
 
   it('should have generated package dir after', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js generate myPackage --template basic');
+    const output = smartExec('node ../../../dist/bundle.cjs generate myPackage --template basic');
     expect(shell.test('-d', 'packages/myPackage')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should have dist folder', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js generate myPackage --template basic');
+    const output = smartExec('node ../../../dist/bundle.cjs generate myPackage --template basic');
     expect(shell.test('-d', 'packages/myPackage/dist')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should have generated bundle', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js generate myPackage --template basic');
+    const output = smartExec('node ../../../dist/bundle.cjs generate myPackage --template basic');
     expect(shell.test('-f', 'packages/myPackage/dist/bundle.js')).toBeTruthy();
     expect(output.code).toBe(0);
   });

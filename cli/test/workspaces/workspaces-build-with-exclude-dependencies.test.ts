@@ -20,7 +20,7 @@ describe('[bin.execution.workspaces-build-with-exclude-dependencies]', () => {
 
   it('should compile packages as usual', () => {
     const output = smartExec(
-      'node ../../../dist/src/bin/index.js workspaces build --exclude @workspaces-build-with-dependencies/workspaces-example-5,@workspaces-build-with-dependencies/workspaces-example-6'
+      'node ../../../dist/bundle.cjs workspaces build --exclude @workspaces-build-with-dependencies/workspaces-example-5,@workspaces-build-with-dependencies/workspaces-example-6'
     );
     expect(shell.test('-d', 'shared/workspaces-example-1/dist')).toBeTruthy();
     expect(shell.test('-d', 'shared/workspaces-example-2/dist')).toBeTruthy();
@@ -31,7 +31,7 @@ describe('[bin.execution.workspaces-build-with-exclude-dependencies]', () => {
 
   it('should not compile excluded packages', () => {
     const output = smartExec(
-      'node ../../../dist/src/bin/index.js workspaces build --exclude @workspaces-build-with-dependencies/workspaces-example-5,@workspaces-build-with-dependencies/workspaces-example-6'
+      'node ../../../dist/bundle.cjs workspaces build --exclude @workspaces-build-with-dependencies/workspaces-example-5,@workspaces-build-with-dependencies/workspaces-example-6'
     );
     expect(shell.test('-d', 'components/workspaces-example-5/dist')).toBeFalsy();
     expect(shell.test('-d', 'components/workspaces-example-6/dist')).toBeFalsy();

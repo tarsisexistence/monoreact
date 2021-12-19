@@ -18,7 +18,7 @@ describe('[bin.execution.workspaces-test-default]', () => {
   });
 
   it('should test packages with exit 0 when all packages have passed tests', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js workspaces test');
+    const output = smartExec('node ../../../dist/bundle.cjs workspaces test');
     expect(output.code).toBe(0);
   });
 });

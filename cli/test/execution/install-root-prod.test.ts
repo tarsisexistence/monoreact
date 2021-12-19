@@ -21,7 +21,7 @@ describe.skip('[bin.execution.install.root.prod]', () => {
   });
 
   it('should install few prod dependencies in the root', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js install monoreact routeshub');
+    const output = smartExec('node ../../../dist/bundle.cjs install monoreact routeshub');
     const cwd = process.cwd();
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
     expect(rootPkg.dependencies).toHaveProperty('monoreact');
@@ -30,7 +30,7 @@ describe.skip('[bin.execution.install.root.prod]', () => {
   });
 
   it('should install nothing but prod dependencies in the root', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js install monoreact routeshub');
+    const output = smartExec('node ../../../dist/bundle.cjs install monoreact routeshub');
     const cwd = process.cwd();
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
     const packagePkg = fs.readJSONSync(path.resolve(cwd, 'packages', 'install-example', 'package.json'));
@@ -48,7 +48,7 @@ describe.skip('[bin.execution.install.root.prod]', () => {
   });
 
   it('should not have tilde and caret (~, ^) in the root', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js install monoreact routeshub');
+    const output = smartExec('node ../../../dist/bundle.cjs install monoreact routeshub');
     const cwd = process.cwd();
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
     expect(rootPkg.dependencies.routeshub[0]).not.toBe('^');
