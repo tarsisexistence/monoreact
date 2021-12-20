@@ -14,3 +14,6 @@ export const cleanDistFolder = async (): Promise<void> => {
   const distPath = path.resolve(cwd, 'dist');
   await fs.remove(distPath);
 };
+
+// it steps out just outside /dist dir
+export const getTemplatePath = (...template: string[]): string => path.resolve(__dirname, '../templates', ...template);

@@ -2,7 +2,7 @@ import fs from 'fs-extra';
 import path from 'path';
 import { Select } from 'enquirer';
 
-import { color, noop } from '../../shared/utils';
+import { color, getTemplatePath, noop } from '../../shared/utils';
 import { featureSetup } from './setup/add';
 
 export const validateFeatureOption = (
@@ -27,11 +27,10 @@ export const validateFeatureOption = (
 };
 
 export const copyFeatureTemplate = (packageDir: string, option: CLI.Setup.AddOptionType): Promise<void> =>
-  fs.copy(
-    path.resolve(__dirname, `../../../../templates/add/${option}`),
-    path.resolve(packageDir, featureSetup[option].path),
-    { overwrite: false, errorOnExist: true }
-  );
+  fs.copy(getTemplatePath('add', option), path.resolve(packageDir, featureSetup[option].path), {
+    overwrite: false,
+    errorOnExist: true
+  });
 
 export const addFeatureScriptsToPackageJson = ({
   dir,
