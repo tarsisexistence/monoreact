@@ -51,7 +51,8 @@ export const detachPackageJsonFromWorkspace = async (dir: string): Promise<void>
 };
 
 export const copyDetachTemplate = (dir: string): Promise<void> =>
-  fs.copy(path.resolve(__dirname, '../../../../templates/migration/detach'), dir, {
+  // it steps out just outside of /dist dir
+  fs.copy(path.resolve(__dirname, '../templates/migration/detach'), dir, {
     overwrite: true,
     errorOnExist: false
   });
