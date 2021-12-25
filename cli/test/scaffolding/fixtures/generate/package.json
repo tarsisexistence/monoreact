@@ -12,5 +12,8 @@
     "start": "react-scripts start",
     "stylelint": "stylelint \"src/**/*.{css,sass,scss}\"",
     "test": "react-scripts test"
+  },
+  "devDependencies": {
+    "monoreact": "*"
   }
 }
