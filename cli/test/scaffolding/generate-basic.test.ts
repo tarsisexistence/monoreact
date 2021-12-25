@@ -20,26 +20,28 @@ describe('[bin.scaffolding.generate-basic]', () => {
     teardownStage(fixture);
   });
 
+  const run = () => smartExec('node ../../../dist/bundle.cjs generate myBasicPackage --template basic');
+
   it('should generate package dir', () => {
-    const output = smartExec('node ../../../dist/bundle.cjs generate myBasicPackage --template basic');
+    const output = run();
     expect(shell.test('-d', 'packages/myBasicPackage')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should have build of basic package', () => {
-    const output = smartExec('node ../../../dist/bundle.cjs generate myBasicPackage --template basic');
+    const output = run();
     expect(shell.test('-d', 'packages/myBasicPackage/dist')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should have utils example file', () => {
-    const output = smartExec('node ../../../dist/bundle.cjs generate myBasicPackage --template basic');
+    const output = run();
     expect(shell.test('-f', 'packages/myBasicPackage/src/utils.ts')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should not have any dependency', () => {
-    const output = smartExec('node ../../../dist/bundle.cjs generate myBasicPackage --template basic');
+    const output = run();
     const packageJson = fs.readJSONSync(path.resolve('packages', 'myBasicPackage', 'package.json'));
     expect(packageJson).not.toHaveProperty('dependencies');
     expect(packageJson).not.toHaveProperty('devDependencies');

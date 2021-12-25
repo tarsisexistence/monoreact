@@ -19,14 +19,16 @@ describe('[bin.scaffolding.generate-custom-location]', () => {
     teardownStage(fixture);
   });
 
+  const run = () => smartExec('node ../../../dist/bundle.cjs generate myPackage --template basic');
+
   it('should have not default packages location', () => {
-    const output = smartExec('node ../../../dist/bundle.cjs generate myPackage --template basic');
+    const output = run();
     expect(shell.test('-d', 'workspace-packages/myPackage')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should update workspaces declaration', () => {
-    const output = smartExec('node ../../../dist/bundle.cjs generate myPackage --template basic');
+    const output = run();
     const rootPackageJson = fs.readJSONSync(path.resolve('package.json'));
     expect(rootPackageJson.workspaces).toContain('workspace-packages/myPackage');
     expect(output.code).toBe(0);

@@ -25,15 +25,17 @@ describe('[bin.scaffolding.add-playground]', () => {
     expect(output.code).toBe(0);
   });
 
+  const addDocz = () => smartExec('node ../../../dist/bundle.cjs add docz');
+
   it('should have bootstrap script in the package.json', () => {
-    const output = smartExec('node ../../../dist/bundle.cjs add docz');
+    const output = addDocz();
     const packageJson = fs.readJSONSync(path.resolve('package.json'));
     expect(packageJson.scripts).toHaveProperty('start:playground');
     expect(output.code).toBe(0);
   });
 
   it('should have correct bootstrap script value', () => {
-    const output = smartExec('node ../../../dist/bundle.cjs add docz');
+    const output = addDocz();
     const packageJson = fs.readJSONSync(path.resolve('package.json'));
     expect(packageJson.scripts['start:playground']).toBe(
       'yarn build & npx concurrently --kill-others "yarn start" "cd playground & yarn start"'

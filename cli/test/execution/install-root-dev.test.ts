@@ -20,8 +20,10 @@ describe.skip('[bin.execution.install.root.dev]', () => {
     teardownStage(fixture);
   });
 
+  const run = () => smartExec('node ../../../dist/bundle.cjs install monoreact routeshub -D');
+
   it('should install only dev dependencies in the root', () => {
-    const output = smartExec('node ../../../dist/bundle.cjs install monoreact routeshub -D');
+    const output = run();
     const cwd = process.cwd();
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
     expect(rootPkg.devDependencies).toHaveProperty('monoreact');
@@ -30,7 +32,7 @@ describe.skip('[bin.execution.install.root.dev]', () => {
   });
 
   it('should install nothing but dev dependencies in the root', () => {
-    const output = smartExec('node ../../../dist/bundle.cjs install monoreact routeshub -D');
+    const output = run();
     const cwd = process.cwd();
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
     const packagePkg = fs.readJSONSync(path.resolve(cwd, 'packages', 'install-example', 'package.json'));

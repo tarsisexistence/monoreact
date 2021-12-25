@@ -18,28 +18,30 @@ describe('[bin.execution.build.custom]', () => {
     teardownStage(fixture);
   });
 
+  const run = () => smartExec('node ../../../dist/bundle.cjs build');
+
   it('should compile files into a dist directory', () => {
-    const output = smartExec('node ../../../dist/bundle.cjs build');
+    const output = run();
     expect(shell.test('-f', 'dist/output.js')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should compile files with custom entry points', () => {
-    const output = smartExec('node ../../../dist/bundle.cjs build');
+    const output = run();
     expect(shell.test('-f', 'dist/output.js')).toBeTruthy();
     expect(shell.test('-f', 'dist/index.d.ts')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should not compile files in test/ or types/', () => {
-    const output = smartExec('node ../../../dist/bundle.cjs build');
+    const output = run();
     expect(shell.test('-d', 'dist/test/')).toBeFalsy();
     expect(shell.test('-d', 'dist/types/')).toBeFalsy();
     expect(output.code).toBe(0);
   });
 
   it('should create the library correctly', async () => {
-    const output = smartExec('node ../../../dist/bundle.cjs build');
+    const output = run();
     const lib = await import(path.resolve('dist', 'output.js'));
     expect(lib.foo()).toBe('bar');
     expect(lib.sum(1, 2)).toBe(3);
@@ -47,7 +49,7 @@ describe('[bin.execution.build.custom]', () => {
   });
 
   it('should clean the dist directory before rebuilding', () => {
-    let output = smartExec('node ../../../dist/bundle.cjs build');
+    let output = run();
     expect(output.code).toBe(0);
 
     shell.mv('package.json', 'package-copy.json');

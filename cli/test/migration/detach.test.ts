@@ -18,26 +18,28 @@ describe('[bin.migration.detach]', () => {
     teardownStage(fixture);
   });
 
+  const run = () => smartExec('node ../../../dist/bundle.cjs migration detach');
+
   it('should have .huskyrc.json', () => {
-    const output = smartExec('node ../../../dist/bundle.cjs migration detach');
+    const output = run();
     expect(shell.test('-f', '.huskyrc.json')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should have .lintstagedrc.json', () => {
-    const output = smartExec('node ../../../dist/bundle.cjs migration detach');
+    const output = run();
     expect(shell.test('-f', '.lintstagedrc.json')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should have .prettierrc.json', () => {
-    const output = smartExec('node ../../../dist/bundle.cjs migration detach');
+    const output = run();
     expect(shell.test('-f', '.prettierrc.json')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should not have extends property inside .eslintrc.js', async () => {
-    const output = smartExec('node ../../../dist/bundle.cjs migration detach');
+    const output = run();
     const eslintConfig = await import(path.resolve('.eslintrc.js'));
     expect(eslintConfig).not.toHaveProperty('extends');
     expect(output.code).toBe(0);
