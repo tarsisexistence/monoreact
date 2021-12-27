@@ -63,7 +63,7 @@
     "fs-extra": "10.0.0",
     "identity-obj-proxy": "3.0.0",
     "jest": "27.4.5",
-    "node-sass": "7.0.0",
+    "node-sass": "7.0.1",
     "ora": "5.4.1",
     "postcss": "8.4.5",
     "postcss-nested": "5.0.6",
