@@ -1,8 +1,7 @@
 import * as shell from 'shelljs';
-import * as fs from 'fs-extra';
-import * as path from 'path';
 
 import { smartExec, setupStage, teardownStage } from '../../src/shared/utils';
+import { getJsonByRelativePath } from '../utils';
 
 shell.config.silent = false;
 const testDir = 'scaffolding';
@@ -19,42 +18,45 @@ describe('[bin.scaffolding.generate-specified-path]', () => {
     teardownStage(fixture);
   });
 
+  const run = () => smartExec('node ../../../dist/bundle.cjs generate myPackage packageDir --template basic');
+  const runInRoot = () => smartExec('node ../../../dist/bundle.cjs generate myPackage . --template basic');
+  const runNested = () =>
+    smartExec('node ../../../dist/bundle.cjs generate myPackage packages/components/helpers --template basic');
+
   it('should have generated package by the specified path + package name', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js generate myPackage packageDir --template basic');
+    const output = run();
     expect(shell.test('-d', 'packageDir/myPackage')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should have updated workspaces declaration', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js generate myPackage packageDir --template basic');
-    const rootPackageJson = fs.readJSONSync(path.resolve('package.json'));
+    const output = run();
+    const rootPackageJson = getJsonByRelativePath('package.json');
     expect(rootPackageJson.workspaces).toContain('packageDir/myPackage');
     expect(output.code).toBe(0);
   });
 
   it('should have generated package by the specified path + package name', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js generate myPackage packageDir --template basic');
+    const output = run();
     expect(shell.test('-d', 'packageDir/myPackage')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should generate package in the root', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js generate myPackage . --template basic');
+    const output = runInRoot();
     expect(shell.test('-d', 'myPackage')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should have updated workspaces declaration with package in the root', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js generate myPackage . --template basic');
-    const rootPackageJson = fs.readJSONSync(path.resolve('package.json'));
+    const output = runInRoot();
+    const rootPackageJson = getJsonByRelativePath('package.json');
     expect(rootPackageJson.workspaces).toContain('myPackage');
     expect(output.code).toBe(0);
   });
 
   it('should generate deep nested package', () => {
-    const output = smartExec(
-      'node ../../../dist/src/bin/index.js generate myPackage packages/components/helpers --template basic'
-    );
+    const output = runNested();
     expect(shell.test('-d', 'packages/components/helpers/myPackage')).toBeTruthy();
     expect(output.code).toBe(0);
   });

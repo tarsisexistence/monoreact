@@ -3,9 +3,9 @@
   "version": "0.31.0",
   "description": "React workspaces implementation",
   "license": "MIT",
-  "main": "./dist/src/bin/index.js",
+  "main": "./dist/bundle.cjs",
   "bin": {
-    "monoreact": "./dist/src/bin/index.js"
+    "monoreact": "./dist/bundle.cjs"
   },
   "author": {
     "email": "tarsis.maksym@gmail.com",
@@ -19,8 +19,8 @@
   "homepage": "https://github.com/untaggable/monoreact#readme",
   "bugs": "https://github.com/untaggable/monoreact/issues",
   "scripts": {
-    "start": "yarn build --watch",
-    "build": "tsc -p tsconfig.json",
+    "start": "yarn build -w",
+    "build": "rollup -c rollup.config.js",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "test": "jest",
     "prepublishOnly": "yarn build && yarn test"
@@ -96,6 +96,11 @@
     "@types/react": "17.0.38",
     "@types/sade": "1.7.4",
     "@types/shelljs": "0.8.10",
+    "esbuild": "0.14.5",
+    "rollup-plugin-esbuild": "4.7.2",
+    "rollup-plugin-node-builtins": "2.1.2",
+    "rollup-plugin-node-globals": "1.4.0",
+    "rollup-plugin-preserve-shebangs": "^0.2.0",
     "yarn": "1.22.17"
   },
   "publishConfig": {

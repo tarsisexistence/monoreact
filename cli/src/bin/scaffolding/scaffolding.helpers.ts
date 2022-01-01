@@ -4,7 +4,7 @@ import { exec, ShellString } from 'shelljs';
 import { Input } from 'enquirer';
 
 import { PACKAGE_JSON } from '../../shared/constants/package.const';
-import { getNpmAuthorName } from '../../shared/utils';
+import { getNpmAuthorName, getTemplatePath } from '../../shared/utils';
 
 export const sortPackageJson = (): ShellString => exec('npx sort-package-json', { silent: true });
 
@@ -38,8 +38,7 @@ export const copyTemplate = ({
   dir: string;
   template: CLI.Setup.GenerateOptionType | CLI.Setup.NewOptionType;
   bin: 'generate' | 'new';
-}): Promise<void> =>
-  fs.copy(path.resolve(__dirname, `../../../../templates/${bin}/${template}`), dir, { overwrite: false });
+}): Promise<void> => fs.copy(getTemplatePath(bin, template), dir, { overwrite: false });
 
 export const preventFolderCollisions = async ({
   basePath,

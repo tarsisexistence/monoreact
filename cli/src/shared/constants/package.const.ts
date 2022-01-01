@@ -4,10 +4,11 @@ export const PACKAGE_JSON = 'package.json';
 export const TSCONFIG_JSON = 'tsconfig.json';
 
 export const BASE_PACKAGE_SCRIPTS: CLI.Package.Scripts = {
-  start: 'monoreact watch',
-  build: 'monoreact build',
-  test: 'monoreact test --passWithNoTests',
-  lint: 'monoreact lint "src/**/*.{js,jsx,ts,tsx}"',
+  // TODO: run npx under the hood if monoreact command not found
+  start: 'npx monoreact watch',
+  build: 'npx monoreact build',
+  test: 'npx monoreact test --passWithNoTests',
+  lint: 'npx monoreact lint "src/**/*.{js,jsx,ts,tsx}"',
   prepublishOnly: 'yarn build'
 } as const;
 

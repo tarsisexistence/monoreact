@@ -17,13 +17,15 @@ describe('[bin.execution.workspaces-build-default]', () => {
     teardownStage(fixture);
   });
 
+  const run = () => smartExec('node ../../../dist/bundle.cjs workspaces build');
+
   it('should compile packages', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js workspaces build');
+    const output = run();
     expect(output.code).toBe(0);
   });
 
   it('should have compiled output', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js workspaces build');
+    const output = run();
     expect(shell.test('-d', 'packages/workspaces-example-1/dist')).toBeTruthy();
     expect(shell.test('-d', 'packages/workspaces-example-2/dist')).toBeTruthy();
     expect(output.code).toBe(0);

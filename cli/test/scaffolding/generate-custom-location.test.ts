@@ -1,8 +1,7 @@
 import * as shell from 'shelljs';
-import * as path from 'path';
-import * as fs from 'fs-extra';
 
 import { smartExec, setupStage, teardownStage } from '../../src/shared/utils';
+import { getJsonByRelativePath } from '../utils';
 
 shell.config.silent = false;
 
@@ -19,15 +18,17 @@ describe('[bin.scaffolding.generate-custom-location]', () => {
     teardownStage(fixture);
   });
 
+  const run = () => smartExec('node ../../../dist/bundle.cjs generate myPackage --template basic');
+
   it('should have not default packages location', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js generate myPackage --template basic');
+    const output = run();
     expect(shell.test('-d', 'workspace-packages/myPackage')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should update workspaces declaration', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js generate myPackage --template basic');
-    const rootPackageJson = fs.readJSONSync(path.resolve('package.json'));
+    const output = run();
+    const rootPackageJson = getJsonByRelativePath('package.json');
     expect(rootPackageJson.workspaces).toContain('workspace-packages/myPackage');
     expect(output.code).toBe(0);
   });

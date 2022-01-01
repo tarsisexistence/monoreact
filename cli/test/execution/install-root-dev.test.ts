@@ -3,6 +3,7 @@ import * as fs from 'fs-extra';
 import * as path from 'path';
 
 import { smartExec, setupStage, teardownStage } from '../../src/shared/utils';
+import { getJsonByRelativePath } from '../utils';
 
 shell.config.silent = false;
 
@@ -20,17 +21,18 @@ describe.skip('[bin.execution.install.root.dev]', () => {
     teardownStage(fixture);
   });
 
+  const run = () => smartExec('node ../../../dist/bundle.cjs install monoreact routeshub -D');
+
   it('should install only dev dependencies in the root', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js install monoreact routeshub -D');
-    const cwd = process.cwd();
-    const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
+    const output = run();
+    const rootPkg = getJsonByRelativePath('package.json');
     expect(rootPkg.devDependencies).toHaveProperty('monoreact');
     expect(rootPkg.devDependencies).toHaveProperty('routeshub');
     expect(output.code).toBe(0);
   });
 
   it('should install nothing but dev dependencies in the root', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js install monoreact routeshub -D');
+    const output = run();
     const cwd = process.cwd();
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
     const packagePkg = fs.readJSONSync(path.resolve(cwd, 'packages', 'install-example', 'package.json'));

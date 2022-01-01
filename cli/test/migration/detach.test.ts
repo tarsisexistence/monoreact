@@ -1,7 +1,7 @@
 import * as shell from 'shelljs';
-import * as path from 'path';
 
 import { smartExec, setupStage, teardownStage } from '../../src/shared/utils';
+import { getRelativePath } from '../utils';
 
 shell.config.silent = false;
 
@@ -18,27 +18,29 @@ describe('[bin.migration.detach]', () => {
     teardownStage(fixture);
   });
 
+  const run = () => smartExec('node ../../../dist/bundle.cjs migration detach');
+
   it('should have .huskyrc.json', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js migration detach');
+    const output = run();
     expect(shell.test('-f', '.huskyrc.json')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should have .lintstagedrc.json', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js migration detach');
+    const output = run();
     expect(shell.test('-f', '.lintstagedrc.json')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should have .prettierrc.json', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js migration detach');
+    const output = run();
     expect(shell.test('-f', '.prettierrc.json')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should not have extends property inside .eslintrc.js', async () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js migration detach');
-    const eslintConfig = await import(path.resolve('.eslintrc.js'));
+    const output = run();
+    const eslintConfig = await import(getRelativePath('.eslintrc.js'));
     expect(eslintConfig).not.toHaveProperty('extends');
     expect(output.code).toBe(0);
   });

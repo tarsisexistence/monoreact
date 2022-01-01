@@ -20,11 +20,13 @@ describe.skip('[bin.execution.install.package.dev]', () => {
     teardownStage(fixture);
   });
 
+  const run = () => smartExec('node ../../../../../dist/bundle.cjs install monoreact routeshub -D');
+
   it('should install dev dependencies for package and root', () => {
     const cwd = process.cwd();
     const packageDir = path.resolve(cwd, 'packages', 'install-example');
     shell.cd(packageDir);
-    const output = smartExec('node ../../../../../dist/src/bin/index.js install monoreact routeshub -D');
+    const output = run();
     shell.cd(cwd);
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
     const packagePkg = fs.readJSONSync(path.resolve(packageDir, 'package.json'));
@@ -39,7 +41,7 @@ describe.skip('[bin.execution.install.package.dev]', () => {
     const cwd = process.cwd();
     const packageDir = path.resolve(cwd, 'packages', 'install-example');
     shell.cd(packageDir);
-    const output = smartExec('node ../../../../../dist/src/bin/index.js install monoreact routeshub -D');
+    const output = run();
     shell.cd(cwd);
     const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
     const packagePkg = fs.readJSONSync(path.resolve(packageDir, 'package.json'));

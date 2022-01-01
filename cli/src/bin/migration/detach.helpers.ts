@@ -3,7 +3,7 @@ import path from 'path';
 
 import { migrationSetup } from './setup';
 import { PACKAGE_JSON, TSCONFIG_JSON } from '../../shared/constants/package.const';
-import { readPackageJson, readTsconfigJson } from '../../shared/utils/fs.utils';
+import { getTemplatePath, readPackageJson, readTsconfigJson } from '../../shared/utils/fs.utils';
 
 const removeNestedNodeModulesTypes = (typeRoots: string[] | undefined): string[] => {
   const types = 'node_modules/@types';
@@ -51,7 +51,7 @@ export const detachPackageJsonFromWorkspace = async (dir: string): Promise<void>
 };
 
 export const copyDetachTemplate = (dir: string): Promise<void> =>
-  fs.copy(path.resolve(__dirname, '../../../../templates/migration/detach'), dir, {
+  fs.copy(getTemplatePath('migration', 'detach'), dir, {
     overwrite: true,
     errorOnExist: false
   });

@@ -17,20 +17,22 @@ describe('[bin.execution.build.jsx]', () => {
     teardownStage(fixture);
   });
 
+  const run = () => smartExec('node ../../../dist/bundle.cjs build');
+
   it('should compile files into a dist directory', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js build');
+    const output = run();
     expect(shell.test('-d', 'dist')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should compile files into bundle.js', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js build');
+    const output = run();
     expect(shell.test('-f', 'dist/bundle.js')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should compile declaration typescript files for js/jsx/ts/tsx', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js build');
+    const output = run();
 
     expect(shell.test('-f', 'dist/publicApi.d.ts')).toBeTruthy();
     expect(shell.test('-f', 'dist/utils/capitalize.d.ts')).toBeTruthy();
@@ -43,7 +45,7 @@ describe('[bin.execution.build.jsx]', () => {
   });
 
   it('should compile sourcemaps for bundle.js', () => {
-    const output = smartExec('node ../../../dist/src/bin/index.js build');
+    const output = run();
     expect(shell.test('-f', 'dist/bundle.js.map')).toBeTruthy();
     expect(output.code).toBe(0);
   });
