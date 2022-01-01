@@ -40,7 +40,7 @@ describe('[bin.migration.detach]', () => {
 
   it('should not have extends property inside .eslintrc.js', async () => {
     const output = run();
-    const eslintConfig = await import(path.resolve('.eslintrc.js'));
+    const eslintConfig = await import(path.resolve(process.cwd(), '.eslintrc.js'));
     expect(eslintConfig).not.toHaveProperty('extends');
     expect(output.code).toBe(0);
   });
