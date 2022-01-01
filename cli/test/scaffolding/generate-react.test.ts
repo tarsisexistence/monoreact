@@ -42,14 +42,14 @@ describe('[bin.scaffolding.generate-react]', () => {
 
   it('should have react as peer dependency', () => {
     const output = run();
-    const packageJson = fs.readJSONSync(path.resolve('packages', 'myReactPackage', 'package.json'));
+    const packageJson = fs.readJSONSync(path.resolve(process.cwd(), 'packages', 'myReactPackage', 'package.json'));
     expect(packageJson.peerDependencies).toHaveProperty('react');
     expect(output.code).toBe(0);
   });
 
   it('should not have other default dependencies', () => {
     const output = run();
-    const packageJson = fs.readJSONSync(path.resolve('packages', 'myReactPackage', 'package.json'));
+    const packageJson = fs.readJSONSync(path.resolve(process.cwd(), 'packages', 'myReactPackage', 'package.json'));
     const peerDepsWithoutReact = Object.keys(packageJson.peerDependencies).filter(dep => dep !== 'react');
     expect(peerDepsWithoutReact.length).toBe(0);
     expect(packageJson).not.toHaveProperty('dependencies');

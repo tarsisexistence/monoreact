@@ -32,7 +32,7 @@ describe('[bin.scaffolding.generate-specified-path]', () => {
 
   it('should have updated workspaces declaration', () => {
     const output = run();
-    const rootPackageJson = fs.readJSONSync(path.resolve('package.json'));
+    const rootPackageJson = fs.readJSONSync(path.resolve(process.cwd(), 'package.json'));
     expect(rootPackageJson.workspaces).toContain('packageDir/myPackage');
     expect(output.code).toBe(0);
   });
@@ -51,7 +51,7 @@ describe('[bin.scaffolding.generate-specified-path]', () => {
 
   it('should have updated workspaces declaration with package in the root', () => {
     const output = runInRoot();
-    const rootPackageJson = fs.readJSONSync(path.resolve('package.json'));
+    const rootPackageJson = fs.readJSONSync(path.resolve(process.cwd(), 'package.json'));
     expect(rootPackageJson.workspaces).toContain('myPackage');
     expect(output.code).toBe(0);
   });

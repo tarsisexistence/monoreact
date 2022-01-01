@@ -65,21 +65,21 @@ describe('[bin.scaffolding.generate-default]', () => {
 
   it('should update workspaces declaration', () => {
     const output = run();
-    const rootPackageJson = fs.readJSONSync(path.resolve('package.json'));
+    const rootPackageJson = fs.readJSONSync(path.resolve(process.cwd(), 'package.json'));
     expect(rootPackageJson.workspaces).toContain('packages/myPackage');
     expect(output.code).toBe(0);
   });
 
   it('should have correct namespace and package name in the package.json', () => {
     const output = run();
-    const packageJson = fs.readJSONSync(path.resolve('packages', 'myPackage', 'package.json'));
+    const packageJson = fs.readJSONSync(path.resolve(process.cwd(), 'packages', 'myPackage', 'package.json'));
     expect(packageJson.name).toBe('@scaffolding-generate/mypackage');
     expect(output.code).toBe(0);
   });
 
   it('should have necessary package.json monoreact information', () => {
     const output = run();
-    const packageJson = fs.readJSONSync(path.resolve('packages', 'myPackage', 'package.json'));
+    const packageJson = fs.readJSONSync(path.resolve(process.cwd(), 'packages', 'myPackage', 'package.json'));
     expect(packageJson.private).toBeFalsy();
     expect(packageJson.workspace).toBeTruthy();
     expect(output.code).toBe(0);
@@ -87,7 +87,7 @@ describe('[bin.scaffolding.generate-default]', () => {
 
   it('should have defined author name in package.json', () => {
     const output = run();
-    const packageJson = fs.readJSONSync(path.resolve('packages', 'myPackage', 'package.json'));
+    const packageJson = fs.readJSONSync(path.resolve(process.cwd(), 'packages', 'myPackage', 'package.json'));
     expect(packageJson).toHaveProperty('author');
     expect(packageJson.author.length).toBeGreaterThan(0);
     expect(output.code).toBe(0);
@@ -95,7 +95,7 @@ describe('[bin.scaffolding.generate-default]', () => {
 
   it('should have necessary package.json info for bundling', () => {
     const output = run();
-    const packageJson = fs.readJSONSync(path.resolve('packages', 'myPackage', 'package.json'));
+    const packageJson = fs.readJSONSync(path.resolve(process.cwd(), 'packages', 'myPackage', 'package.json'));
     expect(packageJson.module).toBe('dist/bundle.js');
     expect(packageJson.source).toBe('src/publicApi.ts');
     expect(packageJson.types).toBe('dist/publicApi.d.ts');
@@ -104,7 +104,7 @@ describe('[bin.scaffolding.generate-default]', () => {
 
   it('should have other package properties', () => {
     const output = run();
-    const packageJson = fs.readJSONSync(path.resolve('packages', 'myPackage', 'package.json'));
+    const packageJson = fs.readJSONSync(path.resolve(process.cwd(), 'packages', 'myPackage', 'package.json'));
     expect(packageJson.scripts).toHaveProperty('build');
     expect(packageJson.scripts).toHaveProperty('start');
     expect(packageJson.scripts).toHaveProperty('lint');

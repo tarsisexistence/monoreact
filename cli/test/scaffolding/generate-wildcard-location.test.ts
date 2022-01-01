@@ -29,7 +29,7 @@ describe('[bin.scaffolding.generate-wildcard-location]', () => {
 
   it('should not update workspaces declaration when wildcard covers that path', () => {
     const output = run();
-    const rootPackageJson = fs.readJSONSync(path.resolve('package.json'));
+    const rootPackageJson = fs.readJSONSync(path.resolve(process.cwd(), 'package.json'));
     expect(rootPackageJson.workspaces).not.toContain('myPackage');
     expect(output.code).toBe(0);
   });

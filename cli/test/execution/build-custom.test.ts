@@ -42,7 +42,7 @@ describe('[bin.execution.build.custom]', () => {
 
   it('should create the library correctly', async () => {
     const output = run();
-    const lib = await import(path.resolve('dist', 'output.js'));
+    const lib = await import(path.resolve(process.cwd(), 'dist', 'output.js'));
     expect(lib.foo()).toBe('bar');
     expect(lib.sum(1, 2)).toBe(3);
     expect(output.code).toBe(0);

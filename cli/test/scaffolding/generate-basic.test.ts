@@ -42,7 +42,7 @@ describe('[bin.scaffolding.generate-basic]', () => {
 
   it('should not have any dependency', () => {
     const output = run();
-    const packageJson = fs.readJSONSync(path.resolve('packages', 'myBasicPackage', 'package.json'));
+    const packageJson = fs.readJSONSync(path.resolve(process.cwd(), 'packages', 'myBasicPackage', 'package.json'));
     expect(packageJson).not.toHaveProperty('dependencies');
     expect(packageJson).not.toHaveProperty('devDependencies');
     expect(packageJson).not.toHaveProperty('peerDependencies');
