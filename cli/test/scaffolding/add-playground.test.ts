@@ -7,11 +7,12 @@ shell.config.silent = false;
 
 const testDir = 'scaffolding';
 const fixture = 'add-playground';
+const template = 'add';
 
 describe('[bin.scaffolding.add-playground]', () => {
   beforeAll(() => {
     teardownStage(fixture);
-    setupStage({ testDir, fixture });
+    setupStage({ testDir, fixture, template });
   });
 
   afterAll(() => {

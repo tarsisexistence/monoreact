@@ -7,11 +7,12 @@ shell.config.silent = false;
 
 const testDir = 'scaffolding';
 const fixture = 'add-docz';
+const template = 'add';
 
 describe('[bin.scaffolding.add-docz]', () => {
   beforeAll(() => {
     teardownStage(fixture);
-    setupStage({ testDir, fixture });
+    setupStage({ testDir, fixture, template });
   });
 
   afterAll(() => {
