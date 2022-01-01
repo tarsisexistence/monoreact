@@ -3,6 +3,7 @@ import * as fs from 'fs-extra';
 import * as path from 'path';
 
 import { smartExec, setupStage, teardownStage } from '../../src/shared/utils';
+import { getJsonByRelativePath } from '../utils';
 
 shell.config.silent = false;
 
@@ -24,8 +25,7 @@ describe.skip('[bin.execution.install.root.dev]', () => {
 
   it('should install only dev dependencies in the root', () => {
     const output = run();
-    const cwd = process.cwd();
-    const rootPkg = fs.readJSONSync(path.resolve(cwd, 'package.json'));
+    const rootPkg = getJsonByRelativePath('package.json');
     expect(rootPkg.devDependencies).toHaveProperty('monoreact');
     expect(rootPkg.devDependencies).toHaveProperty('routeshub');
     expect(output.code).toBe(0);

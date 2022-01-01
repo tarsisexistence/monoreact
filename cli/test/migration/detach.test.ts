@@ -1,7 +1,7 @@
 import * as shell from 'shelljs';
-import * as path from 'path';
 
 import { smartExec, setupStage, teardownStage } from '../../src/shared/utils';
+import { getRelativePath } from '../utils';
 
 shell.config.silent = false;
 
@@ -40,7 +40,7 @@ describe('[bin.migration.detach]', () => {
 
   it('should not have extends property inside .eslintrc.js', async () => {
     const output = run();
-    const eslintConfig = await import(path.resolve(process.cwd(), '.eslintrc.js'));
+    const eslintConfig = await import(getRelativePath('.eslintrc.js'));
     expect(eslintConfig).not.toHaveProperty('extends');
     expect(output.code).toBe(0);
   });

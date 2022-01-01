@@ -1,8 +1,7 @@
 import * as shell from 'shelljs';
-import * as fs from 'fs-extra';
-import * as path from 'path';
 
 import { smartExec, setupStage, teardownStage } from '../../src/shared/utils';
+import { getJsonByRelativePath } from '../utils';
 
 shell.config.silent = false;
 
@@ -19,22 +18,24 @@ describe('[bin.scaffolding.add-docz]', () => {
     teardownStage(fixture);
   });
 
+  const run = () => smartExec('node ../../../dist/bundle.cjs add docz');
+
   it('should have doczrc.js', () => {
-    const output = smartExec('node ../../../dist/bundle.cjs add docz');
+    const output = run();
     expect(shell.test('-f', 'doczrc.js')).toBeTruthy();
     expect(output.code).toBe(0);
   });
 
   it('should have bootstrap script in the package.json', () => {
-    const output = smartExec('node ../../../dist/bundle.cjs add docz');
-    const packageJson = fs.readJSONSync(path.resolve(process.cwd(), './package.json'));
+    const output = run();
+    const packageJson = getJsonByRelativePath('./package.json');
     expect(packageJson.scripts).toHaveProperty('start:docz');
     expect(output.code).toBe(0);
   });
 
   it('should have correct bootstrap script value', () => {
-    const output = smartExec('node ../../../dist/bundle.cjs add docz');
-    const packageJson = fs.readJSONSync(path.resolve(process.cwd(), './package.json'));
+    const output = run();
+    const packageJson = getJsonByRelativePath('./package.json');
     expect(packageJson.scripts['start:docz']).toBe('docz dev -p 6010');
     expect(output.code).toBe(0);
   });

@@ -1,8 +1,7 @@
 import * as shell from 'shelljs';
-import * as path from 'path';
-import * as fs from 'fs-extra';
 
 import { smartExec, setupStage, teardownStage } from '../../src/shared/utils';
+import { getJsonByRelativePath } from '../utils';
 
 shell.config.silent = false;
 
@@ -29,7 +28,7 @@ describe('[bin.scaffolding.generate-wildcard-location]', () => {
 
   it('should not update workspaces declaration when wildcard covers that path', () => {
     const output = run();
-    const rootPackageJson = fs.readJSONSync(path.resolve(process.cwd(), 'package.json'));
+    const rootPackageJson = getJsonByRelativePath('package.json');
     expect(rootPackageJson.workspaces).not.toContain('myPackage');
     expect(output.code).toBe(0);
   });

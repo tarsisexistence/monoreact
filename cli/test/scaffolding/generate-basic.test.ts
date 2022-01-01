@@ -1,8 +1,7 @@
 import * as shell from 'shelljs';
-import * as fs from 'fs-extra';
-import * as path from 'path';
 
 import { smartExec, setupStage, teardownStage } from '../../src/shared/utils';
+import { getJsonByRelativePath } from '../utils';
 
 shell.config.silent = false;
 
@@ -42,7 +41,7 @@ describe('[bin.scaffolding.generate-basic]', () => {
 
   it('should not have any dependency', () => {
     const output = run();
-    const packageJson = fs.readJSONSync(path.resolve(process.cwd(), 'packages', 'myBasicPackage', 'package.json'));
+    const packageJson = getJsonByRelativePath('packages', 'myBasicPackage', 'package.json');
     expect(packageJson).not.toHaveProperty('dependencies');
     expect(packageJson).not.toHaveProperty('devDependencies');
     expect(packageJson).not.toHaveProperty('peerDependencies');

@@ -1,8 +1,7 @@
 import * as shell from 'shelljs';
-import * as fs from 'fs-extra';
-import * as path from 'path';
 
 import { smartExec, setupStage, teardownStage } from '../../src/shared/utils';
+import { getJsonByRelativePath } from '../utils';
 
 shell.config.silent = false;
 const testDir = 'scaffolding';
@@ -32,7 +31,7 @@ describe('[bin.scaffolding.generate-specified-path]', () => {
 
   it('should have updated workspaces declaration', () => {
     const output = run();
-    const rootPackageJson = fs.readJSONSync(path.resolve(process.cwd(), 'package.json'));
+    const rootPackageJson = getJsonByRelativePath('package.json');
     expect(rootPackageJson.workspaces).toContain('packageDir/myPackage');
     expect(output.code).toBe(0);
   });
@@ -51,7 +50,7 @@ describe('[bin.scaffolding.generate-specified-path]', () => {
 
   it('should have updated workspaces declaration with package in the root', () => {
     const output = runInRoot();
-    const rootPackageJson = fs.readJSONSync(path.resolve(process.cwd(), 'package.json'));
+    const rootPackageJson = getJsonByRelativePath('package.json');
     expect(rootPackageJson.workspaces).toContain('myPackage');
     expect(output.code).toBe(0);
   });

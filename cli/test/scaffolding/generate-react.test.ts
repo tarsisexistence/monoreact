@@ -1,8 +1,7 @@
 import * as shell from 'shelljs';
-import * as fs from 'fs-extra';
-import * as path from 'path';
 
 import { smartExec, setupStage, teardownStage } from '../../src/shared/utils';
+import { getJsonByRelativePath } from '../utils';
 
 shell.config.silent = false;
 
@@ -42,14 +41,14 @@ describe('[bin.scaffolding.generate-react]', () => {
 
   it('should have react as peer dependency', () => {
     const output = run();
-    const packageJson = fs.readJSONSync(path.resolve(process.cwd(), 'packages', 'myReactPackage', 'package.json'));
+    const packageJson = getJsonByRelativePath('packages', 'myReactPackage', 'package.json');
     expect(packageJson.peerDependencies).toHaveProperty('react');
     expect(output.code).toBe(0);
   });
 
   it('should not have other default dependencies', () => {
     const output = run();
-    const packageJson = fs.readJSONSync(path.resolve(process.cwd(), 'packages', 'myReactPackage', 'package.json'));
+    const packageJson = getJsonByRelativePath('packages', 'myReactPackage', 'package.json');
     const peerDepsWithoutReact = Object.keys(packageJson.peerDependencies).filter(dep => dep !== 'react');
     expect(peerDepsWithoutReact.length).toBe(0);
     expect(packageJson).not.toHaveProperty('dependencies');

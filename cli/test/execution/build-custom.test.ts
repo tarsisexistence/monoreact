@@ -1,7 +1,7 @@
 import * as shell from 'shelljs';
-import * as path from 'path';
 
 import { smartExec, setupStage, teardownStage } from '../../src/shared/utils';
+import { getRelativePath } from '../utils';
 
 shell.config.silent = false;
 
@@ -42,7 +42,7 @@ describe('[bin.execution.build.custom]', () => {
 
   it('should create the library correctly', async () => {
     const output = run();
-    const lib = await import(path.resolve(process.cwd(), 'dist', 'output.js'));
+    const lib = await import(getRelativePath('dist', 'output.js'));
     expect(lib.foo()).toBe('bar');
     expect(lib.sum(1, 2)).toBe(3);
     expect(output.code).toBe(0);
