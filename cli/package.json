@@ -96,11 +96,11 @@
     "@types/react": "17.0.38",
     "@types/sade": "1.7.4",
     "@types/shelljs": "0.8.10",
-    "esbuild": "0.14.5",
-    "rollup-plugin-esbuild": "4.7.2",
+    "esbuild": "0.14.10",
+    "rollup-plugin-esbuild": "4.8.2",
     "rollup-plugin-node-builtins": "2.1.2",
     "rollup-plugin-node-globals": "1.4.0",
-    "rollup-plugin-preserve-shebangs": "^0.2.0",
+    "rollup-plugin-preserve-shebangs": "0.2.0",
     "yarn": "1.22.17"
   },
   "publishConfig": {
