@@ -60,7 +60,7 @@
     "lint-staged": "12.1.5",
     "monoreact": "*",
     "prettier": "2.5.1",
-    "prop-types": "15.8.0",
+    "prop-types": "15.8.1",
     "stylelint": "14.2.0",
     "stylelint-config-recommended": "6.0.0",
     "tslib": "2.3.1",
