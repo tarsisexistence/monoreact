@@ -43,7 +43,7 @@
     "@rollup/plugin-url": "6.1.0",
     "@typescript-eslint/eslint-plugin": "5.9.0",
     "@typescript-eslint/parser": "5.9.0",
-    "autoprefixer": "10.4.1",
+    "autoprefixer": "10.4.2",
     "babel-jest": "27.4.6",
     "colorette": "2.0.16",
     "cssnano": "5.0.15",
