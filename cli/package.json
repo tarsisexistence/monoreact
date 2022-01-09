@@ -1,6 +1,6 @@
 {
   "name": "monoreact",
-  "version": "0.32.0",
+  "version": "0.32.3",
   "description": "React workspaces implementation",
   "license": "MIT",
   "main": "./dist/bundle.cjs",
@@ -25,6 +25,10 @@
     "test": "jest",
     "prepublishOnly": "yarn build && yarn test"
   },
+  "files": [
+    "index.d.ts",
+    "templates/**/*"
+  ],
   "dependencies": {
     "@ampproject/rollup-plugin-closure-compiler": "0.27.0",
     "@babel/cli": "7.16.7",
