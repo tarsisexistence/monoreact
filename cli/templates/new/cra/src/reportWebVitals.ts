@@ -10,8 +10,10 @@ const reportWebVitals = (onPerfEntry?: ReportHandler) => {
         getLCP(onPerfEntry);
         getTTFB(onPerfEntry);
 
+        // eslint-disable-next-line sonarjs/no-redundant-jump
         return;
       })
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
       .catch(() => {});
   }
 };
