@@ -1,6 +1,6 @@
 {
   "name": "monoreact",
-  "version": "0.32.4",
+  "version": "0.33.1",
   "description": "React workspaces implementation",
   "license": "MIT",
   "main": "./dist/bundle.cjs",
@@ -17,7 +17,8 @@
     "url": "https://github.com/untaggable/monoreact.git"
   },
   "files": [
-    "index.d.ts"
+    "index.d.ts",
+    "templates/**/*"
   ],
   "homepage": "https://github.com/untaggable/monoreact#readme",
   "bugs": "https://github.com/untaggable/monoreact/issues",
