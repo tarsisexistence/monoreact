@@ -1,6 +1,6 @@
 {
   "name": "monoreact",
-  "version": "0.32.3",
+  "version": "0.32.4",
   "description": "React workspaces implementation",
   "license": "MIT",
   "main": "./dist/bundle.cjs",
@@ -16,6 +16,9 @@
     "type": "git",
     "url": "https://github.com/untaggable/monoreact.git"
   },
+  "files": [
+    "index.d.ts"
+  ],
   "homepage": "https://github.com/untaggable/monoreact#readme",
   "bugs": "https://github.com/untaggable/monoreact/issues",
   "scripts": {
@@ -25,10 +28,6 @@
     "test": "jest",
     "prepublishOnly": "yarn build && yarn test"
   },
-  "files": [
-    "index.d.ts",
-    "templates/**/*"
-  ],
   "dependencies": {
     "@ampproject/rollup-plugin-closure-compiler": "0.27.0",
     "@babel/cli": "7.16.7",
