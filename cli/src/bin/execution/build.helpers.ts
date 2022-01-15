@@ -14,8 +14,7 @@ export const buildPackages = async (dir: string): Promise<void> => {
   const buildConfig = createBuildConfig({
     tsconfigJson,
     packageJson,
-    // TODO: enable it later. There is regression with infinite build with animated random chars without end :c https://github.com/untaggable/monoreact/issues/1172
-    displayFilesize: false,
+    displayFilesize: true,
     runEslint: false,
     useClosure: false
   });
