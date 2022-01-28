@@ -7210,15 +7210,15 @@ grommet-styles@^0.2.0:
   resolved "https://registry.yarnpkg.com/grommet-styles/-/grommet-styles-0.2.0.tgz#b2eac2b7e2747cb523434d21728ce5234f8ce4f4"
   integrity sha512-0OMSYuGeyifYKpg4Gv2HzL8rUdd0ddnJ5LbCBKgDuloC71XIwr9g/Fxa6rs737MbPV7OZ4pEm4wvrjH4epzf1A==
 
-grommet@2.20.0:
-  version "2.20.0"
-  resolved "https://registry.yarnpkg.com/grommet/-/grommet-2.20.0.tgz#0711efbb0b44e70894aa133c7c1501924a9901ef"
-  integrity sha512-xnDf9o3o7NU62WAwNChBbgGRtVNslJldPRpdbdyzhx0f4PXQ1cwm73Rcbqzy8hB1CJKpYk+pOTmTNMFLsVZzOw==
+grommet@2.20.1:
+  version "2.20.1"
+  resolved "https://registry.yarnpkg.com/grommet/-/grommet-2.20.1.tgz#37cb83f263db2000ee2be6c7eaade0cb585dda0d"
+  integrity sha512-T3Fhf3oy8rMa4ADX4SWweeBwuBz0vWxMJ+eKF6OtA0boxYQS9413H9iU1UqoVQgJ47ST+KkpT75qti0L1oT+MA==
   dependencies:
     grommet-icons "^4.7.0"
     hoist-non-react-statics "^3.2.0"
     markdown-to-jsx "^7.1.5"
-    prop-types "^15.7.2"
+    prop-types "^15.8.1"
 
 gzip-size@^5.1.1:
   version "5.1.1"
@@ -11463,7 +11463,7 @@ prompts@^2.0.1, prompts@^2.4.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@15.8.1, prop-types@^15.7.2:
+prop-types@15.8.1, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
