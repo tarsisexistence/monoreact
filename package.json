@@ -23,8 +23,8 @@
     "ci": "yarn install && yarn add ./cli --D -W && yarn test"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "5.12.1",
-    "@typescript-eslint/parser": "5.12.1",
+    "@typescript-eslint/eslint-plugin": "5.24.0",
+    "@typescript-eslint/parser": "5.24.0",
     "eslint": "8.15.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-config-react-app": "6.0.0",
