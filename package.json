@@ -35,7 +35,7 @@
     "jscpd": "3.4.5",
     "lint-staged": "12.4.1",
     "monoreact": "*",
-    "prettier": "2.5.1",
+    "prettier": "2.6.2",
     "yarn": "1.22.18"
   },
   "resolutions": {
