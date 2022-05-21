@@ -59,7 +59,7 @@
     "jscpd": "3.4.5",
     "lint-staged": "12.4.1",
     "monoreact": "*",
-    "prettier": "2.5.1",
+    "prettier": "2.6.2",
     "prop-types": "15.8.1",
     "stylelint": "14.8.3",
     "stylelint-config-recommended": "7.0.0",
