@@ -101,7 +101,7 @@
     "@types/sade": "1.7.4",
     "@types/shelljs": "0.8.11",
     "esbuild": "0.14.39",
-    "rollup-plugin-esbuild": "4.8.2",
+    "rollup-plugin-esbuild": "4.9.1",
     "rollup-plugin-node-builtins": "2.1.2",
     "rollup-plugin-node-globals": "1.4.0",
     "rollup-plugin-preserve-shebangs": "0.2.0",
