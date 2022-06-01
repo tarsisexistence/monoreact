@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": false,
   "license": "MIT",
-  "author": "untaggable",
+  "author": "tarsinzer",
   "main": "dist/bundle.cjs.js",
   "module": "dist/bundle.js",
   "source": "src/publicApi.ts",

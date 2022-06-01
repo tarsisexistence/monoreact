@@ -9,19 +9,19 @@
   },
   "author": {
     "email": "tarsis.maksym@gmail.com",
-    "name": "Maksym Tarsis",
-    "url": "https://github.com/untaggable"
+    "name": "Max Tarsis",
+    "url": "https://github.com/tarsinzer"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/untaggable/monoreact.git"
+    "url": "https://github.com/tarsinzer/monoreact.git"
   },
   "files": [
     "index.d.ts",
     "templates/**/*"
   ],
-  "homepage": "https://github.com/untaggable/monoreact#readme",
-  "bugs": "https://github.com/untaggable/monoreact/issues",
+  "homepage": "https://github.com/tarsinzer/monoreact#readme",
+  "bugs": "https://github.com/tarsinzer/monoreact/issues",
   "scripts": {
     "start": "yarn build -w",
     "build": "rollup -c rollup.config.js",

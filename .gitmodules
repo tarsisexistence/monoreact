@@ -1,3 +1,3 @@
 [submodule "example-app/packages/example"]
 	path = example-app/packages/example
-	url = https://github.com/untaggable/monoreact-package-example
+	url = https://github.com/tarsinzer/monoreact-package-example

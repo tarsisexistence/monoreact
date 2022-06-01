@@ -6,7 +6,7 @@
   "author": {
     "name": "Maksym Tarsis",
     "email": "tarsis.maksym@gmail.com",
-    "url": "https://github.com/untaggable"
+    "url": "https://github.com/tarsinzer"
   },
   "main": "dist/bundle.cjs.js",
   "module": "dist/bundle.js",
