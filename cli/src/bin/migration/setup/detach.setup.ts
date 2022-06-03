@@ -12,7 +12,7 @@ export const detachSetup: CLI.Setup.MigrationOptions = {
     husky: '^4.3.5',
     'lint-staged': '^12.1.2',
     prettier: '^2.5.1',
-    tslib: '^2.3.1',
+    tslib: '^2.4.0',
     typescript: '^4.5.3'
   }
 };
