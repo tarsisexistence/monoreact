@@ -56,7 +56,7 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.HostPackageJSON = {
   dependencies: {
     react: '^17.0.2',
     'react-dom': '^17.0.2',
-    'react-scripts': '5.0.0'
+    'react-scripts': '5.0.1'
   },
   devDependencies: {
     monoreact: 'latest',
@@ -65,8 +65,8 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.HostPackageJSON = {
     '@testing-library/user-event': '^13.5.0',
     'web-vitals': '^2.1.2',
     '@types/jest': '^27.0.3',
-    '@types/react': '^17.0.37',
-    '@types/react-dom': '^17.0.11',
+    '@types/react': '^17.0.45',
+    '@types/react-dom': '^17.0.17',
     '@types/node': packageJson.devDependencies['@types/node'],
     '@typescript-eslint/eslint-plugin': '5.7.0',
     '@typescript-eslint/parser': '5.7.0',
@@ -81,8 +81,8 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.HostPackageJSON = {
     'eslint-plugin-sonarjs': '0.11.0',
     'eslint-plugin-jsx-a11y': packageJson.dependencies['eslint-plugin-jsx-a11y'],
     husky: '4.3.8',
-    'lint-staged': '12.1.2',
-    prettier: '2.5.1',
+    'lint-staged': '12.5.0',
+    prettier: '2.6.2',
     stylelint: '14.1.0',
     'stylelint-config-recommended': '3.0.0',
     tslib: packageJson.dependencies.tslib,
