@@ -72,6 +72,7 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.HostPackageJSON = {
     '@typescript-eslint/parser': '5.7.0',
     'eslint-config-prettier': packageJson.dependencies['eslint-config-prettier'],
     'eslint-config-react-app': packageJson.dependencies['eslint-config-react-app'],
+    'eslint-plugin-compat': packageJson.dependencies['eslint-plugin-compat'],
     'eslint-plugin-prettier': packageJson.dependencies['eslint-plugin-prettier'],
     'eslint-plugin-promise': '5.2.0',
     'eslint-plugin-react': packageJson.dependencies['eslint-plugin-react'],
