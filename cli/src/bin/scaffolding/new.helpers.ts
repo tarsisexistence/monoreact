@@ -36,7 +36,7 @@ export const resolveOptions = async ({
   const shouldChooseDifferentPath = fs.existsSync(dir) && (await chooseDifferentPathConfirmation(dir)) === 'Yes';
 
   if (!shouldChooseDifferentPath) {
-    return { projectDir: dir, projectName: name };
+    return { projectDir: dir, projectName: dir.split(path.sep).pop() ?? 'project' };
   }
 
   const projectName = await getProjectName(name);
