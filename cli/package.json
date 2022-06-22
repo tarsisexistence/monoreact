@@ -49,7 +49,7 @@
     "@typescript-eslint/parser": "5.28.0",
     "autoprefixer": "10.4.7",
     "babel-jest": "27.5.1",
-    "colorette": "2.0.17",
+    "colorette": "2.0.19",
     "cssnano": "5.1.11",
     "enquirer": "2.3.6",
     "eslint": "8.18.0",
