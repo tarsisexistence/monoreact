@@ -1,5 +1,5 @@
 import { pipe } from 'ramda';
-import { cyan, blue, red, green, yellow, bold, inverse, underline } from 'colorette';
+import { cyan, blue, red, green, yellow, bold, inverse, underline } from 'picocolors';
 
 export const color = {
   info: (msg: string): string => pipe(bold, cyan)(msg),
