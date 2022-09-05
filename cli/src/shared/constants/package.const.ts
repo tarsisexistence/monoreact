@@ -54,8 +54,8 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.HostPackageJSON = {
     stylelint: 'stylelint "src/**/*.{css,sass,scss}"'
   },
   dependencies: {
-    react: '^17.0.2',
-    'react-dom': '^17.0.2',
+    react: '^18.2.0',
+    'react-dom': '^18.2.0',
     'react-scripts': '5.0.1'
   },
   devDependencies: {
@@ -64,9 +64,9 @@ export const WORKSPACE_ROOT_PACKAGE_JSON: CLI.Package.HostPackageJSON = {
     '@testing-library/react': '^12.1.2',
     '@testing-library/user-event': '^13.5.0',
     'web-vitals': '^2.1.2',
-    '@types/jest': '^27.0.3',
-    '@types/react': '^17.0.45',
-    '@types/react-dom': '^17.0.17',
+    '@types/jest': '^27.5.2',
+    '@types/react': '^18.0.18',
+    '@types/react-dom': '^18.0.6',
     '@types/node': packageJson.devDependencies['@types/node'],
     '@typescript-eslint/eslint-plugin': '5.7.0',
     '@typescript-eslint/parser': '5.7.0',
