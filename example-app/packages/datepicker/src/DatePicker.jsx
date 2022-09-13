@@ -83,6 +83,7 @@ export const DatePicker = props => {
         </thead>
         <tbody>
           {rows.map((row, i) => (
+            // eslint-disable-next-line react/no-array-index-key
             <tr key={i}>
               {row.map((d, i) => (
                 <DayCell
