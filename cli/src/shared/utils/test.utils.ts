@@ -23,7 +23,7 @@ export function smartExec(command: string, { noCache = false } = {}): shell.Shel
 }
 
 const ROOT_DIR = process.cwd();
-const STAGING_PATH = path.join(ROOT_DIR, 'test', '.staging');
+const STAGE_PATH = path.join(ROOT_DIR, 'test', '.stage');
 
 const getStageName = (fixtureName: string): string => `stage-${fixtureName}`;
 
@@ -36,7 +36,7 @@ export const setupStage = ({
   fixture: string;
   template?: string;
 }): void => {
-  const stagePath = path.join(STAGING_PATH, getStageName(fixture));
+  const stagePath = path.join(STAGE_PATH, getStageName(fixture));
   shell.mkdir(stagePath);
   shell.exec(`cp -a ${ROOT_DIR}/test/${testDir}/fixtures/${template}/. ${stagePath}/`);
   shell.cd(stagePath);
@@ -50,5 +50,5 @@ export const setupStage = ({
 
 export const teardownStage = (fixtureName: string): void => {
   shell.cd(ROOT_DIR);
-  shell.rm('-rf', path.join(STAGING_PATH, getStageName(fixtureName)));
+  shell.rm('-rf', path.join(STAGE_PATH, getStageName(fixtureName)));
 };
