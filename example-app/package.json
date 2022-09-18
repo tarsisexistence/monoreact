@@ -23,7 +23,7 @@
   "dependencies": {
     "@monoreact/package-example": "*",
     "@tarsis/datepicker": "*",
-    "classnames": "2.3.1",
+    "classnames": "2.3.2",
     "dayjs": "1.11.2",
     "grommet": "2.25.3",
     "grommet-icons": "4.7.0",
