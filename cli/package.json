@@ -100,7 +100,7 @@
     "@types/react": "18.0.19",
     "@types/sade": "1.7.4",
     "@types/shelljs": "0.8.11",
-    "esbuild": "0.15.7",
+    "esbuild": "0.15.9",
     "rollup-plugin-esbuild": "4.10.1",
     "rollup-plugin-node-builtins": "2.1.2",
     "rollup-plugin-node-globals": "1.4.0",
