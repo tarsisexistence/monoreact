@@ -51,7 +51,7 @@
     "babel-jest": "27.5.1",
     "cssnano": "5.1.13",
     "enquirer": "2.3.6",
-    "eslint": "8.23.1",
+    "eslint": "8.24.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-config-react-app": "6.0.0",
     "eslint-import-resolver-typescript": "3.5.1",
