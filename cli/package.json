@@ -71,7 +71,7 @@
     "picocolors": "1.0.0",
     "postcss": "8.4.17",
     "postcss-nested": "6.0.0",
-    "postcss-simple-vars": "6.0.3",
+    "postcss-simple-vars": "7.0.0",
     "ramda": "0.28.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
