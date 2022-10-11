@@ -33,28 +33,30 @@ export const newBinCommand = (prog: Sade): void => {
     .option('f, force', 'Skip folder checks', false)
     .action(async (name: string, dir: string | undefined, { template, force }: CLI.Options.New) => {
       const bootSpinner = ora();
-      const initialDir = path.resolve(dir || name);
+      const initialDir = path.resolve(process.cwd(), dir || name);
       const { projectDir, projectName } = force
         ? { projectDir: initialDir, projectName: name }
         : await resolveOptions({ name, dir: initialDir });
       bootSpinner.start(newMessage.creating(projectDir));
+      const projectDirPath = path.join(process.cwd(), projectDir);
 
       try {
         // TODO: check if user chose the available option -> Error  ENOENT: no such file or directory, stat '/Users/xx/personal/monoreact/cli/templates/new/asd'
-        await copyTemplate({ dir: projectDir, bin: 'new', template });
+        await copyTemplate({ dir: projectDirPath, bin: 'new', template });
         bootSpinner.stop();
         const author = await getAuthor();
         setNpmAuthorName(author);
         bootSpinner.start();
-        process.chdir(projectDir);
+        process.chdir(projectDirPath);
         const templateConfig = newSetup[template];
         const packageJsonPreset: CLI.Package.HostPackageJSON = {
           ...templateConfig.packageJson,
           name: projectName,
           author: author
         };
+
         await createPackageJson({
-          dir: projectDir,
+          dir: projectDirPath,
           preset: packageJsonPreset
         });
         bootSpinner.succeed(
