@@ -38,16 +38,15 @@ export const newBinCommand = (prog: Sade): void => {
         ? { projectDir: initialDir, projectName: name }
         : await resolveOptions({ name, dir: initialDir });
       bootSpinner.start(newMessage.creating(projectDir));
-      const projectDirPath = path.join(process.cwd(), projectDir);
 
       try {
         // TODO: check if user chose the available option -> Error  ENOENT: no such file or directory, stat '/Users/xx/personal/monoreact/cli/templates/new/asd'
-        await copyTemplate({ dir: projectDirPath, bin: 'new', template });
+        await copyTemplate({ dir: projectDir, bin: 'new', template });
         bootSpinner.stop();
         const author = await getAuthor();
         setNpmAuthorName(author);
         bootSpinner.start();
-        process.chdir(projectDirPath);
+        process.chdir(projectDir);
         const templateConfig = newSetup[template];
         const packageJsonPreset: CLI.Package.HostPackageJSON = {
           ...templateConfig.packageJson,
@@ -56,7 +55,7 @@ export const newBinCommand = (prog: Sade): void => {
         };
 
         await createPackageJson({
-          dir: projectDirPath,
+          dir: projectDir,
           preset: packageJsonPreset
         });
         bootSpinner.succeed(
