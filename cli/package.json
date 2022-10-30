@@ -69,7 +69,7 @@
     "node-sass": "7.0.3",
     "ora": "5.4.1",
     "picocolors": "1.0.0",
-    "postcss": "8.4.17",
+    "postcss": "8.4.18",
     "postcss-nested": "6.0.0",
     "postcss-simple-vars": "7.0.0",
     "ramda": "0.28.0",
