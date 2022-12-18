@@ -1719,10 +1719,10 @@
     markdown-table "^2.0.0"
     pug "^3.0.1"
 
-"@jscpd/html-reporter@^3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@jscpd/html-reporter/-/html-reporter-3.5.0.tgz#69dfc464afa558bd671e6173d2f49619aae6a449"
-  integrity sha512-aALss7JAkuszBFevsezW1wjeaR8om4W6fWMNrptmileb3RbQ//9XUqLOWtBbVbgo+dOOti6+UmoCLIgFR305pA==
+"@jscpd/html-reporter@^3.5.3":
+  version "3.5.3"
+  resolved "https://registry.yarnpkg.com/@jscpd/html-reporter/-/html-reporter-3.5.3.tgz#80b14fed76f93bfc59ee1d7802e9059caeb969af"
+  integrity sha512-eAP/2d1HnrN2kosk8hcKJHDa/MF1ul3D1ye1TXc3jS4OnSYaWEjuVyF+d+z9Q9zGmnXO9mb97tFJIeJRscI5zA==
   dependencies:
     colors "1.4.0"
     fs-extra "^9.0.1"
@@ -8975,14 +8975,14 @@ jsbn@~0.1.0:
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"
   integrity sha512-UVU9dibq2JcFWxQPA6KCqj5O42VOmAY3zQUfEKxU0KpTGXwNoCjkX1e13eHNvw/xPynt6pU0rZ1htjWTNTSXsg==
 
-jscpd@3.5.1:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/jscpd/-/jscpd-3.5.1.tgz#e75fb255e2fd83ed6bc2f0f284095b1b033a0a04"
-  integrity sha512-LCeriLcj26jDaQ58K7p9oMaNP1dsqrEPJkbI0LD/OVjceMJLhDMO3GRAf69uzbnHlhHhufOA+EUb+Wuu5Dc1kA==
+jscpd@3.5.3:
+  version "3.5.3"
+  resolved "https://registry.yarnpkg.com/jscpd/-/jscpd-3.5.3.tgz#82d03c9388b3af8d9737490a8bae44fa164af970"
+  integrity sha512-+K/YGeHMY033orHS4YvIVbfgFspN0VxocHlVgHeNV0is3nKFHYBXAISGQ1r6VR8q7ChB+7OPdJKSkgaH/i+kRA==
   dependencies:
     "@jscpd/core" "^3.5.0"
     "@jscpd/finder" "^3.5.1"
-    "@jscpd/html-reporter" "^3.5.0"
+    "@jscpd/html-reporter" "^3.5.3"
     "@jscpd/tokenizer" "^3.5.1"
     colors "1.4.0"
     commander "^5.0.0"
