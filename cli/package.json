@@ -99,7 +99,7 @@
     "@types/ramda": "0.28.18",
     "@types/react": "18.0.28",
     "@types/sade": "1.7.4",
-    "@types/shelljs": "0.8.11",
+    "@types/shelljs": "0.8.12",
     "esbuild": "0.15.15",
     "rollup-plugin-esbuild": "4.10.3",
     "rollup-plugin-node-builtins": "2.1.2",
