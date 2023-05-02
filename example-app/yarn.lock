@@ -1696,21 +1696,21 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@jscpd/core@^3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@jscpd/core/-/core-3.5.0.tgz#7895a667ec70704730f44a64246bcd68a8ceac00"
-  integrity sha512-ddts7g3oany+N7LDculkfvN+B/n0BjGkIKFKU/ZOvJ/KmuUycFGC6xufM73Peo1fpwEecVko+uINUsyNU3bNzw==
+"@jscpd/core@^3.5.4":
+  version "3.5.4"
+  resolved "https://registry.yarnpkg.com/@jscpd/core/-/core-3.5.4.tgz#0dff08af5e071d22ba35dcb5701fb008338d2b32"
+  integrity sha512-jf37O5C8/Pe4/FbSvgW+IDBwWkRfBCDzJGx4c+zrbq52CIY4ZvREfi1kw6BaE6C6Xz84FgfpKYOuSW/8gTk83A==
   dependencies:
     eventemitter3 "^4.0.4"
 
-"@jscpd/finder@^3.5.1":
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/@jscpd/finder/-/finder-3.5.1.tgz#31e002adaeb7282d04bb318659a1a72a4a6c430e"
-  integrity sha512-9+hpaJkr4W90A4h8coS0ibfvUQRk0VvpwrLLNH0+kAJMKk7uYgqFEj/5Agy1kS0VFZwJEnmkXSvWp8NjFqUhGQ==
+"@jscpd/finder@^3.5.5":
+  version "3.5.5"
+  resolved "https://registry.yarnpkg.com/@jscpd/finder/-/finder-3.5.5.tgz#d46211c762ed62c72428914313f528a3cd550f41"
+  integrity sha512-RAaSnqZWe66JnYsUABvXBPfS9Z8U4GmLLa/IQkxZIOWxlt7g4ohs3FxJNv61bQdBbD0NQ6Xxvd4jntac8FKftg==
   dependencies:
-    "@jscpd/core" "^3.5.0"
-    "@jscpd/tokenizer" "^3.5.1"
-    blamer "^1.0.1"
+    "@jscpd/core" "^3.5.4"
+    "@jscpd/tokenizer" "^3.5.4"
+    blamer "^1.0.3"
     bytes "^3.1.0"
     cli-table3 "^0.6.0"
     colors "1.4.0"
@@ -1719,20 +1719,22 @@
     markdown-table "^2.0.0"
     pug "^3.0.1"
 
-"@jscpd/html-reporter@^3.5.3":
-  version "3.5.3"
-  resolved "https://registry.yarnpkg.com/@jscpd/html-reporter/-/html-reporter-3.5.3.tgz#80b14fed76f93bfc59ee1d7802e9059caeb969af"
-  integrity sha512-eAP/2d1HnrN2kosk8hcKJHDa/MF1ul3D1ye1TXc3jS4OnSYaWEjuVyF+d+z9Q9zGmnXO9mb97tFJIeJRscI5zA==
+"@jscpd/html-reporter@^3.5.9":
+  version "3.5.9"
+  resolved "https://registry.yarnpkg.com/@jscpd/html-reporter/-/html-reporter-3.5.9.tgz#96d5773a5133aa097dc5cfb5eb2d5652c6dce85b"
+  integrity sha512-Q2hu3B2/lCgzQvVHvdZUl2IrmXRKP08zH9xvsaDERPWjaYkWQi6FWNqOnkryMD0cl/hrXBKpx050IUUO7FmACw==
   dependencies:
+    "@jscpd/finder" "^3.5.5"
     colors "1.4.0"
     fs-extra "^9.0.1"
+    pug "^3.0.2"
 
-"@jscpd/tokenizer@^3.5.1":
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/@jscpd/tokenizer/-/tokenizer-3.5.1.tgz#b268c4e4942f6860319aacbcd39f5ebaa13566c1"
-  integrity sha512-Tj8ehnb4AyfdsfR2w1Lp/62e4AwyMKD53NJ7KpLcmh74BqzfwbDgi7QBNfL9L/FJfhovt24uxG3JNOIEYONixw==
+"@jscpd/tokenizer@^3.5.4":
+  version "3.5.4"
+  resolved "https://registry.yarnpkg.com/@jscpd/tokenizer/-/tokenizer-3.5.4.tgz#23a54d359f0848f418bd01c77129384e24acc12d"
+  integrity sha512-qvGbHNFaGXqMqgw0cujRqSM2cuPBAR9EOtZNUx4eGQ6IeuJhsS+aI0ijEUOE1OdVBStdu5xYdyytuLkkmtJzHA==
   dependencies:
-    "@jscpd/core" "^3.5.0"
+    "@jscpd/core" "^3.5.4"
     reprism "^0.0.11"
     spark-md5 "^3.0.1"
 
@@ -3919,14 +3921,13 @@ bl@~0.8.1:
   dependencies:
     readable-stream "~1.0.26"
 
-blamer@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/blamer/-/blamer-1.0.1.tgz#0453b2e94764fb71d2a913c198fff0335fe875aa"
-  integrity sha512-o6d0m9rcEEQXF3+L/wnFPxngqwc1Oxkr/WJ3IdpTfTb0HxOpRLkhC7RAfEEkHIzU66YFjG7N5oEstvE72cnQNQ==
+blamer@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/blamer/-/blamer-1.0.3.tgz#a130c1d82028167eba0250b3d01d066d1b7f2621"
+  integrity sha512-JalDFXndGCrTkKakC7C0H5I09ognGQrl3xJZ6wPwtiuX+9h/qcH1PbTnW+MD6mJku1ISmOAwzeWaXT79D3kg3g==
   dependencies:
     execa "^4.0.0"
     which "^2.0.2"
-    xml2js "^0.4.23"
 
 bluebird@^3.5.5:
   version "3.7.2"
@@ -8975,15 +8976,15 @@ jsbn@~0.1.0:
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"
   integrity sha512-UVU9dibq2JcFWxQPA6KCqj5O42VOmAY3zQUfEKxU0KpTGXwNoCjkX1e13eHNvw/xPynt6pU0rZ1htjWTNTSXsg==
 
-jscpd@3.5.3:
-  version "3.5.3"
-  resolved "https://registry.yarnpkg.com/jscpd/-/jscpd-3.5.3.tgz#82d03c9388b3af8d9737490a8bae44fa164af970"
-  integrity sha512-+K/YGeHMY033orHS4YvIVbfgFspN0VxocHlVgHeNV0is3nKFHYBXAISGQ1r6VR8q7ChB+7OPdJKSkgaH/i+kRA==
+jscpd@3.5.9:
+  version "3.5.9"
+  resolved "https://registry.yarnpkg.com/jscpd/-/jscpd-3.5.9.tgz#44588cf23d1c5afbb09ea45ce15e478dae4ea5cd"
+  integrity sha512-8JJUHVBlnxdU/Hp+ZgctlUaMkAU4yqJ0Cfb+SYMSUihR96idyLg17tJDP6STFpkFVfU4/HLB1LHfeSGp38zVuA==
   dependencies:
-    "@jscpd/core" "^3.5.0"
-    "@jscpd/finder" "^3.5.1"
-    "@jscpd/html-reporter" "^3.5.3"
-    "@jscpd/tokenizer" "^3.5.1"
+    "@jscpd/core" "^3.5.4"
+    "@jscpd/finder" "^3.5.5"
+    "@jscpd/html-reporter" "^3.5.9"
+    "@jscpd/tokenizer" "^3.5.4"
     colors "1.4.0"
     commander "^5.0.0"
     fs-extra "^9.1.0"
@@ -11754,7 +11755,7 @@ pug-walk@^2.0.0:
   resolved "https://registry.yarnpkg.com/pug-walk/-/pug-walk-2.0.0.tgz#417aabc29232bb4499b5b5069a2b2d2a24d5f5fe"
   integrity sha512-yYELe9Q5q9IQhuvqsZNwA5hfPkMJ8u92bQLIMcsMxf/VADjNtEYptU+inlufAFYcWdHlwNfZOEnOOQrZrcyJCQ==
 
-pug@^3.0.1:
+pug@^3.0.1, pug@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/pug/-/pug-3.0.2.tgz#f35c7107343454e43bc27ae0ff76c731b78ea535"
   integrity sha512-bp0I/hiK1D1vChHh6EfDxtndHji55XP/ZJKwsRqrz6lRia6ZC2OZbdAymlxdVFwd1L70ebrVJw4/eZ79skrIaw==
@@ -12709,7 +12710,7 @@ sass-loader@^12.3.0:
     klona "^2.0.4"
     neo-async "^2.6.2"
 
-sax@>=0.6.0, sax@~1.2.4:
+sax@~1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
@@ -15001,19 +15002,6 @@ xml-name-validator@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/xml-name-validator/-/xml-name-validator-3.0.0.tgz#6ae73e06de4d8c6e47f9fb181f78d648ad457c6a"
   integrity sha512-A5CUptxDsvxKJEU3yO6DuWBSJz/qizqzJKOMIfUJHETbBw/sFaDxgd6fxm1ewUaM0jZ444Fc5vC5ROYurg/4Pw==
-
-xml2js@^0.4.23:
-  version "0.4.23"
-  resolved "https://registry.yarnpkg.com/xml2js/-/xml2js-0.4.23.tgz#a0c69516752421eb2ac758ee4d4ccf58843eac66"
-  integrity sha512-ySPiMjM0+pLDftHgXY4By0uswI3SPKLDw/i3UXbnO8M/p28zqexCUoPmQFrYD+/1BzhGJSs2i1ERWKJAtiLrug==
-  dependencies:
-    sax ">=0.6.0"
-    xmlbuilder "~11.0.0"
-
-xmlbuilder@~11.0.0:
-  version "11.0.1"
-  resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-11.0.1.tgz#be9bae1c8a046e76b31127726347d0ad7002beb3"
-  integrity sha512-fDlsI/kFEx7gLvbecc0/ohLG50fugQp8ryHzMTuW9vSa1GJ0XYWKnhsUx7oie3G98+r56aTQIUB4kht42R3JvA==
 
 xmlchars@^2.2.0:
   version "2.2.0"
