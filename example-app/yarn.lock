@@ -2581,10 +2581,10 @@
   resolved "https://registry.yarnpkg.com/@types/retry/-/retry-0.12.0.tgz#2b35eccfcee7d38cd72ad99232fbd58bffb3c84d"
   integrity sha512-wWKOClTTiizcZhXnPY4wikVAwmdYHp8q6DmC+EJUzAMsycb7HB32Kh9RN4+0gExjmPmZSAQjgURXIGATPegAvA==
 
-"@types/sade@1.7.4":
-  version "1.7.4"
-  resolved "https://registry.yarnpkg.com/@types/sade/-/sade-1.7.4.tgz#85913258f8cdac7bf3b416ceabc87ae7ec53a42e"
-  integrity sha512-6ys13kmtlY0aIOz4KtMdeBD9BHs6vSE3aRcj4vAZqXjypT2el8WZt6799CMjElVgh1cbOH/t3vrpQ4IpwytcPA==
+"@types/sade@1.7.5":
+  version "1.7.5"
+  resolved "https://registry.yarnpkg.com/@types/sade/-/sade-1.7.5.tgz#853065e2f23bd6f4bda4ee54fd3af2ea07345e08"
+  integrity sha512-y6fn7PbvFsyKXw1IoZLZmg/rX9Ev8VmNWyfrLrOksy1DEUiDIk/lSOjoyEJadJJroq+SuAo0Q0iRmD8UYQpaLg==
   dependencies:
     "@types/mri" "*"
 
