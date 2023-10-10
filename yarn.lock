@@ -1851,10 +1851,10 @@
   resolved "https://registry.yarnpkg.com/@types/resolve/-/resolve-1.20.2.tgz#97d26e00cd4a0423b4af620abecf3e6f442b7975"
   integrity sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==
 
-"@types/sade@1.7.4":
-  version "1.7.4"
-  resolved "https://registry.yarnpkg.com/@types/sade/-/sade-1.7.4.tgz#85913258f8cdac7bf3b416ceabc87ae7ec53a42e"
-  integrity sha512-6ys13kmtlY0aIOz4KtMdeBD9BHs6vSE3aRcj4vAZqXjypT2el8WZt6799CMjElVgh1cbOH/t3vrpQ4IpwytcPA==
+"@types/sade@1.7.5":
+  version "1.7.5"
+  resolved "https://registry.yarnpkg.com/@types/sade/-/sade-1.7.5.tgz#853065e2f23bd6f4bda4ee54fd3af2ea07345e08"
+  integrity sha512-y6fn7PbvFsyKXw1IoZLZmg/rX9Ev8VmNWyfrLrOksy1DEUiDIk/lSOjoyEJadJJroq+SuAo0Q0iRmD8UYQpaLg==
   dependencies:
     "@types/mri" "*"
 
@@ -2781,9 +2781,9 @@ bl@~0.8.1:
     readable-stream "~1.0.26"
 
 blamer@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/blamer/-/blamer-1.0.3.tgz#a130c1d82028167eba0250b3d01d066d1b7f2621"
-  integrity sha512-JalDFXndGCrTkKakC7C0H5I09ognGQrl3xJZ6wPwtiuX+9h/qcH1PbTnW+MD6mJku1ISmOAwzeWaXT79D3kg3g==
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/blamer/-/blamer-1.0.6.tgz#653fd72ab396efe180bae65d24919a8eda841944"
+  integrity sha512-fv7QToPS87oD1m1bDDTf29zC/bVKJxj2Nqh1r/v4NhMtbnzDIbWOHBYIfxCjlmkVGu3FGOjKgdNG3SFm7TkvBQ==
   dependencies:
     execa "^4.0.0"
     which "^2.0.2"
@@ -9010,10 +9010,10 @@ postcss-selector-parser@^6.0.10, postcss-selector-parser@^6.0.2, postcss-selecto
     cssesc "^3.0.0"
     util-deprecate "^1.0.2"
 
-postcss-simple-vars@7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/postcss-simple-vars/-/postcss-simple-vars-7.0.0.tgz#f1d10a979762aa4e7e3450a35a32885112893d1b"
-  integrity sha512-SPSkKQK7mKjD/tqcTbZkDi3KP+C/cTGXnKQmSt3AisJtnZE6ZxHEUoOGRfpV0B5dW1Y36EETfRHx10WLHpXThA==
+postcss-simple-vars@7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/postcss-simple-vars/-/postcss-simple-vars-7.0.1.tgz#836b3097a54dcd13dbd3c36a5dbdd512fad2954c"
+  integrity sha512-5GLLXaS8qmzHMOjVxqkk1TZPf1jMqesiI7qLhnlyERalG0sMbHIbJqrcnrpmZdKCLglHnRHoEBB61RtGTsj++A==
 
 postcss-svgo@^5.1.0:
   version "5.1.0"
