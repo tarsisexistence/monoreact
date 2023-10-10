@@ -1723,14 +1723,14 @@
   dependencies:
     eventemitter3 "^4.0.4"
 
-"@jscpd/finder@^3.5.5":
-  version "3.5.5"
-  resolved "https://registry.yarnpkg.com/@jscpd/finder/-/finder-3.5.5.tgz#d46211c762ed62c72428914313f528a3cd550f41"
-  integrity sha512-RAaSnqZWe66JnYsUABvXBPfS9Z8U4GmLLa/IQkxZIOWxlt7g4ohs3FxJNv61bQdBbD0NQ6Xxvd4jntac8FKftg==
+"@jscpd/finder@^3.5.10":
+  version "3.5.10"
+  resolved "https://registry.yarnpkg.com/@jscpd/finder/-/finder-3.5.10.tgz#5fee68f51e23157b6323743e3f2b8357921cd8b2"
+  integrity sha512-zyafUsTB2xDySho3wKMSoZuiMw2XvkdYW72kI7bLdz9M+ERyTMRfUnX1RgoGldXyylyZPF1FSflmfsppkV4Wuw==
   dependencies:
     "@jscpd/core" "^3.5.4"
     "@jscpd/tokenizer" "^3.5.4"
-    blamer "^1.0.3"
+    blamer "^1.0.4"
     bytes "^3.1.0"
     cli-table3 "^0.6.0"
     colors "1.4.0"
@@ -1739,12 +1739,12 @@
     markdown-table "^2.0.0"
     pug "^3.0.1"
 
-"@jscpd/html-reporter@^3.5.9":
-  version "3.5.9"
-  resolved "https://registry.yarnpkg.com/@jscpd/html-reporter/-/html-reporter-3.5.9.tgz#96d5773a5133aa097dc5cfb5eb2d5652c6dce85b"
-  integrity sha512-Q2hu3B2/lCgzQvVHvdZUl2IrmXRKP08zH9xvsaDERPWjaYkWQi6FWNqOnkryMD0cl/hrXBKpx050IUUO7FmACw==
+"@jscpd/html-reporter@^3.5.10":
+  version "3.5.10"
+  resolved "https://registry.yarnpkg.com/@jscpd/html-reporter/-/html-reporter-3.5.10.tgz#caadce105eb1d0943707c2f8b05285d6b1f96a43"
+  integrity sha512-EPee/YSy/12UboUOoOD+vFvU8/Bi/CAKnjTDnAdPnJlSh68jog/BNhHKrXiiJKZS2CLn1WzjUaefJrn8VcWo+A==
   dependencies:
-    "@jscpd/finder" "^3.5.5"
+    "@jscpd/finder" "^3.5.10"
     colors "1.4.0"
     fs-extra "^9.0.1"
     pug "^3.0.2"
@@ -3978,10 +3978,10 @@ bl@~0.8.1:
   dependencies:
     readable-stream "~1.0.26"
 
-blamer@^1.0.3:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/blamer/-/blamer-1.0.4.tgz#b2890983a8e2fae3caf7fc9d3f0393725845220d"
-  integrity sha512-wKUEcMmhVUVjrpXKMROJY/O7EUNzQVAcE4jrVwLw/EcMVRS+xzgRpLOEQ/LRXBp1WGtl7uDMHcNzSeJWCRg0Tg==
+blamer@^1.0.4:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/blamer/-/blamer-1.0.6.tgz#653fd72ab396efe180bae65d24919a8eda841944"
+  integrity sha512-fv7QToPS87oD1m1bDDTf29zC/bVKJxj2Nqh1r/v4NhMtbnzDIbWOHBYIfxCjlmkVGu3FGOjKgdNG3SFm7TkvBQ==
   dependencies:
     execa "^4.0.0"
     which "^2.0.2"
@@ -9265,14 +9265,14 @@ jsbn@~0.1.0:
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"
   integrity sha512-UVU9dibq2JcFWxQPA6KCqj5O42VOmAY3zQUfEKxU0KpTGXwNoCjkX1e13eHNvw/xPynt6pU0rZ1htjWTNTSXsg==
 
-jscpd@3.5.9:
-  version "3.5.9"
-  resolved "https://registry.yarnpkg.com/jscpd/-/jscpd-3.5.9.tgz#44588cf23d1c5afbb09ea45ce15e478dae4ea5cd"
-  integrity sha512-8JJUHVBlnxdU/Hp+ZgctlUaMkAU4yqJ0Cfb+SYMSUihR96idyLg17tJDP6STFpkFVfU4/HLB1LHfeSGp38zVuA==
+jscpd@3.5.10:
+  version "3.5.10"
+  resolved "https://registry.yarnpkg.com/jscpd/-/jscpd-3.5.10.tgz#d9d9a3089e4da6cf147938f250980e480cce298d"
+  integrity sha512-lsFBSqtmGocMtF8NuCh867VRhjeSvPlGit7FYA9a9bX3GFoV65djHnWMbIWfHLb/6wCCwllmXaHuMgeMuhqo3Q==
   dependencies:
     "@jscpd/core" "^3.5.4"
-    "@jscpd/finder" "^3.5.5"
-    "@jscpd/html-reporter" "^3.5.9"
+    "@jscpd/finder" "^3.5.10"
+    "@jscpd/html-reporter" "^3.5.10"
     "@jscpd/tokenizer" "^3.5.4"
     colors "1.4.0"
     commander "^5.0.0"
@@ -10295,7 +10295,7 @@ nan@^2.12.1, nan@^2.13.2:
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.17.0.tgz#c0150a2368a182f033e9aa5195ec76ea41a199cb"
   integrity sha512-2ZTgtl0nJsO0KQCjEpxcIr5D+Yv90plTitZt9JBfQvVJDS5seMl3FOvsh3+9CoYWXf/1l5OaZzzF6nDm4cagaQ==
 
-nanoid@^3.3.4, nanoid@^3.3.6:
+nanoid@^3.3.6:
   version "3.3.6"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.6.tgz#443380c856d6e9f9824267d960b4236ad583ea4c"
   integrity sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==
@@ -11843,12 +11843,12 @@ postcss-value-parser@^4.0.0, postcss-value-parser@^4.0.2, postcss-value-parser@^
   resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz#723c09920836ba6d3e5af019f92bc0971c02e514"
   integrity sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==
 
-postcss@8.4.17:
-  version "8.4.17"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.17.tgz#f87863ec7cd353f81f7ab2dec5d67d861bbb1be5"
-  integrity sha512-UNxNOLQydcOFi41yHNMcKRZ39NeXlr8AxGuZJsdub8vIb12fHzcq37DTU/QtbI6WLxNg2gF9Z+8qtRwTj1UI1Q==
+postcss@8.4.31:
+  version "8.4.31"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.31.tgz#92b451050a9f914da6755af352bdc0192508656d"
+  integrity sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ==
   dependencies:
-    nanoid "^3.3.4"
+    nanoid "^3.3.6"
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
