@@ -36,7 +36,7 @@
     "lint-staged": "13.0.3",
     "monoreact": "*",
     "prettier": "2.7.1",
-    "yarn": "1.22.19"
+    "yarn": "1.22.22"
   },
   "resolutions": {
     "tslib": "2.4.1"

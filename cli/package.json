@@ -105,7 +105,7 @@
     "rollup-plugin-node-builtins": "2.1.2",
     "rollup-plugin-node-globals": "1.4.0",
     "rollup-plugin-preserve-shebangs": "0.2.0",
-    "yarn": "1.22.19"
+    "yarn": "1.22.22"
   },
   "publishConfig": {
     "access": "public"
