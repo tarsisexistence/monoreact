@@ -2595,11 +2595,6 @@
   resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.2.tgz#ee771e2ba4b3dc5b372935d549fd9617bf345b8c"
   integrity sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==
 
-"@types/mri@*":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@types/mri/-/mri-1.1.1.tgz#bb2fb3f21068998e816fcdd2bcefd4233a711e6e"
-  integrity sha512-nJOuiTlsvmClSr3+a/trTSx4DTuY/VURsWGKSf/eeavh0LRMqdsK60ti0TlwM5iHiGOK3/Ibkxsbr7i9rzGreA==
-
 "@types/node@*":
   version "18.8.5"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.8.5.tgz#6a31f820c1077c3f8ce44f9e203e68a176e8f59e"
@@ -2718,12 +2713,12 @@
   resolved "https://registry.yarnpkg.com/@types/retry/-/retry-0.12.0.tgz#2b35eccfcee7d38cd72ad99232fbd58bffb3c84d"
   integrity sha512-wWKOClTTiizcZhXnPY4wikVAwmdYHp8q6DmC+EJUzAMsycb7HB32Kh9RN4+0gExjmPmZSAQjgURXIGATPegAvA==
 
-"@types/sade@1.7.5":
-  version "1.7.5"
-  resolved "https://registry.yarnpkg.com/@types/sade/-/sade-1.7.5.tgz#853065e2f23bd6f4bda4ee54fd3af2ea07345e08"
-  integrity sha512-y6fn7PbvFsyKXw1IoZLZmg/rX9Ev8VmNWyfrLrOksy1DEUiDIk/lSOjoyEJadJJroq+SuAo0Q0iRmD8UYQpaLg==
+"@types/sade@1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@types/sade/-/sade-1.8.0.tgz#89254418096daa71202ff0461b221ce79ed5a961"
+  integrity sha512-AaEFFSbi9xUFPVmsmlo0X8gXpdUJxoT6Ve36Qqorqb/wxagc5v4W44mCPeiw5HqWjwypJ1X1qNL7lmofqX5C7g==
   dependencies:
-    "@types/mri" "*"
+    sade "*"
 
 "@types/scheduler@*":
   version "0.16.2"
@@ -13169,7 +13164,7 @@ rxjs@^7.5.5:
   dependencies:
     tslib "^2.1.0"
 
-sade@1.8.1:
+sade@*, sade@1.8.1:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/sade/-/sade-1.8.1.tgz#0a78e81d658d394887be57d2a409bf703a3b2701"
   integrity sha512-xal3CZX1Xlo/k4ApwCFrHVACi9fBqJ7V+mwhBsuf/1IOKbBy098Fex+Wa/5QMubw09pSZ/u8EY8PWgevJsXp1A==
